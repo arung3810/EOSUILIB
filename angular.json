@@ -80,6 +80,32 @@
           }
         }
       }
+    },
+    "eos-ui-comp": {
+      "projectType": "library",
+      "root": "projects/eos-ui-comp",
+      "sourceRoot": "projects/eos-ui-comp/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/eos-ui-comp/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/eos-ui-comp/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/eos-ui-comp/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }

@@ -1,0 +1,337 @@
+.table-container {
+  padding: 24px;
+}
+
+h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.table-responsive {
+  border: 1px solid #ddd;
+}
+
+table {
+  border: 1px solid #e5ebf3;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  font-family: sans-serif;
+}
+
+thead th {
+  font-size: 14px;
+  color: #272727;
+  background: #f8fafc;
+  padding: 12px;
+  font-weight: bold;  
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+thead th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+thead th.sortable:hover {
+  background: #f1f5f9;
+}
+
+thead th.sorted {
+  background: #e8f0f8;
+}
+
+.sort-icon {
+  margin-left: 4px;
+  font-size: 12px;
+  color: #4a5568;
+}
+
+tbody td {
+  font-size: 14px;
+  font-weight: 400;
+    color: #425466;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+a {
+  text-decoration: underline;
+  color: #0056b3;
+  
+}
+
+select {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+
+.pagination li.active,
+.pagination ul li.numb:hover,
+.pagination ul li:first-child:hover,
+.pagination ul li:last-child:hover {
+  color: #fff !important;
+  background: #1a1a1d;
+}
+
+.pagination-controls {
+  width: 100%;
+  border-top: solid 1px transparent;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.pagination-controls .paging-row-summary-panel {
+  margin: 0 32px;
+}
+
+.pagination-controls .paging-row-summary-panel .paging-row-summary-panel-number {
+  font-weight: 600;
+  margin: 0 6px;
+}
+
+.pagination-controls .paging-page-summary-panel {
+  display: flex;
+  flex-direction: row;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button {
+  color: #232324;
+  border: none;
+  background: transparent;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button.disabled {
+  opacity: 0.3;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button:disabled {
+  cursor: default;
+  color: #979ca1;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button .icon-previous {
+  margin-right: 12px;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button .icon-previous::after {
+  content: "\25B6";
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button .icon-next {
+  margin-left: 4px;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button .icon-next::after {
+  content: "\25B6";
+  display: inline-block;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-button .pagination-next {
+  opacity: 0.5;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-description {
+  margin: 0 8px;
+}
+
+.pagination-controls .paging-page-summary-panel .paging-description .paging-number {
+  font-weight: 600;
+  margin: 0 6px;
+}
+.pagination-btn {
+  border: none;
+  background: none;
+  padding: 0;
+}
+.pagination {
+  padding: 16px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  gap: 10px;
+  color: #333;
+  background-color: #f8fafc;
+  border: 1px solid #e5ebf3;;
+}
+
+.pagination strong {
+  font-weight: 600;
+}
+
+.pagination span,
+.pagination button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  color: #bbb;
+}
+
+.pagination .material-icons {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;  
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.btn-testing:hover .tutorial-component {
+  opacity: 1;
+  visibility: visible;
+}
+
+.select-icon {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url(https://newqa.eos.onefin.app/assets/icon/Outline_Tune.svg) !important;
+  background-repeat: no-repeat;
+}
+
+.meettype-dropdown option {
+  color: var(--Master-Text-Body-Light, #425466);
+  font-feature-settings: 'salt' on;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.meettype-dropdown {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  font-size: 0;
+  background-color: #f9f9f9;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background-repeat: no-repeat;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.meetype-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.meettype-dropdown-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.custom-dropdown::-ms-expand {
+  display: none;
+}
+
+.dropdown-attendance .option-style {
+  padding: 8px;
+  /* Add padding to each option */
+  background-color: #fff;
+  /* Background color for options */
+  color: #333;
+  /* Text color for options */
+}
+
+/* Hover state for options */
+.dropdown-attendance .option-style:hover {
+  background-color: #f1f1f1;
+  /* Change background color on hover */
+  color: #000;
+  /* Change text color on hover */
+}
+
+/* Focus state for the dropdown */
+.dropdown-attendance:focus {
+  outline: none;
+  /* Remove default focus outline */
+  /* border-color: #007BFF; */
+  /* Add a custom border color on focus */
+  /* box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); */
+  /* Add a shadow effect on focus */
+}
+
+/* Disabled state for the dropdown */
+.dropdown-attendance:disabled {
+  background-color: #e9ecef;
+  /* Grey out the dropdown when disabled */
+  color: #6c757d;
+  /* Text color for disabled state */
+}
+
+/* Add a custom arrow icon to the dropdown */
+.dropdown-attendance::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.25em;
+  vertical-align: 0.25em;
+  border-left: 0.375em solid transparent;
+  border-right: 0.375em solid transparent;
+  border-top: 0.375em solid #333;
+}

@@ -3,6 +3,11 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "eos-ui-comp": [
+        "./dist/eos-ui-comp"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -29,6 +34,12 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/eos-ui-comp/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/eos-ui-comp/tsconfig.spec.json"
     }
   ]
 }

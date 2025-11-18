@@ -1,0 +1,117 @@
+<div class="table-container">
+  <div class="table-responsive">
+        <table>
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns" [class.sortable]="col.sortable !== false" [class.sorted]="isColumnSorted(col.field)">
+              <span (click)="col.sortable !== false && onSort(col.field)" [style.cursor]="col.sortable !== false ? 'pointer' : 'default'">
+                {{ col.label }}
+                <span *ngIf="col.sortable !== false" class="sort-icon">{{ getSortIcon(col.field) }}</span>
+              </span>
+              <div style="float: right;display: flex;align-items: center;gap: 5px;">
+              <!-- FILTER ICON -->
+              <img *ngIf="col.icons?.includes('filter')"
+                   (click)="filterClick()"
+                   class="header-style"
+                   src="https://newqa.eos.onefin.app/assets/icon/filter-icon.svg"
+                   width="16" height="16" />
+        
+              <!-- TUNE ICON -->
+                   <select
+                   *ngIf="col.icons?.includes('tune')"
+                    class="select-icon meettype-dropdown active-meet" id="categoryFilter"
+                            (change)="onCategoryFilterChange($event)">
+                            <option value="0">Unselect all</option>
+                            <option *ngFor="let category of col.tuneOptions" [value]="category">
+                                {{category}}
+                            </option>
+                   </select>
+        </div>
+            </th>
+          </tr>
+        </thead>
+        
+          <tbody>
+              <tr *ngFor="let row of paginatedRows">
+                  <td *ngFor="let col of columns">
+                    <!-- Dropdown cell type -->
+                    <ng-container *ngIf="col.cellType === 'dropdown' || col.dropdownOptions === true">
+                      <select class="dropdown-attendance" [value]="getSelectedValue(row, col)" (change)="onDropdownChange($event, row, col)">
+                        <option value="">Select</option>
+                        <option *ngFor="let option of getDropdownOptions(row, col)" [value]="option">{{option}}</option>
+                      </select>
+                    </ng-container>
+
+                    <!-- Tooltip cell type -->
+                    <ng-container *ngIf="col.cellType === 'tooltip'">
+                      {{ getCellValue(row, col) }}
+                      <div class="tooltip" *ngIf="shouldShowTooltip(row, col)">
+                        <svg _ngcontent-ng-cli-universal-c3025218707="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-cli-universal-c3025218707="" fill-rule="evenodd" clip-rule="evenodd" d="M6 11.25C8.8995 11.25 11.25 8.8995 11.25 6C11.25 3.10051 8.8995 0.75 6 0.75C3.10051 0.75 0.75 3.10051 0.75 6C0.75 8.8995 3.10051 11.25 6 11.25ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z" fill="#718096"></path><path _ngcontent-ng-cli-universal-c3025218707="" d="M6.69803 4.94092L4.97977 5.15625L4.91824 5.44189L5.25662 5.50342C5.47635 5.55615 5.52029 5.63525 5.47195 5.85498L4.91824 8.45654C4.77322 9.12891 4.99734 9.44531 5.52469 9.44531C5.93338 9.44531 6.40799 9.25635 6.62332 8.99707L6.68924 8.68506C6.53982 8.81689 6.3201 8.86963 6.17508 8.86963C5.96854 8.86963 5.89383 8.72461 5.94656 8.46973L6.69803 4.94092Z" fill="#718096"></path><circle _ngcontent-ng-cli-universal-c3025218707="" cx="6" cy="3.375" r="0.75" fill="#718096"></circle></svg>
+                        <span class="tooltiptext">
+                          {{ getTooltipText(row, col) }}
+                        </span>
+                      </div>
+                    </ng-container>
+
+                    <!-- Custom cell type -->
+                    <ng-container *ngIf="col.cellType === 'custom' && col.customTemplate">
+                      <span [innerHTML]="col.customTemplate(row)"></span>
+                    </ng-container>
+
+                    <!-- Default text cell type -->
+                    <ng-container *ngIf="!col.cellType || col.cellType === 'text'">
+                      {{ getCellValue(row, col) }}
+                    </ng-container>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
+  <div class="pagination">
+      <span>
+          <strong>{{ pageStartIndex }}</strong> to
+          <strong>{{ pageEndIndex }}</strong> of
+          <strong>{{ computedTotal }}</strong>
+      </span>
+
+      <button [disabled]="page === 1" (click)="goToFirstPage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M11.8536 3.64645C12.0488 3.84171 12.0488 4.15829 11.8536 4.35355L8.20711 8L11.8536 11.6464C12.0488 11.8417 12.0488 12.1583 11.8536 12.3536C11.6583 12.5488 11.3417 12.5488 11.1464 12.3536L7.14645 8.35355C6.95118 8.15829 6.95118 7.84171 7.14645 7.64645L11.1464 3.64645C11.3417 3.45118 11.6583 3.45118 11.8536 3.64645Z"
+              fill="#16192C" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M4.5 1C4.22386 1 4 1.22386 4 1.5L4 14.5C4 14.7761 4.22386 15 4.5 15C4.77614 15 5 14.7761 5 14.5L5 1.5C5 1.22386 4.77614 1 4.5 1Z"
+              fill="#16192C" />
+      </svg>
+      </button>
+      <button [disabled]="page === 1" (click)="goToPreviousPage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M11.3536 1.64645C11.5488 1.84171 11.5488 2.15829 11.3536 2.35355L5.70711 8L11.3536 13.6464C11.5488 13.8417 11.5488 14.1583 11.3536 14.3536C11.1583 14.5488 10.8417 14.5488 10.6464 14.3536L4.64645 8.35355C4.45118 8.15829 4.45118 7.84171 4.64645 7.64645L10.6464 1.64645C10.8417 1.45118 11.1583 1.45118 11.3536 1.64645Z"
+            fill="#16192C" />
+    </svg>
+  </button>
+
+      <span>
+          Page <strong>{{ page }}</strong> of <strong>{{ totalPages }}</strong>
+      </span>
+
+      <button [disabled]="page === totalPages" (click)="goToNextPage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M4.64645 14.3536C4.45118 14.1583 4.45118 13.8417 4.64645 13.6464L10.2929 8L4.64645 2.35355C4.45118 2.15829 4.45118 1.84171 4.64645 1.64645C4.84171 1.45118 5.15829 1.45118 5.35355 1.64645L11.3536 7.64645C11.5488 7.84171 11.5488 8.15829 11.3536 8.35355L5.35355 14.3536C5.15829 14.5488 4.84171 14.5488 4.64645 14.3536Z"
+              fill="#16192C" />
+      </svg>
+      </button>
+      <button [disabled]="page === totalPages" (click)="goToLastPage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M4.14645 12.3536C3.95118 12.1583 3.95118 11.8417 4.14645 11.6464L7.79289 8L4.14645 4.35355C3.95118 4.15829 3.95118 3.84171 4.14645 3.64645C4.34171 3.45118 4.65829 3.45118 4.85355 3.64645L8.85355 7.64645C9.04882 7.84171 9.04882 8.15829 8.85355 8.35355L4.85355 12.3536C4.65829 12.5488 4.34171 12.5488 4.14645 12.3536Z"
+              fill="#16192C" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M11.5 15C11.7761 15 12 14.7761 12 14.5L12 1.5C12 1.22386 11.7761 1 11.5 1C11.2239 1 11 1.22386 11 1.5L11 14.5C11 14.7761 11.2239 15 11.5 15Z"
+              fill="#16192C" />
+      </svg>
+      </button>
+  </div>
+</div>
