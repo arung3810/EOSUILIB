@@ -1,18 +1,30 @@
-<button
-      [class]="getButtonClasses()"
-      [disabled]="disabled || loading"
-      [type]="type"
-      (click)="handleClick($event)"
-      [attr.aria-disabled]="disabled || loading"
-      [attr.aria-busy]="loading">
-      @if (loading) {
-        <span class="button-spinner" aria-hidden="true"></span>
-      }
-      <span class="btn-prefix">
-        <ng-content select="[prefix]"></ng-content>
-      </span>
-      <ng-content></ng-content>
-      <span class="btn-suffix">
-        <ng-content select="[suffix]"></ng-content>
-      </span>
-    </button>
+<div
+  class="dropdown-wrapper"
+  (click)="toggleDropdown()"
+  (mouseenter)="openOnHover && openDropdown()"
+  (mouseleave)="openOnHover && closeDropdown()"
+>
+  <button
+    [class]="getButtonClasses()"
+    [disabled]="disabled || loading"
+    [type]="type"
+    (click)="handleClick($event)"
+    [attr.aria-disabled]="disabled || loading"
+    [attr.aria-busy]="loading"
+  >
+    @if (loading) {
+    <span class="button-spinner" aria-hidden="true"></span>
+    }
+    <span class="btn-prefix">
+      <ng-content select="[prefix]"></ng-content>
+    </span>
+    <ng-content></ng-content>
+    <span class="btn-suffix">
+      <ng-content select="[suffix]"></ng-content>
+    </span>
+  </button>
+
+  <div class="dropdown-menu" [ngClass]="{ open: dropdownOpen }">
+    <ng-content select="[dropdown]"></ng-content>
+  </div>
+</div>

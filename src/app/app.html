@@ -14,22 +14,40 @@
         [loading]="btn.loading"
         (clicked)="buttonClick($event)"
       >
-      @if (btn.prefix) {
+        @if (btn.prefix) {
         <ng-container prefix>
-          <img [src]="btn.prefix" height="18" alt="" />
+          <img [src]="btn.prefix" alt="" />
         </ng-container>
-      }
+        }
         {{ btn.label }}
         @if (btn.suffix) {
-          <ng-container suffix>
-            <img [src]="btn.suffix" height="18" alt="" />
-          </ng-container>
+        <ng-container suffix>
+          <img [src]="btn.suffix" alt="" />
+        </ng-container>
         }
       </lib-button>
-      <lib-button
-        (clicked)="buttonClick($event)">
-      hello
-    </lib-button>
+
+      <lib-button (clicked)="buttonClick($event)"> hello </lib-button>
+
+      <lib-button variant="secondary" openOnHover dropdown>
+        <ng-container prefix>
+          <img src="../assets/threeDot.svg" alt="" />
+        </ng-container>
+        Hover
+        <p dropdown *ngFor="let item of menuItems">
+          {{ item.label }}
+        </p>
+      </lib-button>
+      
+      <lib-button variant="secondary" openOnClick dropdown>
+        <ng-container prefix>
+          <img src="../assets/threeDot.svg" alt="" />
+        </ng-container>
+        Click
+        <p dropdown *ngFor="let item of menuItems">
+          {{ item.label }}
+        </p>
+      </lib-button>
     </div>
   </section>
 
@@ -39,8 +57,8 @@
     <lib-modal
       button1="Yes"
       button2="No"
-      (click1)="buttonClick1($event)"
-      (click2)="buttonClick2($event)"
+      (click1)="ModalbtnClick2($event)"
+      (click2)="ModalbtnClick2($event)"
       title="Want to delete the Note?"
       message="Your data will be deleted permanently."
       [open]="isModalOpen()"
@@ -61,20 +79,24 @@
 
   <section>
     <h2>Header Component</h2>
-    <lib-header-component greetingType="Good Evening," fcName="TEST USER 2 CO"></lib-header-component>
+    <lib-header-component
+      greetingType="Good Evening,"
+      fcName="TEST USER 2 CO"
+    ></lib-header-component>
   </section>
 
   <section>
     <h2>Table Component</h2>
-  <lib-table
-    [columns]="columns"
-    [rows]="tableData"
-    [total]="totalRows"
-    [page]="currentPage"
-    [pageSize]="pageSize"
-    (pageChange)="onPageChange($event)"
-    (sortChange)="onSortChange($event)">
-  </lib-table>
+    <lib-table
+      [columns]="columns"
+      [rows]="tableData"
+      [total]="totalRows"
+      [page]="currentPage"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)"
+    >
+    </lib-table>
   </section>
 </div>
 <router-outlet />

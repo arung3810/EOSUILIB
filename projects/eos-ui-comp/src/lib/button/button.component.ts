@@ -19,6 +19,24 @@ export class ButtonComponent {
   @Input({ transform: booleanAttribute }) loading = false;
   @Input({ transform: booleanAttribute }) fullWidth = false;
   @Output() clicked = new EventEmitter<MouseEvent>();
+  @Input({ transform: booleanAttribute }) dropdown = false;
+  @Input({ transform: booleanAttribute }) openOnHover = false;
+  @Input({ transform: booleanAttribute }) openOnClick = false;
+
+  dropdownOpen = false;
+
+  openDropdown() {
+    if(this.dropdown)
+    this.dropdownOpen = true;
+  }
+
+  closeDropdown() {
+    this.dropdownOpen = false;
+  }
+  
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
 
   getButtonClasses(): string {
     const classes = [
