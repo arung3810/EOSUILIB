@@ -38,15 +38,15 @@ menuItems = [{label: 'Item 1'}, {label: 'Item 2'}, {label: 'Item 3'}];
 buttons: {
   label: string;
   variant: ButtonVariant;
-  disabled: boolean;
-  loading: boolean;
-  prefix?: string;
-  suffix?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  prefixIcon?: string;
+  suffixIcon?: string;
 }[] = [
   { label: 'Plain btn', variant: 'primary', disabled: false, loading: false},
-  { label: 'Prefix Icon btn', variant: 'primary', disabled: false, loading: false, prefix: 'assets/filter-icon.svg'},
-  { label: 'Suffix Icon btn', variant: 'secondary', disabled: false, loading: false, suffix: "assets/filter-icon.svg" },
-  { label: 'Prefix Suffix btn', variant: 'secondary', disabled: false, loading: false, prefix:"assets/filter-icon.svg", suffix: "assets/filter-icon.svg" },
+  { label: 'Prefix Icon btn', variant: 'primary', disabled: false, loading: false, prefixIcon: 'assets/filter-icon.svg'},
+  { label: 'Suffix Icon btn', variant: 'secondary', disabled: false, loading: false, suffixIcon: "assets/filter-icon.svg" },
+  { label: 'Prefix Suffix btn', variant: 'secondary', disabled: false, loading: false, prefixIcon:"assets/filter-icon.svg", suffixIcon: "assets/filter-icon.svg" },
   { label: 'Disabled btn', variant: 'secondary', disabled: true, loading: false },
   { label: 'loading btn', variant: 'secondary', disabled: false, loading: true },
 ];

@@ -4,6 +4,11 @@ import { CommonModule } from '@angular/common';
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 export type ButtonSize = 'small' | 'medium' | 'large';
 
+export interface DropdownItem {
+  label: string;
+  [key: string]: any;
+}
+
 @Component({
   selector: 'lib-button',
   standalone: true,
@@ -22,6 +27,9 @@ export class ButtonComponent {
   @Input({ transform: booleanAttribute }) dropdown = false;
   @Input({ transform: booleanAttribute }) openOnHover = false;
   @Input({ transform: booleanAttribute }) openOnClick = false;
+  @Input() prefixIcon = '';
+  @Input() suffixIcon = '';
+  @Input() dropdownList: DropdownItem[] = [];
 
   dropdownOpen = false;
 
@@ -35,7 +43,9 @@ export class ButtonComponent {
   }
   
   toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
+    if (this.dropdown) {
+      this.dropdownOpen = !this.dropdownOpen;
+    }
   }
 
   getButtonClasses(): string {
@@ -53,7 +63,17 @@ export class ButtonComponent {
 
   handleClick(event: MouseEvent): void {
     if (!this.disabled && !this.loading) {
+      if (this.dropdown && this.openOnClick) {
+        this.toggleDropdown();
+      }
       this.clicked.emit(event);
     }
+  }
+
+  onDropdownItemClick(item: DropdownItem, event: MouseEvent): void {
+    event.stopPropagation();
+    // Emit item click event if needed
+    // You can add an @Output() for dropdown item clicks here
+    this.closeDropdown();
   }
 }

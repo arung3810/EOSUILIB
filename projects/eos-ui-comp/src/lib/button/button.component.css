@@ -76,17 +76,31 @@ button.button-full-width {
   border-radius: 8px;
   border: 1px solid #e3e3e3;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 0 1rem;
+  padding: 0.25rem 0;
   z-index: 999999;
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
   transition: opacity 0.15s ease, transform 0.15s ease;
   width: max-content;
+  min-width: 100%;
 }
 
 .dropdown-menu.open {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 14px;
+  color: #1a202c;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background-color: #f7fafc;
 }

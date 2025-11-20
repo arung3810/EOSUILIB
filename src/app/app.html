@@ -13,41 +13,35 @@
         [disabled]="btn.disabled"
         [loading]="btn.loading"
         (clicked)="buttonClick($event)"
+        [prefixIcon]="btn.prefixIcon || ''"
+        [suffixIcon]="btn.suffixIcon || ''"
       >
-        @if (btn.prefix) {
-        <ng-container prefix>
-          <img [src]="btn.prefix" alt="" />
-        </ng-container>
-        }
         {{ btn.label }}
-        @if (btn.suffix) {
-        <ng-container suffix>
-          <img [src]="btn.suffix" alt="" />
-        </ng-container>
-        }
       </lib-button>
 
       <lib-button (clicked)="buttonClick($event)"> hello </lib-button>
 
-      <lib-button variant="secondary" openOnHover dropdown>
-        <ng-container prefix>
-          <img src="../assets/threeDot.svg" alt="" />
-        </ng-container>
+      <lib-button 
+        variant="secondary" 
+        [openOnHover]="true" 
+        [dropdown]="true"
+        [dropdownList]="menuItems"
+        suffixIcon="assets/threeDot.svg"
+      >
         Hover
-        <p dropdown *ngFor="let item of menuItems">
-          {{ item.label }}
-        </p>
       </lib-button>
       
-      <lib-button variant="secondary" openOnClick dropdown>
-        <ng-container prefix>
-          <img src="../assets/threeDot.svg" alt="" />
-        </ng-container>
+      <lib-button 
+        variant="secondary" 
+        [openOnClick]="true" 
+        [dropdown]="true"
+        [dropdownList]="menuItems"
+        prefixIcon="assets/threeDot.svg"
+      >
         Click
-        <p dropdown *ngFor="let item of menuItems">
-          {{ item.label }}
-        </p>
       </lib-button>
+
+      <lib-button variant="secondary" fullWidth="true">Full width</lib-button>
     </div>
   </section>
 
