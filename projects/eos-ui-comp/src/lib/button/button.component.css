@@ -11,6 +11,7 @@ button {
   outline: none;
   white-space: nowrap;
   padding: 0.5rem 1rem;
+  height: 35px;
   font-size: 14px;
 }
 
@@ -49,4 +50,15 @@ button.button-secondary {
 
 button.button-full-width {
   width: 100%;
+}
+
+.btn-prefix,
+.btn-suffix {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-prefix:empty,
+.btn-suffix:empty {
+  display: none;
 }
