@@ -24,6 +24,7 @@ export class ButtonComponent {
   @Input({ transform: booleanAttribute }) loading = false;
   @Input({ transform: booleanAttribute }) fullWidth = false;
   @Output() clicked = new EventEmitter<MouseEvent>();
+  @Output() dropdownClicked = new EventEmitter<MouseEvent>();
   @Input({ transform: booleanAttribute }) dropdown = false;
   @Input({ transform: booleanAttribute }) openOnHover = false;
   @Input({ transform: booleanAttribute }) openOnClick = false;
@@ -66,6 +67,7 @@ export class ButtonComponent {
       if (this.dropdown && this.openOnClick) {
         this.toggleDropdown();
       }
+      if(this.dropdown) return;      
       this.clicked.emit(event);
     }
   }
@@ -75,5 +77,6 @@ export class ButtonComponent {
     // Emit item click event if needed
     // You can add an @Output() for dropdown item clicks here
     this.closeDropdown();
+    this.dropdownClicked.emit()
   }
 }
