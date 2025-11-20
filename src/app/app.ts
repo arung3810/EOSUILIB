@@ -36,10 +36,13 @@ buttons: {
   variant: ButtonVariant;
   disabled: boolean;
   loading: boolean;
+  prefix?: string;
+  suffix?: string;
 }[] = [
-  { label: 'Search', variant: 'primary', disabled: false, loading: false },
-  { label: 'Click me', variant: 'secondary', disabled: false, loading: false },
-  { label: 'Click me', variant: 'secondary', disabled: true, loading: false },
+  { label: 'Fetch details', variant: 'primary', disabled: false, loading: false},
+  { label: 'Search', variant: 'primary', disabled: false, loading: false, prefix: 'assets/filter-icon.svg'},
+  { label: 'Click me', variant: 'secondary', disabled: false, loading: false, suffix: "assets/filter-icon.svg" },
+  { label: 'Click me', variant: 'secondary', disabled: true, loading: false, prefix:"assets/filter-icon.svg", suffix: "assets/filter-icon.svg" },
   { label: 'Click me', variant: 'secondary', disabled: false, loading: true },
 ];
 
