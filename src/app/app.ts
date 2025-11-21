@@ -52,7 +52,7 @@ buttons: {
 ];
 
 headerbtn1: ButtonType[] = [
-  { label: 'Consultation Mode', variant: 'secondary', disabled: false, loading: false, clicked: this.buttonClick.bind(this), prefixIcon: 'assets/play.svg'},
+  { label: 'Consultation Mode', variant: 'secondary', disabled: false, loading: false, clicked: this.buttonClick.bind(this), prefixIcon: 'assets/filter-icon.svg'},
   { 
     label: 'Calulate', 
     variant: 'secondary', 

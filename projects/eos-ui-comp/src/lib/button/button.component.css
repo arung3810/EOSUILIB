@@ -104,3 +104,7 @@ button.button-full-width {
 .dropdown-item:hover {
   background-color: #f7fafc;
 }
+.btn-suffix img,.btn-prefix img{
+  width: 14px;
+  height: 14px;
+}
