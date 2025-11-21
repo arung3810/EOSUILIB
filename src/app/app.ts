@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent } from '../../dist/eos-comp';
+import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType } from '../../dist/eos-comp';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
@@ -51,6 +51,34 @@ buttons: {
   { label: 'loading btn', variant: 'secondary', disabled: false, loading: true },
 ];
 
+headerbtn1: ButtonType[] = [
+  { label: 'Consultation Mode', variant: 'secondary', disabled: false, loading: false, clicked: this.buttonClick.bind(this), prefixIcon: 'assets/play.svg'},
+  { 
+    label: 'Calulate', 
+    variant: 'secondary', 
+    disabled: false, 
+    loading: false, 
+    clicked: this.buttonClick.bind(this),
+    prefixIcon: "assets/calculate.svg", 
+  },
+];
+
+headerbtn: ButtonType[] = [
+  { label: 'Update Data', variant: 'secondary', disabled: false, loading: false, clicked: this.buttonClick.bind(this)},
+  { label: 'Workbook', variant: 'secondary', disabled: false, loading: false, clicked: this.buttonClick.bind(this)},
+  { 
+    label: 'Menu', 
+    variant: 'secondary', 
+    disabled: false, 
+    loading: false, 
+    prefixIcon: "assets/threeDot.svg", 
+    dropdown: true, 
+    openOnHover: true, 
+    dropdownList: this.menuItems,
+    dropdownClicked: this.handleDropdownClick.bind(this)
+  },
+];
+
   data = [
     {
       name: 'Item A',
@@ -68,9 +96,21 @@ buttons: {
       updatedAt: new Date('2024-11-09T16:45:00'),
     },
   ];
+
+  handleIconClicked(){
+    console.log('clicked icon in header');
+  }
   
   buttonClick(event: MouseEvent): void {
     window.alert('btn clicked successfully')
+  }
+
+  handleDropdownClick(){
+    console.log('check'); 
+  }
+
+  handleButtonClick(){
+    console.log('check button click'); 
   }
 
   ModalbtnClick1(event: MouseEvent): void{

@@ -1,3 +1,43 @@
 <header class="c-header">
-    {{greetingType+' '}}{{fcName}}
+  <div class="left">
+    @if(!description?.length){
+    <span class="title">{{ title }}</span>
+    }
+    @if(!!description?.length){
+    <div class="profileHeader">
+      <span class="image-background">
+        <img alt="" class="msImage" src="{{ profileImage }}" />
+      </span>
+      <span class="text-wrapper">
+        <p class="customerName">
+          {{ title }}
+        </p>
+        <p class="customerMs">
+          {{ description }}
+        </p>
+      </span>
+    </div>
+    }
+  </div>
+  <div class="right">
+    @if(!!buttonList?.length){
+    <lib-button
+    *ngFor="let btn of buttonList"
+    [variant]="btn.variant"
+    [disabled]="btn.disabled"
+    [loading]="btn.loading"
+    [dropdown]="btn.dropdown"
+    [prefixIcon]="btn.prefixIcon || ''"
+    [suffixIcon]="btn.suffixIcon || ''"
+    [openOnHover]="btn.openOnHover"
+    [openOnClick]="btn.openOnClick"
+    [dropdownList]="btn.dropdownList || []"
+    (clicked)="btn.clicked?.($event)"
+    (dropdownClicked)="btn.dropdownClicked?.($event)"
+    >{{btn?.label}}</lib-button>
+    }
+    @if(!!icon?.length){
+      <img src={{icon}} alt="" (click)="handleIconClicked()">
+    }
+  </div>
 </header>

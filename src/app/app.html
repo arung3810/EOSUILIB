@@ -1,4 +1,4 @@
-<div class="container">
+<div>
   <header>
     <h1>EOS UI Components</h1>
     <p>Comprehensive showcase of the reusable Angular button component for EOS</p>
@@ -24,26 +24,40 @@
       <lib-button 
         variant="secondary" 
         [openOnHover]="true" 
+        (clicked)="handleButtonClick()"
+        (dropdownClicked)="handleDropdownClick()"
         [dropdown]="true"
         [dropdownList]="menuItems"
         suffixIcon="assets/threeDot.svg"
       >
         Hover
       </lib-button>
-      
-      <lib-button 
-        variant="secondary" 
-        [openOnClick]="true" 
-        [dropdown]="true"
-        [dropdownList]="menuItems"
-        prefixIcon="assets/threeDot.svg"
-      >
-        Click
-      </lib-button>
 
       <lib-button variant="secondary" fullWidth="true">Full width</lib-button>
     </div>
   </section>
+
+  <section>
+    <h2>Header Component</h2>
+    <lib-header-component
+    title="SACHIN RAJESH SINGH"
+    description="Far-sighted Eagle"
+    profileImage="https://moneysign-templates.s3.ap-south-1.amazonaws.com/MS-batch-v1.4EOS/EaglehighImg.png"
+    [buttonList]="headerbtn"
+    ></lib-header-component>
+    <br/>
+    <lib-header-component
+    title="Good Evening, TEST USER 2 CO"
+    [buttonList]="headerbtn1"
+    ></lib-header-component>
+    <br/>
+    <lib-header-component
+    icon="assets/close.svg"
+    title="Personal & Financial Data"
+    (iconClicked)="handleIconClicked()"
+    ></lib-header-component>
+  </section>
+
 
   <section>
     <h2>Modal Component</h2>
@@ -69,14 +83,6 @@
       (cardClick)="onDashboardClick()"
     >
     </lib-dashboard-card>
-  </section>
-
-  <section>
-    <h2>Header Component</h2>
-    <lib-header-component
-      greetingType="Good Evening,"
-      fcName="TEST USER 2 CO"
-    ></lib-header-component>
   </section>
 
   <section>
