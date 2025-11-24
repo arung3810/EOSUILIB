@@ -1,0 +1,82 @@
+<div class="row">
+  <div style="margin-top: 24px;" class="col-md-12">
+    <div class="tabpane pane-padding">
+
+      <!-- TAB HEADERS -->
+      <div class="pens">
+        <ul class="nav nav-pills">
+
+          <div class="nav-item">
+            <button
+              class="nav-link"
+              [class.active]="isActive('emergency')"
+              (click)="setActive('emergency')"
+            >
+              Tab 1
+            </button>
+        </div>
+
+          <div class="nav-item">
+            <button
+              class="nav-link"
+              [class.active]="isActive('expenses')"
+              (click)="setActive('expenses')"
+            >
+              Tab 2
+            </button>
+        </div>
+
+          <div class="nav-item">
+            <button
+              class="nav-link"
+              [class.active]="isActive('assets')"
+              (click)="setActive('assets')"
+            >
+           Tab 3
+            </button>
+        </div>
+
+        </ul>
+      </div>
+
+      <!-- TAB CONTENT -->
+      <div class="tab-content">
+
+        <!-- TAB 1 -->
+        <div
+          class="tab-pane fade"
+          [class.show]="isActive('emergency')"
+          [class.active]="isActive('emergency')"
+        >
+          <div style="margin-top: 24px;" class="row finance-row">
+            Tab Content 1
+          </div>
+        </div>
+
+        <!-- TAB 2 -->
+        <div
+          class="tab-pane fade"
+          [class.show]="isActive('expenses')"
+          [class.active]="isActive('expenses')"
+        >
+          <div style="margin-top: 24px;" class="row finance-row">
+            Tab Content 2
+          </div>
+        </div>
+
+        <!-- TAB 3 -->
+        <div
+          class="tab-pane fade"
+          [class.show]="isActive('assets')"
+          [class.active]="isActive('assets')"
+        >
+          <div style="margin-top: 24px;" class="row finance-row">
+            Tab content 3
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

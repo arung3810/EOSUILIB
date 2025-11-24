@@ -1,0 +1,56 @@
+.nav {
+  display: flex;
+  gap: 10px;
+  padding-left: 0px;
+  border-bottom: 1px solid #d0d5de;
+}
+
+.nav-pills .nav-link {
+padding: 0px;
+    /* border-radius: 50px; */
+    background: #f3f3f300;
+    color: #555;
+    border: none;
+    cursor: pointer;
+
+
+    /* font-size: 14px; */
+        font-size: 18px;
+    font-family: Inter, "sans serif";
+    font-weight: 400;
+    margin-right: 18px;
+}
+
+.nav-pills .nav-link:hover {
+  background: #e3e3e3;
+}
+
+.nav-pills .nav-link.active {
+    color: #000;
+    border-bottom: 1px solid #000000;
+    background-color: #f7fafc00;
+    border-radius: 0;
+    padding-bottom: 20px;
+    padding-top: 0;
+}
+
+/* TAB CONTENT ANIMATION */
+.tab-pane {
+  display: none;
+  opacity: 0;
+  /* transition: opacity 0.3s ease-in-out; */
+}
+
+.tab-pane.show.active {
+  display: block;
+  opacity: 1;
+}
+
+.pane-padding {
+  padding: 15px;
+}
+
+.finance-row {
+  font-size: 16px;
+  color: #333;
+}

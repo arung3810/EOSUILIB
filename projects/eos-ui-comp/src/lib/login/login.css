@@ -1,0 +1,191 @@
+.login-1finance {
+	 display: flex;
+	 align-items: stretch;
+	 padding: 0px;
+	 height: 100%;
+}
+ .login-1finance .img-section, .login-1finance .sub-section {
+	 flex: 1;
+}
+ .login-1finance .img-section {
+	 min-width: 60%;
+	 position: relative;
+}
+ .login-1finance .img-section .bg-area {
+	 position: absolute;
+	 z-index: 1;
+	 bottom: 0;
+	 left: 0;
+	 width: 100%;
+	 height: 100%;
+}
+ .login-1finance .img-section .bg-area .patten1 {
+	 position: absolute;
+	 z-index: 1;
+	 bottom: 0px;
+	 left: 0px;
+	 width: 100%;
+}
+ .login-1finance .img-section .bg-area .patten1 img {
+	 width: 100%;
+}
+ .login-1finance .img-section .bg-area .img-group {
+	 position: absolute;
+	 z-index: 2;
+	 right: 0px;
+	 bottom: 0px;
+	 height: 100%;
+	 width: 100%;
+	 overflow: hidden;
+}
+ .login-1finance .img-section .bg-area .img-group .signupimg {
+	 position: absolute;
+	 width: 100%;
+	 bottom: -10%;
+	 left: -7%;
+	 max-height: 85%;
+	 object-fit: contain;
+	 object-position: left;
+}
+ .login-1finance .img-section .bg-area .patten2 {
+	 position: absolute;
+	 z-index: 3;
+	 bottom: 0px;
+	 left: 0px;
+	 width: 75%;
+}
+ .login-1finance .img-section .bg-area .patten2 img {
+	 width: 100%;
+}
+ .login-1finance .img-section .eos-hero-icon {
+	 position: relative;
+	 margin-top: 60px;
+	 margin-left: 60px;
+	 z-index: 2;
+	 display: flex;
+	 gap: 10px;
+}
+ .login-1finance .img-section .eos-hero-icon .hero-logo {
+	 display: flex;
+	 width: 75px;
+	 height: 78px;
+	 padding: 14px 16px;
+	 align-items: flex-start;
+	 justify-content: center;
+	 gap: 24px;
+}
+ .login-1finance .img-section .eos-hero-icon .eos-title {
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 gap: 4px;
+}
+ .login-1finance .img-section .eos-hero-icon .eos-title .title {
+	 font-size: 24px;
+	 font-style: normal;
+	 font-weight: 700;
+	 line-height: 136.023%;
+	 margin: 0px;
+	 color: #27272e;
+}
+ .login-1finance .img-section .eos-hero-icon .eos-title .pera {
+	 font-size: 16px;
+	 font-style: normal;
+	 font-weight: 400;
+	 line-height: 136.023%;
+	 margin: 0px;
+	 color: #737373;
+}
+ .login-1finance .sub-section {
+	 display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 padding: 10px;
+	 background-image: url('/assets/icon/login.png');
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 background-color: #27272e;
+}
+ .login-1finance .sub-section .card {
+	 width: calc(100% - 40px);
+	 max-width: 505px;
+	 padding: 40px;
+	 border-radius: 5px;
+	 background: #fff;
+}
+ .login-1finance .sub-section .card .card-body {
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 align-items: flex-start;
+	 gap: 40px;
+}
+ .login-1finance .sub-section .card .card-body h2 {
+	 font-size: 40px;
+	 font-style: normal;
+	 font-weight: 600;
+	 line-height: 136.023%;
+	 margin: 0px;
+	 color: #27272e;
+}
+ .login-1finance .sub-section .card .card-body .column-group {
+	 width: 100%;
+}
+ .login-1finance .sub-section .card .card-body .login-btn {
+	 display: flex;
+	 padding: 16px 24px;
+	 align-items: center;
+	 justify-content: center;
+	 gap: 10px;
+	 align-self: stretch;
+	 border-radius: 8px;
+	 border: 0px;
+	 background-color: #000;
+	 color: #fff;
+	 width: 100%;
+	 font-size: 14px;
+	 font-style: normal;
+	 font-weight: 600;
+	 line-height: 14px;
+}
+ .login-1finance .sub-section .card .card-body .sub-text {
+	 font-size: 14px;
+	 font-style: normal;
+	 font-weight: 400;
+	 line-height: normal;
+	 color: #4b4c51;
+	 margin: 0px;
+}
+ .login-1finance .sub-section .card .card-body .sub-text b {
+	 color: #27272e;
+}
+ .login-1finance .sub-section .card .column-group {
+	 display: flex;
+	 flex-direction: column;
+	 gap: 16px;
+}
+ @media (max-width: 920px) {
+	 .login-1finance {
+		 flex-direction: column;
+	}
+	 .login-1finance .img-section {
+		 flex: unset;
+		 height: 180px;
+	}
+	 .login-1finance .img-section .signupimg {
+		 display: none;
+	}
+	 .login-1finance .img-section .eos-hero-icon {
+		 margin-left: 15px;
+	}
+	 .login-1finance .sub-section .card {
+		 padding: 30px 20px;
+	}
+	 .login-1finance .sub-section .card .card-body {
+		 gap: 20px;
+	}
+	 .login-1finance .sub-section .card .card-body h2 {
+		 font-size: 24px;
+	}
+}
+ 
