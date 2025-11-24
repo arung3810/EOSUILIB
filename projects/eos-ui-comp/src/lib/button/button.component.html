@@ -1,18 +1,39 @@
-<button
-      [class]="getButtonClasses()"
-      [disabled]="disabled || loading"
-      [type]="type"
-      (click)="handleClick($event)"
-      [attr.aria-disabled]="disabled || loading"
-      [attr.aria-busy]="loading">
-      @if (loading) {
-        <span class="button-spinner" aria-hidden="true"></span>
+<div
+  class="dropdown-wrapper"
+  (mouseenter)="openOnHover && dropdown && openDropdown()"
+  (mouseleave)="openOnHover && dropdown && closeDropdown()"
+>
+  <button
+    [class]="getButtonClasses()"
+    [disabled]="disabled || loading"
+    [type]="type"
+    (click)="handleClick($event)"
+    [attr.aria-disabled]="disabled || loading"
+    [attr.aria-busy]="loading"
+  >
+    @if (loading) {
+    <span class="button-spinner" aria-hidden="true"></span>
+    }
+    @if(!!prefixIcon?.length){
+    <span class="btn-prefix">
+      <img [src]="prefixIcon" alt="" />
+    </span>
+    }
+    <ng-content></ng-content>
+    @if(!!suffixIcon?.length){
+    <span class="btn-suffix">
+      <img [src]="suffixIcon" alt="" />
+    </span>
+    }
+  </button>
+
+  @if (dropdown && dropdownList && dropdownList.length > 0) {
+    <div class="dropdown-menu" [ngClass]="{ open: dropdownOpen }">
+      @for (item of dropdownList; track $index) {
+        <div class="dropdown-item" (click)="onDropdownItemClick(item, $event)">
+          {{ item.label }}
+        </div>
       }
-      <span class="btn-prefix">
-        <ng-content select="[prefix]"></ng-content>
-      </span>
-      <ng-content></ng-content>
-      <span class="btn-suffix">
-        <ng-content select="[suffix]"></ng-content>
-      </span>
-    </button>
+    </div>
+  }
+</div>
