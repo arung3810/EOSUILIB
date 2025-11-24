@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent } from '../../dist/eos-comp';
+import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane } from '../../dist/eos-comp';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent],
+  imports: [NgFor,TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
