@@ -1,0 +1,56 @@
+   <h1 class="card-head">Tooltips</h1>
+<div class="tooltip-section">
+ 
+    <div class="tooltip-phase1">
+        <span style="margin-right: 5px; color: #A3A3A3;">
+            <span class="tooltip-ter">
+                <i>i</i>
+                <span class="tooltiptext">{{tooltipText}}</span>
+            </span>
+        </span>
+
+        <br>
+
+        <span style="margin-left: 5px; color: #A3A3A3;">
+            <span class="tooltip-top">
+                <i>i</i>
+                <span class="tooltiptext2">{{tooltipText}}</span>
+            </span>
+        </span>
+    </div>
+    <div class="tooltip-phase2">
+        <span style="margin-right: 5px; color: #A3A3A3;">
+            <span class="tooltip-bottom">
+                <i>i</i>
+                <span class="tooltiptext3">{{tooltipText}}</span>
+            </span>
+        </span>
+
+        <br>
+
+        <span style="margin-left: 5px; color: #A3A3A3;">
+            <span class="tooltip-left">
+                <i>i</i>
+                <span class="tooltiptext1">{{tooltipText}}</span>
+            </span>
+        </span>
+
+    </div>
+</div>
+
+
+
+<!-- tooltip onclick -->
+ <section style="margin-top: 24px; justify-content:center ;">
+ <span style="margin-right: 5px; color: #A3A3A3;">
+  <span class="tooltip-onclick" (click)="toggleTooltip($event)">
+    <i>i</i>
+    <span 
+      class="tooltiptext4" 
+      [class.show]="showTooltip"
+    >
+      {{ tooltipText }}
+    </span>
+  </span>
+</span>
+</section>
