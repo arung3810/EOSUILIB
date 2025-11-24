@@ -1,0 +1,150 @@
+.card-fc {
+    display: flex;
+    justify-content: space-between;
+  }
+  .card-head {
+    color: var(--neutral-gray-grey-900, #171717);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 136.523%;
+    /* 19.113px */
+  }
+  .check-icon {
+    padding: 6px;
+    background-color: #E8EEF6;
+  }
+  .activeValue {
+    color: #171717;
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+  }
+  .value-align-left {
+    float: left;
+  }
+  .card-stats .card-body .meeting-dropdown-header {
+    width: 9rem;
+    font-size: 12px;
+    background-color: #000;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 6.5px 10px;
+  }
+  .dashboard-fc>.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+
+    flex: 1;
+  }
+  .card-ria-body{
+    padding: 1rem 0.4rem;
+  }
+  .card-body{
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+  }
+  
+  .dashboard-fc {
+    width: 100%;
+    border: none;
+    background: none;
+  }
+  .ria-card{
+    align-items: flex-start;
+  }
+  .circle-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .circle-icon svg{
+    overflow: hidden;
+    vertical-align: middle
+  }
+  .mt-2{
+    margin-top: .5rem 
+  } 
+  .pl-1{
+    padding-left: .25rem
+  }
+  .card-title{
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #718096;
+    margin-top: 0;
+  }
+  b{
+    font-weight: bold;
+  }
+  .number{
+    font-size: 20px;
+    font-weight: 600;
+    float: left;
+  }
+  .cardPadding{
+    padding: 16px;
+    text-align: left;
+  }
+  .card-title-workbook{
+    color: #898b90;
+    margin-bottom: 0 !important;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    margin-top: 0;
+  }
+  .NetText{
+    color: #1a1a1d;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136.523%;
+  }
+  .p-text{
+    color: #1a1a1d;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: .25px;
+    margin-top: 0;
+  }
+  .card1{
+    min-height: 180px;
+  }
+  .card-personal{
+    text-align: left;
+    padding: 1.5rem;
+  }
+  .title-margin{
+    color: #27272e;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+  .personal-details p{
+    margin: 0 0 .5rem;
+    font-weight: 400;
+    font-size: 14px;
+    color: #425466;
+  }

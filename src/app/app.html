@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <header>
     <h1>EOS UI Components</h1>
     <p>Comprehensive showcase of the reusable Angular components for EOS</p>
@@ -21,9 +21,9 @@
 
       <lib-button (clicked)="buttonClick($event)"> hello </lib-button>
 
-      <lib-button 
-        variant="secondary" 
-        [openOnHover]="true" 
+      <lib-button
+        variant="secondary"
+        [openOnHover]="true"
         (clicked)="handleButtonClick()"
         (dropdownClicked)="handleDropdownClick()"
         [dropdown]="true"
@@ -40,24 +40,80 @@
   <section>
     <h2>Header Component</h2>
     <lib-header-component
-    title="SACHIN RAJESH SINGH"
-    description="Far-sighted Eagle"
-    profileImage="https://moneysign-templates.s3.ap-south-1.amazonaws.com/MS-batch-v1.4EOS/EaglehighImg.png"
-    [buttonList]="headerbtn"
+      title="SACHIN RAJESH SINGH"
+      description="Far-sighted Eagle"
+      profileImage="https://moneysign-templates.s3.ap-south-1.amazonaws.com/MS-batch-v1.4EOS/EaglehighImg.png"
+      [buttonList]="headerbtn"
     ></lib-header-component>
-    <br/>
+    <br />
     <lib-header-component
-    title="Good Evening, TEST USER 2 CO"
-    [buttonList]="headerbtn1"
+      title="Good Evening, TEST USER 2 CO"
+      [buttonList]="headerbtn1"
     ></lib-header-component>
-    <br/>
+    <br />
     <lib-header-component
-    icon="assets/close.svg"
-    title="Personal & Financial Data"
-    (iconClicked)="handleIconClicked()"
+      icon="assets/close.svg"
+      title="Personal & Financial Data"
+      (iconClicked)="handleIconClicked()"
     ></lib-header-component>
+    <br />
+    <lib-header-component title="Dashboard" [buttonList]="headerbtn1"></lib-header-component>
   </section>
-
+  
+  <section>
+    <h2>Card Component</h2>
+    <div class="row">
+      <div class="col">
+    <lib-card
+      cardType="riaDashboard"
+      title="Attendance Missed"
+      [value]="5"
+      [svgIcon]="attendanceSvg"
+      (cardClick)="onDashboardClick()"
+    >
+    </lib-card>
+  </div>
+  <div class="col">
+    <lib-card
+      title="Attendance"
+      [value]="5"
+      [svgIcon]="attendanceSvg"
+      (cardClick)="onDashboardClick()"
+    >
+    </lib-card>
+  </div>
+  <div class="col">
+    <lib-card
+      cardType="workbook"
+      title="Current Net Worth"
+      value="-"
+      value1="₹ NaN (Assets) - ₹ NaN (Liabilities)"
+      [svgIcon]="attendanceSvg"
+      (cardClick)="onDashboardClick()"
+    >
+    </lib-card>
+  </div>
+  <div class="col">
+    <lib-card
+      cardType="workbook"
+      title="Dependents"
+      value="2"
+      value1="1 Kid, 1 Relative"
+      [svgIcon]="attendanceSvg"
+    >
+    </lib-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <lib-card
+      cardType="personalDetail"
+      [taskList]="list"
+    >
+    </lib-card>
+  </div>  
+</div>
+  </section>
 
   <section>
     <h2>Modal Component</h2>
@@ -72,17 +128,6 @@
       [open]="isModalOpen()"
       (openChange)="onModalOpenChange($event)"
     ></lib-modal>
-  </section>
-
-  <section>
-    <h2>Dashboard Card Component</h2>
-    <lib-dashboard-card
-      title="Attendance Missed"
-      [value]="5"
-      [svgIcon]="attendanceSvg"
-      (cardClick)="onDashboardClick()"
-    >
-    </lib-dashboard-card>
   </section>
 
   <section>

@@ -37,3 +37,11 @@
     gap: 1rem;
     align-items: center;
   }
+
+  .row{
+    display: flex;
+  }
+  
+  .col{
+    width: 33.33%;
+  }
