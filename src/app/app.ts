@@ -233,4 +233,10 @@ headerbtn: ButtonType[] = [
     // event has: { field: string; direction: 'asc' | 'desc' | null }
   }
   list = ["Male", "26 years,Married, 1 kid","Industry Name -,Mumbai, Maharashtra","Source -"]
+
+  tabsList = [
+    { id: 'emergency', label: 'Tab 1', content: 'Tab Content 1' },
+    { id: 'expenses', label: 'Tab 2', content: 'Tab Content 2' },
+    { id: 'assets', label: 'Tab 3', content: 'Tab Content 3' }
+  ];
 }
