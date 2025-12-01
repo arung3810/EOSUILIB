@@ -105,13 +105,19 @@
   </div>
 </div>
 <div class="row">
-  <div class="col">
     <lib-card
       cardType="personalDetail"
       [taskList]="list"
     >
     </lib-card>
-  </div>  
+
+    <lib-card
+    cardType="1view"
+    [categoryList]="categoryList"
+    title="1 View"
+    netWorth="₹ 2,68,29,205"
+    vua="₹ 2,80,24,405"
+    ></lib-card>
 </div>
   </section>
 
@@ -143,12 +149,15 @@
     >
     </lib-table>
   </section>
+
   <section>
     <lib-tooltip tooltipText="Hello EOS!"></lib-tooltip>
     </section>
+
     <section>
       <lib-login></lib-login>
     </section>
+    
     <section>
       <lib-tabpane></lib-tabpane>
     </section>

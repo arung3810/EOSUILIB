@@ -1,5 +1,5 @@
 <button class="dashboard-fc" (click)="onClick()">
-  @if(cardType === "dashboard"){
+  @if(cardType === "dashboard") {
   <div class="card">
     <div class="card-body">
       <div class="card-fc">
@@ -28,282 +28,85 @@
     <h5 class="title-margin">Personal Details</h5>
     <div class="personal-details">
       @for (l of taskList; track l) {
-        <p>{{ l }}</p>
+      <p>{{ l }}</p>
       }
     </div>
   </div>
   } @else if (cardType === "1view") {
-  <!-- <div _ngcontent-ng-cli-universal-c1948619073="" class="card-body f-details">
-    <h5 _ngcontent-ng-cli-universal-c1948619073="" class="card-title title-margin">1 View</h5>
-    <div _ngcontent-ng-cli-universal-c1948619073="">
-      <div _ngcontent-ng-cli-universal-c1948619073="" class="label-value">
-        <div
-          _ngcontent-ng-cli-universal-c1948619073=""
-          class="col-xl-6 col-lg-6 col-sm-6 pl-0 d-grid gap-2"
-        >
-          <div
-            _ngcontent-ng-cli-universal-c1948619073=""
-            class="d-flex justify-content-between align-items-center ng-star-inserted"
-          >
-            <span _ngcontent-ng-cli-universal-c1948619073="" class="li-span">Assets</span
-            ><span _ngcontent-ng-cli-universal-c1948619073="" class="text-style"
-              >₹ 2,74,26,805</span
-            >
+  <div class="viewCard card">
+    <h5 class="title-margin-1view">{{ title }}</h5>
+    <div>
+      <div class="label-value">
+        <div class="col-6 view-col">
+          @for (item of categoryList.slice(0,3); track item) {
+          <div class="view-row">
+            <span class="li-span">{{ item.key }}</span>
+            <span class="text-style">{{ item.value }}</span>
           </div>
-          <div
-            _ngcontent-ng-cli-universal-c1948619073=""
-            class="d-flex justify-content-between align-items-center ng-star-inserted"
-          >
-            <span
-              _ngcontent-ng-cli-universal-c1948619073=""
-              class="li-span d-flex align-items-center"
-            >
-              Liabilities
-              <div
-                _ngcontent-ng-cli-universal-c1948619073=""
-                class="info-icon-liability pl-2 ng-star-inserted"
-              >
-                <button
-                  _ngcontent-ng-cli-universal-c1948619073=""
-                  class="btn-testing tooltip-btn-tax"
-                >
-                  <i
-                    _ngcontent-ng-cli-universal-c1948619073=""
-                    i-bs=""
-                    name="infoCircle"
-                    height="12px"
-                    data-bs-placement="bottom"
-                    width="12px"
-                    data-bs-toggle="tooltip"
-                    data-bs-custom-class="custom-tooltip"
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12px"
-                      height="12px"
-                      fill="currentColor"
-                      class="bi bi-info-circle"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                      ></path>
-                      <path
-                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-                      ></path></svg
-                  ></i>
-                  <div _ngcontent-ng-cli-universal-c1948619073="">
-                    <div
-                      _ngcontent-ng-cli-universal-c1948619073=""
-                      class="liability-component up show"
-                      style="position: absolute; z-index: 1 !important"
-                    >
-                      <div _ngcontent-ng-cli-universal-c1948619073="">
-                        <div
-                          _ngcontent-ng-cli-universal-c1948619073=""
-                          class="content-align ng-star-inserted"
-                        >
-                          <h1 _ngcontent-ng-cli-universal-c1948619073="" class="expenses-fixed">
-                            Loan Details Auto-Updated
-                          </h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </button>
-              </div>
-              </span
-            ><span _ngcontent-ng-cli-universal-c1948619073="" class="text-style">₹ 5,97,600 </span>
-          </div>
-          <div
-            _ngcontent-ng-cli-universal-c1948619073=""
-            class="d-flex justify-content-between align-items-center ng-star-inserted"
-          >
-            <span _ngcontent-ng-cli-universal-c1948619073="" class="li-span">Insurance</span
-            ><span _ngcontent-ng-cli-universal-c1948619073="" class="text-style"
-              >₹ 1,50,00,000</span
-            >
-          </div>
+          }
         </div>
-        <div _ngcontent-ng-cli-universal-c1948619073="" class="col-xl-6 col-lg-6 col-sm-6">
-          <div _ngcontent-ng-cli-universal-c1948619073="" class="row Income-align">
-            <div
-              _ngcontent-ng-cli-universal-c1948619073=""
-              class="d-flex justify-content-between align-items-center ng-star-inserted"
-            >
-              <span _ngcontent-ng-cli-universal-c1948619073="" class="li-span child4">Income</span
-              ><span _ngcontent-ng-cli-universal-c1948619073="" class="text-style"
-                >₹ 22,37,078</span
+        <div class="col-6 view-col">
+          @for (item of categoryList.slice(3,categoryList?.length); track item) {
+          <div class="view-row">
+            <span class="li-span child4">{{ item.key }}</span>
+            <span class="text-style">{{ item.value }}</span>
+            @if(!!item?.toolTipText?.length){
+            <div class="tooltip-wrapper">
+              <i
+                i-bs=""
+                name="infoCircle"
+                height="12px"
+                data-bs-placement="bottom"
+                width="12px"
+                data-bs-toggle="tooltip"
+                data-bs-custom-class="custom-tooltip"
+                class="info-icon"
               >
-            </div>
-            <div _ngcontent-ng-cli-universal-c1948619073="" class="info-icon ng-star-inserted">
-              <button
-                _ngcontent-ng-cli-universal-c1948619073=""
-                class="btn-testing tooltip-btn-tax"
-              >
-                <i
-                  _ngcontent-ng-cli-universal-c1948619073=""
-                  i-bs=""
-                  name="infoCircle"
-                  height="12px"
-                  data-bs-placement="bottom"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
                   width="12px"
-                  data-bs-toggle="tooltip"
-                  data-bs-custom-class="custom-tooltip"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12px"
-                    height="12px"
-                    fill="currentColor"
-                    class="bi bi-info-circle"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                    ></path>
-                    <path
-                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-                    ></path></svg
-                ></i>
-                <div _ngcontent-ng-cli-universal-c1948619073="">
-                  <div
-                    _ngcontent-ng-cli-universal-c1948619073=""
-                    class="tutorial-component up show"
-                    style="position: absolute; z-index: 1 !important"
-                  >
-                    <div _ngcontent-ng-cli-universal-c1948619073="">
-                      <div
-                        _ngcontent-ng-cli-universal-c1948619073=""
-                        class="content-align ng-star-inserted"
-                      >
-                        <h1 _ngcontent-ng-cli-universal-c1948619073="" class="tool-head">Total:</h1>
-                        <p _ngcontent-ng-cli-universal-c1948619073="" class="tool-titleValue">
-                          ₹ 22,37,078
-                        </p>
-                      </div>
-                      <div
-                        _ngcontent-ng-cli-universal-c1948619073=""
-                        class="content-align ng-star-inserted"
-                      >
-                        <p
-                          _ngcontent-ng-cli-universal-c1948619073=""
-                          class="tool-label"
-                          style="color: #b9babe !important"
-                        >
-                          Salary Income
-                        </p>
-                        <p _ngcontent-ng-cli-universal-c1948619073="" class="text-white">
-                          ₹ 22,37,078
-                        </p>
-                      </div>
-                    </div>
+                  height="12px"
+                  fill="currentColor"
+                  class="bi bi-info-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                  ></path>
+                  <path
+                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                  ></path>
+                </svg>
+              </i>
+              <div class="liability-component up"
+                style="position: absolute; z-index: 1 !important"
+              >
+                <div>
+                  <div class="content-align">
+                    <h1 class="expenses-fixed">
+                      {{item.toolTipText}}
+                    </h1>
                   </div>
                 </div>
-              </button>
-            </div>
+              </div>
+            </div>    
+            }
           </div>
-          <div _ngcontent-ng-cli-universal-c1948619073="" class="row Income-align">
-            <div
-              _ngcontent-ng-cli-universal-c1948619073=""
-              class="d-flex justify-content-between align-items-center ng-star-inserted"
-            >
-              <span _ngcontent-ng-cli-universal-c1948619073="" class="li-span child5">Expense</span
-              ><span _ngcontent-ng-cli-universal-c1948619073="" class="text-style"
-                >₹ 3,99,999.96</span
-              >
-            </div>
-            <div _ngcontent-ng-cli-universal-c1948619073="" class="info-icon ng-star-inserted">
-              <button
-                _ngcontent-ng-cli-universal-c1948619073=""
-                class="btn-testing1 tooltip-btn-tax ng-star-inserted"
-              >
-                <i
-                  _ngcontent-ng-cli-universal-c1948619073=""
-                  i-bs=""
-                  name="infoCircle"
-                  height="12px"
-                  data-bs-placement="bottom"
-                  width="12px"
-                  data-bs-toggle="tooltip"
-                  data-bs-custom-class="custom-tooltip"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12px"
-                    height="12px"
-                    fill="currentColor"
-                    class="bi bi-info-circle"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                    ></path>
-                    <path
-                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-                    ></path></svg
-                ></i>
-                <div
-                  _ngcontent-ng-cli-universal-c1948619073=""
-                  class="tutorial-component1 up show"
-                  style="position: absolute"
-                >
-                  <div _ngcontent-ng-cli-universal-c1948619073="">
-                    <div _ngcontent-ng-cli-universal-c1948619073="" class="expense-title-tooltip">
-                      <h1 _ngcontent-ng-cli-universal-c1948619073="" class="expenses-total">
-                        Total:
-                      </h1>
-                      <p _ngcontent-ng-cli-universal-c1948619073="" class="expenses-total">
-                        ₹4,00,000
-                      </p>
-                    </div>
-                    <div _ngcontent-ng-cli-universal-c1948619073="" class="ng-star-inserted">
-                      <div _ngcontent-ng-cli-universal-c1948619073="" class="expense-title-tooltip">
-                        <h1 _ngcontent-ng-cli-universal-c1948619073="" class="expenses-fixed">
-                          Fixed Expenses (Needs)
-                        </h1>
-                        <p _ngcontent-ng-cli-universal-c1948619073="" class="expenses-fixed">
-                          ₹4,00,000
-                        </p>
-                      </div>
-                      <div _ngcontent-ng-cli-universal-c1948619073="" class="bullets-descrip">
-                        <ul
-                          _ngcontent-ng-cli-universal-c1948619073=""
-                          style="list-style-type: disc; margin-left: 0px !important"
-                        >
-                          <li _ngcontent-ng-cli-universal-c1948619073="" class="ng-star-inserted">
-                            <span _ngcontent-ng-cli-universal-c1948619073="" class="unordered-l"
-                              >Housing &amp; Utilities
-                              <span _ngcontent-ng-cli-universal-c1948619073="" class="value-descrip"
-                                >₹4,00,000</span
-                              ></span
-                            >
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div _ngcontent-ng-cli-universal-c1948619073="" class="ng-star-inserted">
-                    </div>
-                    <div _ngcontent-ng-cli-universal-c1948619073="" class="ng-star-inserted">
-                    </div>
-                  </div>
-                </div></button
-            </div>
-          </div>
+          }
         </div>
       </div>
-      <div _ngcontent-ng-cli-universal-c1948619073="" class="cards-section">
-        <div
-          _ngcontent-ng-cli-universal-c1948619073=""
-          class="card-networth ng-star-inserted netWorthGreen"
-        >
-          <p _ngcontent-ng-cli-universal-c1948619073="">Net Worth</p>
-          <p _ngcontent-ng-cli-universal-c1948619073="">₹ 2,68,29,205</p>
+      <div class="cards-section">
+        <div class="card-networth netWorthGreen">
+          <p class="cd-personal-details">Net Worth</p>
+          <p class="cd-personal-details">{{ netWorth }}</p>
         </div>
-        <div _ngcontent-ng-cli-universal-c1948619073="" class="card-VUA ng-star-inserted">
-          <p _ngcontent-ng-cli-universal-c1948619073="">VUA</p>
-          <p _ngcontent-ng-cli-universal-c1948619073="">₹ 2,80,24,405</p>
+        <div class="card-VUA ng-star-inserted">
+          <p class="cd-personal-details">VUA</p>
+          <p class="cd-personal-details">{{ vua }}</p>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   } @else {
   <div class="card card1">
     <div class="card-body cardPadding">

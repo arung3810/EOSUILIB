@@ -233,4 +233,32 @@ headerbtn: ButtonType[] = [
     // event has: { field: string; direction: 'asc' | 'desc' | null }
   }
   list = ["Male", "26 years,Married, 1 kid","Industry Name -,Mumbai, Maharashtra","Source -"]
+
+  categoryList = [
+    {
+      key:'Assets',
+      toolTipText: "",
+      value:'₹ 2,74,26,805'
+    },
+    {
+      key:'Liabilities',
+      toolTipText: "Loan Details Auto-Updated",
+      value:'₹ 5,97,600'
+    },
+    {
+      key:'Insurance',
+      toolTipText: "",
+      value:'₹ 1,50,00,000'
+    },
+    {
+      key:'Income',
+      toolTipText: "Loan Details Auto-Updated",
+      value:'₹ 22,37,078'
+    },
+    {
+      key:'Expense',
+      toolTipText: "Salary Income",
+      value:'₹ 3,99,999.96'
+    }
+  ]
 }
