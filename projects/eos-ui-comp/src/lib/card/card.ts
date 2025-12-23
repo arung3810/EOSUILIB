@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Tooltip } from "../tooltip/tooltip";
-
 @Component({
   selector: 'lib-card',
   imports: [Tooltip],
@@ -25,8 +24,13 @@ export class DashboardCard {
 
   constructor(private sanitizer: DomSanitizer){}
 
+  @Input() creditCard!: {
+    imgUrl: string;
+    cardName: string;
+    handleClick: () => void;
+  };
+
   onClick(): void {
-    console.log('sds');
     this.cardClick.emit();
   }
 

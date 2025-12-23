@@ -49,6 +49,7 @@
           @for (item of categoryList.slice(3,categoryList?.length); track item) {
           <div class="view-row">
             <span class="li-span child4">{{ item.key }}</span>
+            <div style="display: flex; gap: 0.5rem;align-items: center;">
             <span class="text-style">{{ item.value }}</span>
             @if(!!item?.toolTipText?.length){
             <div class="tooltip-wrapper">
@@ -56,7 +57,7 @@
                 i-bs=""
                 name="infoCircle"
                 height="12px"
-                data-bs-placement="bottom"
+                data-bs-placement="right"
                 width="12px"
                 data-bs-toggle="tooltip"
                 data-bs-custom-class="custom-tooltip"
@@ -92,6 +93,7 @@
             </div>    
             }
           </div>
+          </div>
           }
         </div>
       </div>
@@ -107,7 +109,28 @@
       </div>
     </div>
   </div>
-  } @else {
+  } @else if(cardType === "creditcard") {
+    <div class="credit-cutome-card">
+      <div class="credit-img-w mb-3">
+        <img alt="" [src]="creditCard?.imgUrl">
+      </div>
+      <div class="cerdit-content">
+        <span>{{creditCard?.cardName}}</span>
+      </div>
+      <div class="credit-footer">
+        <button (click)="creditCard?.handleClick()" class="btn white-md-btn credit-card-btn">View Details 
+          <span>
+            <i i-bs="" name="chevronRight" width="0.7rem" height="0.5rem">
+              <svg xmlns="http://www.w3.org/2000/svg" width="0.7rem" height="0.5rem" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+              </svg>
+            </i>
+          </span>
+        </button>
+      </div>
+    </div>
+  }
+  @else {
   <div class="card card1">
     <div class="card-body cardPadding">
       <h5 class="card-title-workbook">{{ title }}</h5>

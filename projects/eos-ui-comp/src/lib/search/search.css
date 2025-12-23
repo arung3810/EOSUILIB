@@ -1,0 +1,32 @@
+.wrapper{
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-wrapper{
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: .45rem .75rem;
+  text-indent: 16px;
+  border: 1px solid #d6d4d4;
+  box-shadow: 0 3px 1px #b5b5b51a, -2px 1px 2px #b3aeae1a;
+}
+input{
+  border: none;
+  outline: none;
+  text-indent: 10px;
+}
+button{
+      padding: 6px 7px;
+  background: #000000;
+  color: #fff;
+  width: 80px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+.full{
+  width: 75dvw;
+}

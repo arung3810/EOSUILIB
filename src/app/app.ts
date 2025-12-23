@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane } from '../../dist/eos-comp';
+import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane } from '../../dist/eos-comp';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane],
+  imports: [NgFor, Search, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -261,4 +261,29 @@ headerbtn: ButtonType[] = [
       value:'₹ 3,99,999.96'
     }
   ]
+  
+  creditCardObj = {
+    imgUrl: 'https://imaages-hosting-1fin.s3.ap-south-1.amazonaws.com/assets/fund-logos/Credit-Card-Logos/Axis.png',
+    cardName: 'Axis Platinum Card',
+    handleClick: () => this.onCardClick()
+  };
+  onCardClick() {
+    console.log('Credit card clicked!');
+  }
+
+  searchValue: string = '';
+
+onSearchChange(value: string) {
+  console.log('Search input:', value);
+}
+
+onSearchButtonClick() {
+  console.log('Button clicked!');
+}
+
+searchIcon = `<svg width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+</svg>`;
+
+
 }
