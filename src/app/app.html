@@ -125,6 +125,35 @@
   </lib-card>
 </div>
 </div>
+<div class="row">
+  <div class="col">
+<lib-card
+  role="FC"
+  cardType="financialbehaviourscore"
+  [currentFbsScore]="63"
+  [gen_last_updated_at]="null"
+  genProfile="Gen 2"
+  age_group="26 - 35"
+></lib-card>
+</div>
+<div style="width: 18%;">
+  <lib-card 
+  cardType="MFHoldings"
+  title="No. of Mutual Funds"
+  [currentFbsScore]="20"
+  para="Attention! Consolidate your portfolio on priority"
+  ></lib-card>
+</div>
+<div style="width: 18%;">
+  <lib-card 
+  cardType="MFHoldings"
+  title=" Avg Portfolio Score"
+  [currentFbsScore]="69"
+  small="Medium"
+  para="Based on the 1 Finance proprietary research"
+  ></lib-card>
+</div>
+</div>
   </section>
 
   <section>
@@ -136,7 +165,7 @@
   (inputChange)="onSearchChange($event)"
   (buttonClick)="onSearchButtonClick()"
 ></lib-search>
-
+<br />
 <lib-search
   placeholder="Search dummy"
   [svgIcon]="searchIcon"

@@ -50,49 +50,31 @@
           <div class="view-row">
             <span class="li-span child4">{{ item.key }}</span>
             <div style="display: flex; gap: 0.5rem;align-items: center;">
-            <span class="text-style">{{ item.value }}</span>
-            @if(!!item?.toolTipText?.length){
-            <div class="tooltip-wrapper">
-              <i
-                i-bs=""
-                name="infoCircle"
-                height="12px"
-                data-bs-placement="right"
-                width="12px"
-                data-bs-toggle="tooltip"
-                data-bs-custom-class="custom-tooltip"
-                class="info-icon"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12px"
-                  height="12px"
-                  fill="currentColor"
-                  class="bi bi-info-circle"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                  ></path>
-                  <path
-                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-                  ></path>
-                </svg>
-              </i>
-              <div class="liability-component up"
-                style="position: absolute; z-index: 1 !important"
-              >
-                <div>
-                  <div class="content-align">
-                    <h1 class="expenses-fixed">
-                      {{item.toolTipText}}
-                    </h1>
+              <span class="text-style">{{ item.value }}</span>
+              @if(!!item?.toolTipText?.length){
+              <div class="tooltip-wrapper">
+                <i i-bs="" name="infoCircle" height="12px" data-bs-placement="right" width="12px"
+                  data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" class="info-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="currentColor"
+                    class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                    <path
+                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z">
+                    </path>
+                  </svg>
+                </i>
+                <div class="liability-component up" style="position: absolute; z-index: 1 !important">
+                  <div>
+                    <div class="content-align">
+                      <h1 class="expenses-fixed">
+                        {{item.toolTipText}}
+                      </h1>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>    
-            }
-          </div>
+              }
+            </div>
           </div>
           }
         </div>
@@ -110,27 +92,89 @@
     </div>
   </div>
   } @else if(cardType === "creditcard") {
-    <div class="credit-cutome-card">
-      <div class="credit-img-w mb-3">
-        <img alt="" [src]="creditCard?.imgUrl">
-      </div>
-      <div class="cerdit-content">
-        <span>{{creditCard?.cardName}}</span>
-      </div>
-      <div class="credit-footer">
-        <button (click)="creditCard?.handleClick()" class="btn white-md-btn credit-card-btn">View Details 
-          <span>
-            <i i-bs="" name="chevronRight" width="0.7rem" height="0.5rem">
-              <svg xmlns="http://www.w3.org/2000/svg" width="0.7rem" height="0.5rem" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+  <div class="credit-cutome-card">
+    <div class="credit-img-w mb-3">
+      <img alt="" [src]="creditCard?.imgUrl">
+    </div>
+    <div class="cerdit-content">
+      <span>{{creditCard?.cardName}}</span>
+    </div>
+    <div class="credit-footer">
+      <button (click)="creditCard?.handleClick()" class="btn white-md-btn credit-card-btn">View Details
+        <span>
+          <i i-bs="" name="chevronRight" width="0.7rem" height="0.5rem">
+            <svg xmlns="http://www.w3.org/2000/svg" width="0.7rem" height="0.5rem" fill="currentColor"
+              class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+              </path>
+            </svg>
+          </i>
+        </span>
+      </button>
+    </div>
+  </div>
+  } @else if (cardType === "financialbehaviourscore") {
+  <div class="fbscard card" id="fwp-card" style="height: 100% !important;">
+    <div class="card-body">
+      <h5 class="title-margin" style="text-align: left;">Financial Behaviour Score</h5>
+      <div class="row">
+        <div class="one-view" *ngIf="currentFbsScore == null  || currentFbsScore == undefined || currentFbsScore == 0">
+          <p class="no-one-View">FBS is not generated yet</p>
+        </div>
+        <div class="one-view1" *ngIf="currentFbsScore && currentFbsScore !== 0">
+          <div class="outer-box">
+            <div class="container-fluid">
+              <div *ngFor="let box of [0,1,2,3,4]; let i = index" class="fbs-box" [class.fadeup]="i === activeIndex">
+              </div>
+
+              <div class="moving-indicator" style="--progress: {{currentFbsScore}}">
+                <div class="moving-box">
+                  <h2>{{currentFbsScore}}</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="label-row" *ngIf="currentFbsScore && currentFbsScore !== 0">
+          <div>
+            <span class="gen2-text" *ngIf="gen_last_updated_at==null">{{genProfile}}</span>
+            <span *ngIf="gen_last_updated_at!=null" style="background: var(--1F-5_Soothing-Blue, #DEEDFF);
+                                            color: var(--1F-1_Soothing-Blue, #3D7DD0);  padding: 2px 8px;"
+              class="btn-tooltip gen2-text">{{genProfile}}
+              <div class="tooltip-section up show" style="position: absolute;">
+                <div class="tooltip-style">
+                  <ng-container>
+                    <h1 class="last-update">Last updated manually on <span class="date-update">{{getOnlyDate()}}</span>
+                    </h1>
+                  </ng-container>
+                </div>
+              </div>
+            </span>
+            <button *ngIf="role === 'FC' || role === 'FC_Admin'" class="pencil-button" (click)="openGenerationModal()">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M9.10985 0.109835C9.25629 -0.0366117 9.49373 -0.0366117 9.64018 0.109835L11.8902 2.35984C12.0366 2.50628 12.0366 2.74372 11.8902 2.89016L4.39018 10.3902C4.35427 10.4261 4.31144 10.4543 4.26428 10.4732L0.514282 11.9732C0.375001 12.0289 0.215919 11.9962 0.109846 11.8902C0.00377242 11.7841 -0.0288804 11.625 0.0268322 11.4857L1.52683 7.73573C1.54569 7.68858 1.57394 7.64575 1.60985 7.60983L9.10985 0.109835ZM8.40534 1.875L10.125 3.59467L11.0947 2.625L9.37501 0.90533L8.40534 1.875ZM9.59468 4.125L7.87501 2.40533L3.00001 7.28033V7.5H3.37501C3.58212 7.5 3.75001 7.66789 3.75001 7.875V8.25H4.12501C4.33212 8.25 4.50001 8.41789 4.50001 8.625V9H4.71968L9.59468 4.125ZM2.27375 8.00659L2.1946 8.08574L1.04816 10.9519L3.91427 9.80541L3.99342 9.72626C3.85122 9.67297 3.75001 9.5358 3.75001 9.375V9H3.37501C3.1679 9 3.00001 8.83211 3.00001 8.625V8.25H2.62501C2.46421 8.25 2.32704 8.14879 2.27375 8.00659Z"
+                  fill="black" />
               </svg>
-            </i>
-          </span>
-        </button>
+            </button>
+          </div>
+          <span class="gen2-text">{{genPhase}}</span>
+        </div>
       </div>
     </div>
-  }
-  @else {
+  </div>
+  } @else if(cardType === "MFHoldings"){
+    <div class="card size-1 score-card medium" [ngClass]="small ? 'style-2' :'style-1'">
+      <div class="card-body">
+        <h6 class="card-title1">{{title}}</h6>
+        <div class="wrapper"><span
+            class="num red-text"> {{currentFbsScore}} <small style="color: rgb(245, 180, 11);">{{small}}</small></span>
+          <p class="pera"> {{para}} </p>
+        </div>
+      </div>
+    </div>
+  } @else {
   <div class="card card1">
     <div class="card-body cardPadding">
       <h5 class="card-title-workbook">{{ title }}</h5>

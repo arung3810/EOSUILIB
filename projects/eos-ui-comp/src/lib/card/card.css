@@ -288,6 +288,10 @@
   font-weight: 600;
   line-height: 14px;
 }
+.pencil-button{
+  background: none;
+  border: none;
+}
 .credit-cutome-card {
   box-shadow: 0 3px 8px -1px #3232470d, 0 0 1px #0c1a4b3d;
   border: 1px solid #E5EBF2;
@@ -324,4 +328,184 @@
   font-size: 10px !important;
   display: flex;
     align-items: center;
+}
+/* fbs */
+.one-view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.one-view1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+ .outer-box{
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+}
+.container-fluid{
+  width: 100%; 
+  padding: 0;
+  position: relative; 
+  display: flex; 
+  justify-content: between;
+  margin-right: auto;
+    margin-left: auto;
+}
+.fbs-box {
+    position: relative;
+    width: 200px;
+    height: 20px;
+    padding: 0;
+    margin: 100px 2px 0 0;
+    z-index: 1;
+    transition: transform .2s ease-in-out;
+}
+.fadeup {
+    transform: translateY(-3px);
+    height: 25px !important;
+}
+.moving-indicator {
+    position: absolute;
+    background-color: #f3f6f9;
+    width: 2px;
+    height: 75px;
+    animation: move 2s forwards;
+    top: 24%;
+}
+
+@keyframes move {
+  0% {
+    left: 0;
+  }
+
+  100% {
+
+    left: calc(var(--progress)*1% - 4px)
+  }
+}
+
+@keyframes progress {
+  0% {
+    --percentage: 0;
+  }
+
+  100% {
+    --percentage: var(--value);
+  }
+}
+.moving-box {
+    gap: 10px;
+    flex-direction: column;
+    position: relative;
+    width: 37px;
+    padding: 4px;
+    height: 35px;
+    background-color: #f3f6f9;
+    margin: -5px 0 0 -19px;
+     display: flex;
+    align-items: center;
+     justify-content:center;
+}
+.outer-box .fbs-box:nth-child(1) {
+    background: linear-gradient(90deg, rgba(254, 141, 115, 1) 0%, rgba(254, 172, 111, 1) 100%);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.outer-box .fbs-box:nth-child(2) {
+    background: linear-gradient(90deg, rgba(254, 155, 74, 1) 0%, rgba(254, 185, 70, 1) 100%);
+}
+.outer-box .fbs-box:nth-child(3) {
+    background: linear-gradient(90deg, rgba(254, 201, 107, 1) 0%, rgba(227, 214, 116, 1) 100%);
+}
+.outer-box .fbs-box:nth-child(4) {
+    background: linear-gradient(90deg, rgba(190, 214, 130, 1) 0%, rgba(184, 214, 132, 1) 100%);
+}
+.outer-box .fbs-box:nth-child(5) {
+    background: linear-gradient(90deg, rgba(161, 216, 145, 1) 0%, rgba(106, 217, 168, 1) 100%);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-right: 0;
+}
+.label-row{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+.gen2-text {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: .1px;
+    border-radius: 2px;
+}
+/* mfholdings */
+.style-1.score-card{
+    flex: 1;
+    border: 0px;
+    border-radius: 0;
+    background: #FFF;
+    box-shadow: 0 0 1px #0c1a4b3d, 0 3px 8px -1px #3232470d;
+}
+.style-1 .card-body,.style-2 .card-body{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+.style-1 .card-body .card-title1,.style-2 .card-body .card-title1{
+  font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    margin: 0;
+    color: #898B90;
+    text-align: left;
+}
+.style-1 .card-body .wrapper, .style-2 .card-body .wrapper{
+  display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.style-1 .card-body .wrapper .num,.style-2 .card-body .wrapper .num{
+  font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: nowrap;
+}
+.style-1 .card-body .wrapper .red-text{
+  color: red;
+}
+.style-1 .card-body .wrapper .red-text small,
+.style-2 .card-body .wrapper .red-text small{
+  display: inline-flex;
+    padding: 2px 8px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    color: var(--eos-black-color);
+}
+.style-2 .card-body .wrapper .pera,.style-1 .card-body .wrapper .pera{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+    color: #898B90;
+}
+
+.style-2.score-card{
+  background-color: rgb(255, 249, 235)!important;
+}
+.style-2 .card-body .wrapper .num, .style-2 .card-body .wrapper .pera{
+  color: rgb(245, 180, 11);
 }
