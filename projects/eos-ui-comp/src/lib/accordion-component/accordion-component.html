@@ -1,25 +1,35 @@
 <div class="accordion">
-  <div class="accordion-header" (click)="toggle()">
-    <div class="title">{{ title }}</div>
-    <svg
-      class="arrow"
-      [class.open]="isOpen"
-      xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="8"
-      viewBox="0 0 12 8"
-      fill="none"
-    >
-      <path
-        d="M1 1L6 6L11 1"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </div>
-  <div class="accordion-body" *ngIf="isOpen">
-    <ng-content></ng-content>
-  </div>
+    <div class="accordion-header" (click)="toggle()">
+        <div class="accordion-title">{{ title }}</div>
+        <svg class="arrow" [class.open]="isOpen" xmlns="http://www.w3.org/2000/svg" width="12" height="8"
+            viewBox="0 0 12 8" fill="none">
+            <path d="M1 1L6 6L11 1" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </div>
+    <div class="accordion-body" [hidden]="!isOpen">
+        <div class="subsection" *ngFor="let sub of subsections">
+            <div class="subsection-header">{{ sub.header }}</div>
+            <div class="subsection-content">{{ sub.content }}</div>
+        </div>
+        <div class="accordion-table-wrapper" *ngIf="tableData?.length && title === 'Investment'">
+            <table class="accordion-table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let col of tableColumns">
+                            {{ col.label }}
+                        </th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr *ngFor="let row of tableData">
+                        <td *ngFor="let col of tableColumns">
+                            {{ row[col.key] }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="button" class="edit-button" (click)="onEditClick($event)">Edit</button>
+    </div>
 </div>
