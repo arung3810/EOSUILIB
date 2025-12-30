@@ -1,13 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, AccordionComponent, DatePickerComponent } from '../../dist/eos-comp';
+import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, AccordionComponent } from '../../dist/eos-comp';
+import { FormsModule } from '@angular/forms';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, Search, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, DatePickerComponent],
+  imports: [NgFor, Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
