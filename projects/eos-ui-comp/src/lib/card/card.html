@@ -174,6 +174,108 @@
         </div>
       </div>
     </div>
+  } @else if (cardType === "carousal") {
+    <div class="eos-mf-portfolio-overlap section-margin" *ngIf="!!carousalList?.length">
+            <!-- portfolio overlap header Section -->
+            <div class="carousal-wrapper">
+                <h4 class="section-sub-title m-0">
+                    {{title}}
+                </h4>
+                <div class="icon-group">
+                    <button class="icon-btn btn-rounded" id="btnPrev">
+                        <span class="eos-icon left-arrow-icon"></span>
+                    </button>
+                    <button class="icon-btn btn-rounded" id="btnNext">
+                        <span class="eos-icon right-arrow-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="eos-card-container card-container-align">
+                <div #portfolioFundCarousel class="splide credit-splide" aria-label="portfolio">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide" *ngFor="let data of carousalList; let i = index;">
+                                <div class="card size-2 mf-portfolio-overlap" *ngIf="i !== 5">
+                                    <div class="card-body">
+                                        <div class="mf-stocks-wrapper portfolio-fund-text">
+                                            <p class="pera stock m-0">
+                                                {{data.fund1}}
+                                            </p>
+                                            <span class="percentage">
+                                                {{data.overlap}}%
+                                            </span>
+                                            <p class="pera stock m-0">
+                                                {{data.fund2}}
+                                            </p>
+                                        </div>
+
+                                        <div class="mf-progressbar">
+                                            <div class="mf-small-area" [ngStyle]="{'width': data.start + '%'}"></div>
+                                            <div class="mf-mid-area" [ngStyle]="{'width': data.overlap + '%'}"></div>
+                                            <div class="mf-large-area" [ngStyle]="{'width': data.end + '%'}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+  } @else if (cardType === "MFHoldingsPie") {
+    <div class="card size-2 score-piechart-card">
+                <div class="card-body layout" *ngIf="!mf_allocation_not_fetched">
+                    <div class="detail-area">
+                        <h6 class="card-title-workbook">Mutual Fund Portfolio Allocation</h6>
+
+                        <div class="wrapper">
+                            <ul class="score-wrapper">
+                              @for (item of MfholdingList2; track $index) {
+                                <li class="equit-theme">
+                                    <span class="label">{{item?.label}}</span>
+                                    <span class="percentage">{{ item?.equityPercentage }}</span>
+                                    <span class="amt">{{ item?.equityValue }}</span>
+                                </li>
+                              }
+                            </ul>
+                            <p class="note-mfAllocation">{{para}}</p>
+                        </div>
+                    </div>
+                    <div class="chart-area chart-section-div">
+                        <apx-chart [series]="chart.series" [chart]="chart.chart"
+                            [responsive]="chart.responsive" [legend]="chart.legend"
+                            [colors]="chart.colors" [plotOptions]="chart.plotOptions"
+                            [dataLabels]="chart.dataLabels" [states]="chart.states"
+                            [tooltip]="chart.tooltip" [stroke]="chart.stroke">
+                        </apx-chart>
+                        <div class="currentValueDiv">
+                            <p class="currentValueLabel">Total Current Value</p>
+                            <p class="currentValue">{{current_value}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card-body body-alignment" *ngIf="mf_allocation_not_fetched">
+                    <div class="detail-area">
+                        <!-- <img class="error-icon-size" src="assets/icon/Vector-error.svg" alt=""> -->
+                         {{svgIcon}}
+                        <p class="error-allocation-text" style="width: 210px;">Error in fetching MF Portfolio Allocation
+                        </p>
+
+                    </div>
+                    <div class="chart-area">
+                        <apx-chart [series]="chart.series" [chart]="chart.chart"
+                            [responsive]="chart.responsive" [legend]="chart.legend"
+                            [colors]="chart.colors" [plotOptions]="chart.plotOptions"
+                            [dataLabels]="chart.dataLabels" [states]="chart.states"
+                            [tooltip]="chart.tooltip" [stroke]="chart.stroke">
+                        </apx-chart>
+
+                    </div>
+                </div>
+            </div>
   } @else {
   <div class="card card1">
     <div class="card-body cardPadding">

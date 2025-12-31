@@ -509,3 +509,333 @@
 .style-2 .card-body .wrapper .num, .style-2 .card-body .wrapper .pera{
   color: rgb(245, 180, 11);
 }
+/* carousal */
+
+.eos-mf-portfolio-overlap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section-sub-title {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 136.023%;
+    color: #27272E;
+    margin: 0;
+}
+
+.carousal-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.eos-mf-portfolio-overlap .icon-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eos-mf-portfolio-overlap .icon-group .icon-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.eos-mf-portfolio-overlap .icon-group .icon-btn.disabled {
+  opacity: 0.2;
+  cursor: not-allowed !important;
+  background-color: transparent !important;
+}
+
+.eos-icon {
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+
+.eos-icon.left-arrow-icon {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 6C12 6.41421 11.6642 6.75 11.25 6.75L2.56066 6.75L5.78033 9.96967C6.07322 10.2626 6.07322 10.7374 5.78033 11.0303C5.48744 11.3232 5.01256 11.3232 4.71967 11.0303L0.219669 6.53033C-0.0732231 6.23744 -0.0732231 5.76256 0.219669 5.46967L4.71967 0.96967C5.01256 0.676777 5.48744 0.676777 5.78033 0.96967C6.07322 1.26256 6.07322 1.73744 5.78033 2.03033L2.56066 5.25L11.25 5.25C11.6642 5.25 12 5.58579 12 6Z" fill="black"/></svg>');
+}
+
+.eos-icon.right-arrow-icon {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 6C0 6.41421 0.335786 6.75 0.75 6.75L9.43934 6.75L6.21967 9.96967C5.92678 10.2626 5.92678 10.7374 6.21967 11.0303C6.51256 11.3232 6.98744 11.3232 7.28033 11.0303L11.7803 6.53033C12.0732 6.23744 12.0732 5.76256 11.7803 5.46967L7.28033 0.96967C6.98744 0.676777 6.51256 0.676777 6.21967 0.96967C5.92678 1.26256 5.92678 1.73744 6.21967 2.03033L9.43934 5.25L0.75 5.25C0.335786 5.25 0 5.58579 0 6Z" fill="black"/></svg>');
+}
+
+.eos-card-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.card-container-align {
+  margin-top: 20px;
+}
+
+.splide {
+  visibility: visible;
+}
+
+.splide__track {
+  position: relative;
+  overflow: hidden;
+}
+
+.splide__list {
+  backface-visibility: hidden;
+  display: flex;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.splide__slide {
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  list-style-type: none !important;
+  margin: 0;
+  position: relative;
+}
+
+.card.size-2 {
+  min-height: 120px;
+  border: 1px solid #e0e0e0;
+  background: white;
+}
+
+.mf-portfolio-overlap .card-body {
+  padding: 0;
+      display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.portfolio-fund-text .pera.stock {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+.percentage {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: end;
+  margin: 2px 8px;
+}
+
+.mf-progressbar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.mf-small-area {
+  background-color: #ff6b6b;
+}
+
+.mf-mid-area {
+  background-color: #4ecdc4;
+}
+
+.mf-large-area {
+  background-color: #45b7d1;
+}
+
+.eos-mf-portfolio-overlap .icon-group .icon-btn:disabled,
+.eos-mf-portfolio-overlap .icon-group .icon-btn.disabled {
+  opacity: 0.2;
+  cursor: not-allowed !important;
+  background-color: transparent !important;
+}
+
+.eos-mf-portfolio-overlap .icon-group .icon-btn .eos-icon {
+  width: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* .eos-card-container .card.mf-portfolio-overlap {
+  height: 100%;
+} */
+
+.eos-card-container .card.mf-portfolio-overlap .card-body {
+  gap: 5px;
+  padding: 24px;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .pera {
+  margin: 0px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: #212120;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-stocks-wrapper {
+  display: flex;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-stocks-wrapper .stock {
+  display: inline-block;
+  width: calc((100% - 70px) / 2);
+  height: 100%;
+  vertical-align: top;
+  text-align: left;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-stocks-wrapper .stock:last-child {
+  text-align: right;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-stocks-wrapper .percentage {
+  text-align: center;
+  font-weight: 600;
+  width: 45px;
+  margin-inline: 8px;
+  vertical-align: bottom;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-progressbar {
+  display: flex;
+  height: 20px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-progressbar .mf-large-area {
+  flex: 1;
+  background-color: #8A81B8;
+  height: 100%;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-progressbar .mf-mid-area {
+  background-color: #9E91D2;
+}
+
+.eos-card-container .card.mf-portfolio-overlap .card-body .mf-progressbar .mf-small-area {
+  background-color: #C8BFF4;
+}
+
+/* mfholdingpie */
+.card.size-2 {
+    flex: 0 0 calc(((100% / 3) - var(--eos-col-gap)) + (var(--eos-col-gap) / 3));
+}
+ .detail-area {
+  flex: 1;
+}
+.detail-area .card-title-workbook{
+  text-align: left;
+}
+.layout{
+  display: flex;
+  align-items: center;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.card.score-piechart-card .score-wrapper{
+      list-style-type: none;
+    padding: 0;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin: 0 120px 0 15px;
+    max-width: 200px;
+    width: calc(100% - 140px);
+}
+.equit-theme{
+  display: table-row;
+  position: relative;
+}
+li.equit-theme:before {
+    background-color: #B4A4FF;
+    content: " ";
+    display: flex;
+    width: 6.684px;
+    height: 6.684px;
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    transform: translateY(-50%);
+    border-radius: 1.671px;
+}
+.card.score-piechart-card .score-wrapper li > span {
+    display: table-cell;
+    width: calc(100% / 3);
+}
+.label{
+  font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11.696px;
+    color: #425466;
+}
+.percentage{
+  text-align: right;
+    font-size: 11.696px;
+    font-weight: 600;
+}
+.amt{
+  text-align: right;
+    font-size: 11.696px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11.696px;
+    color: #425466;
+}
+.currentValueLabel {
+    color: #425466;
+    text-align: right;
+    font-feature-settings: "salt" on;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 11.696px;
+    margin-bottom: 6px !important;
+}
+.currentValue {
+    color: var(--Master-Text-Body-Muted, #718096);
+    text-align: right;
+    font-feature-settings: "salt" on;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11.696px;
+}
+.currentValueDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card .card-body .chart-area {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* position: absolute;
+    right: 30px;
+    top: 0; */
+    flex-direction: column;
+    justify-content: center
+}

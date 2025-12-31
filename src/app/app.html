@@ -154,6 +154,24 @@
   ></lib-card>
 </div>
 </div>
+
+<lib-card 
+cardType="carousal"
+title="Portfolio Overlap (Top 5)"
+[carousalList]="carousalTestData">
+</lib-card>
+
+<div style="width: fit-content;">
+<lib-card
+cardType="MFHoldingsPie"
+[series]="[97, 3]"
+[colors]="['#ab99ff', '#e0e0e0']"
+[mf_allocation_not_fetched]="false"
+[current_value]="8.5"
+[MfholdingList2]="mfholdingpielist"
+></lib-card>
+</div>
+
   </section>
 
   <section>

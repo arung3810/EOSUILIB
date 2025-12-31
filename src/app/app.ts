@@ -285,5 +285,50 @@ searchIcon = `<svg width="16" height="16" fill="currentColor" class="bi bi-searc
   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
 </svg>`;
 
+carousalTestData = [
+  {
+    "fund1": "Nippon India Index Fund - Nifty 50 Plan",
+    "fund2": "Canara Robeco Large Cap Fund",
+    "overlap": 71,
+    "start": 14.5,
+    "end": 14.5
+  },
+  {
+    "fund1": "Franklin India Opportunities Fund",
+    "fund2": "Franklin India Multi Cap Fund",
+    "overlap": 63,
+    "start": 18.5,
+    "end": 18.5
+  },
+  {
+    "fund1": "Franklin India Flexi Cap Fund",
+    "fund2": "Canara Robeco Large Cap Fund",
+    "overlap": 56,
+    "start": 22,
+    "end": 22
+  },
+  {
+    "fund1": "Franklin India Flexi Cap Fund",
+    "fund2": "Nippon India Index Fund - Nifty 50 Plan",
+    "overlap": 55,
+    "start": 22.5,
+    "end": 22.5
+  },
+  {
+    "fund1": "Canara Robeco Large Cap Fund",
+    "fund2": "Canara Robeco Value Fund",
+    "overlap": 45,
+    "start": 23,
+    "end": 23
+  }
+];
+
+mfholdingpielist =[
+  { 
+    label: "Equity", 
+    equityPercentage: 97, 
+    equityValue: 8.1 
+  }
+]
 
 }
