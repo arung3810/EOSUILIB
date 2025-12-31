@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DashboardCard } from '../card/card';
 
 @Component({
   selector: 'lib-tabpane',
-  imports: [],
+  imports: [DashboardCard],
   templateUrl: './tabpane.html',
   styleUrl: './tabpane.css',
+
   
 })
 export class Tabpane {
-   activeTab: string = 'emergency';   // default tab
+  @Input() tabs: { id: string; label: string; content: string }[] = [];
 
-  setActive(tab: string) {
-    this.activeTab = tab;
+
+  activeTab: string = 'emergency';   // default tab
+
+  setActive(id: string) {
+    this.activeTab = id;
   }
 
-  isActive(tab: string) {
-    return this.activeTab === tab;
+  isActive(id: string): boolean {
+    return this.activeTab === id;
   }
  
 }

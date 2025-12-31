@@ -5,37 +5,16 @@
       <!-- TAB HEADERS -->
       <div class="pens">
         <ul class="nav nav-pills">
-
+@for (tab of tabs; track tab) {
           <div class="nav-item">
             <button
               class="nav-link"
-              [class.active]="isActive('emergency')"
-              (click)="setActive('emergency')"
+              [class.active]="isActive(tab.id)"
+              (click)="setActive(tab.id)"
             >
-              Tab 1
+            {{ tab.label }}
             </button>
-        </div>
-
-          <div class="nav-item">
-            <button
-              class="nav-link"
-              [class.active]="isActive('expenses')"
-              (click)="setActive('expenses')"
-            >
-              Tab 2
-            </button>
-        </div>
-
-          <div class="nav-item">
-            <button
-              class="nav-link"
-              [class.active]="isActive('assets')"
-              (click)="setActive('assets')"
-            >
-           Tab 3
-            </button>
-        </div>
-
+        </div>}
         </ul>
       </div>
 
@@ -43,37 +22,16 @@
       <div class="tab-content">
 
         <!-- TAB 1 -->
+         @for (tab of tabs; track tab) {
         <div
           class="tab-pane fade"
-          [class.show]="isActive('emergency')"
-          [class.active]="isActive('emergency')"
+          [class.show]="isActive(tab.id)"
+          [class.active]="isActive(tab.id)"
         >
           <div style="margin-top: 24px;" class="row finance-row">
-            Tab Content 1
+             {{ tab.content }}
           </div>
-        </div>
-
-        <!-- TAB 2 -->
-        <div
-          class="tab-pane fade"
-          [class.show]="isActive('expenses')"
-          [class.active]="isActive('expenses')"
-        >
-          <div style="margin-top: 24px;" class="row finance-row">
-            Tab Content 2
-          </div>
-        </div>
-
-        <!-- TAB 3 -->
-        <div
-          class="tab-pane fade"
-          [class.show]="isActive('assets')"
-          [class.active]="isActive('assets')"
-        >
-          <div style="margin-top: 24px;" class="row finance-row">
-            Tab content 3
-          </div>
-        </div>
+        </div>}
 
       </div>
 

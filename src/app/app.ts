@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, AccordionComponent } from '../../dist/eos-comp';
+import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, AccordionComponent, NavMenu } from '../../dist/eos-comp';
 import { FormsModule } from '@angular/forms';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent],
+  imports: [NgFor, Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -235,6 +235,11 @@ headerbtn: ButtonType[] = [
   }
   list = ["Male", "26 years,Married, 1 kid","Industry Name -,Mumbai, Maharashtra","Source -"]
 
+  tabsList = [
+    { id: 'emergency', label: 'Tab 1', content: 'Tab Content 1' },
+    { id: 'expenses', label: 'Tab 2', content: 'Tab Content 2' },
+    { id: 'assets', label: 'Tab 3', content: 'Tab Content 3' }
+  ];
   categoryList = [
     {
       key:'Assets',
