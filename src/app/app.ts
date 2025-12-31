@@ -1,18 +1,19 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu } from '../../dist/eos-comp';
-
+import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu, FormFields } from '../../dist/eos-comp';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, NavMenu],
+  imports: [NgFor,TableComponent, ReactiveFormsModule, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, NavMenu, FormFields],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
 
 export class App {
+   form: FormGroup | undefined;
   protected readonly title = signal('eos-ui-components');
   protected readonly isModalOpen = signal(false);
   attendanceSvg = `
@@ -92,6 +93,18 @@ headerbtn: ButtonType[] = [
     },
   ];
 
+   constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      textInput: [''],
+      emailInput: [''],
+      numberInput: [''],
+      textareaInput: [''],
+      toggleLeft: [false],
+      dateInput: [''],
+      amountInput: [''],
+      fruit: ['apple'],
+    });
+  }
   handleIconClicked(){
     console.log('clicked icon in header');
   }
