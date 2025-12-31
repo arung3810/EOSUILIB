@@ -1,0 +1,122 @@
+<h1 class="card-head">Input Fields</h1>
+
+<form [formGroup]="form">
+  <div class="row">
+    <!-- LEFT SIDE -->
+    <div class="width-div">
+      <div class="half-side">
+
+        <div class="input-text">
+          <label>Text Input</label>
+          <input class="textInputField input-field"
+                 type="text"
+                 formControlName="textInput"
+                 placeholder="Enter text here">
+        </div>
+
+        <div class="input-text">
+          <label>Email Input</label>
+          <input class="textInputField input-field"
+                 type="email"
+                 formControlName="emailInput"
+                 placeholder="Enter Email here">
+        </div>
+
+        <div class="input-text">
+          <label>Number Input</label>
+          <input class="textInputField input-field"
+                 type="number"
+                 formControlName="numberInput"
+                 placeholder="Enter Number here">
+        </div>
+
+        <div class="input-text">
+          <label>Textarea</label>
+          <textarea class="textInputField input-field"
+                    style="height:18px"
+                    formControlName="textareaInput"
+                    placeholder="Enter text">
+          </textarea>
+        </div>
+
+        <div class="input-text">
+          <label>Toggle</label>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div style="flex-direction: row;" class="input-text">
+            <label>Radio</label>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <label for="html">HTML</label><br>
+            <input type="radio" id="css" name="fav_language" value="CSS">
+            <label for="css">CSS</label><br>
+            <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+            <label for="css">Javascript</label><br>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="half-side right-side">
+
+        <div class="input-text">
+          <label>Text Input Disabled</label>
+          <input class="textInputField input-field"
+                 type="text"
+                 formControlName="disabledText"
+                 placeholder="Enter text here">
+        </div>
+
+        <div class="input-text">
+          <label>Date Input</label>
+          <input class="textInputField input-field"
+                 type="date"
+                 formControlName="dateInput">
+        </div>
+
+        <div class="input-text">
+          <label>Input With Icon</label>
+          <div class="input-group">
+            <div class="input-group-addon">₹</div>
+            <input style="width: 309px;" class="textInputField input-field"
+                   type="number"
+                   formControlName="amountInput"
+                   placeholder="Enter amount">
+          </div>
+        </div>
+
+        <div class="input-text">
+          <label>Select Input</label>
+          <div class="input-group">
+            <select style="" class="textInputField input-field"
+                    formControlName="fruit">
+              <option value="apple">Apple</option>
+              <option value="banana">Banana</option>
+              <option value="cherry">Cherry</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-text">
+            <label>Toggle Disabled</label>
+            <label class="switch">
+                <input type="checkbox" disabled>
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div style="flex-direction: row;" class="input-text">
+            <label>Checkboxes</label>
+            <input type="checkbox" id="html" name="fav_language" value="HTML">
+            <label for="html">HTML</label><br>
+            <input type="checkbox" id="css" name="fav_language" value="CSS">
+            <label for="css">CSS</label><br>
+            <input type="checkbox" id="javascript" name="fav_language" value="JavaScript">
+            <label for="css">Javascript</label><br>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>
