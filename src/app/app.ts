@@ -1,13 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu } from '../../dist/eos-comp';
+import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, AccordionComponent, NavMenu } from '../../dist/eos-comp';
+import { FormsModule } from '@angular/forms';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, NavMenu],
+  imports: [NgFor, Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -239,4 +240,92 @@ headerbtn: ButtonType[] = [
     { id: 'expenses', label: 'Tab 2', content: 'Tab Content 2' },
     { id: 'assets', label: 'Tab 3', content: 'Tab Content 3' }
   ];
+  categoryList = [
+    {
+      key:'Assets',
+      toolTipText: "",
+      value:'₹ 2,74,26,805'
+    },
+    {
+      key:'Liabilities',
+      toolTipText: "Loan Details Auto-Updated",
+      value:'₹ 5,97,600'
+    },
+    {
+      key:'Insurance',
+      toolTipText: "",
+      value:'₹ 1,50,00,000'
+    },
+    {
+      key:'Income',
+      toolTipText: "Loan Details Auto-Updated",
+      value:'₹ 22,37,078'
+    },
+    {
+      key:'Expense',
+      toolTipText: "Salary Income",
+      value:'₹ 3,99,999.96'
+    }
+  ]
+  
+  creditCardObj = {
+    imgUrl: 'https://imaages-hosting-1fin.s3.ap-south-1.amazonaws.com/assets/fund-logos/Credit-Card-Logos/Axis.png',
+    cardName: 'Axis Platinum Card',
+    handleClick: () => this.onCardClick()
+  };
+  onCardClick() {
+    console.log('Credit card clicked!');
+  }
+
+  searchValue: string = '';
+
+onSearchChange(value: string) {
+  console.log('Search input:', value);
+}
+
+onSearchButtonClick() {
+  console.log('Button clicked!');
+}
+
+searchIcon = `<svg width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.442.656a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+</svg>`;
+
+selectedDate: string = '';
+
+onDateSelected(date: string) {
+  this.selectedDate = date;
+}
+
+subsections = [
+  {
+    header: 'Insurance',
+    content: 'Adding riders or extras to your insurance portfolio'
+  },
+  {
+    header: 'Estate & Will',
+    content: 'Evaluating life insurance as an estate planning tool'
+  },
+  {
+    header: 'Taxes',
+    content: 'Evaluating tax aspects of property transactions'
+  }
+];
+
+  taxTableColumns = [
+    { key: 'scheme_name', label: 'Scheme Name' },
+    { key: 'category', label: 'Category' },
+    { key: 'scheme_type', label: 'Scheme Type' },
+    { key: 'current_value', label: 'Current Value' },
+    { key: 'sip', label: 'SIP' }
+  ];
+
+  taxTableData = [
+    { scheme_name: 'Nippon India Banking & Financial Services Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+    { scheme_name: 'Franklin India Multi Cap Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+    { scheme_name: 'ITI Small Cap Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+    { scheme_name: 'Franklin India Flexi Cap Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+  ];
+
+
 }

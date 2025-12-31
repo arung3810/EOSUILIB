@@ -148,3 +148,180 @@
     font-size: 14px;
     color: #425466;
   }
+  .viewCard{
+    padding: 1.5rem;
+    margin: 0 10px;
+  }
+  .title-margin-1view{
+    color: #27272e;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 16px;
+    text-align: left;
+  }
+  .label-value{
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+  }
+  .col-6{
+    width: 50%;
+  }
+  .view-col{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .cards-section{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    gap: 1rem;
+  }
+  .view-row{
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .li-span{
+    font-weight: 400;
+    font-size: 14px;
+    color: #425466;
+  }
+  .text-style{
+    width: max-content;
+    color: #718096;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .card-networth{
+    border-radius: 4px;
+    display: flex;
+    width: 48%;
+    padding: 12px 24px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .netWorthGreen{
+    border-top: 3px solid var(--1F-3_Soothing-Blue, #82DBC6);
+    border-right: 1px solid var(--1F-3_Soothing-Blue, #82DBC6);
+    border-bottom: 1px solid var(--1F-3_Soothing-Blue, #82DBC6) !important;
+    border-left: 1px solid var(--1F-3_Soothing-Blue, #82DBC6);
+    background: #FAFDFB;
+  }
+  .card-VUA{
+    border-radius: 4px;
+    border-top: 3px solid var(--1F-3_Soothing-Blue, #90BEF8);
+    border-right: 1px solid var(--1F-3_Soothing-Blue, #90BEF8);
+    border-bottom: 1px solid var(--1F-3_Soothing-Blue, #90BEF8) !important;
+    border-left: 1px solid var(--1F-3_Soothing-Blue, #90BEF8);
+    background: #FAFBFD;
+    display: flex;
+    width: 48%;
+    padding: 12px 24px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .cd-personal-details{
+    margin: 0 0 .5rem;
+    font-weight: 400;
+    font-size: 14px;
+    color: #425466;
+  }
+  i{
+    display: flex;
+    align-items: center;
+  }
+  .info-icon {
+    cursor: pointer;
+  }
+  .liability-component{
+    background:#27272e;
+    color: #fff;
+    border-radius: 6px;
+    text-align: left;
+    max-width: 300px;
+    min-width: 205px;
+    padding: 10px;
+    z-index: 99999;
+    margin-left: -240px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    border-radius: 2px;
+    margin-top: -32px;
+  }
+  .tooltip-wrapper:hover .liability-component {
+    opacity: 1;
+    visibility: visible;
+  }
+.show{
+  display: block;
+}
+.liability-component.up:before {
+  bottom: 100%;
+  border-bottom-color: #27272e!important;
+  border-width: 12px;
+  content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-top: 0;
+    left: 100%;
+    top: 40%;
+    transform: rotate(90deg);
+    margin-left: -0.4rem;
+}
+.content-align {
+  display: flex;
+  justify-content: space-between;
+}
+.expenses-fixed {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 14px;
+}
+.credit-cutome-card {
+  box-shadow: 0 3px 8px -1px #3232470d, 0 0 1px #0c1a4b3d;
+  border: 1px solid #E5EBF2;
+  padding: 24px;
+  background-color: #fff;
+  margin-bottom: 30px;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.credit-img-w {
+  width: 122px;
+  height: 80px;
+}
+.credit-img-w img{
+  width: 100%;
+  height: 100%;
+}
+.cerdit-content {
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.white-md-btn {
+  background-color: #fff;
+  color: #000 !important;
+  border: 1px solid #65676D !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  font-size: 10px !important;
+  display: flex;
+    align-items: center;
+}

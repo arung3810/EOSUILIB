@@ -1,63 +1,96 @@
-# EosUiComp
+<div align="center">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+# eos-ui-comp
 
-## Code scaffolding
+Reusable Angular UI widgets for EOS applications. Includes a multi-variant dashboard card with tooltip support.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+[![Angular](https://img.shields.io/badge/angular-17+-DD0031?logo=angular&logoColor=white)](#)
+[![NPM](https://img.shields.io/badge/npm-ready-green?logo=npm)](#installation)
+
+</div>
+
+## Installation
 
 ```bash
-ng generate component component-name
+npm install eos-comp
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
+If you are working inside the monorepo, run `npm install` at the workspace root and then:
 
 ```bash
 ng build eos-comp
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+The compiled package lives under `dist/eos-comp/`.
 
-### Publishing the Library
+## Usage
 
-Once the project is built, you can publish your library by following these steps:
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { DashboardCard } from 'eos-ui-comp';
 
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/eos-comp
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+@NgModule({
+  imports: [BrowserModule, DashboardCard],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
+```html
+<lib-card
+  [cardType]="'1view'"
+  [title]="'Loan Snapshot'"
+  [netWorth]="'$1.2M'"
+  [vua]="'$120K'"
+  [categoryList]="categories"
+  (cardClick)="handleCardClick()"
+></lib-card>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+```ts
+categories = [
+  { key: 'Outstanding Loans', value: '$450K', toolTipText: 'Loan details auto-updated' },
+  { key: 'Interest Rate', value: '6.75%', toolTipText: '' },
+  { key: 'EMI', value: '$3.4K', toolTipText: 'EMI recalculated daily' },
+];
+```
 
-## Additional Resources
+### Component Reference: `DashboardCard`
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Input          | Type                                             | Default       | Description                                                                 |
+|----------------|--------------------------------------------------|---------------|-----------------------------------------------------------------------------|
+| `title`        | `string`                                         | —             | Primary heading displayed across variants.                                  |
+| `value`        | `string \| number`                               | —             | Main metric/value for dashboard/workbook cards.                             |
+| `value1`       | `string \| number`                               | —             | Secondary text for workbook cards.                                         |
+| `svgIcon`      | `string` (raw SVG)                               | —             | Custom SVG markup rendered inside icons via `DomSanitizer`.                 |
+| `cardType`     | `'dashboard' \| 'riaDashboard' \| 'personalDetail' \| '1view' \| other` | `'dashboard'` | Determines which block of the template is rendered.                          |
+| `taskList`     | `string[]`                                       | `[]`          | Items displayed in the `personalDetail` variant.                            |
+| `vua`          | `string`                                         | —             | Value used in the `1view` card’s VUA tile.                                  |
+| `netWorth`     | `string`                                         | —             | Value used in the `1view` card’s Net Worth tile.                            |
+| `categoryList` | `{ key: string; value: string; toolTipText: string }[]` | —     | Drives label/value rows and optional tooltips inside the `1view` variant.   |
+
+| Output      | Type                | Trigger                                           |
+|-------------|---------------------|---------------------------------------------------|
+| `cardClick` | `EventEmitter<void>`| Fires when the wrapper `<button>` is clicked.      |
+
+
+## Local Development
+
+```bash
+npm install
+ng serve   # run demo app in /src/app
+ng build eos-ui-comp --watch
+```
+
+## Publishing
+
+1. Bump the version in `projects/eos-ui-comp/package.json`.
+2. `ng build eos-ui-comp`
+3. `cd dist/eos-comp`
+4. `npm publish`
+
+---
+
+Need more components or docs? Open an issue or drop a PR!
+

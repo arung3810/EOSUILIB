@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <div class='input-wrapper' [ngClass]="half === 'true' ? '' : 'full'">
+        <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="f-search"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.65625 7.25C5.36488 7.25 6.75 5.86488 6.75 4.15625C6.75 2.44762 5.36488 1.0625 3.65625 1.0625C1.94762 1.0625 0.5625 2.44762 0.5625 4.15625C0.5625 5.86488 1.94762 7.25 3.65625 7.25ZM7.3125 4.15625C7.3125 6.17554 5.67554 7.8125 3.65625 7.8125C1.63696 7.8125 0 6.17554 0 4.15625C0 2.13696 1.63696 0.5 3.65625 0.5C5.67554 0.5 7.3125 2.13696 7.3125 4.15625Z" fill="#B5B5BD"></path>
+        <path d="M5.81844 7.10497C5.83503 7.12746 5.8535 7.149 5.87387 7.16936L8.03975 9.33525C8.25942 9.55492 8.61558 9.55492 8.83525 9.33525C9.05492 9.11558 9.05492 8.75942 8.83525 8.53975L6.66936 6.37387C6.649 6.3535 6.62746 6.33503 6.60497 6.31844C6.38431 6.61885 6.11885 6.88431 5.81844 7.10497Z" fill="#B5B5BD"></path></svg>
+        <input
+        [type]="type"
+        [placeholder]="placeholder"
+        [value]="value"
+        (input)="handleChange($event)"
+        class="search-input"
+      />
+    </div>
+    <button
+    *ngIf="btnName"
+    (click)="handleButtonClick()"
+     type="submit">{{btnName}}</button>
+</div>
