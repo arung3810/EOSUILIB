@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu, FormFields } from '../../dist/eos-comp';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu, FormFields, AccordionComponent } from '../../dist/eos-comp';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,Search, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, NavMenu, FormFields],
+  imports: [NgFor,Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu, FormFields],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -350,5 +350,41 @@ mfholdingpielist =[
     { id: 'emergency', label: 'Tab 1', content: 'Tab Content 1' },
     { id: 'expenses', label: 'Tab 2', content: 'Tab Content 2' },
     { id: 'assets', label: 'Tab 3', content: 'Tab Content 3' }
+  ];selectedDate: string = '';
+
+onDateSelected(date: string) {
+  this.selectedDate = date;
+}
+
+subsections = [
+  {
+    header: 'Insurance',
+    content: 'Adding riders or extras to your insurance portfolio'
+  },
+  {
+    header: 'Estate & Will',
+    content: 'Evaluating life insurance as an estate planning tool'
+  },
+  {
+    header: 'Taxes',
+    content: 'Evaluating tax aspects of property transactions'
+  }
+];
+
+  taxTableColumns = [
+    { key: 'scheme_name', label: 'Scheme Name' },
+    { key: 'category', label: 'Category' },
+    { key: 'scheme_type', label: 'Scheme Type' },
+    { key: 'current_value', label: 'Current Value' },
+    { key: 'sip', label: 'SIP' }
   ];
+
+  taxTableData = [
+    { scheme_name: 'Nippon India Banking & Financial Services Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+    { scheme_name: 'Franklin India Multi Cap Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+    { scheme_name: 'ITI Small Cap Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+    { scheme_name: 'Franklin India Flexi Cap Fund', category: 'Equity', scheme_type: 'Sector Funds', current_value: '₹ 78,574' , sip: '₹ 1,000' },
+  ];
+
+
 }
