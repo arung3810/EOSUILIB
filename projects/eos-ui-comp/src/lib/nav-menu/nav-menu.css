@@ -1,0 +1,122 @@
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    background: #fff;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s ease;
+}
+
+/* Collapsed */
+.sidebar.collapsed {
+    width: 90px;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.logo .title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Menu */
+.menu {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 24px;
+    color: #9aa0a6;
+    cursor: pointer;
+}
+
+.menu li i {
+    font-size: 18px;
+    min-width: 22px;
+}
+
+.menu li.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.menu li:hover {
+    background: #f5f5f5;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 24px;
+    color: #9aa0a6;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.footer p {
+    font-size: 11px;
+}
+
+/* Toggle Button */
+.toggle-btn {
+    position: absolute;
+    top: 120px;
+    right: -18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Rotate icon when expanded */
+.sidebar:not(.collapsed) .toggle-btn i {
+    transform: rotate(180deg);
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed span,
+.sidebar.collapsed .footer p {
+    display: none;
+}
+
+/* Center icons when collapsed */
+.sidebar.collapsed .menu li {
+    justify-content: center;
+    padding: 16px 0;
+}
+
+.sidebar.collapsed .logo {
+    justify-content: center;
+}
