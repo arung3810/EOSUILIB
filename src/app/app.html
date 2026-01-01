@@ -182,5 +182,14 @@ cardType="MFHoldingsPie"
     <section>
       <lib-form-fields></lib-form-fields>
     </section>
+
+    <section>
+    <lib-accordion-component title="Top Priority" [subsections]="subsections" editUrl="/edit-insurance">
+    </lib-accordion-component>
+  </section>
+  <section>
+    <lib-accordion-component title="Investment" [tableColumns]="taxTableColumns" [tableData]="taxTableData">
+    </lib-accordion-component>
+  </section>
 </div>
 <router-outlet />
