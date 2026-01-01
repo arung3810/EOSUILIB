@@ -747,6 +747,7 @@
 }
 .layout{
   display: flex;
+  gap: 10px;
   align-items: center;
 }
 .wrapper{
@@ -760,9 +761,10 @@
     display: table;
     border-collapse: separate;
     border-spacing: 0 15px;
-    margin: 0 120px 0 15px;
-    max-width: 200px;
-    width: calc(100% - 140px);
+    margin: 0 20px 0 15px;
+    /* max-width: 200px; */
+    /* width: calc(100% - 140px); */
+    width: -webkit-fill-available;
 }
 .equit-theme{
   display: table-row;
@@ -780,9 +782,14 @@ li.equit-theme:before {
     transform: translateY(-50%);
     border-radius: 1.671px;
 }
+li.equit-theme .label{
+  width: 100%;
+  text-align: left;
+}
 .card.score-piechart-card .score-wrapper li > span {
     display: table-cell;
-    width: calc(100% / 3);
+    /* width: calc(100% / 3); */
+    width: fit-content;
 }
 .label{
   font-size: 12px;
@@ -838,4 +845,8 @@ li.equit-theme:before {
     top: 0; */
     flex-direction: column;
     justify-content: center
+}
+.note-mfAllocation{
+  margin: 0;
+  text-align: left;
 }

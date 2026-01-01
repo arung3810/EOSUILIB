@@ -64,87 +64,46 @@
       <lib-card cardType="personalDetail" [taskList]="list">
       </lib-card>
 
-    <lib-card
-    cardType="1view"
-    [categoryList]="categoryList"
-    title="1 View"
-    netWorth="₹ 2,68,29,205"
-    vua="₹ 2,80,24,405"
-    ></lib-card>
-<div class="col">
-    <lib-card
-    [creditCard]="creditCardObj"
-    cardType="creditcard">
-  </lib-card>
-</div>
-</div>
-<div class="row">
-  <div class="col">
-<lib-card
-  role="FC"
-  cardType="financialbehaviourscore"
-  [currentFbsScore]="63"
-  [gen_last_updated_at]="null"
-  genProfile="Gen 2"
-  age_group="26 - 35"
-></lib-card>
-</div>
-<div style="width: 18%;">
-  <lib-card 
-  cardType="MFHoldings"
-  title="No. of Mutual Funds"
-  [currentFbsScore]="20"
-  para="Attention! Consolidate your portfolio on priority"
-  ></lib-card>
-</div>
-<div style="width: 18%;">
-  <lib-card 
-  cardType="MFHoldings"
-  title=" Avg Portfolio Score"
-  [currentFbsScore]="69"
-  small="Medium"
-  para="Based on the 1 Finance proprietary research"
-  ></lib-card>
-</div>
-</div>
+      <lib-card cardType="1view" [categoryList]="categoryList" title="1 View" netWorth="₹ 2,68,29,205"
+        vua="₹ 2,80,24,405"></lib-card>
+      <div class="col">
+        <lib-card [creditCard]="creditCardObj" cardType="creditcard">
+        </lib-card>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <lib-card role="FC" cardType="financialbehaviourscore" [currentFbsScore]="63" [gen_last_updated_at]="null"
+          genProfile="Gen 2" age_group="26 - 35"></lib-card>
+      </div>
+      <div style="width: 18%;">
+        <lib-card cardType="MFHoldings" title="No. of Mutual Funds" [currentFbsScore]="20"
+          para="Attention! Consolidate your portfolio on priority"></lib-card>
+      </div>
+      <div style="width: 18%;">
+        <lib-card cardType="MFHoldings" title=" Avg Portfolio Score" [currentFbsScore]="69" small="Medium"
+          para="Based on the 1 Finance proprietary research"></lib-card>
+      </div>
+    </div>
 
-<lib-card 
-cardType="carousal"
-title="Portfolio Overlap (Top 5)"
-[carousalList]="carousalTestData">
-</lib-card>
+    <lib-card cardType="carousal" title="Portfolio Overlap (Top 5)" [carousalList]="carousalTestData">
+    </lib-card>
 
-<div style="width: fit-content;">
-<lib-card
-cardType="MFHoldingsPie"
-[series]="[97, 3]"
-[colors]="['#ab99ff', '#e0e0e0']"
-[mf_allocation_not_fetched]="false"
-[current_value]="8.5"
-[MfholdingList2]="mfholdingpielist"
-></lib-card>
-</div>
+    <div style="width: fit-content;">
+      <lib-card cardType="MFHoldingsPie" [series]="[97, 3]" [colors]="['#ab99ff', '#e0e0e0']"
+        [mf_allocation_not_fetched]="false" [current_value]="8.5" [MfholdingList2]="mfholdingpielist"
+        para="description shown here"></lib-card>
+    </div>
 
   </section>
 
   <section>
     <h2>Search component</h2>
-    <lib-search
-  placeholder="Search..."
-  [svgIcon]="searchIcon"
-  btnName="Search"
-  (inputChange)="onSearchChange($event)"
-  (buttonClick)="onSearchButtonClick()"
-></lib-search>
-<br />
-<lib-search
-  placeholder="Search dummy"
-  [svgIcon]="searchIcon"
-  half="false"
-  (inputChange)="onSearchChange($event)"
-  (buttonClick)="onSearchButtonClick()"
-  btnName="Search"
-></lib-search>
+    <lib-search placeholder="Search..." [svgIcon]="searchIcon" btnName="Search" (inputChange)="onSearchChange($event)"
+      (buttonClick)="onSearchButtonClick()"></lib-search>
+    <br />
+    <lib-search placeholder="Search dummy" [svgIcon]="searchIcon" half="false" (inputChange)="onSearchChange($event)"
+      (buttonClick)="onSearchButtonClick()" btnName="Search"></lib-search>
 
 
   </section>
@@ -165,28 +124,37 @@ cardType="MFHoldingsPie"
   </section>
 
   <section>
+    <h2>Ag Grid Table</h2>
+    <lib-ag-grid-table>
+    </lib-ag-grid-table>
+  </section>
+
+  <section>
     <lib-tooltip tooltipText="Hello EOS!"></lib-tooltip>
   </section>
 
-    <section>
-      <lib-login></lib-login>
-    </section>
-    
-    <section>
-       <h2>TabPane Component</h2>
-      <lib-tabpane [tabs]="tabsList" ></lib-tabpane>
-    </section>
-    <section>
-      <lib-nav-menu></lib-nav-menu>
-    </section>
-    <section>
-      <lib-form-fields></lib-form-fields>
-    </section>
+  <section>
+    <lib-login></lib-login>
+  </section>
 
-    <section>
+  <section>
+    <h2>TabPane Component</h2>
+    <lib-tabpane [tabs]="tabsList"></lib-tabpane>
+  </section>
+
+  <section>
+    <lib-nav-menu></lib-nav-menu>
+  </section>
+
+  <section>
+    <lib-form-fields></lib-form-fields>
+  </section>
+
+  <section>
     <lib-accordion-component title="Top Priority" [subsections]="subsections" editUrl="/edit-insurance">
     </lib-accordion-component>
   </section>
+
   <section>
     <lib-accordion-component title="Investment" [tableColumns]="taxTableColumns" [tableData]="taxTableData">
     </lib-accordion-component>

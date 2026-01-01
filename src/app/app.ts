@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu, FormFields, AccordionComponent } from '../../dist/eos-comp';
+import { AgGridTable, Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu, FormFields, AccordionComponent } from '../../dist/eos-comp';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu, FormFields],
+  imports: [NgFor, AgGridTable, Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu, FormFields],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -342,6 +342,16 @@ mfholdingpielist =[
     label: "Equity", 
     equityPercentage: 97, 
     equityValue: 8.1 
+  },
+  { 
+    label: "Mutual Fund", 
+    equityPercentage: 90, 
+    equityValue: 6.1 
+  },
+  { 
+    label: "Stocks", 
+    equityPercentage: 67, 
+    equityValue: 9.6 
   }
 ]
 
