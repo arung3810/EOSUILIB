@@ -3,16 +3,17 @@ button {
   gap: 6px;
   align-items: center;
   justify-content: center;
-  font-family: Inter, sans-serif;
-  font-weight: 500;
-  border: none;
-  border-radius: 0.375rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  border-radius: 4px;
   cursor: pointer;
   outline: none;
   white-space: nowrap;
-  padding: 0.5rem 1rem;
-  height: 35px;
-  font-size: 14px;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  padding: 6px 12px;
+  height: auto;
+  min-height: 28px;
 }
 
 button:disabled {
@@ -20,26 +21,90 @@ button:disabled {
   opacity: 0.6;
 }
 
+/* Sizes */
+button.button-small {
+  padding: 4px 8px;
+  font-size: 12px;
+  min-height: 24px;
+}
+
+button.button-medium {
+  padding: 6px 12px;
+  font-size: 14px;
+  min-height: 36px;
+}
+
+button.button-large {
+  padding: 8px 16px;
+  font-size: 14px;
+  min-height: 32px;
+}
+
 /* Variants */
 button.button-primary {
-  background-color: #000000;
+  background-color: #000;
   color: white;
+  border: 1px solid #000;
+}
+
+button.button-primary:hover:not(:disabled) {
+  background-color: #333;
+  border-color: #333;
 }
 
 button.button-secondary {
-  background-color: #fff;
-  color: black;
-  border: 1px solid black;
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+button.button-secondary:hover:not(:disabled) {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+button.button-outline {
+  background-color: white;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+button.button-outline:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #adb5bd;
+}
+
+button.button-ghost {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid transparent;
+}
+
+button.button-ghost:hover:not(:disabled) {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+button.button-danger {
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #dc3545;
+}
+
+button.button-danger:hover:not(:disabled) {
+  background-color: #c82333;
+  border-color: #bd2130;
 }
 
 /* Loading Spinner */
 .button-spinner {
-  width: 1em;
-  height: 1em;
+  width: 12px;
+  height: 12px;
   border: 2px solid currentColor;
   border-top-color: transparent;
   border-radius: 50%;
-  animation: spin 0.6s linear infinite;
+  animation: spin 0.8s linear infinite;
+  margin-right: 4px;
 }
 
 @keyframes spin {
@@ -63,6 +128,14 @@ button.button-full-width {
   display: none;
 }
 
+.btn-prefix {
+  margin-right: 4px;
+}
+
+.btn-suffix {
+  margin-left: 4px;
+}
+
 .dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -73,13 +146,13 @@ button.button-full-width {
   top: 100%;
   left: 0;
   background: #fff;
-  border-radius: 8px;
-  border: 1px solid #e3e3e3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 0.25rem 0;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
   z-index: 999999;
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(4px);
   pointer-events: none;
   transition: opacity 0.15s ease, transform 0.15s ease;
   width: max-content;
@@ -93,18 +166,90 @@ button.button-full-width {
 }
 
 .dropdown-item {
-  padding: 0.5rem 1rem;
+  padding: 6px 12px;
   cursor: pointer;
-  font-size: 14px;
-  color: #1a202c;
+  font-size: 13px;
+  color: #495057;
   transition: background-color 0.15s ease;
   white-space: nowrap;
 }
 
 .dropdown-item:hover {
-  background-color: #f7fafc;
+  background-color: #f8f9fa;
 }
-.btn-suffix img,.btn-prefix img{
-  width: 14px;
-  height: 14px;
+
+.btn-suffix img,
+.btn-prefix img {
+  width: 12px;
+  height: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 32px;
+    gap: 8px;
+  }
+  
+  button.button-small {
+    padding: 6px 10px;
+    font-size: 13px;
+    min-height: 28px;
+  }
+  
+  button.button-medium {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 32px;
+  }
+  
+  button.button-large {
+    padding: 10px 16px;
+    font-size: 15px;
+    min-height: 36px;
+  }
+  
+  .dropdown-menu {
+    min-width: 120px;
+  }
+  
+  .dropdown-item {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    padding: 10px 14px;
+    font-size: 15px;
+    min-height: 36px;
+    border-radius: 6px;
+  }
+  
+  button.button-small {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 32px;
+  }
+  
+  button.button-medium {
+    padding: 10px 14px;
+    font-size: 15px;
+    min-height: 36px;
+  }
+  
+  button.button-large {
+    padding: 12px 18px;
+    font-size: 16px;
+    min-height: 40px;
+  }
+  
+  .btn-prefix img,
+  .btn-suffix img {
+    width: 14px;
+    height: 14px;
+  }
 }

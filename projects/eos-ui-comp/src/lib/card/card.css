@@ -43,6 +43,7 @@
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
+    width: 100%;
 
     flex: 1;
   }
@@ -180,7 +181,7 @@
   }
   .view-row{
     display: flex;
-    gap: 1.5rem;
+    gap: 0.5rem;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
@@ -226,6 +227,127 @@
     justify-content: flex-start;
     flex-direction: column;
   }
+
+/* Responsive Design for 1 View Card */
+@media (max-width: 1200px) {
+  .viewCard {
+    padding: 1.25rem;
+    margin: 0 8px;
+  }
+  
+  .title-margin-1view {
+    font-size: 15px;
+    margin: 0 0 14px;
+  }
+  
+  .view-row {
+    gap: 1.25rem;
+  }
+  
+  .cards-section {
+    gap: 0.75rem;
+    margin-top: 16px;
+  }
+  
+  .card-networth,
+  .card-VUA {
+    padding: 10px 20px;
+  }
+  
+  .text-style {
+    font-size: 0.9rem;
+  }
+  
+  .li-span {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .viewCard {
+    padding: 1rem;
+    margin: 0 5px;
+  }
+  
+  .title-margin-1view {
+    font-size: 14px;
+    margin: 0 0 12px;
+  }
+  
+  .label-value {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .col-6 {
+    width: 100%;
+  }
+  
+  .view-row {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  
+  .cards-section {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 14px;
+  }
+  
+  .card-networth,
+  .card-VUA {
+    width: 100%;
+    padding: 12px 16px;
+  }
+  
+  .text-style {
+    font-size: 0.875rem;
+    width: auto;
+  }
+  
+  .li-span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .viewCard {
+    padding: 0.75rem;
+    margin: 0;
+  }
+  
+  .title-margin-1view {
+    font-size: 13px;
+    margin: 0 0 10px;
+  }
+  
+  .view-col {
+    gap: 0.375rem;
+  }
+  
+  .view-row {
+    gap: 0.5rem;
+  }
+  
+  .cards-section {
+    gap: 0.5rem;
+    margin-top: 12px;
+  }
+  
+  .card-networth,
+  .card-VUA {
+    padding: 10px 12px;
+  }
+  
+  .text-style {
+    font-size: 0.8rem;
+  }
+  
+  .li-span {
+    font-size: 11px;
+  }
+}
   .cd-personal-details{
     margin: 0 0 .5rem;
     font-weight: 400;
@@ -838,4 +960,269 @@ li.equit-theme:before {
     top: 0; */
     flex-direction: column;
     justify-content: center
+}
+
+/* General Card Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-fc > .card {
+    min-height: 160px;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 11px;
+  }
+  
+  .number {
+    font-size: 18px;
+  }
+  
+  .cardPadding {
+    padding: 14px;
+  }
+  
+  .credit-cutome-card {
+    padding: 20px;
+  }
+  
+  .cerdit-content {
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-fc > .card {
+    min-height: 140px;
+  }
+  
+  .card-body {
+    padding: 0.875rem;
+  }
+  
+  .card-title {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  
+  .number {
+    font-size: 16px;
+  }
+  
+  .cardPadding {
+    padding: 12px;
+  }
+  
+  .card-personal {
+    padding: 1.25rem;
+  }
+  
+  .title-margin {
+    font-size: 15px;
+    margin: 0 0 14px;
+  }
+  
+  .personal-details p {
+    font-size: 13px;
+  }
+  
+  .credit-cutome-card {
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .credit-img-w {
+    width: 100px;
+    height: 65px;
+  }
+  
+  .cerdit-content {
+    font-size: 14px;
+    margin-bottom: 1.25rem;
+  }
+  
+  .white-md-btn {
+    padding: 6px 12px !important;
+    font-size: 9px !important;
+  }
+  
+  /* FBS Card Responsive */
+  .fbs-box {
+    width: 160px;
+    height: 18px;
+    margin: 80px 2px 0 0;
+  }
+  
+  .moving-indicator {
+    height: 60px;
+  }
+  
+  .moving-box {
+    width: 32px;
+    height: 30px;
+    margin: -4px 0 0 -16px;
+  }
+  
+  .gen2-text {
+    font-size: 13px;
+  }
+  
+  /* MF Holdings Responsive */
+  .style-1 .card-body .wrapper .num,
+  .style-2 .card-body .wrapper .num {
+    font-size: 28px;
+  }
+  
+  .style-1 .card-body .card-title1,
+  .style-2 .card-body .card-title1 {
+    font-size: 13px;
+  }
+  
+  /* Carousel Responsive */
+  .section-sub-title {
+    font-size: 16px;
+  }
+  
+  .eos-card-container {
+    gap: 16px;
+  }
+  
+  .eos-card-container .card.mf-portfolio-overlap .card-body {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-fc > .card {
+    min-height: 120px;
+  }
+  
+  .card-body {
+    padding: 0.75rem;
+  }
+  
+  .card-title {
+    font-size: 9px;
+    margin-bottom: 3px;
+  }
+  
+  .number {
+    font-size: 14px;
+  }
+  
+  .cardPadding {
+    padding: 10px;
+  }
+  
+  .card-personal {
+    padding: 1rem;
+  }
+  
+  .title-margin {
+    font-size: 14px;
+    margin: 0 0 12px;
+  }
+  
+  .personal-details p {
+    font-size: 12px;
+    margin: 0 0 0.375rem;
+  }
+  
+  .credit-cutome-card {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .credit-img-w {
+    width: 80px;
+    height: 52px;
+  }
+  
+  .cerdit-content {
+    font-size: 13px;
+    margin-bottom: 1rem;
+  }
+  
+  .white-md-btn {
+    padding: 5px 10px !important;
+    font-size: 8px !important;
+  }
+  
+  /* FBS Card Mobile */
+  .fbs-box {
+    width: 120px;
+    height: 16px;
+    margin: 60px 1px 0 0;
+  }
+  
+  .moving-indicator {
+    height: 45px;
+  }
+  
+  .moving-box {
+    width: 28px;
+    height: 26px;
+    margin: -3px 0 0 -14px;
+  }
+  
+  .gen2-text {
+    font-size: 12px;
+  }
+  
+  .label-row {
+    margin-top: 1rem;
+  }
+  
+  /* MF Holdings Mobile */
+  .style-1 .card-body .wrapper .num,
+  .style-2 .card-body .wrapper .num {
+    font-size: 24px;
+  }
+  
+  .style-1 .card-body .card-title1,
+  .style-2 .card-body .card-title1 {
+    font-size: 12px;
+  }
+  
+  .style-1 .card-body .wrapper .pera,
+  .style-2 .card-body .wrapper .pera {
+    font-size: 13px;
+  }
+  
+  /* Carousel Mobile */
+  .section-sub-title {
+    font-size: 14px;
+  }
+  
+  .eos-card-container {
+    gap: 12px;
+  }
+  
+  .eos-card-container .card.mf-portfolio-overlap .card-body {
+    padding: 16px;
+  }
+  
+  .eos-card-container .card.mf-portfolio-overlap .card-body .pera {
+    font-size: 13px;
+  }
+  
+  /* Pie Chart Mobile */
+  .card.score-piechart-card .score-wrapper {
+    margin: 0 80px 0 12px;
+    border-spacing: 0 12px;
+  }
+  
+  .label,
+  .percentage,
+  .amt {
+    font-size: 11px;
+  }
+  
+  .currentValueLabel,
+  .currentValue {
+    font-size: 11px;
+  }
 }

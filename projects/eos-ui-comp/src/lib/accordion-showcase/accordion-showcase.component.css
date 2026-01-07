@@ -1,0 +1,157 @@
+.accordion-showcase-container {
+  padding: 0 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accordion-showcase-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.accordion-showcase-container > p {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.accordion-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.accordion-example {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.accordion-example:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Override accordion styles to match the image */
+.accordion-example ::ng-deep .accordion {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.accordion-example ::ng-deep .accordion-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.25rem 1.5rem;
+}
+
+.accordion-example ::ng-deep .accordion-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.accordion-example ::ng-deep .accordion-body {
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.accordion-example ::ng-deep .subsection {
+  margin-bottom: 1rem;
+}
+
+.accordion-example ::ng-deep .subsection:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.accordion-example ::ng-deep .subsection-header {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.accordion-example ::ng-deep .subsection-content {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.accordion-example ::ng-deep .edit-button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.accordion-example ::ng-deep .edit-button:hover {
+  background-color: #1f2937;
+}
+
+/* Table styling to match the image */
+.accordion-example ::ng-deep .accordion-table-wrapper {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.accordion-example ::ng-deep .accordion-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.accordion-example ::ng-deep .accordion-table th {
+  background-color: #f9fafb;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.accordion-example ::ng-deep .accordion-table td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #1f2937;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.accordion-example ::ng-deep .accordion-table tr:last-child td {
+  border-bottom: none;
+}
+
+.accordion-example ::ng-deep .accordion-table tr:hover {
+  background-color: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .accordion-showcase-container {
+    padding: 0 20px;
+  }
+  
+  .accordion-showcase-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .accordion-showcase-container > p {
+    font-size: 1rem;
+  }
+  
+  .accordion-examples {
+    gap: 1rem;
+  }
+}

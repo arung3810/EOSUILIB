@@ -44,13 +44,19 @@
 
                     <!-- Tooltip cell type -->
                     <ng-container *ngIf="col.cellType === 'tooltip'">
-                      {{ getCellValue(row, col) }}
-                      <div class="tooltip" *ngIf="shouldShowTooltip(row, col)">
-                        <svg _ngcontent-ng-cli-universal-c3025218707="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-cli-universal-c3025218707="" fill-rule="evenodd" clip-rule="evenodd" d="M6 11.25C8.8995 11.25 11.25 8.8995 11.25 6C11.25 3.10051 8.8995 0.75 6 0.75C3.10051 0.75 0.75 3.10051 0.75 6C0.75 8.8995 3.10051 11.25 6 11.25ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z" fill="#718096"></path><path _ngcontent-ng-cli-universal-c3025218707="" d="M6.69803 4.94092L4.97977 5.15625L4.91824 5.44189L5.25662 5.50342C5.47635 5.55615 5.52029 5.63525 5.47195 5.85498L4.91824 8.45654C4.77322 9.12891 4.99734 9.44531 5.52469 9.44531C5.93338 9.44531 6.40799 9.25635 6.62332 8.99707L6.68924 8.68506C6.53982 8.81689 6.3201 8.86963 6.17508 8.86963C5.96854 8.86963 5.89383 8.72461 5.94656 8.46973L6.69803 4.94092Z" fill="#718096"></path><circle _ngcontent-ng-cli-universal-c3025218707="" cx="6" cy="3.375" r="0.75" fill="#718096"></circle></svg>
-                        <span class="tooltiptext">
-                          {{ getTooltipText(row, col) }}
+                      <span class="cell-with-tooltip">
+                        {{ getCellValue(row, col) }}
+                        <span class="tooltip-wrapper" *ngIf="shouldShowTooltip(row, col)">
+                          <svg class="tooltip-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6 11.25C8.8995 11.25 11.25 8.8995 11.25 6C11.25 3.10051 8.8995 0.75 6 0.75C3.10051 0.75 0.75 3.10051 0.75 6C0.75 8.8995 3.10051 11.25 6 11.25ZM6 12C9.31371 12 12 9.31371 12 6C12 2.68629 9.31371 0 6 0C2.68629 0 0 2.68629 0 6C0 9.31371 2.68629 12 6 12Z" fill="#718096"></path>
+                            <path d="M6.69803 4.94092L4.97977 5.15625L4.91824 5.44189L5.25662 5.50342C5.47635 5.55615 5.52029 5.63525 5.47195 5.85498L4.91824 8.45654C4.77322 9.12891 4.99734 9.44531 5.52469 9.44531C5.93338 9.44531 6.40799 9.25635 6.62332 8.99707L6.68924 8.68506C6.53982 8.81689 6.3201 8.86963 6.17508 8.86963C5.96854 8.86963 5.89383 8.72461 5.94656 8.46973L6.69803 4.94092Z" fill="#718096"></path>
+                            <circle cx="6" cy="3.375" r="0.75" fill="#718096"></circle>
+                          </svg>
+                          <span class="tooltiptext">
+                            {{ getTooltipText(row, col) }}
+                          </span>
                         </span>
-                      </div>
+                      </span>
                     </ng-container>
 
                     <!-- Custom cell type -->

@@ -1,0 +1,93 @@
+.modal-showcase-container {
+  padding: 0 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.modal-showcase-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+}
+
+.modal-showcase-container > p {
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.modal-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.modal-example {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.modal-example:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-example h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.demo-button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.demo-button:hover {
+  background-color: #1f2937;
+  transform: translateY(-1px);
+}
+
+.demo-button:active {
+  transform: translateY(0);
+}
+
+.demo-button:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .modal-showcase-container {
+    padding: 0 20px;
+  }
+  
+  .modal-showcase-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .modal-showcase-container > p {
+    font-size: 1rem;
+  }
+  
+  .modal-examples {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

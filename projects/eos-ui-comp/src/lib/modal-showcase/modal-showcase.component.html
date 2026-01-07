@@ -1,0 +1,94 @@
+<div class="modal-showcase-container">
+  <h2>Modal Components</h2>
+  <p>Various modal dialogs for different use cases</p>
+
+  <div class="modal-examples">
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-example">
+      <h3>Delete Confirmation Modal</h3>
+      <button class="demo-button" (click)="openDeleteModal()">Open Delete Modal</button>
+      
+      <lib-modal
+        [open]="isDeleteModalOpen"
+        title="Want to delete the Note?"
+        message="This action cannot be undone. Are you sure you want to delete this note?"
+        button1="No"
+        button2="Yes"
+        (click1)="onDeleteNo($event)"
+        (click2)="onDeleteYes($event)"
+        size="md">
+      </lib-modal>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-example">
+      <h3>Confirmation Modal</h3>
+      <button class="demo-button" (click)="openConfirmModal()">Open Confirm Modal</button>
+      
+      <lib-modal
+        [open]="isConfirmModalOpen"
+        title="Confirm Action"
+        message="Are you sure you want to proceed with this action?"
+        button1="Cancel"
+        button2="Confirm"
+        (click1)="onConfirmNo($event)"
+        (click2)="onConfirmYes($event)"
+        size="md">
+      </lib-modal>
+    </div>
+
+    <!-- Information Modal -->
+    <div class="modal-example">
+      <h3>Information Modal</h3>
+      <button class="demo-button" (click)="openInfoModal()">Open Info Modal</button>
+      
+      <lib-modal
+        [open]="isInfoModalOpen"
+        title="Information"
+        message="This is an informational message to provide you with important details."
+        button1="Close"
+        button2="OK"
+        (click1)="onInfoClose($event)"
+        (click2)="onInfoOk($event)"
+        size="md">
+      </lib-modal>
+    </div>
+
+    <!-- Warning Modal -->
+    <div class="modal-example">
+      <h3>Warning Modal</h3>
+      <button class="demo-button" (click)="openWarningModal()">Open Warning Modal</button>
+      
+      <lib-modal
+        [open]="isWarningModalOpen"
+        title="Warning"
+        message="This action may have unintended consequences. Please proceed with caution."
+        button1="Cancel"
+        button2="Proceed"
+        (click1)="onWarningCancel($event)"
+        (click2)="onWarningProceed($event)"
+        size="md">
+      </lib-modal>
+    </div>
+
+    <!-- Email Update Modal -->
+    <div class="modal-example">
+      <h3>Email Update Modal</h3>
+      <button class="demo-button" (click)="openEmailModal()">Open Email Modal</button>
+      
+      <lib-email-modal
+        [open]="isEmailModalOpen"
+        title="Update your Email Id"
+        subtitle="Confirm the required details to complete the process"
+        emailLabel="New Email ID"
+        emailValue="pravinshah1234@gmail.com"
+        cancelButtonText="Cancel"
+        sendButtonText="Send"
+        (send)="onEmailSend($event)"
+        (cancel)="onEmailCancel()">
+      </lib-email-modal>
+    </div>
+
+
+  </div>
+</div>

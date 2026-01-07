@@ -9,6 +9,7 @@
     background: #fff;
     border-right: 1px solid #ddd;
     transition: width 0.3s ease;
+    z-index: 2;
 }
 
 /* Collapsed */
@@ -54,8 +55,10 @@
 }
 
 .menu li.active {
-    color: #000;
+    color: #1976d2;
+    background-color: #e3f2fd;
     font-weight: 600;
+    border-right: 3px solid #1976d2;
 }
 
 .menu li:hover {
@@ -119,4 +122,126 @@
 
 .sidebar.collapsed .logo {
     justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .sidebar.collapsed {
+        width: 80px;
+    }
+    
+    .menu li {
+        padding: 12px 20px;
+        gap: 14px;
+    }
+    
+    .menu li i {
+        font-size: 16px;
+        min-width: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease, width 0.3s ease;
+    }
+    
+    .sidebar:not(.collapsed) {
+        transform: translateX(0);
+    }
+    
+    .sidebar.collapsed {
+        width: 70px;
+        transform: translateX(0);
+    }
+    
+    .logo {
+        padding: 16px;
+    }
+    
+    .menu li {
+        padding: 10px 16px;
+        gap: 12px;
+    }
+    
+    .menu li i {
+        font-size: 16px;
+        min-width: 18px;
+    }
+    
+    .footer {
+        padding: 0 16px;
+        bottom: 16px;
+    }
+    
+    .footer p {
+        font-size: 10px;
+    }
+    
+    .toggle-btn {
+        top: 100px;
+        right: -15px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .sidebar.collapsed {
+        width: 60px;
+    }
+    
+    .logo {
+        padding: 12px;
+    }
+    
+    .logo img {
+        width: 32px;
+    }
+    
+    .menu {
+        margin-top: 16px;
+    }
+    
+    .menu li {
+        padding: 8px 12px;
+        gap: 10px;
+    }
+    
+    .menu li i {
+        font-size: 14px;
+        min-width: 16px;
+    }
+    
+    .footer {
+        padding: 0 12px;
+        bottom: 12px;
+    }
+    
+    .footer p {
+        font-size: 9px;
+    }
+    
+    .logout {
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .toggle-btn {
+        top: 80px;
+        right: -12px;
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
 }

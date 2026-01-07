@@ -1,0 +1,40 @@
+<div class="showcase-container">
+  <div class="showcase-title">
+    <h2>Header Component</h2>
+  </div>
+
+  <!-- Header 1: Profile Header -->
+  <div class="header-example">
+    <lib-header-component
+      title="SACHIN RAJESH SINGH"
+      description="Far-sighted Eagle"
+      profileImage="src/assets/loginimg/eos_user.svg"
+      [buttonList]="header1Buttons">
+    </lib-header-component>
+  </div>
+
+  <!-- Header 2: Greeting Header -->
+  <div class="header-example">
+    <lib-header-component
+      title="Good Evening, TEST USER 2 CO"
+      [buttonList]="header2Buttons">
+    </lib-header-component>
+  </div>
+
+  <!-- Header 3: Simple Header with Icon -->
+  <div class="header-example">
+    <lib-header-component
+      title="Personal & Financial Data"
+      icon="src/assets/close.svg"
+      (iconClicked)="onMenuIconClick($event)">
+    </lib-header-component>
+  </div>
+
+  <!-- Header 4: Dashboard Header -->
+  <div class="header-example">
+    <lib-header-component
+      title="Dashboard"
+      [buttonList]="header4Buttons">
+    </lib-header-component>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<div class="showcase-container">
+  <div class="showcase-title">
+    <h2>Card Components</h2>
+    <p>Versatile card layouts for displaying various types of content and data</p>
+  </div>
+
+  <!-- Dashboard Cards Row 1 -->
+  <div class="cards-row">
+    <lib-card
+      cardType="dashboard"
+      title="Attendance Missed"
+      value="5"
+      [svgIcon]="attendanceIcon"
+      (cardClick)="onCardClick('attendance')">
+    </lib-card>
+
+    <lib-card
+      cardType="dashboard"
+      title="Attendance"
+      value="5"
+      [svgIcon]="attendanceIcon"
+      (cardClick)="onCardClick('attendance-total')">
+    </lib-card>
+
+    <lib-card
+      cardType="dashboard"
+      title="Current Net Worth"
+      value="₹ NaN (Assets) - ₹ NaN (Liabilities)"
+      (cardClick)="onCardClick('networth')">
+    </lib-card>
+
+    <lib-card
+      cardType="dashboard"
+      title="Dependents"
+      value="2"
+      [svgIcon]="dependentsIcon"
+      (cardClick)="onCardClick('dependents')">
+    </lib-card>
+  </div>
+
+  <!-- Cards Row 2 -->
+  <div class="cards-row">
+    <lib-card
+      cardType="personalDetail"
+      [taskList]="personalDetailsList"
+      (cardClick)="onCardClick('personal-details')">
+    </lib-card>
+
+    <lib-card
+      cardType="1view"
+      title="1 View"
+      [categoryList]="categoryList"
+      netWorth="₹ 2,68,29,205"
+      vua="₹ 2,80,24,405"
+      (cardClick)="onCardClick('1view')">
+    </lib-card>
+
+    <lib-card
+      cardType="creditcard"
+      [creditCard]="creditCardData"
+      (cardClick)="onCardClick('credit-card')">
+    </lib-card>
+  </div>
+
+  <!-- Cards Row 3 -->
+  <div class="cards-row">
+    <lib-card
+      cardType="financialbehaviourscore"
+      [currentFbsScore]="currentFbsScore"
+      [genProfile]="genProfile"
+      [age_group]="age_group"
+      [role]="role"
+      (cardClick)="onCardClick('fbs')">
+    </lib-card>
+
+    <lib-card
+      cardType="MFHoldings"
+      [title]="mfHoldingsData.title"
+      [currentFbsScore]="mfHoldingsData.currentFbsScore"
+      [para]="mfHoldingsData.para"
+      [small]="mfHoldingsData.small"
+      (cardClick)="onCardClick('mf-holdings-1')">
+    </lib-card>
+
+    <lib-card
+      cardType="MFHoldings"
+      [title]="avgPortfolioData.title"
+      [currentFbsScore]="avgPortfolioData.currentFbsScore"
+      [para]="avgPortfolioData.para"
+      [small]="avgPortfolioData.small"
+      small="true"
+      (cardClick)="onCardClick('mf-holdings-2')">
+    </lib-card>
+  </div>
+
+  <!-- Portfolio Overlap Carousel -->
+  <div class="cards-row">
+    <lib-card
+      cardType="carousal"
+      title="Portfolio Overlap (Top 5)"
+      [carousalList]="carousalData"
+      (cardClick)="onCardClick('portfolio-overlap')">
+    </lib-card>
+  </div>
+
+  <!-- MF Holdings Pie Chart -->
+  <div class="cards-row single-card">
+    <lib-card
+      cardType="MFHoldingsPie"
+      [series]="pieChartSeries"
+      [colors]="pieChartColors"
+      [MfholdingList2]="mfHoldingsList"
+      [current_value]="8.5"
+      [mf_allocation_not_fetched]="false"
+      [para]="mfAllocationPara"
+      (cardClick)="onCardClick('mf-pie')">
+    </lib-card>
+  </div>
+</div>

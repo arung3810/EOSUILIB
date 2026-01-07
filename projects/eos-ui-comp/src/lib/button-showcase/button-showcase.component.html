@@ -1,0 +1,44 @@
+<div class="showcase-container">
+  <div class="showcase-title">
+    <h2>Button Components</h2>
+    <p>Interactive buttons with various styles, states, and configurations</p>
+  </div>
+
+  <div class="button-row">
+    <lib-button variant="primary" (clicked)="onButtonClick($event)">
+      Plain btn
+    </lib-button>
+    
+    <lib-button variant="primary" prefixIcon="src/assets/play.svg" (clicked)="onButtonClick($event)">
+      Prefix Icon btn
+    </lib-button>
+    
+    <lib-button variant="outline" suffixIcon="src/assets/close.svg" (clicked)="onButtonClick($event)">
+      Suffix Icon btn
+    </lib-button>
+    
+    <lib-button variant="outline" prefixIcon="src/assets/play.svg" suffixIcon="src/assets/close.svg" (clicked)="onButtonClick($event)">
+      Prefix Suffix btn
+    </lib-button>
+    
+    <lib-button variant="outline" [disabled]="true">
+      Disabled btn
+    </lib-button>
+    
+    <lib-button variant="outline" [loading]="true">
+      loading btn
+    </lib-button>
+    
+    <lib-button variant="primary" (clicked)="onButtonClick($event)">
+      hello
+    </lib-button>
+    
+    <lib-button variant="secondary" (clicked)="onButtonClick($event)">
+      Hover
+    </lib-button>
+    
+    <lib-button variant="outline" [fullWidth]="false" (clicked)="onButtonClick($event)">
+      Full width
+    </lib-button>
+  </div>
+</div>

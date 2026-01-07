@@ -1,0 +1,52 @@
+<div class="showcase-container">
+  <div class="showcase-title">
+    <h2>Table Component</h2>
+  </div>
+
+  <!-- Main Table Example (Full Featured) -->
+  <div class="table-example">
+    <h3>Full Featured Table</h3>
+    <lib-table
+      [columns]="columns"
+      [rows]="tableData"
+      [total]="totalRecords"
+      [page]="currentPage"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)">
+    </lib-table>
+  </div>
+
+  <!-- Simple Non-Editable Table -->
+  <div class="table-example">
+    <h3>Simple Non-Editable Table</h3>
+    <lib-table
+      [columns]="simpleColumns"
+      [rows]="simpleData"
+      [page]="1"
+      [pageSize]="5">
+    </lib-table>
+  </div>
+
+  <!-- Table with Tooltips -->
+  <div class="table-example">
+    <h3>Table with Tooltips</h3>
+    <lib-table
+      [columns]="tooltipColumns"
+      [rows]="tooltipData"
+      [page]="1"
+      [pageSize]="5">
+    </lib-table>
+  </div>
+
+  <!-- Compact Table -->
+  <div class="table-example">
+    <h3>Compact Table</h3>
+    <lib-table
+      [columns]="compactColumns"
+      [rows]="compactData"
+      [page]="1"
+      [pageSize]="5">
+    </lib-table>
+  </div>
+</div>

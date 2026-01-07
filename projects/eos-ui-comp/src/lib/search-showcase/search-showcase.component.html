@@ -1,0 +1,97 @@
+<div class="showcase-container">
+  <div class="showcase-title">
+    <h2>Search component</h2>
+  </div>
+
+  <!-- Basic Search with Button -->
+  <div class="search-example">
+    <h3>Basic Search with Button</h3>
+    <lib-search
+      placeholder="Search..."
+      btnName="Search"
+      half="true"
+      (inputChange)="onSearchInput($event, 'basic')"
+      (buttonClick)="onSearchButtonClick('basic')">
+    </lib-search>
+  </div>
+
+  <!-- Full Width Search -->
+  <div class="search-example">
+    <h3>Full Width Search</h3>
+    <lib-search
+      placeholder="Search dummy"
+      btnName="Search"
+      half="false"
+      (inputChange)="onSearchInput($event, 'full-width')"
+      (buttonClick)="onSearchButtonClick('full-width')">
+    </lib-search>
+  </div>
+
+  <!-- Search Without Button -->
+  <div class="search-example">
+    <h3>Search Without Button</h3>
+    <lib-search
+      placeholder="Type to search..."
+      half="true"
+      (inputChange)="onSearchInput($event, 'no-button')">
+    </lib-search>
+  </div>
+
+  <!-- Compact Search -->
+  <div class="search-example">
+    <h3>Compact Search</h3>
+    <lib-search
+      placeholder="Quick search"
+      btnName="Go"
+      half="true"
+      (inputChange)="onSearchInput($event, 'compact')"
+      (buttonClick)="onSearchButtonClick('compact')">
+    </lib-search>
+  </div>
+
+  <!-- Large Search Bar -->
+  <div class="search-example">
+    <h3>Large Search Bar</h3>
+    <lib-search
+      placeholder="Enter your search query here..."
+      btnName="Search"
+      half="false"
+      (inputChange)="onSearchInput($event, 'large')"
+      (buttonClick)="onSearchButtonClick('large')">
+    </lib-search>
+  </div>
+
+  <!-- Search with Different Placeholder -->
+  <div class="search-example">
+    <h3>Product Search</h3>
+    <lib-search
+      placeholder="Search products, brands, categories..."
+      btnName="Find"
+      half="false"
+      (inputChange)="onSearchInput($event, 'product')"
+      (buttonClick)="onSearchButtonClick('product')">
+    </lib-search>
+  </div>
+
+  <!-- User Search -->
+  <div class="search-example">
+    <h3>User Search</h3>
+    <lib-search
+      placeholder="Search users by name or email"
+      btnName="Search"
+      half="true"
+      (inputChange)="onSearchInput($event, 'user')"
+      (buttonClick)="onSearchButtonClick('user')">
+    </lib-search>
+  </div>
+
+  <!-- Filter Search -->
+  <div class="search-example">
+    <h3>Filter Search</h3>
+    <lib-search
+      placeholder="Filter results..."
+      half="true"
+      (inputChange)="onSearchInput($event, 'filter')">
+    </lib-search>
+  </div>
+</div>

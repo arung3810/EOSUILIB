@@ -9,6 +9,7 @@ h2 {
 
 .table-responsive {
   border: 1px solid #ddd;
+  overflow-x: auto;
 }
 
 table {
@@ -199,40 +200,62 @@ select {
   line-height: 1;
 }
 
-.tooltip {
+.cell-with-tooltip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-wrapper {
   position: relative;
-  display: inline-block;
-  cursor: pointer;  
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tooltip-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color: black;
+  width: 200px;
+  background-color: #333;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 8px;
   position: absolute;
-  z-index: 1;
-  top: 150%;
+  z-index: 1000;
+  bottom: 125%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -100px;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tooltiptext::after {
   content: "";
   position: absolute;
-  bottom: 100%;
+  top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent black transparent;
+  border-color: #333 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip-wrapper:hover .tooltiptext {
   visibility: visible;
+  opacity: 1;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;  
 }
 .btn-testing:hover .tutorial-component {
   opacity: 1;
@@ -334,4 +357,120 @@ select {
   border-left: 0.375em solid transparent;
   border-right: 0.375em solid transparent;
   border-top: 0.375em solid #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .table-container {
+    padding: 20px;
+  }
+  
+  table {
+    min-width: 700px;
+  }
+  
+  thead th,
+  tbody td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    padding: 16px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  
+  table {
+    min-width: 600px;
+  }
+  
+  thead th,
+  tbody td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+  
+  .pagination {
+    padding: 12px 8px;
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .pagination-controls {
+    padding: 12px;
+    font-size: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .pagination-controls .paging-row-summary-panel {
+    margin: 0 16px;
+  }
+  
+  .tooltiptext {
+    width: 150px;
+    margin-left: -75px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-container {
+    padding: 12px;
+  }
+  
+  h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .table-responsive {
+    border-radius: 8px;
+  }
+  
+  table {
+    min-width: 500px;
+  }
+  
+  thead th,
+  tbody td {
+    padding: 6px 4px;
+    font-size: 11px;
+  }
+  
+  .pagination {
+    padding: 10px 6px;
+    font-size: 11px;
+    justify-content: center;
+  }
+  
+  .pagination-controls {
+    padding: 10px;
+    font-size: 11px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .pagination-controls .paging-row-summary-panel {
+    margin: 0;
+  }
+  
+  .tooltiptext {
+    width: 120px;
+    margin-left: -60px;
+    font-size: 10px;
+    padding: 6px;
+  }
+  
+  .tooltip-icon {
+    width: 10px;
+    height: 10px;
+  }
 }
