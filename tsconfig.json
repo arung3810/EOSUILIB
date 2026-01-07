@@ -6,6 +6,9 @@
     "paths": {
       "eos-ui-comp": [
         "./dist/eos-ui-comp"
+      ],
+      "eos-comp": [
+        "./dist/eos-comp"
       ]
     },
     "strict": true,

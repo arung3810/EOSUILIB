@@ -1,3 +1,53 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Login page layout - full width, no margin */
+.main-content.login-layout {
+  margin-left: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-content {
+    margin-left: 240px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 70px;
+    padding: 12px;
+  }
+  
+  .main-content.login-layout {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    margin-left: 60px;
+    padding: 8px;
+  }
+  
+  .main-content.login-layout {
+    margin-left: 0;
+  }
+}
+
 .container{
     max-width: 1200px;
     margin: 0 auto;

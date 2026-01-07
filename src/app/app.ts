@@ -1,14 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { NgFor, CommonModule } from '@angular/common';
 import { Search, TableComponent, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, ButtonType, Tooltip, Login, Tabpane, NavMenu, FormFields, AccordionComponent } from '../../dist/eos-comp';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { filter } from 'rxjs/operators';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'; 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor,Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu, FormFields],
+  imports: [NgFor, CommonModule, Search, FormsModule, TableComponent, RouterOutlet, ButtonComponent, ModalComponent, DashboardCard, HeaderComponent, Tooltip, Login, Tabpane, AccordionComponent, NavMenu, FormFields],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
@@ -17,6 +18,7 @@ export class App {
    form: FormGroup | undefined;
   protected readonly title = signal('eos-ui-components');
   protected readonly isModalOpen = signal(false);
+  isLoginPage = false;
   attendanceSvg = `
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="40" height="40" rx="20" fill="#FFDDDA"></rect><path _ngcontent-ng-cli-universal-c3109344089="" fill-rule="evenodd" clip-rule="evenodd" d="M19.0217 25.8698C19.0217 25.8698 18.0435 25.8698 18.0435 24.8916C18.0435 23.9133 19.0217 20.9785 22.9348 20.9785C26.8478 20.9785 27.8261 23.9133 27.8261 24.8916C27.8261 25.8698 26.8478 25.8698 26.8478 25.8698H19.0217Z" fill="#F35B4D">
@@ -94,7 +96,7 @@ headerbtn: ButtonType[] = [
     },
   ];
 
-   constructor(private fb: FormBuilder) {
+   constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       textInput: [''],
       emailInput: [''],
@@ -105,6 +107,16 @@ headerbtn: ButtonType[] = [
       amountInput: [''],
       fruit: ['apple'],
     });
+
+    // Track route changes to hide/show navigation
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.isLoginPage = event.url === '/login';
+      });
+
+    // Set initial state
+    this.isLoginPage = this.router.url === '/login';
   }
   handleIconClicked(){
     console.log('clicked icon in header');
