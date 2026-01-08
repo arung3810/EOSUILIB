@@ -1,3 +1,7 @@
+:host{
+  font-family: Inter, sans-serif;
+}
+
 .table-container {
   padding: 24px;
 }
@@ -16,7 +20,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   min-width: 800px;
-  font-family: sans-serif;
 }
 
 thead th {
@@ -165,7 +168,6 @@ select {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-family: Arial, sans-serif;
   font-size: 14px;
   gap: 10px;
   color: #333;
@@ -192,7 +194,6 @@ select {
 }
 
 .pagination .material-icons {
-  font-family: 'Material Icons';
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -249,7 +250,6 @@ select {
 .meettype-dropdown option {
   color: var(--Master-Text-Body-Light, #425466);
   font-feature-settings: 'salt' on;
-  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

@@ -1,0 +1,19 @@
+<section class="container">
+    <h2>Button Component</h2>
+    <div class="group">
+      <lib-button *ngFor="let btn of buttons" [variant]="btn.variant" [disabled]="btn.disabled" [loading]="btn.loading"
+        (clicked)="buttonClick($event)" [prefixIcon]="btn.prefixIcon || ''" [suffixIcon]="btn.suffixIcon || ''">
+        {{ btn.label }}
+      </lib-button>
+
+      <lib-button (clicked)="buttonClick($event)"> hello </lib-button>
+
+      <lib-button variant="secondary" [openOnHover]="true" (clicked)="handleButtonClick()"
+        (dropdownClicked)="handleDropdownClick()" [dropdown]="true" [dropdownList]="menuItems"
+        suffixIcon="assets/threeDot.svg">
+        Hover
+      </lib-button>
+
+      <lib-button variant="secondary" fullWidth="true">Full width</lib-button>
+    </div>
+  </section>

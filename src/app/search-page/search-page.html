@@ -1,0 +1,8 @@
+<section>
+  <h2>Search component</h2>
+  <lib-search placeholder="Search..." [svgIcon]="searchIcon" btnName="Search" (inputChange)="onSearchChange($event)"
+    (buttonClick)="onSearchButtonClick()"></lib-search>
+  <br />
+  <lib-search placeholder="Search dummy" [svgIcon]="searchIcon" half="false" (inputChange)="onSearchChange($event)"
+    (buttonClick)="onSearchButtonClick()" btnName="Search"></lib-search>
+</section>

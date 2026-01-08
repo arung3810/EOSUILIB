@@ -1,0 +1,59 @@
+
+<section>
+  <h2>Card Component</h2>
+  <div class="row">
+    <div class="col">
+      <lib-card cardType="riaDashboard" title="Attendance Missed" [value]="5" [svgIcon]="attendanceSvg"
+        (cardClick)="onDashboardClick()">
+      </lib-card>
+    </div>
+    <div class="col">
+      <lib-card title="Attendance" [value]="5" [svgIcon]="attendanceSvg" (cardClick)="onDashboardClick()">
+      </lib-card>
+    </div>
+    <div class="col">
+      <lib-card cardType="workbook" title="Current Net Worth" value="-" value1="₹ NaN (Assets) - ₹ NaN (Liabilities)"
+        [svgIcon]="attendanceSvg" (cardClick)="onDashboardClick()">
+      </lib-card>
+    </div>
+    <div class="col">
+      <lib-card cardType="workbook" title="Dependents" value="2" value1="1 Kid, 1 Relative" [svgIcon]="attendanceSvg">
+      </lib-card>
+    </div>
+  </div>
+  <div class="row">
+    <lib-card cardType="personalDetail" [taskList]="list">
+    </lib-card>
+
+    <lib-card cardType="1view" [categoryList]="categoryList" title="1 View" netWorth="₹ 2,68,29,205"
+      vua="₹ 2,80,24,405"></lib-card>
+    <div class="col">
+      <lib-card [creditCard]="creditCardObj" cardType="creditcard">
+      </lib-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <lib-card role="FC" cardType="financialbehaviourscore" [currentFbsScore]="63" [gen_last_updated_at]="null"
+        genProfile="Gen 2" age_group="26 - 35"></lib-card>
+    </div>
+    <div style="width: 18%;">
+      <lib-card cardType="MFHoldings" title="No. of Mutual Funds" [currentFbsScore]="20"
+        para="Attention! Consolidate your portfolio on priority"></lib-card>
+    </div>
+    <div style="width: 18%;">
+      <lib-card cardType="MFHoldings" title=" Avg Portfolio Score" [currentFbsScore]="69" small="Medium"
+        para="Based on the 1 Finance proprietary research"></lib-card>
+    </div>
+  </div>
+
+  <lib-card cardType="carousal" title="Portfolio Overlap (Top 5)" [carousalList]="carousalTestData">
+  </lib-card>
+
+  <div style="width: fit-content;">
+    <lib-card cardType="MFHoldingsPie" [series]="[97, 3]" [colors]="['#ab99ff', '#e0e0e0']"
+      [mf_allocation_not_fetched]="false" [current_value]="8.5" [MfholdingList2]="mfholdingpielist"
+      para="description shown here"></lib-card>
+  </div>
+
+</section>

@@ -1,0 +1,6 @@
+<section>
+  <h2>Table Component</h2>
+  <lib-table [columns]="columns" [rows]="tableData" [total]="totalRows" [page]="currentPage" [pageSize]="pageSize"
+    (pageChange)="onPageChange($event)" (sortChange)="onSortChange($event)">
+  </lib-table>
+</section>

@@ -1,0 +1,7 @@
+<section>
+  <h2>Modal Component</h2>
+  <lib-button (clicked)="modalButtonClick($event)">Open Delete Modal</lib-button>
+  <lib-modal button1="Yes" button2="No" (click1)="ModalbtnClick2($event)" (click2)="ModalbtnClick2($event)"
+    title="Want to delete the Note?" message="Your data will be deleted permanently." [open]="isModalOpen()"
+    (openChange)="onModalOpenChange($event)"></lib-modal>
+</section>

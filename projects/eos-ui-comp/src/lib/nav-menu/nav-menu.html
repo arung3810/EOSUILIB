@@ -7,45 +7,60 @@
 
   <!-- Menu -->
   <ul class="menu" style="padding-left: 0px;">
-    <li>
-      <i class="fa-regular fa-house"></i>
-      <span *ngIf="!isCollapsed">Dashboard</span>
+    <li [class.active]="currentRoute === '/buttons'" (click)="navigateTo('/buttons')">
+      <i class="fas fa-mouse-pointer"></i>
+      <span *ngIf="!isCollapsed">Buttons</span>
     </li>
 
-    <li class="active">
-      <i class="fa-solid fa-users"></i>
-      <span *ngIf="!isCollapsed">Customer List</span>
+    <li [class.active]="currentRoute === '/headers'" (click)="navigateTo('/headers')">
+      <i class="fa-solid fa-heading"></i>
+      <span *ngIf="!isCollapsed">Headers</span>
     </li>
 
-    <li>
-      <i class="fa-regular fa-file-lines"></i>
-      <span *ngIf="!isCollapsed">FC / QFA / Ex Mapping</span>
+    <li [class.active]="currentRoute === '/cards'" (click)="navigateTo('/cards')">
+      <i class="fa-regular fa-id-card"></i>
+      <span *ngIf="!isCollapsed">Cards</span>
     </li>
 
-    <li>
-      <i class="fa-regular fa-user"></i>
-      <span *ngIf="!isCollapsed">RIA Dashboard</span>
+    <li [class.active]="currentRoute === '/search'" (click)="navigateTo('/search')">
+      <i class="fa-solid fa-search"></i>
+      <span *ngIf="!isCollapsed">Search</span>
     </li>
 
-    <li>
-      <i class="fa-solid fa-user-clock"></i>
-      <span *ngIf="!isCollapsed">Call Back Requests</span>
+    <li [class.active]="currentRoute === '/modal'" (click)="navigateTo('/modal')">
+      <i class="fa-regular fa-window-restore"></i>
+      <span *ngIf="!isCollapsed">Modal</span>
     </li>
 
-    <li>
-      <i class="fa-solid fa-indian-rupee-sign"></i>
-      <span *ngIf="!isCollapsed">Customer Payment</span>
+    <li [class.active]="currentRoute === '/table'" (click)="navigateTo('/table')">
+      <i class="fa-solid fa-table"></i>
+      <span *ngIf="!isCollapsed">Table</span>
     </li>
 
-    <li>
-      <i class="fa-solid fa-arrow-right"></i>
-      <span *ngIf="!isCollapsed">Tax</span>
+    <li [class.active]="currentRoute === '/tooltip'" (click)="navigateTo('/tooltip')">
+      <i class="fa-solid fa-comment"></i>
+      <span *ngIf="!isCollapsed">Tooltip</span>
+    </li>
+
+    <li [class.active]="currentRoute === '/tabpane'" (click)="navigateTo('/tabpane')">
+      <i class="fa-solid fa-folder-open"></i>
+      <span *ngIf="!isCollapsed">TabPane</span>
+    </li>
+
+    <li [class.active]="currentRoute === '/inputfields'" (click)="navigateTo('/inputfields')">
+      <i class="fa-solid fa-keyboard"></i>
+      <span *ngIf="!isCollapsed">Input Fields</span>
+    </li>
+
+    <li [class.active]="currentRoute === '/accordion'" (click)="navigateTo('/accordion')">
+      <i class="fa-solid fa-list"></i>
+      <span *ngIf="!isCollapsed">Accordion</span>
     </li>
   </ul>
 
   <!-- Footer -->
   <div class="footer">
-    <div class="logout">
+    <div class="logout" (click)="logout()">
       <i class="fa-solid fa-right-from-bracket"></i>
       <span *ngIf="!isCollapsed">Logout</span>
     </div>

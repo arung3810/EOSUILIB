@@ -28,16 +28,18 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@splidejs/splide": "^4.1.4",
-    "ng-apexcharts": "^2.0.4",
     "@popperjs/core": "^2.11.8",
-    "eos-comp": "^0.0.14",
+    "@splidejs/splide": "^4.1.4",
+    "ag-grid-angular": "^35.0.0",
+    "apexcharts": "^5.3.6",
+    "eos-comp": "^1.0.2",
+    "ng-apexcharts": "^2.0.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/core": "^20.3.0",
     "@angular/common": "^20.3.0",
+    "@angular/core": "^20.3.0",
     "@angular/forms": "^20.3.0",
     "@ng-bootstrap/ng-bootstrap": "^19.0.0",
     "bootstrap": "^5.3.6"

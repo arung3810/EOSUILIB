@@ -1,0 +1,38 @@
+    <div class="accordion-examples">
+      <!-- Top Priority Accordion (matches your image) -->
+      <div class="accordion-example">
+        <lib-accordion-component
+          title="Top Priority"
+          [subsections]="topPrioritySubsections"
+          editUrl="/edit-priority">
+        </lib-accordion-component>
+      </div>
+  
+      <!-- Investment Accordion with Table (matches your image) -->
+      <div class="accordion-example">
+        <lib-accordion-component
+          title="Investment"
+          [tableColumns]="investmentTableColumns"
+          [tableData]="investmentTableData"
+          editUrl="/edit-investment">
+        </lib-accordion-component>
+      </div>
+  
+      <!-- Portfolio Overview Accordion -->
+      <div class="accordion-example">
+        <lib-accordion-component
+          title="Portfolio Overview"
+          [subsections]="portfolioSubsections"
+          editUrl="/edit-portfolio">
+        </lib-accordion-component>
+      </div>
+  
+      <!-- Financial Goals Accordion -->
+      <div class="accordion-example">
+        <lib-accordion-component
+          title="Financial Goals"
+          [subsections]="goalsSubsections"
+          editUrl="/edit-goals">
+        </lib-accordion-component>
+      </div>
+    </div>
