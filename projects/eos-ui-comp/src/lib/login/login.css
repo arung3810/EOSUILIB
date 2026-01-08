@@ -1,3 +1,7 @@
+:host{
+	font-family: Inter, sans-serif;
+  }
+  
 .login-1finance {
 	 display: flex;
 	 align-items: stretch;

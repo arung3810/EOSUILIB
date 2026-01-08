@@ -1,3 +1,7 @@
+:host{
+  font-family: Inter, sans-serif;
+}
+
 .wrapper{
   display: flex;
   gap: 0.5rem;

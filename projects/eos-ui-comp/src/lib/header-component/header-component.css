@@ -1,4 +1,7 @@
 @import url(../style.css);
+:host{
+  font-family: Inter, sans-serif;
+}
 
 .c-header {
     font-size: 28px;

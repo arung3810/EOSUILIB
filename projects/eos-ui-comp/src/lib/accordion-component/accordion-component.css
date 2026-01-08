@@ -1,6 +1,7 @@
 :host {
   display: block;
   width: 100%;
+  font-family: "Inter", sans-serif;
 }
 
 .accordion {
@@ -26,7 +27,7 @@
 }
 
 .accordion-title {
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.5;
   color: #000;
   min-height: 1em;
@@ -53,17 +54,15 @@
 
 .subsection-header {
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     color: #425466;
     margin-bottom: 0;
-    font-family: Inter, sans-serif !important;
 }
 
 .subsection-content {
   color: #27272e;
   font-size: 14px;
   font-weight: 600;
-  font-family: Inter, sans-serif !important;
 }
 
 .edit-button {
@@ -79,6 +78,7 @@
   border-radius: 6px;
   cursor: pointer;
   /* user-select: none; */
+  margin-top: 14px;
 }
 
 .accordion-table-wrapper {

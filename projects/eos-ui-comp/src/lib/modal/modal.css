@@ -1,3 +1,7 @@
+:host{
+  font-family: Inter, sans-serif;
+}
+
 @keyframes modal-fade-in {
   from {
     opacity: 0;

@@ -1,0 +1,13 @@
+<section class="container">
+    <h2>Header Component</h2>
+    <lib-header-component title="SACHIN RAJESH SINGH" description="Far-sighted Eagle"
+      profileImage="https://moneysign-templates.s3.ap-south-1.amazonaws.com/MS-batch-v1.4EOS/EaglehighImg.png"
+      [buttonList]="headerbtn"></lib-header-component>
+    <br />
+    <lib-header-component title="Good Evening, TEST USER 2 CO" [buttonList]="headerbtn1"></lib-header-component>
+    <br />
+    <lib-header-component icon="assets/close.svg" title="Personal & Financial Data"
+      (iconClicked)="handleIconClicked()"></lib-header-component>
+    <br />
+    <lib-header-component title="Dashboard" [buttonList]="headerbtn1"></lib-header-component>
+  </section>
