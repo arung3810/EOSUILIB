@@ -335,6 +335,7 @@
   align-items: center;
 }
 .one-view1{
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -356,7 +357,7 @@
 }
 .fbs-box {
     position: relative;
-    width: 100%;
+    width: 20%;
     height: 20px;
     padding: 0;
     margin: 100px 2px 0 0;

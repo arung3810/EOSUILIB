@@ -12,7 +12,7 @@
       </lib-card>
     </div>
     <div class="col">
-      <lib-card cardType="workbook" title="Current Net Worth" value="-" value1="₹ NaN (Assets) - ₹ NaN (Liabilities)"
+      <lib-card cardType="workbook" title="Current Net Worth" value=" 5.5Cr" value1="₹ 2.5 (Assets) - ₹ 3.5 (Liabilities)"
         [svgIcon]="attendanceSvg" (cardClick)="onDashboardClick()">
       </lib-card>
     </div>
@@ -21,6 +21,7 @@
       </lib-card>
     </div>
   </div>
+  <br>
   <div class="row">
     <lib-card cardType="personalDetail" [taskList]="list">
     </lib-card>
@@ -32,6 +33,7 @@
       </lib-card>
     </div>
   </div>
+  <br>
   <div class="row">
     <div class="col">
       <lib-card role="FC" cardType="financialbehaviourscore" [currentFbsScore]="63" [gen_last_updated_at]="null"
@@ -46,10 +48,10 @@
         para="Based on the 1 Finance proprietary research"></lib-card>
     </div>
   </div>
-
+<br>
   <lib-card cardType="carousal" title="Portfolio Overlap (Top 5)" [carousalList]="carousalTestData">
   </lib-card>
-
+<br>
   <div style="width: fit-content;">
     <lib-card cardType="MFHoldingsPie" [series]="[97, 3]" [colors]="['#ab99ff', '#e0e0e0']"
       [mf_allocation_not_fetched]="false" [current_value]="8.5" [MfholdingList2]="mfholdingpielist"
