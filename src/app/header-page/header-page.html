@@ -1,13 +1,101 @@
 <section class="container">
     <h2>Header Component</h2>
-    <lib-header-component title="SACHIN RAJESH SINGH" description="Far-sighted Eagle"
-      profileImage="https://moneysign-templates.s3.ap-south-1.amazonaws.com/MS-batch-v1.4EOS/EaglehighImg.png"
-      [buttonList]="headerbtn"></lib-header-component>
-    <br />
-    <lib-header-component title="Good Evening, TEST USER 2 CO" [buttonList]="headerbtn1"></lib-header-component>
-    <br />
-    <lib-header-component icon="assets/close.svg" title="Personal & Financial Data"
-      (iconClicked)="handleIconClicked()"></lib-header-component>
-    <br />
-    <lib-header-component title="Dashboard" [buttonList]="headerbtn1"></lib-header-component>
+    
+    <div class="showcase-section">
+      <h3>Header Variants</h3>
+      
+      <div class="example">
+        <h4>Header with Profile Image</h4>
+        <lib-header-component title="SACHIN RAJESH SINGH" description="Far-sighted Eagle"
+          profileImage="https://moneysign-templates.s3.ap-south-1.amazonaws.com/MS-batch-v1.4EOS/EaglehighImg.png"
+          [buttonList]="headerbtn"></lib-header-component>
+      </div>
+      <br />
+      
+      <div class="example">
+        <h4>Header with Greeting</h4>
+        <lib-header-component title="Good Evening, TEST USER 2 CO" [buttonList]="headerbtn1"></lib-header-component>
+      </div>
+      <br />
+      
+      <div class="example">
+        <h4>Header with Icon</h4>
+        <lib-header-component icon="assets/close.svg" title="Personal & Financial Data"
+          (iconClicked)="handleIconClicked()"></lib-header-component>
+      </div>
+      <br />
+      
+      <div class="example">
+        <h4>Simple Header with Buttons</h4>
+        <lib-header-component title="Dashboard" [buttonList]="headerbtn1"></lib-header-component>
+      </div>
+    </div>
+
+    <div class="showcase-section">
+      <h3>Component Properties</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>title</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>Header title text</td>
+            </tr>
+            <tr>
+              <td><code>description</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>Optional description text below title</td>
+            </tr>
+            <tr>
+              <td><code>profileImage</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>URL for profile image</td>
+            </tr>
+            <tr>
+              <td><code>icon</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>Icon path to display</td>
+            </tr>
+            <tr>
+              <td><code>buttonList</code></td>
+              <td>Array&lt;ButtonConfig&gt;</td>
+              <td>[]</td>
+              <td>Array of button configurations</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>iconClicked</code></td>
+              <td>EventEmitter&lt;void&gt;</td>
+              <td>Emitted when icon is clicked</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </section>

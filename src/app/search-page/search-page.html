@@ -1,8 +1,87 @@
 <section>
-  <h2>Search component</h2>
-  <lib-search placeholder="Search..." [svgIcon]="searchIcon" btnName="Search" (inputChange)="onSearchChange($event)"
-    (buttonClick)="onSearchButtonClick()"></lib-search>
-  <br />
-  <lib-search placeholder="Search dummy" [svgIcon]="searchIcon" half="false" (inputChange)="onSearchChange($event)"
-    (buttonClick)="onSearchButtonClick()" btnName="Search"></lib-search>
+  <h2>Search Component</h2>
+  
+  <div class="showcase-section">
+    <h3>Search Variants</h3>
+    <div class="search-examples">
+      <div class="example">
+        <h4>Half Width Search</h4>
+        <lib-search placeholder="Search..." [svgIcon]="searchIcon" btnName="Search" (inputChange)="onSearchChange($event)"
+          (buttonClick)="onSearchButtonClick()"></lib-search>
+      </div>
+      <br />
+      <div class="example">
+        <h4>Full Width Search</h4>
+        <lib-search placeholder="Search dummy" [svgIcon]="searchIcon" half="false" (inputChange)="onSearchChange($event)"
+          (buttonClick)="onSearchButtonClick()" btnName="Search"></lib-search>
+      </div>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Component Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>placeholder</code></td>
+            <td>string</td>
+            <td>'Search...'</td>
+            <td>Input placeholder text</td>
+          </tr>
+          <tr>
+            <td><code>svgIcon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>SVG icon markup for search icon</td>
+          </tr>
+          <tr>
+            <td><code>btnName</code></td>
+            <td>string</td>
+            <td>'Search'</td>
+            <td>Search button label</td>
+          </tr>
+          <tr>
+            <td><code>half</code></td>
+            <td>boolean | string</td>
+            <td>true</td>
+            <td>Half width (true) or full width (false)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>inputChange</code></td>
+            <td>EventEmitter&lt;string&gt;</td>
+            <td>Emitted when input value changes</td>
+          </tr>
+          <tr>
+            <td><code>buttonClick</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitted when search button is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>

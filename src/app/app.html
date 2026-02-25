@@ -1,23 +1,7 @@
-<!-- <div class="container">
-
-  <section>
-    <h2>Ag Grid Table</h2>
-    <lib-ag-grid-table>
-    </lib-ag-grid-table>
-  </section>
-
-
-  <section>
-    <lib-login></lib-login>
-  </section>
-</div>  -->
-
-
-
 <div class="app-layout">
   <lib-nav-menu *ngIf="!isLoginPage"></lib-nav-menu>
   <div class="main-content" [class.login-layout]="isLoginPage">
-    <header>
+    <header *ngIf="!isLoginPage">
       <h1>EOS UI Components</h1>
       <p>Comprehensive showcase of the reusable Angular components for EOS</p>
     </header>

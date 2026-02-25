@@ -4,10 +4,11 @@ import { Tooltip } from "../tooltip/tooltip";
 import { CommonModule } from '@angular/common';
 import Splide from '@splidejs/splide';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { PieChartWithLegend, ChartData } from "../pie-chart-with-legend/pie-chart-with-legend";
 
 @Component({
   selector: 'lib-card',
-  imports: [Tooltip, CommonModule, NgApexchartsModule],
+  imports: [Tooltip, CommonModule, NgApexchartsModule, PieChartWithLegend],
   templateUrl: './card.html',
   styleUrl: './card.css',
 })
@@ -163,6 +164,38 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
         this.sanitizer.bypassSecurityTrustHtml(this.svgIcon);
     }
 
+    // Sanitize regimeIcon when input changes
+    if (changes['regimeIcon']?.currentValue && this.regimeIcon) {
+      this.safeRegimeIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.regimeIcon);
+    }
+
+    // Sanitize taxIncomeItems icons when input changes
+    if (changes['taxIncomeItems']?.currentValue) {
+      this.sanitizedTaxIncomeItems = this.taxIncomeItems.map(item => ({
+        ...item,
+        safeIcon: item.icon ? this.sanitizer.bypassSecurityTrustHtml(item.icon) : undefined
+      }));
+    }
+
+    // Sanitize willCardSvgIcon when input changes
+    if (changes['willCardSvgIcon']?.currentValue && this.willCardSvgIcon) {
+      this.safeWillCardIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.willCardSvgIcon);
+    }
+
+    // Sanitize n3xt3monthIcon when input changes
+    if (changes['n3xt3monthIcon']?.currentValue && this.n3xt3monthIcon) {
+      this.safeN3xt3monthIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.n3xt3monthIcon);
+    }
+
+    // Sanitize nomineeHeaderIcon when input changes
+    if (changes['nomineeHeaderIcon']?.currentValue && this.nomineeHeaderIcon) {
+      this.safeNomineeHeaderIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.nomineeHeaderIcon);
+    }
+
     if (changes['carousalList']?.currentValue && this.portfolioFundCarousel) {
       // Reinitialize carousel when data changes
       setTimeout(() => {
@@ -258,6 +291,116 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
   @Input() mf_allocation_not_fetched !: boolean;
   @Input() current_value !: number;
   @Input() MfholdingList2 !: { label: string, equityPercentage: number, equityValue: number }[];
+
+  // Asset Card inputs
+  @Input() assetChartData!: ChartData[];
+  @Input() assetLegendData!: { label: string, percentage: string, color: string }[];
+  @Input() simulationPeriod?: string;
+  @Input() showSimulationPeriod?: boolean = true;
+  @Input() assetChartType?: 'pie' | 'donut' = 'donut';
+  @Input() assetChartWidth?: number = 260;
+  @Input() assetChartHeight?: number = 260;
+  @Input() assetChartColors?: string[];
+  @Input() assetChartShowTooltip?: boolean = true;
+  @Input() assetChartDonutSize?: string = '55%';
+
+  // Tax Income Overview Card inputs
+  @Input() taxIncomeChartData!: ChartData[];
+  @Input() taxIncomeItems!: {
+    label: string,
+    value: string,
+    color: string,
+    icon?: string,
+    tooltipData?: {
+      title: string,
+      items: {
+        label: string,
+        value: string,
+        subtext?: string
+      }[]
+    }
+  }[];
+  // Sanitized version of taxIncomeItems with safe HTML for icons
+  sanitizedTaxIncomeItems: {
+    label: string,
+    value: string,
+    color: string,
+    safeIcon?: any,
+    tooltipData?: {
+      title: string,
+      items: {
+        label: string,
+        value: string,
+        subtext?: string
+      }[]
+    }
+  }[] = [];
+  @Input() grossIncome?: string;
+  @Input() taxIncomeChartWidth?: number = 350;
+  @Input() taxIncomeChartHeight?: number = 350;
+  @Input() taxIncomeChartColors?: string[] = ['#5B93FF', '#7FCDA4', '#FFD66B'];
+  @Input() taxIncomeDonutSize?: string = '65%';
+  @Input() taxIncomeChartShowTooltip?: boolean = false;
+
+  // Potential Tax Savings Card inputs
+  @Input() taxSavingsAmount?: string;
+  @Input() taxSavingsSubtitle?: string;
+
+  // Tax Regime Comparison Card inputs
+  @Input() regimeTitle?: string;
+  @Input() regimeIcon?: string;
+  safeRegimeIcon: any;
+  @Input() isRecommended?: boolean = false;
+  @Input() regimeTaxAmount?: string;
+  @Input() taxableIncome?: string;
+  @Input() effectiveTaxRate?: string;
+
+  // Will Card inputs
+  @Input() willCardLabel?: string;
+  @Input() willCardValue?: string;
+  @Input() willCardIcon?: string; // URL to icon image
+  @Input() willCardSvgIcon?: string; // SVG icon as string
+  safeWillCardIcon: any;
+
+  // FWP Generate Card inputs
+  @Input() fwpTitle?: string = 'FWP Generated';
+  @Input() fwpSubtitle?: string = 'Last generated on 19 January, 2026';
+  @Input() fwpPreviewText?: string = 'Preview';
+  @Input() fwpGenerateText?: string = 'Generate FWP';
+  @Input() fwpPreviewDisabled?: boolean = false;
+  @Input() fwpGenerateDisabled?: boolean = false;
+  @Output() fwpPreviewClick = new EventEmitter<void>();
+  @Output() fwpGenerateClick = new EventEmitter<void>();
+
+  // n3xt3month Card inputs
+  @Input() n3xt3monthTitle?: string;
+  @Input() n3xt3monthValue?: string;
+  @Input() n3xt3monthIcon?: string; // SVG icon as string
+  safeN3xt3monthIcon: any;
+
+  // Nominee Card inputs
+  @Input() nomineeTitle?: string = 'Investment Nominees';
+  @Input() nomineeSubtitle?: string = 'Nominees';
+  @Input() nomineeHeaderIcon?: string; // SVG icon as string
+  safeNomineeHeaderIcon: any;
+  @Input() nomineeList!: {
+    name: string,
+    relation: string,
+    initials: string,
+    avatarColor?: string
+  }[];
+
+  onFwpPreviewClick(): void {
+    if (!this.fwpPreviewDisabled) {
+      this.fwpPreviewClick.emit();
+    }
+  }
+
+  onFwpGenerateClick(): void {
+    if (!this.fwpGenerateDisabled) {
+      this.fwpGenerateClick.emit();
+    }
+  }
 
   onClick(): void {
     this.cardClick.emit();
