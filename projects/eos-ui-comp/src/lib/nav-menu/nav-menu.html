@@ -56,6 +56,11 @@
       <i class="fa-solid fa-list"></i>
       <span *ngIf="!isCollapsed">Accordion</span>
     </li>
+
+    <li [class.active]="currentRoute === '/piecharts'" (click)="navigateTo('/piecharts')">
+      <i class="fa-solid fa-chart-pie"></i>
+      <span *ngIf="!isCollapsed">Pie Charts</span>
+    </li>
   </ul>
 
   <!-- Footer -->

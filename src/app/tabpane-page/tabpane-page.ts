@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tabpane } from '../../../dist/eos-comp';
+import { Tabpane } from '../../../projects/eos-ui-comp/src/public-api';
 
 @Component({
   selector: 'app-tabpane-page',
@@ -13,6 +13,7 @@ export class TabpanePage {
     { id: 'emergency', label: 'Tab 1', content: 'Tab Content 1' },
     { id: 'expenses', label: 'Tab 2', content: 'Tab Content 2' },
     { id: 'assets', label: 'Tab 3', content: 'Tab Content 3' }
-  ];selectedDate: string = '';
+  ];
+  selectedDate: string = '';
 
 }

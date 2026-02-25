@@ -1,3 +1,44 @@
 <section>
-  <lib-tooltip tooltipText="Hello EOS!"></lib-tooltip>
+  <h2>Tooltip Component</h2>
+  
+  <div class="showcase-section">
+    <h3>Basic Tooltip</h3>
+    <p>Hover over the icon to see the tooltip</p>
+    <div class="tooltip-demo">
+      <lib-tooltip tooltipText="Hello EOS!"></lib-tooltip>
+    </div>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Component Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tooltipText</code></td>
+            <td>string</td>
+            <td>required</td>
+            <td>Text to display in tooltip</td>
+          </tr>
+          <tr>
+            <td><code>position</code></td>
+            <td>'top' | 'bottom' | 'left' | 'right'</td>
+            <td>'top'</td>
+            <td>Tooltip position relative to trigger</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Usage</h3>
+    <p>The tooltip component displays helpful information when users hover over an element. It's commonly used for providing additional context or explanations without cluttering the interface.</p>
+  </div>
 </section>

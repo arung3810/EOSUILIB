@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tooltip } from '../../../dist/eos-comp';
+import { Tooltip } from '../../../projects/eos-ui-comp/src/public-api';
 
 @Component({
   selector: 'app-tooltip-page',

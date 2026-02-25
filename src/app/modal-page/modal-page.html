@@ -1,7 +1,90 @@
 <section>
   <h2>Modal Component</h2>
-  <lib-button (clicked)="modalButtonClick($event)">Open Delete Modal</lib-button>
-  <lib-modal button1="Yes" button2="No" (click1)="ModalbtnClick2($event)" (click2)="ModalbtnClick2($event)"
-    title="Want to delete the Note?" message="Your data will be deleted permanently." [open]="isModalOpen()"
-    (openChange)="onModalOpenChange($event)"></lib-modal>
+  
+  <div class="showcase-section">
+    <h3>Basic Modal</h3>
+    <p>Click the button to open a confirmation modal</p>
+    <lib-button (clicked)="modalButtonClick($event)">Open Delete Modal</lib-button>
+    <lib-modal button1="Yes" button2="No" (click1)="ModalbtnClick2($event)" (click2)="ModalbtnClick2($event)"
+      title="Want to delete the Note?" message="Your data will be deleted permanently." [open]="isModalOpen()"
+      (openChange)="onModalOpenChange($event)"></lib-modal>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Component Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>open</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Controls modal visibility</td>
+          </tr>
+          <tr>
+            <td><code>title</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Modal title text</td>
+          </tr>
+          <tr>
+            <td><code>message</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Modal message/content text</td>
+          </tr>
+          <tr>
+            <td><code>button1</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Primary button label</td>
+          </tr>
+          <tr>
+            <td><code>button2</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Secondary button label</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>openChange</code></td>
+            <td>EventEmitter&lt;boolean&gt;</td>
+            <td>Emitted when modal open state changes</td>
+          </tr>
+          <tr>
+            <td><code>click1</code></td>
+            <td>EventEmitter&lt;MouseEvent&gt;</td>
+            <td>Emitted when primary button is clicked</td>
+          </tr>
+          <tr>
+            <td><code>click2</code></td>
+            <td>EventEmitter&lt;MouseEvent&gt;</td>
+            <td>Emitted when secondary button is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>

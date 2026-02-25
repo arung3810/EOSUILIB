@@ -1,4 +1,108 @@
-
 <section>
-    <lib-form-fields></lib-form-fields>
+    <h2>Form Fields Component</h2>
+    
+    <div class="showcase-section">
+      <h3>Form Input Fields</h3>
+      <p>A collection of form input components with validation and styling</p>
+      <lib-form-fields></lib-form-fields>
+    </div>
+
+    <div class="showcase-section">
+      <h3>Component Properties</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>label</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>Field label text</td>
+            </tr>
+            <tr>
+              <td><code>placeholder</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>Input placeholder text</td>
+            </tr>
+            <tr>
+              <td><code>type</code></td>
+              <td>'text' | 'email' | 'password' | 'number' | 'tel'</td>
+              <td>'text'</td>
+              <td>Input field type</td>
+            </tr>
+            <tr>
+              <td><code>required</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Mark field as required</td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Disable field interaction</td>
+            </tr>
+            <tr>
+              <td><code>error</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>Error message to display</td>
+            </tr>
+            <tr>
+              <td><code>value</code></td>
+              <td>string</td>
+              <td>''</td>
+              <td>Input field value</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>valueChange</code></td>
+              <td>EventEmitter&lt;string&gt;</td>
+              <td>Emitted when input value changes</td>
+            </tr>
+            <tr>
+              <td><code>blur</code></td>
+              <td>EventEmitter&lt;void&gt;</td>
+              <td>Emitted when input loses focus</td>
+            </tr>
+            <tr>
+              <td><code>focus</code></td>
+              <td>EventEmitter&lt;void&gt;</td>
+              <td>Emitted when input gains focus</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Features</h3>
+      <ul>
+        <li>Built-in validation support</li>
+        <li>Error message display</li>
+        <li>Disabled state styling</li>
+        <li>Required field indicators</li>
+        <li>Consistent styling across form elements</li>
+      </ul>
+    </div>
   </section>

@@ -1,0 +1,15 @@
+<div class="chart-container">
+  <apx-chart
+    *ngIf="chartOptions"
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [labels]="chartOptions.labels!"
+    [colors]="chartOptions.colors!"
+    [legend]="chartOptions.legend!"
+    [dataLabels]="chartOptions.dataLabels!"
+    [plotOptions]="chartOptions.plotOptions!"
+    [stroke]="chartOptions.stroke!"
+    [tooltip]="chartOptions.tooltip!"
+    [states]="chartOptions.states!"
+  ></apx-chart>
+</div>
