@@ -136,7 +136,7 @@
             </div>
           </div>
         </div>
-        <div class="label-row" *ngIf="currentFbsScore && currentFbsScore !== 0">
+        <!-- <div class="label-row" *ngIf="currentFbsScore && currentFbsScore !== 0">
           <div>
             <span class="gen2-text" *ngIf="gen_last_updated_at==null">{{genProfile}}</span>
             <span *ngIf="gen_last_updated_at!=null" style="background: var(--1F-5_Soothing-Blue, #DEEDFF);
@@ -160,7 +160,7 @@
             </button>
           </div>
           <span class="gen2-text">{{genPhase}}</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -276,6 +276,245 @@
                     </div>
                 </div>
             </div>
+  } @else if (cardType === "assetCard") {
+    <div class="card asset-card">
+      <div class="card-body">
+        <h5 class="asset-card-title">{{ title }}</h5>
+        @if (showSimulationPeriod && simulationPeriod) {
+          <p class="simulation-period">Simulation Period: {{ simulationPeriod }}</p>
+        } @else {
+          <p class="simulation-period simulation-period-hidden"></p>
+        }
+        
+        <div class="asset-chart-container">
+          <lib-pie-chart-with-legend
+            [data]="assetChartData"
+            [type]="assetChartType || 'donut'"
+            [width]="assetChartWidth || 260"
+            [height]="assetChartHeight || 260"
+            [colors]="assetChartColors || ['#5B93FF', '#FFD66B', '#FF8B81', '#7FCDA4']"
+            [showLegend]="false"
+            [showLabels]="true"
+            [showTooltip]="assetChartShowTooltip ?? true"
+            [donutSize]="assetChartDonutSize || '55%'"
+          ></lib-pie-chart-with-legend>
+        </div>
+
+        <div class="asset-legend">
+          @for (item of assetLegendData; track item.label) {
+            <div class="legend-item">
+              <div class="legend-label">
+                <span class="legend-dot" [style.background-color]="item.color"></span>
+                <span class="legend-text">{{ item.label }}</span>
+              </div>
+              <span class="legend-percentage">{{ item.percentage }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "taxIncomeOverview"){
+    <div class="card tax-income-overview-card">
+      <div class="card-body">
+        <h5 class="tax-income-title">{{ title }}</h5>
+
+        <div class="tax-income-content">
+          <div class="tax-chart-container">
+            <lib-pie-chart-with-legend
+              [data]="taxIncomeChartData"
+              [type]="'donut'"
+              [width]="taxIncomeChartWidth || 350"
+              [height]="taxIncomeChartHeight || 350"
+              [colors]="taxIncomeChartColors || ['#5B93FF', '#7FCDA4', '#FFD66B']"
+              [showLegend]="false"
+              [showLabels]="false"
+              [showTooltip]="taxIncomeChartShowTooltip ?? false"
+              [donutSize]="taxIncomeDonutSize || '65%'"
+            ></lib-pie-chart-with-legend>
+
+            <div class="gross-income-center">
+              <p class="gross-income-label">Gross Income</p>
+              <p class="gross-income-value">{{ grossIncome }}</p>
+            </div>
+          </div>
+
+          <div class="row income-content">
+            @for (item of sanitizedTaxIncomeItems; track item.label; let i = $index) {
+              <div [class]="i < 2 ? 'col-6' : 'pl-4 pr-0'">
+                <p class="getLabel mb-0" [ngClass]="'incomeChartLabel' + (i + 1)">
+                  <span>{{ item.label }}</span>
+                  <!-- Tooltip Feature: Shows detailed breakdown on hover when icon and tooltipData are provided -->
+                  @if(item.safeIcon) {
+                    <div class="tooltip-wrapper-tax">
+                      <button class="btn-testing tooltip-btn-tax">
+                        <span [innerHTML]="item.safeIcon"></span>
+                      </button>
+                      @if(item.tooltipData) {
+                        <div class="tax-tooltip">
+                          <div class="tax-tooltip-content">
+                            <h3 class="tax-tooltip-title">{{ item.tooltipData.title }}</h3>
+                            @for (tooltipItem of item.tooltipData.items; track tooltipItem.label) {
+                              <div class="tax-tooltip-item">
+                                <div class="tax-tooltip-item-header">
+                                  <span class="tax-tooltip-label">{{ tooltipItem.label }}</span>
+                                  @if(tooltipItem.subtext) {
+                                  <p class="tax-tooltip-subtext">{{ tooltipItem.subtext }}</p>
+                                }
+                                  <span class="tax-tooltip-value">{{ tooltipItem.value }}</span>
+                                </div>
+                              </div>
+                            }
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  }
+                </p>
+                <p [class]="i < 2 ? 'getLabelValue d-flex align-items-center' : 'getLabelValue1 d-flex align-items-center'">
+                  {{ item.value }}
+                </p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "potentialTaxSavings"){
+    <div class="card tax-savings-card">
+      <div class="card-body">
+        <h5 class="tax-savings-title">{{ title }}</h5>
+        <div class="tax-savings-amount">
+          <span class="rupee-symbol">₹</span>
+          <span class="amount-value">{{ taxSavingsAmount }}</span>
+        </div>
+        <p class="tax-savings-subtitle">{{ taxSavingsSubtitle }}</p>
+      </div>
+    </div>
+  } @else if(cardType === "willcard"){
+    <div class="summary-card will-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div class="card-content">
+          <div class="card-label">{{ willCardLabel }}</div>
+          <div class="card-value">{{ willCardValue }}</div>
+        </div>
+        <div class="card-icon will-icon">
+          @if(willCardIcon) {
+            <img [src]="willCardIcon" [alt]="willCardLabel" width="40" height="40">
+          } @else {
+            <div [innerHTML]="safeWillCardIcon"></div>
+          }
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "fwpGenerate"){
+    <div class="fwp-generate-card">
+      <div class="fwp-card-body">
+        <div class="fwp-content">
+          <h3 class="fwp-title">{{ fwpTitle }}</h3>
+          <p class="fwp-subtitle">{{ fwpSubtitle }}</p>
+        </div>
+        <div class="fwp-actions">
+          <button
+            class="fwp-btn fwp-btn-preview"
+            [disabled]="fwpPreviewDisabled"
+            [class.disabled]="fwpPreviewDisabled"
+            (click)="onFwpPreviewClick()">
+            {{ fwpPreviewText }}
+          </button>
+          <button
+            class="fwp-btn fwp-btn-generate"
+            [disabled]="fwpGenerateDisabled"
+            [class.disabled]="fwpGenerateDisabled"
+            (click)="onFwpGenerateClick()">
+            {{ fwpGenerateText }}
+          </button>
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "n3xt3month"){
+    <div class="n3xt3month-card">
+      <div class="n3xt3month-card-body">
+        <div class="n3xt3month-content">
+          <div class="n3xt3month-icon" [innerHTML]="safeN3xt3monthIcon"></div>
+          <h3 class="n3xt3month-title">{{ n3xt3monthTitle }}</h3>
+        </div>
+        <p class="n3xt3month-value">{{ n3xt3monthValue }}</p>
+      </div>
+    </div>
+  } @else if(cardType === "nomineeCard"){
+    <div class="nominees-section-card">
+      <div class="workbook-static-header">
+        <div class="d-flex align-items-center">
+          <div class="section-icon">
+            <span [innerHTML]="safeNomineeHeaderIcon"></span>
+          </div>
+          <h6 class="section-title mb-0 ms-3">{{ nomineeTitle }}</h6>
+        </div>
+      </div>
+      <div class="nominee-list-panel mt-4">
+        <div class="nominees-label">{{ nomineeSubtitle }}</div>
+        <div class="nominee-pills mt-3">
+          @for (nominee of nomineeList; track nominee) {
+            <div class="nominee-item nominee-pill">
+              <div class="d-flex align-items-center">
+                <div class="nominee-avatar" [style.background-color]="nominee.avatarColor || '#26a670'">
+                  {{ nominee.initials }}
+                </div>
+                <div class="nominee-info ms-2">
+                  <div class="nominee-name">{{ nominee.name }}</div>
+                  <div class="nominee-relation">{{ nominee.relation }}</div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "taxRegimeComparison"){
+    <div class="card tax-regime-card workbook-card">
+      <div class="card-body">
+        <div class="row">
+          <div class="card-title col-6 card-align taxable-title mb-0">
+            @if(regimeIcon) {
+              <span class="old-tax-svg" [innerHTML]="safeRegimeIcon"></span>
+            }
+            <p class="mb-0">{{ regimeTitle }}</p>
+          </div>
+          <div class="col-6">
+            @if(isRecommended) {
+              <div class="recommended">
+                <p class="rec-tax">Recommended</p>
+              </div>
+              <div class="svg-icon recommended-bg-sticker">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">
+                  <path d="M0 0H11L0 12V0Z" fill="#D2A530"></path>
+                </svg>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="tax-div d-flex align-items-center">
+          <span class="mb-0 old-new-taxable-total">₹ {{ regimeTaxAmount }}</span>
+        </div>
+
+        <div class="old-new-row-parent">
+          <div class="current-tax-regime">
+            <p class="current-regime-value mb-0">
+              Taxable Income: <span class="tax-percent"> {{ taxableIncome }}</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="old-new-row-parent">
+          <div class="current-tax-regime">
+            <p class="current-regime-value mb-0">
+              Effective Tax Rate: <span class="tax-percent">{{ effectiveTaxRate }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   } @else {
   <div class="card card1">
     <div class="card-body cardPadding">

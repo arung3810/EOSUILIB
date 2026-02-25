@@ -58,4 +58,661 @@
       para="description shown here"></lib-card>
   </div>
 
+  <br>
+  <!-- <h3>Pie & Donut Chart Component</h3>
+  <div class="row">
+    <div class="col">
+      <h4>Pie Chart</h4>
+      <lib-pie-chart-with-legend
+        [data]="pieChartData"
+        type="pie"
+        [width]="380"
+        [height]="350"
+        [showLegend]="true"
+        [showLabels]="true"
+      ></lib-pie-chart-with-legend>
+    </div>
+    <div class="col">
+      <h4>Donut Chart</h4>
+      <lib-pie-chart-with-legend
+        [data]="donutChartData"
+        type="donut"
+        [width]="380"
+        [height]="350"
+        [donutSize]="'65%'"
+        [showLegend]="true"
+        [showLabels]="true"
+      ></lib-pie-chart-with-legend>
+    </div>
+  </div> -->
+
+  <br>
+  <h3>FWP Generate Card</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="fwpGenerate"
+        [fwpTitle]="'FWP Generated'"
+        [fwpSubtitle]="'Last generated on 19 January, 2026'"
+        [fwpPreviewText]="'Preview'"
+        [fwpGenerateText]="'Generate FWP'"
+        [fwpPreviewDisabled]="false"
+        [fwpGenerateDisabled]="false"
+        (fwpPreviewClick)="onFwpPreview()"
+        (fwpGenerateClick)="onFwpGenerate()"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>FWP Generate Card - Disabled State</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="fwpGenerate"
+        [fwpTitle]="'FWP Generated'"
+        [fwpSubtitle]="'Last generated on 19 January, 2026'"
+        [fwpPreviewText]="'Preview'"
+        [fwpGenerateText]="'Generate FWP'"
+        [fwpPreviewDisabled]="true"
+        [fwpGenerateDisabled]="false"
+        (fwpPreviewClick)="onFwpPreview()"
+        (fwpGenerateClick)="onFwpGenerate()"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>FWP Generate Card - Both Buttons Disabled</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="fwpGenerate"
+        [fwpTitle]="'FWP Generated'"
+        [fwpSubtitle]="'Last generated on 19 January, 2026'"
+        [fwpPreviewText]="'Preview'"
+        [fwpGenerateText]="'Generate FWP'"
+        [fwpPreviewDisabled]="true"
+        [fwpGenerateDisabled]="true"
+        (fwpPreviewClick)="onFwpPreview()"
+        (fwpGenerateClick)="onFwpGenerate()"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Will Summary Cards</h3>
+  <div class="row">
+    <div class="col">
+      <lib-card
+        cardType="willcard"
+        [willCardLabel]="'Total Investment'"
+        [willCardValue]="'₹5,61,43,544'"
+        [willCardSvgIcon]="investmentSvgIcon"
+      ></lib-card>
+    </div>
+    <div class="col">
+      <lib-card
+        cardType="willcard"
+        [willCardLabel]="'Insurance Cover'"
+        [willCardValue]="'₹9,61,25,000'"
+        [willCardSvgIcon]="insuranceSvgIcon"
+      ></lib-card>
+    </div>
+    <div class="col">
+      <lib-card
+        cardType="willcard"
+        [willCardLabel]="'Total Nominee'"
+        [willCardValue]="'5'"
+        [willCardSvgIcon]="nomineeSvgIcon"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Asset Cards with Pie Charts</h3>
+  <div class="row">
+    <div class="col">
+      <lib-card
+        cardType="assetCard"
+        title="Existing Assets"
+        [assetChartData]="existingAssetsChartData"
+        [assetLegendData]="existingAssetsLegendData"
+        assetChartType="pie"
+        [showSimulationPeriod]="false"
+        [assetChartWidth]="230"
+        [assetChartHeight]="230"
+        [assetChartColors]="['#5B93FF', '#FFD66B', '#FF8B81', '#7FCDA4']"
+        [assetChartShowTooltip]="true"
+        [assetChartDonutSize]="'60%'"
+      ></lib-card>
+    </div>
+    <div class="col">
+      <lib-card
+        cardType="assetCard"
+        title="Advised Assets"
+        simulationPeriod="Oct, 2026"
+        [showSimulationPeriod]="true"
+        [assetChartData]="advisedAssetsChartData"
+        [assetLegendData]="advisedAssetsLegendData"
+        assetChartType="donut"
+        [assetChartWidth]="230"
+        [assetChartHeight]="230"
+        [assetChartColors]="['#FF6B9D', '#4ECDC4', '#FFE66D', '#95E1D3']"
+        [assetChartShowTooltip]="false"
+        [assetChartDonutSize]="'50%'"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Our Recommendation</h3>
+  <div class="row">
+    <div class="col">
+      <lib-card
+        cardType="potentialTaxSavings"
+        title="Potential Tax Savings"
+        [taxSavingsAmount]="taxSavingsAmount"
+        [taxSavingsSubtitle]="taxSavingsSubtitle"
+      ></lib-card>
+    </div>
+    <div class="col">
+      <lib-card
+        cardType="taxRegimeComparison"
+        [regimeTitle]="newRegimeTitle"
+        [regimeIcon]="regimeIconSvg"
+        [isRecommended]="true"
+        [regimeTaxAmount]="newRegimeTaxAmount"
+        [taxableIncome]="newRegimeTaxableIncome"
+        [effectiveTaxRate]="newRegimeEffectiveTaxRate"
+      ></lib-card>
+    </div>
+    <div class="col">
+      <lib-card
+        cardType="taxRegimeComparison"
+        [regimeTitle]="oldRegimeTitle"
+        [regimeIcon]="regimeIconSvg"
+        [isRecommended]="false"
+        [regimeTaxAmount]="oldRegimeTaxAmount"
+        [taxableIncome]="oldRegimeTaxableIncome"
+        [effectiveTaxRate]="oldRegimeEffectiveTaxRate"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>n3xt3month Card (Next 3 Month Surplus)</h3>
+  <div class="row">
+    <div class="col">
+      <lib-card
+        cardType="n3xt3month"
+        [n3xt3monthTitle]="n3xt3monthTitle"
+        [n3xt3monthValue]="n3xt3monthValue"
+        [n3xt3monthIcon]="n3xt3monthIcon"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Nominee Card</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="nomineeCard"
+        [nomineeTitle]="nomineeTitle"
+        [nomineeSubtitle]="nomineeSubtitle"
+        [nomineeHeaderIcon]="nomineeHeaderIcon"
+        [nomineeList]="nomineeList"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Tax Income Overview Card</h3>
+  <!--
+    Tax Income Overview Card with Tooltip Feature
+
+    This card displays income breakdown with a donut chart and detailed items.
+
+    Key Features:
+    - Donut chart showing income distribution
+    - Gross income displayed in the center
+    - Income items list with values and colors
+    - Optional tooltip feature for items with detailed breakdown
+
+    Tooltip Usage (as implemented below):
+    - Add 'icon' property to taxIncomeItems for an info icon
+    - Add 'tooltipData' property with title and items array
+    - Tooltip shows on hover with detailed breakdown
+    - See taxIncomeItems in card-page.ts for implementation example
+
+    Examples: All three income items demonstrate tooltip usage:
+    1. "Salary Income" - Shows salary component breakdown (Basic, HRA, Allowances)
+    2. "Business Income" - Shows business income sources (Consulting, Partnership)
+    3. "Additional Income" - Shows additional income breakdown (Rental, Dividends, Interest, etc.)
+
+    Each tooltip includes:
+    - title: Header text for the tooltip
+    - items: Array of breakdown items with label, value, and optional subtext
+  -->
+  <div class="row">
+    <div class="col" style="max-width: 500px;">
+      <lib-card
+        cardType="taxIncomeOverview"
+        title="Income Overview"
+        grossIncome="₹ 30,13,221"
+        [taxIncomeChartData]="taxIncomeChartData"
+        [taxIncomeItems]="taxIncomeItems"
+        [taxIncomeChartWidth]="350"
+        [taxIncomeChartHeight]="350"
+        [taxIncomeChartColors]="['#5B93FF', '#7FCDA4', '#FFD66B']"
+        [taxIncomeDonutSize]="'65%'"
+        [taxIncomeChartShowTooltip]="false"
+      ></lib-card>
+    </div>
+  </div>
+
 </section>
+
+
+  <div class="showcase-section">
+    <h3>Component Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>cardType</code></td>
+            <td>'dashboard' | 'riaDashboard' | 'personalDetail' | '1view' | 'creditcard' | 'financialbehaviourscore' | 'MFHoldings' | 'carousal' | 'MFHoldingsPie' | 'assetCard' | 'taxIncomeOverview' | 'potentialTaxSavings' | 'taxRegimeComparison' | 'willcard' | 'fwpGenerate' | 'n3xt3month' | 'nomineeCard' | 'workbook'</td>
+            <td>'dashboard'</td>
+            <td>Type of card to display</td>
+          </tr>
+          <tr>
+            <td><code>title</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Card title</td>
+          </tr>
+          <tr>
+            <td><code>value</code></td>
+            <td>string | number</td>
+            <td>-</td>
+            <td>Primary value to display</td>
+          </tr>
+          <tr>
+            <td><code>svgIcon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>SVG icon markup</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Asset Card Specific Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>assetChartData</code></td>
+            <td>ChartData[]</td>
+            <td>required</td>
+            <td>Chart data array</td>
+          </tr>
+          <tr>
+            <td><code>assetLegendData</code></td>
+            <td>Array&lt;{{ '{' }}label, percentage, color{{ '}' }}&gt;</td>
+            <td>required</td>
+            <td>Legend data for the chart</td>
+          </tr>
+          <tr>
+            <td><code>assetChartType</code></td>
+            <td>'pie' | 'donut'</td>
+            <td>'donut'</td>
+            <td>Chart type</td>
+          </tr>
+          <tr>
+            <td><code>assetChartWidth</code></td>
+            <td>number</td>
+            <td>260</td>
+            <td>Chart width in pixels</td>
+          </tr>
+          <tr>
+            <td><code>assetChartHeight</code></td>
+            <td>number</td>
+            <td>260</td>
+            <td>Chart height in pixels</td>
+          </tr>
+          <tr>
+            <td><code>assetChartColors</code></td>
+            <td>string[]</td>
+            <td>['#5B93FF', '#FFD66B', '#FF8B81', '#7FCDA4']</td>
+            <td>Array of color hex codes</td>
+          </tr>
+          <tr>
+            <td><code>assetChartShowTooltip</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Enable/disable tooltips</td>
+          </tr>
+          <tr>
+            <td><code>assetChartDonutSize</code></td>
+            <td>string</td>
+            <td>'55%'</td>
+            <td>Inner hole size for donut charts</td>
+          </tr>
+          <tr>
+            <td><code>simulationPeriod</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Simulation period text</td>
+          </tr>
+          <tr>
+            <td><code>showSimulationPeriod</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show/hide simulation period</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>FWP Generate Card Specific Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>fwpTitle</code></td>
+            <td>string</td>
+            <td>'FWP Generated'</td>
+            <td>Main title displayed at the top of the card</td>
+          </tr>
+          <tr>
+            <td><code>fwpSubtitle</code></td>
+            <td>string</td>
+            <td>'Last generated on 19 January, 2026'</td>
+            <td>Subtitle text shown below the title</td>
+          </tr>
+          <tr>
+            <td><code>fwpPreviewText</code></td>
+            <td>string</td>
+            <td>'Preview'</td>
+            <td>Text displayed on the preview button</td>
+          </tr>
+          <tr>
+            <td><code>fwpGenerateText</code></td>
+            <td>string</td>
+            <td>'Generate FWP'</td>
+            <td>Text displayed on the generate button</td>
+          </tr>
+          <tr>
+            <td><code>fwpPreviewDisabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disables the preview button when set to true</td>
+          </tr>
+          <tr>
+            <td><code>fwpGenerateDisabled</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Disables the generate button when set to true</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>FWP Generate Card Events</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>fwpPreviewClick</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitted when the Preview button is clicked</td>
+          </tr>
+          <tr>
+            <td><code>fwpGenerateClick</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitted when the Generate FWP button is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>n3xt3month Card Specific Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>n3xt3monthTitle</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Title text displayed above the value (e.g., "Surplus for the Period")</td>
+          </tr>
+          <tr>
+            <td><code>n3xt3monthValue</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Main value displayed prominently (e.g., "₹1,43,818")</td>
+          </tr>
+          <tr>
+            <td><code>n3xt3monthIcon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>SVG markup as string for the icon (displayed on the left side)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Nominee Card Specific Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>nomineeTitle</code></td>
+            <td>string</td>
+            <td>'Investment Nominees'</td>
+            <td>Main title displayed at the top of the card</td>
+          </tr>
+          <tr>
+            <td><code>nomineeSubtitle</code></td>
+            <td>string</td>
+            <td>'Nominees'</td>
+            <td>Subtitle text shown above the nominee list</td>
+          </tr>
+          <tr>
+            <td><code>nomineeHeaderIcon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>SVG markup as string for the header icon (displayed next to title)</td>
+          </tr>
+          <tr>
+            <td><code>nomineeList</code></td>
+            <td>Array&lt;{{ '{' }}name, relation, initials, avatarColor?{{ '}' }}&gt;</td>
+            <td>required</td>
+            <td>Array of nominee objects. Each nominee must have:
+            <br>• <code>name</code> (string): Nominee's full name
+            <br>• <code>relation</code> (string): Relationship to the user
+            <br>• <code>initials</code> (string): Initials for avatar (1-2 characters)
+            <br>• <code>avatarColor</code> (string, optional): Hex color for avatar background (defaults to #5FA897)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Will Card Specific Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>willCardLabel</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Label text displayed at the top (e.g., "Total Investment")</td>
+          </tr>
+          <tr>
+            <td><code>willCardValue</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Main value displayed below the label (e.g., "₹5,61,43,544")</td>
+          </tr>
+          <tr>
+            <td><code>willCardIcon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>URL path to icon image file. Use this for image files.</td>
+          </tr>
+          <tr>
+            <td><code>willCardSvgIcon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>SVG markup as string for inline icon. Use this for SVG icons.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tax Income Overview Card Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>taxIncomeChartData</code></td>
+            <td>ChartData[]</td>
+            <td>required</td>
+            <td>Chart data for the income donut chart</td>
+          </tr>
+          <tr>
+            <td><code>taxIncomeItems</code></td>
+            <td>Array&lt;{{ '{' }}label, value, color, icon?, tooltipData?{{ '}' }}&gt;</td>
+            <td>required</td>
+            <td>Income items with labels, values, colors, optional icons, and optional tooltip data.
+            <br><br><strong>Tooltip Feature:</strong>
+            <br>• Add <code>icon</code> (SVG string) to display an info icon
+            <br>• Add <code>tooltipData</code> with <code>title</code> and <code>items[]</code>
+            <br>• Each item can have <code>label</code>, <code>value</code>, and optional <code>subtext</code>
+            <br>• See the "Additional Income" example in card-page.ts</td>
+          </tr>
+          <tr>
+            <td><code>grossIncome</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Total gross income displayed in the center</td>
+          </tr>
+          <tr>
+            <td><code>taxIncomeChartWidth</code></td>
+            <td>number</td>
+            <td>350</td>
+            <td>Chart width in pixels</td>
+          </tr>
+          <tr>
+            <td><code>taxIncomeChartHeight</code></td>
+            <td>number</td>
+            <td>350</td>
+            <td>Chart height in pixels</td>
+          </tr>
+          <tr>
+            <td><code>taxIncomeChartColors</code></td>
+            <td>string[]</td>
+            <td>['#5B93FF', '#7FCDA4', '#FFD66B']</td>
+            <td>Array of color hex codes for chart segments</td>
+          </tr>
+          <tr>
+            <td><code>taxIncomeDonutSize</code></td>
+            <td>string</td>
+            <td>'65%'</td>
+            <td>Inner hole size for the donut chart</td>
+          </tr>
+          <tr>
+            <td><code>taxIncomeChartShowTooltip</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Enable/disable chart tooltips on hover</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Events</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>cardClick</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitted when card is clicked</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,38 +1,130 @@
-    <div class="accordion-examples">
-      <!-- Top Priority Accordion (matches your image) -->
-      <div class="accordion-example">
-        <lib-accordion-component
-          title="Top Priority"
-          [subsections]="topPrioritySubsections"
-          editUrl="/edit-priority">
-        </lib-accordion-component>
-      </div>
-  
-      <!-- Investment Accordion with Table (matches your image) -->
-      <div class="accordion-example">
-        <lib-accordion-component
-          title="Investment"
-          [tableColumns]="investmentTableColumns"
-          [tableData]="investmentTableData"
-          editUrl="/edit-investment">
-        </lib-accordion-component>
-      </div>
-  
-      <!-- Portfolio Overview Accordion -->
-      <div class="accordion-example">
-        <lib-accordion-component
-          title="Portfolio Overview"
-          [subsections]="portfolioSubsections"
-          editUrl="/edit-portfolio">
-        </lib-accordion-component>
-      </div>
-  
-      <!-- Financial Goals Accordion -->
-      <div class="accordion-example">
-        <lib-accordion-component
-          title="Financial Goals"
-          [subsections]="goalsSubsections"
-          editUrl="/edit-goals">
-        </lib-accordion-component>
+<section>
+    <h2>Accordion Component</h2>
+    
+    <div class="showcase-section">
+      <h3>Accordion Variants</h3>
+      <p>Expandable panels for organizing content in a compact space</p>
+      
+      <div class="accordion-examples">
+        <!-- Top Priority Accordion -->
+        <div class="accordion-example">
+          <h4>With Subsections</h4>
+          <lib-accordion-component
+            title="Top Priority"
+            [subsections]="topPrioritySubsections"
+            editUrl="/edit-priority">
+          </lib-accordion-component>
+        </div>
+    
+        <!-- Investment Accordion with Table -->
+        <div class="accordion-example">
+          <h4>With Table Data</h4>
+          <lib-accordion-component
+            title="Investment"
+            [tableColumns]="investmentTableColumns"
+            [tableData]="investmentTableData"
+            editUrl="/edit-investment">
+          </lib-accordion-component>
+        </div>
+    
+        <!-- Portfolio Overview Accordion -->
+        <div class="accordion-example">
+          <h4>Portfolio Overview</h4>
+          <lib-accordion-component
+            title="Portfolio Overview"
+            [subsections]="portfolioSubsections"
+            editUrl="/edit-portfolio">
+          </lib-accordion-component>
+        </div>
+    
+        <!-- Financial Goals Accordion -->
+        <div class="accordion-example">
+          <h4>Financial Goals</h4>
+          <lib-accordion-component
+            title="Financial Goals"
+            [subsections]="goalsSubsections"
+            editUrl="/edit-goals">
+          </lib-accordion-component>
+        </div>
       </div>
     </div>
+
+    <div class="showcase-section">
+      <h3>Component Properties</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>title</code></td>
+              <td>string</td>
+              <td>required</td>
+              <td>Accordion header title</td>
+            </tr>
+            <tr>
+              <td><code>subsections</code></td>
+              <td>Array&lt;Subsection&gt;</td>
+              <td>[]</td>
+              <td>Array of subsection data</td>
+            </tr>
+            <tr>
+              <td><code>tableColumns</code></td>
+              <td>Array&lt;string&gt;</td>
+              <td>[]</td>
+              <td>Table column headers</td>
+            </tr>
+            <tr>
+              <td><code>tableData</code></td>
+              <td>Array&lt;any&gt;</td>
+              <td>[]</td>
+              <td>Table row data</td>
+            </tr>
+            <tr>
+              <td><code>editUrl</code></td>
+              <td>string</td>
+              <td>-</td>
+              <td>URL for edit action</td>
+            </tr>
+            <tr>
+              <td><code>isOpen</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Initial open/closed state</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>toggleChange</code></td>
+              <td>EventEmitter&lt;boolean&gt;</td>
+              <td>Emitted when accordion is toggled</td>
+            </tr>
+            <tr>
+              <td><code>editClick</code></td>
+              <td>EventEmitter&lt;void&gt;</td>
+              <td>Emitted when edit button is clicked</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</section>

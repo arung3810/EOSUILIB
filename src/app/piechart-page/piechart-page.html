@@ -1,0 +1,148 @@
+<section>
+  <h2>Pie & Donut Chart Component</h2>
+  
+  <div class="chart-section">
+    <h3>Pie Chart</h3>
+    <p>A standard pie chart with legend and data labels</p>
+    <div class="chart-wrapper">
+      <lib-pie-chart-with-legend
+        [data]="pieChartData"
+        type="pie"
+        [width]="400"
+        [height]="400"
+        [showLegend]="true"
+        [showLabels]="true"
+        [showTooltip]="true"
+      ></lib-pie-chart-with-legend>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <h3>Donut Chart</h3>
+    <p>A donut chart with customizable inner hole size</p>
+    <div class="chart-wrapper">
+      <lib-pie-chart-with-legend
+        [data]="donutChartData"
+        type="donut"
+        [width]="400"
+        [height]="400"
+        [donutSize]="'65%'"
+        [showLegend]="true"
+        [showLabels]="true"
+        [showTooltip]="true"
+      ></lib-pie-chart-with-legend>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <h3>Customization Options</h3>
+    <div class="row">
+      <div class="col">
+        <h4>Without Legend</h4>
+        <lib-pie-chart-with-legend
+          [data]="pieChartData"
+          type="pie"
+          [width]="300"
+          [height]="300"
+          [showLegend]="false"
+          [showLabels]="true"
+        ></lib-pie-chart-with-legend>
+      </div>
+      <div class="col">
+        <h4>Without Labels</h4>
+        <lib-pie-chart-with-legend
+          [data]="donutChartData"
+          type="donut"
+          [width]="300"
+          [height]="300"
+          [showLegend]="true"
+          [showLabels]="false"
+        ></lib-pie-chart-with-legend>
+      </div>
+      <div class="col">
+        <h4>Custom Colors</h4>
+        <lib-pie-chart-with-legend
+          [data]="pieChartData"
+          type="donut"
+          [width]="300"
+          [height]="300"
+          [colors]="customColors"
+          [showLegend]="true"
+          [showLabels]="true"
+        ></lib-pie-chart-with-legend>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <h3>Component Properties</h3>
+    <div class="properties-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>data</code></td>
+            <td>ChartData[]</td>
+            <td>required</td>
+            <td>Array of chart data with label, value, and optional color</td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>'pie' | 'donut'</td>
+            <td>'pie'</td>
+            <td>Chart type - pie or donut</td>
+          </tr>
+          <tr>
+            <td><code>width</code></td>
+            <td>number</td>
+            <td>380</td>
+            <td>Chart width in pixels</td>
+          </tr>
+          <tr>
+            <td><code>height</code></td>
+            <td>number</td>
+            <td>350</td>
+            <td>Chart height in pixels</td>
+          </tr>
+          <tr>
+            <td><code>showLegend</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show/hide legend</td>
+          </tr>
+          <tr>
+            <td><code>showLabels</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show/hide data labels on chart</td>
+          </tr>
+          <tr>
+            <td><code>showTooltip</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Enable/disable tooltips on hover</td>
+          </tr>
+          <tr>
+            <td><code>donutSize</code></td>
+            <td>string</td>
+            <td>'65%'</td>
+            <td>Inner hole size for donut charts (percentage)</td>
+          </tr>
+          <tr>
+            <td><code>colors</code></td>
+            <td>string[]</td>
+            <td>['#5B93FF', '#FFD66B', '#FF8B81', '#7FCDA4']</td>
+            <td>Array of color hex codes for chart segments</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

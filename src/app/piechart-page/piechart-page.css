@@ -18,6 +18,7 @@ h4 {
   font-size: 1.125rem;
   margin-bottom: 1rem;
   color: #425466;
+  text-align: center;
 }
 
 p {
@@ -25,7 +26,7 @@ p {
   margin-bottom: 1.5rem;
 }
 
-.showcase-section {
+.chart-section {
   margin-bottom: 3rem;
   padding: 2rem;
   background: #ffffff;
@@ -33,13 +34,22 @@ p {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.accordion-examples {
+.chart-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
-.accordion-example {
+.row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  min-width: 280px;
   padding: 1rem;
   background: #f9fafb;
   border-radius: 8px;
@@ -48,7 +58,6 @@ p {
 
 .properties-table {
   overflow-x: auto;
-  margin-top: 1rem;
 }
 
 table {

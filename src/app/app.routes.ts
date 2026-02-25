@@ -10,6 +10,7 @@ import { TooltipPage } from './tooltip-page/tooltip-page';
 import { TabpanePage } from './tabpane-page/tabpane-page';
 import { FormfieldPage } from './formfield-page/formfield-page';
 import { ModalPage } from './modal-page/modal-page';
+import { PieChartPage } from './piechart-page/piechart-page';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -23,5 +24,6 @@ export const routes: Routes = [
   { path: 'tabpane', component: TabpanePage },
   { path: 'inputfields', component: FormfieldPage },
   { path: 'accordion', component: AccordionPage },
+  { path: 'piecharts', component: PieChartPage },
   { path: '', redirectTo: '/buttons', pathMatch: 'full' }
 ];

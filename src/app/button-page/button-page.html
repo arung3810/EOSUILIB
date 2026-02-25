@@ -1,19 +1,125 @@
 <section class="container">
     <h2>Button Component</h2>
-    <div class="group">
-      <lib-button *ngFor="let btn of buttons" [variant]="btn.variant" [disabled]="btn.disabled" [loading]="btn.loading"
-        (clicked)="buttonClick($event)" [prefixIcon]="btn.prefixIcon || ''" [suffixIcon]="btn.suffixIcon || ''">
-        {{ btn.label }}
-      </lib-button>
+    
+    <div class="showcase-section">
+      <h3>Button Variants</h3>
+      <div class="group">
+        <lib-button *ngFor="let btn of buttons" [variant]="btn.variant" [disabled]="btn.disabled" [loading]="btn.loading"
+          (clicked)="buttonClick($event)" [prefixIcon]="btn.prefixIcon || ''" [suffixIcon]="btn.suffixIcon || ''">
+          {{ btn.label }}
+        </lib-button>
+      </div>
+    </div>
 
-      <lib-button (clicked)="buttonClick($event)"> hello </lib-button>
+    <div class="showcase-section">
+      <h3>Special Features</h3>
+      <div class="group">
+        <lib-button (clicked)="buttonClick($event)">Default Button</lib-button>
 
-      <lib-button variant="secondary" [openOnHover]="true" (clicked)="handleButtonClick()"
-        (dropdownClicked)="handleDropdownClick()" [dropdown]="true" [dropdownList]="menuItems"
-        suffixIcon="assets/threeDot.svg">
-        Hover
-      </lib-button>
+        <lib-button variant="secondary" [openOnHover]="true" (clicked)="handleButtonClick()"
+          (dropdownClicked)="handleDropdownClick()" [dropdown]="true" [dropdownList]="menuItems"
+          suffixIcon="assets/threeDot.svg">
+          Dropdown on Hover
+        </lib-button>
 
-      <lib-button variant="secondary" fullWidth="true">Full width</lib-button>
+        <lib-button variant="secondary" fullWidth="true">Full Width Button</lib-button>
+      </div>
+    </div>
+
+    <div class="showcase-section">
+      <h3>Component Properties</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>variant</code></td>
+              <td>'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'</td>
+              <td>'primary'</td>
+              <td>Button style variant</td>
+            </tr>
+            <tr>
+              <td><code>disabled</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Disable button interaction</td>
+            </tr>
+            <tr>
+              <td><code>loading</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Show loading spinner</td>
+            </tr>
+            <tr>
+              <td><code>prefixIcon</code></td>
+              <td>string</td>
+              <td>''</td>
+              <td>Icon path to display before button text</td>
+            </tr>
+            <tr>
+              <td><code>suffixIcon</code></td>
+              <td>string</td>
+              <td>''</td>
+              <td>Icon path to display after button text</td>
+            </tr>
+            <tr>
+              <td><code>dropdown</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Enable dropdown menu</td>
+            </tr>
+            <tr>
+              <td><code>dropdownList</code></td>
+              <td>Array&lt;{{ '{' }}label: string{{ '}' }}&gt;</td>
+              <td>[]</td>
+              <td>Dropdown menu items</td>
+            </tr>
+            <tr>
+              <td><code>openOnHover</code></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>Open dropdown on hover instead of click</td>
+            </tr>
+            <tr>
+              <td><code>fullWidth</code></td>
+              <td>boolean | string</td>
+              <td>false</td>
+              <td>Make button full width of container</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Events</h3>
+      <div class="properties-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>clicked</code></td>
+              <td>EventEmitter&lt;MouseEvent&gt;</td>
+              <td>Emitted when button is clicked</td>
+            </tr>
+            <tr>
+              <td><code>dropdownClicked</code></td>
+              <td>EventEmitter&lt;void&gt;</td>
+              <td>Emitted when dropdown item is clicked</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
