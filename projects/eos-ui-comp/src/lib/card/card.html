@@ -451,6 +451,7 @@
           <h6 class="section-title mb-0 ms-3">{{ nomineeTitle }}</h6>
         </div>
       </div>
+      @if(!!nomineeList?.length){
       <div class="nominee-list-panel mt-4">
         <div class="nominees-label">{{ nomineeSubtitle }}</div>
         <div class="nominee-pills mt-3">
@@ -469,6 +470,9 @@
           }
         </div>
       </div>
+    } @else {
+      <p class="nominee-empty">No nominees added yet</p>
+    }
     </div>
   } @else if(cardType === "taxRegimeComparison"){
     <div class="card tax-regime-card workbook-card">
@@ -513,6 +517,58 @@
             </p>
           </div>
         </div>
+      </div>
+    </div>
+  } @else if(cardType === "financialAnalysis"){
+    <div class="card animation">
+      <div class="financial-analysis-card">
+      <div class="financial-analysis-header">
+        <h2 class="financial-analysis-title">{{ financialAnalysisTitle }}</h2>
+        @if(!!financialAnalysisTooltipText?.length){<div class="financial-analysis-button-wrapper">
+          <button class="financial-analysis-button" (click)="onFinancialAnalysisButtonClick()">
+            <span class="button-text">{{ financialAnalysisButtonText }}</span>
+            @if(financialAnalysisButtonIcon) {
+              <span class="button-icon" [innerHTML]="safeFinancialAnalysisButtonIcon"></span>
+            }
+          </button>
+          @if(financialAnalysisTooltipText) {
+            <div class="financial-analysis-tooltip">{{ financialAnalysisTooltipText }}</div>
+          }
+        </div>}
+        <div class="financial-analysis-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      </div>
+
+      <div class="financial-analysis-content">
+        <div class="financial-analysis-row">
+          <div class="financial-analysis-label">{{ financialAnalysisActualLabel }}</div>
+          <div class="financial-analysis-label ideal-label">{{ financialAnalysisIdealLabel }}</div>
+        </div>
+
+        <div class="financial-analysis-values">
+          <div class="financial-analysis-value actual-value">
+            <span class="rupee-symbol">{{ financialAnalysisCurrency }}</span>
+            <span class="value-text">{{ financialAnalysisActualValue }}</span>
+          </div>
+          <div class="financial-analysis-value ideal-value">
+            <span class="rupee-symbol">{{ financialAnalysisCurrency }}</span>
+            <span class="value-text">{{ financialAnalysisIdealValue }}</span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  } @else if(cardType === "lifeStage"){
+    <div class="card lifestage">
+      <p class="lifestage-title">{{lifeStageTitle}}</p>
+      <div class="lifestage-row">
+        <h3 class="lifestage-content">{{lifeStageContent}}</h3>
+        @if(lifeStageAgeRange){
+        <button class="lifestage-button">Age: {{lifeStageAgeRange}} </button>
+        }
       </div>
     </div>
   } @else {

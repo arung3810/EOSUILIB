@@ -32,7 +32,7 @@
     "@splidejs/splide": "^4.1.4",
     "ag-grid-angular": "^35.0.0",
     "apexcharts": "^5.3.6",
-    "eos-comp": "^1.0.3",
+    "eos-comp": "^1.0.5",
     "ng-apexcharts": "^1.8.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

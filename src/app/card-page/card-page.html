@@ -312,6 +312,80 @@
     </div>
   </div>
 
+  <br>
+  <h3>Financial Analysis Card</h3>
+  <!--
+    Financial Analysis Card with Tooltip Feature
+
+    This card displays financial analysis information with values and a button.
+
+    Key Features:
+    - Title and button with icon
+    - Actual vs Ideal value comparison
+    - Optional tooltip on button hover
+
+    Tooltip Usage:
+    - Add [financialAnalysisTooltipText] property to show a tooltip on button hover
+    - Tooltip appears above the button with a dark background
+    - Perfect for showing additional context or warnings
+  -->
+  <div class="row">
+    <div class="col" style="max-width: 600px;">
+      <lib-card
+        cardType="financialAnalysis"
+        [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialAnalysisButtonText]="financialAnalysisButtonText"
+        [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
+        [financialAnalysisActualValue]="financialAnalysisActualValue"
+        [financialAnalysisIdealValue]="financialAnalysisIdealValue"
+        [financialAnalysisTooltipText]="financialAnalysisTooltipText"
+        (financialAnalysisButtonClick)="onFinancialAnalysisButtonClick()"
+      ></lib-card>
+    </div>
+    <div class="col" style="max-width: 600px;">
+      <lib-card
+        cardType="financialAnalysis"
+        [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialAnalysisButtonText]="financialAnalysisButtonText"
+        [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
+        [financialAnalysisActualValue]="financialAnalysisActualValue"
+        [financialAnalysisIdealValue]="financialAnalysisIdealValue"
+        [financialAnalysisTooltipText]="financialAnalysisTooltipText1"
+        (financialAnalysisButtonClick)="onFinancialAnalysisButtonClick()"
+      ></lib-card>
+    </div>
+    <div class="col" style="max-width: 600px;">
+      <lib-card
+        cardType="financialAnalysis"
+        [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialAnalysisButtonText]="financialAnalysisButtonText"
+        [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
+        [financialAnalysisActualValue]="financialAnalysisActualValue"
+        [financialAnalysisIdealValue]="financialAnalysisIdealValue"
+        [financialAnalysisTooltipText]="financialAnalysisTooltipText1"
+        (financialAnalysisButtonClick)="onFinancialAnalysisButtonClick()"
+      ></lib-card>
+    </div>
+  </div>
+
+  <h3>Life stage Card</h3>
+  <div class="row">
+    <div class="col">
+      <lib-card 
+      cardType="lifeStage"
+      lifeStageTitle="Life Stage"
+      lifeStageContent="Growth Phase"
+      lifeStageAgeRange="36-40"
+      />
+    </div>
+    <div class="col">
+      <lib-card 
+      cardType="lifeStage"
+      lifeStageTitle="Generation Profile"
+      lifeStageContent="Generation 2"
+      />
+    </div>
+  </div>
 </section>
 
 

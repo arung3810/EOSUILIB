@@ -196,6 +196,12 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
         this.sanitizer.bypassSecurityTrustHtml(this.nomineeHeaderIcon);
     }
 
+    // Sanitize financialAnalysisButtonIcon when input changes
+    if (changes['financialAnalysisButtonIcon']?.currentValue && this.financialAnalysisButtonIcon) {
+      this.safeFinancialAnalysisButtonIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.financialAnalysisButtonIcon);
+    }
+
     if (changes['carousalList']?.currentValue && this.portfolioFundCarousel) {
       // Reinitialize carousel when data changes
       setTimeout(() => {
@@ -390,6 +396,19 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
     avatarColor?: string
   }[];
 
+  // Financial Analysis Card inputs
+  @Input() financialAnalysisTitle?: string = 'Life Insurance';
+  @Input() financialAnalysisButtonText?: string = 'View Risks';
+  @Input() financialAnalysisButtonIcon?: string; // SVG icon as string
+  safeFinancialAnalysisButtonIcon: any;
+  @Input() financialAnalysisActualLabel?: string = 'Actual Value';
+  @Input() financialAnalysisIdealLabel?: string = 'Ideal';
+  @Input() financialAnalysisActualValue?: string = '0';
+  @Input() financialAnalysisIdealValue?: string = '0.0L';
+  @Input() financialAnalysisCurrency?: string = '₹';
+  @Input() financialAnalysisTooltipText?: string; // Tooltip text for button
+  @Output() financialAnalysisButtonClick = new EventEmitter<void>();
+
   onFwpPreviewClick(): void {
     if (!this.fwpPreviewDisabled) {
       this.fwpPreviewClick.emit();
@@ -402,7 +421,17 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
     }
   }
 
+  onFinancialAnalysisButtonClick(): void {
+    this.financialAnalysisButtonClick.emit();
+  }
+
   onClick(): void {
     this.cardClick.emit();
   }
+
+  // lifestage
+  @Input() lifeStageTitle!: string;
+  @Input() lifeStageContent!: string;
+  @Input() lifeStageAgeRange!: string;
+
 }
