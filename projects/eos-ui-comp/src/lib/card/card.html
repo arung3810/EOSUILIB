@@ -168,8 +168,8 @@
     <div class="card size-1 score-card medium" [ngClass]="small ? 'style-2' :'style-1'">
       <div class="card-body">
         <h6 class="card-title1">{{title}}</h6>
-        <div class="wrapper"><span
-            class="num red-text"> {{currentFbsScore}} <small style="color: rgb(245, 180, 11);">{{small}}</small></span>
+        <div class="wrapper">
+          <span class="num" [ngClass]="textColor === 'red' ? 'red-text' : 'green-text'"> {{currentFbsScore}} <small style="color: rgb(245, 180, 11);">{{small}}</small></span>
           <p class="pera"> {{para}} </p>
         </div>
       </div>
@@ -227,15 +227,15 @@
     <div class="card size-2 score-piechart-card">
                 <div class="card-body layout" *ngIf="!mf_allocation_not_fetched">
                     <div class="detail-area">
-                        <h6 class="card-title-workbook">Mutual Fund Portfolio Allocation</h6>
+                        <h6 class="card-title-workbook">{{ MFHoldingsTitle }}</h6>
 
                         <div class="wrapper">
                             <ul class="score-wrapper">
                               @for (item of MfholdingList2; track $index) {
                                 <li class="equit-theme">
                                     <span class="label">{{item?.label}}</span>
-                                    <span class="percentage">{{ item?.equityPercentage }}</span>
-                                    <span class="amt">{{ item?.equityValue }}</span>
+                                    <span class="percentage">{{ item?.equityPercentage }}%</span>
+                                    <span class="amt">₹ {{ item?.equityValue }}</span>
                                 </li>
                               }
                             </ul>
@@ -249,11 +249,12 @@
                             [dataLabels]="chart.dataLabels" [states]="chart.states"
                             [tooltip]="chart.tooltip" [stroke]="chart.stroke">
                         </apx-chart>
+                        @if(current_value){
                         <div class="currentValueDiv">
                             <p class="currentValueLabel">Total Current Value</p>
                             <p class="currentValue">{{current_value}}</p>
                         </div>
-
+                      }
                     </div>
                 </div>
 
@@ -569,6 +570,76 @@
         @if(lifeStageAgeRange){
         <button class="lifestage-button">Age: {{lifeStageAgeRange}} </button>
         }
+      </div>
+    </div>
+  } @else if(cardType === "behavioralBiases"){
+    <div class="card behavioral-biases-card">
+      <div class="card-body">
+        <p class="behavioral-header">{{ behavioralHeader }}</p>
+        <div class="behavioral-content">
+          <div class="behavioral-icon-wrapper">
+            @if(behavioralIcon) {
+              <div class="behavioral-icon" [innerHTML]="safeBehavioralIcon"></div>
+            }
+          </div>
+          <h3 class="behavioral-title">{{ behavioralTitle }}</h3>
+        </div>
+        <hr>
+        <h5 class="behavioral-subtitle">{{ behavioralSubtitle }}</h5>
+        <ul class="behavioral-list">
+          @for (bias of behavioralBiasesList; track bias.label) {
+            <li class="behavioral-item">
+              <span class="behavioral-dot"></span>
+              <span class="behavioral-label">{{ bias.label }}</span>
+              @if(bias.tooltipContent) {
+                <div class="behavioral-tooltip-wrapper">
+                  <button class="behavioral-info-icon" (click)="onBiasInfoClick(bias)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                  </button>
+                  <div class="behavioral-tooltip">{{ bias.tooltipContent }}</div>
+                </div>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  } @else if(cardType === "TERchart"){
+    <div class="card ter-chart-card">
+      <div class="ter-card-body">
+        <h5 class="ter-chart-title">{{ terChartTitle }}</h5>
+
+        <div class="ter-timeline-container">
+          <div class="ter-timeline-grid">
+            @for (period of terChartPeriods; track period.label) {
+              <div class="ter-timeline-item">
+                <div class="ter-timeline-label">{{ period.label }}</div>
+              </div>
+            }
+          </div>
+
+          <div class="ter-timeline-wrapper">
+            <div class="ter-timeline-line"></div>
+            <div class="ter-timeline-grid">
+              @for (period of terChartPeriods; track period.label; let i = $index) {
+                <div class="ter-timeline-item">
+                  <div class="ter-timeline-marker"></div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="ter-timeline-grid">
+            @for (period of terChartPeriods; track period.label) {
+              <div class="ter-timeline-item">
+                <div class="ter-timeline-value">{{ period.value }}</div>
+              </div>
+            }
+          </div>
+        </div>
       </div>
     </div>
   } @else {

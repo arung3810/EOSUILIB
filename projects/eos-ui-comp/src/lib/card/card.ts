@@ -30,6 +30,7 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
 
   // // fbs
   @Input() currentFbsScore!: number;
+  @Input() textColor!: string;
   @Input() gen_last_updated_at: string | null = null;
   @Input() genProfile!: any;
   @Input() role!: string;
@@ -202,6 +203,12 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
         this.sanitizer.bypassSecurityTrustHtml(this.financialAnalysisButtonIcon);
     }
 
+    // Sanitize behavioralIcon when input changes
+    if (changes['behavioralIcon']?.currentValue && this.behavioralIcon) {
+      this.safeBehavioralIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.behavioralIcon);
+    }
+
     if (changes['carousalList']?.currentValue && this.portfolioFundCarousel) {
       // Reinitialize carousel when data changes
       setTimeout(() => {
@@ -295,8 +302,9 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
   @Input() height?: number = 130;
   @Input() colors!: string[];  //['#FF8B81', '#7FCDA4']
   @Input() mf_allocation_not_fetched !: boolean;
-  @Input() current_value !: number;
-  @Input() MfholdingList2 !: { label: string, equityPercentage: number, equityValue: number }[];
+  @Input() current_value !: string;
+  @Input() MFHoldingsTitle!: string; 
+  @Input() MfholdingList2 !: { label: string, equityPercentage: number, equityValue: string }[];
 
   // Asset Card inputs
   @Input() assetChartData!: ChartData[];
@@ -433,5 +441,29 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
   @Input() lifeStageTitle!: string;
   @Input() lifeStageContent!: string;
   @Input() lifeStageAgeRange!: string;
+
+  // Behavioral Biases Card inputs
+  @Input() behavioralHeader?: string = 'MoneySign®';
+  @Input() behavioralTitle?: string;
+  @Input() behavioralSubtitle?: string = 'Behavioural Biases';
+  @Input() behavioralIcon?: string; // SVG icon as string
+  safeBehavioralIcon: any;
+  @Input() behavioralBiasesList!: {
+    label: string,
+    showInfo?: boolean,
+    tooltipContent?: string
+  }[];
+  @Output() biasInfoClick = new EventEmitter<any>();
+
+  onBiasInfoClick(bias: any): void {
+    this.biasInfoClick.emit(bias);
+  }
+
+  // TER Chart Card inputs
+  @Input() terChartTitle?: string = 'Existing TER';
+  @Input() terChartPeriods!: {
+    label: string,
+    value: string
+  }[];
 
 }

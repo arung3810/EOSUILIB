@@ -477,12 +477,16 @@
     font-weight: 700;
     line-height: normal;
     white-space: nowrap;
+    text-align: left;
 }
 .style-1 .card-body .wrapper .red-text{
   color: red;
 }
-.style-1 .card-body .wrapper .red-text small,
-.style-2 .card-body .wrapper .red-text small{
+.style-1 .card-body .wrapper .green-text{
+  color: #16a34a;
+}
+.style-1 .card-body .wrapper .num small,
+.style-2 .card-body .wrapper .num small{
   display: inline-flex;
     padding: 2px 8px;
     flex-direction: column;
@@ -500,13 +504,14 @@
     font-weight: 400;
     line-height: 18px;
     margin: 0;
+    text-align: left;
     color: #898B90;
 }
 
 .style-2.score-card{
   background-color: rgb(255, 249, 235)!important;
 }
-.style-2 .card-body .wrapper .num, .style-2 .card-body .wrapper .pera{
+.style-2 .card-body .wrapper .num, .style-2 .card-body .card-title1, .style-2 .card-body .wrapper .pera{
   color: rgb(245, 180, 11);
 }
 /* carousal */
@@ -830,6 +835,7 @@ li.equit-theme .label{
     font-style: normal;
     font-weight: 400;
     line-height: 11.696px;
+    margin: 0!important;
 }
 .currentValueDiv {
     display: flex;
@@ -849,6 +855,12 @@ li.equit-theme .label{
 .note-mfAllocation{
   margin: 0;
   text-align: left;
+  color: var(--1F-5_Primary, #65676D);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 16px;
+    margin-bottom: 0 !important;
 }
 
 /* Asset Card Styles */
@@ -2156,4 +2168,377 @@ font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 400;
     height: fit-content;
+}
+
+/* Behavioral Biases Card Styles */
+.behavioral-biases-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.behavioral-biases-card .card-body {
+  padding: 24px;
+}
+
+.behavioral-header {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #898b90;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+.behavioral-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.behavioral-icon-wrapper {
+  flex-shrink: 0;
+}
+
+.behavioral-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.behavioral-icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.behavioral-title {
+    color: var(--1-f-1-primary, #000);
+    font-family: Inter, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.behavioral-subtitle {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #6B7280;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.behavioral-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.behavioral-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  position: relative;
+}
+
+.behavioral-dot {
+  width: 8px;
+  height: 8px;
+  background: #FFC107;
+  flex-shrink: 0;
+}
+
+.behavioral-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.behavioral-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.behavioral-info-icon {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.behavioral-info-icon:hover {
+  color: #6B7280;
+}
+
+.behavioral-info-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.behavioral-tooltip {
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2F2F2F;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+  max-width: 300px;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+  text-align: left;
+}
+
+.behavioral-tooltip::after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: #2F2F2F;
+}
+
+.behavioral-tooltip-wrapper:hover .behavioral-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive adjustments for behavioral biases card */
+@media (max-width: 768px) {
+  .behavioral-biases-card .card-body {
+    padding: 16px;
+  }
+
+  .behavioral-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .behavioral-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .behavioral-title {
+    font-size: 20px;
+  }
+
+  .behavioral-subtitle {
+    font-size: 16px;
+  }
+
+  .behavioral-label {
+    font-size: 14px;
+  }
+}
+
+/* TER Chart Card Styles */
+.ter-chart-card {
+  background: #FAFAFA;
+  border: 1px solid #E8E8E8;
+  border-radius: 12px;
+  padding: 40px 48px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.ter-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ter-chart-title {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #9CA3AF;
+  margin: 0;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+.ter-timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  margin: 0;
+}
+
+.ter-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  gap: 0;
+}
+
+.ter-timeline-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ter-timeline-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #9CA3AF;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.ter-timeline-wrapper {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  margin: 4px 0;
+}
+
+.ter-timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 1.5px;
+  background: #D1D5DB;
+  transform: translateY(-50%);
+}
+
+.ter-timeline-marker {
+  width: 1.5px;
+  height: 12px;
+  background: #D1D5DB;
+  z-index: 2;
+}
+
+.ter-timeline-value {
+  font-family: Inter, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #EF6B5E;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* Different font sizes for each TER value */
+.ter-timeline-item:nth-child(1) .ter-timeline-value {
+  font-size: 15px;
+}
+
+.ter-timeline-item:nth-child(2) .ter-timeline-value {
+  font-size: 18px;
+}
+
+.ter-timeline-item:nth-child(3) .ter-timeline-value {
+  font-size: 20px;
+}
+
+.ter-timeline-item:nth-child(4) .ter-timeline-value {
+  font-size: 24px;
+}
+
+.ter-timeline-item:nth-child(5) .ter-timeline-value {
+  font-size: 28px;
+}
+
+/* Responsive design for TER Chart Card */
+@media (max-width: 768px) {
+  .ter-chart-card {
+    padding: 32px 24px;
+  }
+
+  .ter-card-body {
+    gap: 36px;
+  }
+
+  .ter-chart-title {
+    font-size: 16px;
+  }
+
+  .ter-timeline-container {
+    gap: 24px;
+  }
+
+  .ter-timeline-label {
+    font-size: 14px;
+  }
+
+  .ter-timeline-value {
+    font-size: 24px;
+  }
+
+  .ter-timeline-wrapper {
+    height: 10px;
+  }
+
+  .ter-timeline-marker {
+    width: 1.5px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ter-chart-card {
+    padding: 24px 16px;
+  }
+
+  .ter-card-body {
+    gap: 28px;
+  }
+
+  .ter-timeline-label {
+    font-size: 12px;
+  }
+
+  .ter-timeline-value {
+    font-size: 18px;
+  }
+
+  .ter-timeline-wrapper {
+    height: 8px;
+  }
+
+  .ter-timeline-marker {
+    height: 8px;
+  }
 }
