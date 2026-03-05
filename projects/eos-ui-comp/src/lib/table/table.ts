@@ -5,6 +5,38 @@ import { NgIf } from '@angular/common';
 export type CellType = 'text' | 'dropdown' | 'tooltip' | 'custom';
 export type SortDirection = 'asc' | 'desc' | null;
 
+/**
+ * TableColumn Interface
+ *
+ * Configuration for table columns with support for multi-level headers.
+ *
+ * @example
+ * // Simple single-level column
+ * {
+ *   label: 'Name',
+ *   field: 'name',
+ *   sortable: true
+ * }
+ *
+ * @example
+ * // Multi-level header with subHeaders
+ * {
+ *   label: 'Current Liability Distribution',
+ *   field: '',
+ *   subHeaders: [
+ *     { label: 'Outstanding', field: 'outstanding' },
+ *     { label: 'EMI', field: 'emi' }
+ *   ]
+ * }
+ *
+ * @example
+ * // Column with rowspan (spans multiple header rows)
+ * {
+ *   label: 'Liability Type',
+ *   field: 'liabilityType',
+ *   rowspan: 2  // Spans 2 rows in the header
+ * }
+ */
 export interface TableColumn {
   label: string;
   field: string;
@@ -17,6 +49,9 @@ export interface TableColumn {
   tooltipField?: string; // Field name for tooltip text (defaults to 'tooltipText')
   showTooltipField?: string; // Field name to check if tooltip should show (defaults to 'showTooltip')
   customTemplate?: (row: any) => string; // For custom cell rendering
+  colspan?: number; // Number of columns this header spans
+  subHeaders?: TableColumn[]; // Sub-headers for multi-level headers
+  rowspan?: number; // Number of rows this header spans (for headers without subheaders)
 }
 
 @Component({
@@ -27,11 +62,17 @@ export interface TableColumn {
   styleUrls: ['./table.css']
 })
 export class TableComponent {
-  @Input() columns: TableColumn[] = [];  
+  @Input() tableType: 'dynamic' | 'static' | 'financial-scoring' = 'dynamic';
+  @Input() columns: TableColumn[] = [];
   @Input() rows: any[] = []; // Changed to any[] to support dynamic data
   @Input() total: number = 0;
   @Input() page: number = 1;
   @Input() pageSize: number = 5;
+  @Input() showFooter: boolean = false; // Enable footer row
+  @Input() footerLabel: string = 'Avg Score'; // Label for first column in footer
+  @Input() footerCalculation: 'avg' | 'sum' | 'custom' = 'avg'; // Type of calculation
+  @Input() footerValues?: any; // Custom footer values
+  @Input() showHeaderBorder: boolean = true; // Show/hide header borders
   @Output() pageChange = new EventEmitter<number>();
   @Output() sortChange = new EventEmitter<{ field: string; direction: SortDirection }>();
 
@@ -257,5 +298,145 @@ export class TableComponent {
 
   onCategoryFilterChange(event: Event): void{
     console.log('clicked capture by selction');
+  }
+
+  getFooterValue(column: TableColumn, columnIndex: number): string {
+    // First column shows the footer label
+    if (columnIndex === 0) {
+      return this.footerLabel;
+    }
+
+    // If custom footer values are provided, use them
+    if (this.footerValues && this.footerValues[column.field] !== undefined) {
+      return this.footerValues[column.field];
+    }
+
+    // Calculate based on footerCalculation type
+    if (this.footerCalculation === 'avg' || this.footerCalculation === 'sum') {
+      const values = this.rows.map(row => {
+        const value = row[column.field];
+        // Try to extract numeric value from string (e.g., "₹ 1,22,87,666" -> 12287666)
+        if (typeof value === 'string') {
+          const numericValue = parseFloat(value.replace(/[₹,\s]/g, ''));
+          return isNaN(numericValue) ? 0 : numericValue;
+        }
+        return typeof value === 'number' ? value : 0;
+      });
+
+      const total = values.reduce((sum, val) => sum + val, 0);
+
+      if (this.footerCalculation === 'avg') {
+        const avg = this.rows.length > 0 ? total / this.rows.length : 0;
+        // If it's the last column (likely a score), show as decimal
+        if (columnIndex === this.columns.length - 1) {
+          return avg.toFixed(2);
+        }
+        return ''; // Empty for middle columns
+      } else {
+        return total.toString();
+      }
+    }
+
+    return '';
+  }
+
+  // Calculate average for the last column (financial score)
+  calculateAverage(): string {
+    if (this.rows.length === 0 || this.columns.length === 0) {
+      return '0';
+    }
+
+    // Get the last column field (financial score)
+    const lastColumn = this.columns[this.columns.length - 1];
+    const values = this.rows.map(row => {
+      const value = row[lastColumn.field];
+      return typeof value === 'number' ? value : 0;
+    });
+
+    const total = values.reduce((sum, val) => sum + val, 0);
+    const avg = total / this.rows.length;
+
+    return avg.toFixed(2);
+  }
+
+  // Check if table has multi-level headers
+  hasMultiLevelHeaders(): boolean {
+    return this.columns.some(col => col.subHeaders && col.subHeaders.length > 0);
+  }
+
+  // Get all leaf columns (columns that will be used for data rendering)
+  getLeafColumns(): TableColumn[] {
+    const leafColumns: TableColumn[] = [];
+
+    const traverse = (columns: TableColumn[]) => {
+      columns.forEach(col => {
+        if (col.subHeaders && col.subHeaders.length > 0) {
+          traverse(col.subHeaders);
+        } else {
+          leafColumns.push(col);
+        }
+      });
+    };
+
+    traverse(this.columns);
+    return leafColumns;
+  }
+
+  // Get colspan for a column (if it has subheaders, return count of leaf columns)
+  getColspan(column: TableColumn): number {
+    if (column.colspan) {
+      return column.colspan;
+    }
+
+    if (column.subHeaders && column.subHeaders.length > 0) {
+      return column.subHeaders.reduce((sum, sub) => sum + this.getColspan(sub), 0);
+    }
+
+    return 1;
+  }
+
+  // Get rowspan for a column (if it doesn't have subheaders, it spans remaining rows)
+  getRowspan(column: TableColumn, currentLevel: number, maxLevel: number): number {
+    if (column.rowspan) {
+      return column.rowspan;
+    }
+
+    if (!column.subHeaders || column.subHeaders.length === 0) {
+      return maxLevel - currentLevel + 1;
+    }
+
+    return 1;
+  }
+
+  // Get maximum depth of header hierarchy
+  getMaxHeaderDepth(): number {
+    const getDepth = (columns: TableColumn[], depth: number = 1): number => {
+      const childDepths = columns
+        .filter(col => col.subHeaders && col.subHeaders.length > 0)
+        .map(col => getDepth(col.subHeaders!, depth + 1));
+
+      return childDepths.length > 0 ? Math.max(...childDepths) : depth;
+    };
+
+    return getDepth(this.columns);
+  }
+
+  // Get columns for a specific header level
+  getColumnsForLevel(level: number): TableColumn[] {
+    const result: TableColumn[] = [];
+
+    const traverse = (columns: TableColumn[], currentLevel: number) => {
+      columns.forEach(col => {
+        if (currentLevel === level) {
+          result.push(col);
+        }
+        if (col.subHeaders && col.subHeaders.length > 0 && currentLevel < level) {
+          traverse(col.subHeaders, currentLevel + 1);
+        }
+      });
+    };
+
+    traverse(this.columns, 1);
+    return result;
   }
 }

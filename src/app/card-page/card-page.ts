@@ -3791,4 +3791,29 @@ C 42.86 154.09 39.00 153.29 39.00 154.00 Z"/>
       { label: '10 years', value: '₹ 19.4K' },
       { label: '15 years', value: '₹ 50.9K' }
     ];
+
+    // Actions List Card Data
+    actionsListTitle = 'Actions for this year';
+    actionsListItems = [
+      'You can opt for employer contribution, which is deductible up to 14% of your basic salary (around ₹ 2,10,000 for the remaining financial year). Employer contribution to NPS is also allowed as deduction in the New Tax regime.',
+      'Update your portfolio',
+      'start sip for 5000'
+    ];
+
+    onActionsAddClick() {
+      console.log('Add action clicked');
+      alert('Add new action clicked!');
+    }
+
+    onActionEdit(index: number) {
+      console.log('Edit action at index:', index);
+      alert(`Edit action at index ${index}: ${this.actionsListItems[index]}`);
+    }
+
+    onActionDelete(index: number) {
+      console.log('Delete action at index:', index);
+      if (confirm(`Delete this action?\n\n${this.actionsListItems[index]}`)) {
+        this.actionsListItems = this.actionsListItems.filter((_, i) => i !== index);
+      }
+    }
 }

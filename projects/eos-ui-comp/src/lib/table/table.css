@@ -27,9 +27,25 @@ thead th {
   color: #272727;
   background: #f8fafc;
   padding: 12px;
-  font-weight: bold;  
+  font-weight: bold;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+thead th:last-child {
+  border-right: none;
+}
+
+/* Multi-level header specific styles */
+thead tr:first-child th {
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+thead tr:not(:first-child) th {
+  text-align: left;
 }
 
 thead th.sortable {
@@ -61,6 +77,95 @@ tbody td {
 
 tbody tr:hover {
   background: #f9fafb;
+}
+
+tfoot {
+  background: #f8fafc;
+  border-top: 2px solid #e5e7eb;
+}
+
+tfoot td {
+  font-size: 14px;
+  font-weight: 600;
+  color: #272727;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tfoot td.footer-bold {
+  font-weight: 700;
+}
+
+/* Financial Scoring Table Specific Styles */
+.financial-scoring-table table {
+  border: 1px solid #e5ebf3;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.financial-scoring-table thead th {
+  font-size: 14px;
+  font-weight: 700;
+  color: #272727;
+  background: #f8fafc;
+  padding: 16px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.financial-scoring-table thead th:last-child {
+  border-right: none;
+}
+
+/* Multi-level header styles for financial-scoring table */
+.financial-scoring-table thead tr:first-child th {
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.financial-scoring-table thead tr:not(:first-child) th {
+  text-align: left;
+}
+
+/* Remove header borders when showHeaderBorder is false */
+.financial-scoring-table.no-header-border thead th {
+  border-right: none;
+}
+
+.financial-scoring-table tbody td {
+  font-size: 14px;
+  font-weight: 400;
+  color: #425466;
+  padding: 16px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.financial-scoring-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.financial-scoring-table tfoot {
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+}
+
+.financial-scoring-table tfoot tr.avg-row td {
+  font-size: 14px;
+  font-weight: 700;
+  color: #272727;
+  padding: 16px 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.financial-scoring-table tfoot tr.avg-row td.avg-label {
+  font-weight: 700;
+}
+
+.financial-scoring-table tfoot tr.avg-row td.avg-value {
+  font-weight: 700;
+  text-align: left;
 }
 
 a {

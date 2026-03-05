@@ -1,3 +1,66 @@
+@if(tableType === "financial-scoring"){
+<div class="table-container financial-scoring-table" [class.no-header-border]="!showHeaderBorder">
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <!-- Multi-level headers -->
+        <ng-container *ngIf="hasMultiLevelHeaders(); else singleLevelHeader">
+          <!-- Render each level of headers -->
+          <tr *ngFor="let level of [].constructor(getMaxHeaderDepth()); let i = index">
+            <th
+              *ngFor="let col of getColumnsForLevel(i + 1)"
+              [attr.colspan]="getColspan(col)"
+              [attr.rowspan]="getRowspan(col, i + 1, getMaxHeaderDepth())"
+              [class.sortable]="col.sortable !== false && (!col.subHeaders || col.subHeaders.length === 0)"
+              [class.sorted]="isColumnSorted(col.field)"
+              (click)="col.sortable !== false && (!col.subHeaders || col.subHeaders.length === 0) ? onSort(col.field) : null"
+            >
+              {{ col.label }}
+              <span class="sort-icon" *ngIf="col.sortable !== false && isColumnSorted(col.field) && (!col.subHeaders || col.subHeaders.length === 0)">
+                {{ getSortIcon(col.field) }}
+              </span>
+            </th>
+          </tr>
+        </ng-container>
+
+        <!-- Single-level header (backward compatibility) -->
+        <ng-template #singleLevelHeader>
+          <tr>
+            <th
+              *ngFor="let col of columns"
+              [class.sortable]="col.sortable !== false"
+              [class.sorted]="isColumnSorted(col.field)"
+              (click)="col.sortable !== false ? onSort(col.field) : null"
+            >
+              {{ col.label }}
+              <span class="sort-icon" *ngIf="col.sortable !== false && isColumnSorted(col.field)">
+                {{ getSortIcon(col.field) }}
+              </span>
+            </th>
+          </tr>
+        </ng-template>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of paginatedRows">
+          <td *ngFor="let col of hasMultiLevelHeaders() ? getLeafColumns() : columns">
+            {{ getCellValue(row, col) }}
+          </td>
+        </tr>
+      </tbody>
+
+      <!-- Footer with Avg Score - Only show if showFooter is true -->
+      <tfoot *ngIf="showFooter">
+        <tr class="avg-row">
+          <td class="avg-label">{{ footerLabel }}</td>
+          <td *ngFor="let col of (hasMultiLevelHeaders() ? getLeafColumns() : columns).slice(1, -1)"></td>
+          <td class="avg-value">{{ calculateAverage() }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+} @else if(tableType === "dynamic"){
 <div class="table-container">
   <div class="table-responsive">
         <table>
@@ -65,6 +128,15 @@
                   </td>
               </tr>
           </tbody>
+
+          <!-- Footer row for summary/average if enabled -->
+          <tfoot *ngIf="showFooter">
+              <tr class="footer-row">
+                  <td *ngFor="let col of columns; let i = index" [class.footer-bold]="i === 0 || i === columns.length - 1">
+                      {{ getFooterValue(col, i) }}
+                  </td>
+              </tr>
+          </tfoot>
       </table>
   </div>
 
@@ -115,3 +187,6 @@
       </button>
   </div>
 </div>
+} @else{
+  
+}

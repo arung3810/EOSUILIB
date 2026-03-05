@@ -349,6 +349,7 @@
     <div class="col" style="max-width: 600px;">
       <lib-card
         cardType="financialAnalysis"
+        [financialArrow]="true"
         [financialAnalysisTitle]="financialAnalysisTitle"
         [financialAnalysisButtonText]="financialAnalysisButtonText"
         [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
@@ -362,6 +363,7 @@
       <lib-card
         cardType="financialAnalysis"
         [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialArrow]="true"
         [financialAnalysisButtonText]="financialAnalysisButtonText"
         [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
         [financialAnalysisActualValue]="financialAnalysisActualValue"
@@ -373,6 +375,7 @@
     <div class="col" style="max-width: 600px;">
       <lib-card
         cardType="financialAnalysis"
+        [financialArrow]="false"
         [financialAnalysisTitle]="financialAnalysisTitle"
         [financialAnalysisButtonText]="financialAnalysisButtonText"
         [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
@@ -427,6 +430,65 @@
         cardType="TERchart"
         terChartTitle="Existing TER"
         [terChartPeriods]="terChartPeriods"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Advised TER Card</h3>
+  <div class="row">
+    <div style="width: 50%;">
+      <lib-card
+        cardType="impactAdvise"
+        [impactAdviseTitle]="'Impact With Advise'"
+        [impactAdviseCurrency]="'₹'"
+        [impactAdviseAmount]="'4,73,96,33,200'"
+        [impactAdvisePercentage]="'586351.69%'"
+      ></lib-card>
+    </div>
+    <div style="width: 25%;">
+      <lib-card
+        cardType="advisedTER"
+        advisedTERTitle="High TER"
+        advisedTERValue="1.25 %"
+        advisedTERColorType="red"
+      ></lib-card>
+    </div>
+    <div style="width: 25%;">
+      <lib-card
+        cardType="advisedTER"
+        advisedTERTitle="Recommended TER"
+        advisedTERValue="0.45 %"
+        advisedTERColorType="green"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Actions List Card</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="actionsList"
+        [actionsListTitle]="actionsListTitle"
+        [actionsListItems]="actionsListItems"
+        [showAddButton]="true"
+        (actionsAddClick)="onActionsAddClick()"
+        (actionEdit)="onActionEdit($event)"
+        (actionDelete)="onActionDelete($event)"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Actions List Card - Without Add Button</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="actionsList"
+        actionsListTitle="My Tasks"
+        [actionsListItems]="['Review financial goals', 'Update insurance coverage']"
+        [showAddButton]="false"
       ></lib-card>
     </div>
   </div>

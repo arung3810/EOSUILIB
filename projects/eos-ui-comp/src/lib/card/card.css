@@ -2542,3 +2542,462 @@ font-family: Inter, sans-serif;
     height: 8px;
   }
 }
+
+/* Advised TER Card Styles */
+.advised-ter-card {
+  display: flex;
+    padding: 24px;
+    gap: 8px;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Green variant (default) */
+.advised-ter-card.advised-ter-green {
+  background: #F0FDF5!important;
+  border: 1px solid #81C784;
+}
+
+.advised-ter-card.advised-ter-green .advised-ter-title {
+  color: #16a349;
+}
+
+.advised-ter-card.advised-ter-green .advised-ter-value {
+  color: #16a349;
+}
+
+/* Red variant */
+.advised-ter-card.advised-ter-red {
+  background: #FEF2F2!important;
+  border: 1px solid #E57373;
+}
+
+.advised-ter-card.advised-ter-red .advised-ter-title {
+  color: #ef4444;
+}
+
+.advised-ter-card.advised-ter-red .advised-ter-value {
+  color: #ef4444;
+}
+
+.advised-ter-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.advised-ter-title {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+}
+
+.advised-ter-value {
+  font-family: Inter, sans-serif!important;
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+/* Responsive design for Advised TER Card */
+@media (max-width: 768px) {
+  .advised-ter-card {
+    padding: 24px 32px;
+    min-height: 150px;
+  }
+
+  .advised-ter-body {
+    gap: 12px;
+  }
+
+  .advised-ter-title {
+    font-size: 18px;
+  }
+
+  .advised-ter-value {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .advised-ter-card {
+    padding: 20px 24px;
+    min-height: 140px;
+  }
+
+  .advised-ter-body {
+    gap: 10px;
+  }
+
+  .advised-ter-title {
+    font-size: 16px;
+  }
+
+  .advised-ter-value {
+    font-size: 40px;
+  }
+}
+
+/* Impact Advise Card Styles */
+.impact-advise-card {
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-advise-header {
+  text-align: left;
+}
+
+.impact-advise-title {
+  font-family: Inter, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.impact-advise-title-text {
+  color: var(--success-green-600, #16A349);
+    font-feature-settings: "salt" on;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    display: flex;
+    padding: 4px 8px;
+    align-items: center;
+    border-radius: 2px;
+    background: var(--success-green-50, #F0FDF5);
+    margin-bottom: 16px;
+}
+
+.impact-advise-title-highlight {
+  color: #43A047;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.impact-advise-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.impact-advise-main-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  text-align: left;
+}
+
+.impact-advise-currency {
+    color: #4b4c51;
+    font-family: Inter, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 136%;
+}
+
+.impact-advise-amount {
+    color: #4b4c51;
+    font-family: Inter, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 136%;
+}
+
+.impact-advise-percentage {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+    font-size: 32px;
+    color: #16a349;
+}
+
+/* Responsive design for Impact Advise Card */
+@media (max-width: 768px) {
+  .impact-advise-card {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .impact-advise-title {
+    font-size: 20px;
+  }
+
+  .impact-advise-currency {
+    font-size: 28px;
+  }
+
+  .impact-advise-amount {
+    font-size: 36px;
+  }
+
+  .impact-advise-percentage {
+    font-size: 42px;
+  }
+
+  .impact-advise-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .impact-advise-percentage {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-advise-card {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .impact-advise-title {
+    font-size: 18px;
+  }
+
+  .impact-advise-currency {
+    font-size: 24px;
+  }
+
+  .impact-advise-amount {
+    font-size: 28px;
+  }
+
+  .impact-advise-percentage {
+    font-size: 32px;
+  }
+}
+
+/* Actions List Card Styles */
+.actions-list-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 24px 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.actions-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions-list-title {
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+  margin: 0;
+}
+
+.actions-add-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: Inter, sans-serif;
+}
+
+.actions-add-button:hover {
+  background: #F9FAFB;
+  border-color: #9CA3AF;
+}
+
+.actions-add-button:active {
+  transform: translateY(1px);
+}
+
+.actions-add-button .add-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.actions-add-button .add-icon {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1;
+}
+
+.actions-list-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 12px;
+  margin: 0 -12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.action-item.has-actions:hover {
+  background-color: #F9FAFB;
+}
+
+.action-bullet {
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.action-text {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #374151;
+  text-align: left;
+  flex: 1;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  flex-shrink: 0;
+}
+
+.action-item.has-actions:hover .action-buttons {
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #6B7280;
+}
+
+.action-btn:hover {
+  background-color: #E5E7EB;
+}
+
+.action-btn.edit-btn:hover {
+  color: #3B82F6;
+}
+
+.action-btn.delete-btn:hover {
+  color: #EF4444;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.actions-list-empty {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9CA3AF;
+  text-align: center;
+  padding: 40px 0;
+  margin: 0;
+}
+
+/* Responsive design for Actions List Card */
+@media (max-width: 768px) {
+  .actions-list-card {
+    padding: 20px 24px;
+    gap: 20px;
+  }
+
+  .actions-list-title {
+    font-size: 24px;
+  }
+
+  .actions-add-button {
+    padding: 6px 12px;
+  }
+
+  .actions-add-button .add-text {
+    font-size: 12px;
+  }
+
+  .actions-add-button .add-icon {
+    font-size: 16px;
+  }
+
+  .action-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions-list-card {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+
+  .actions-list-title {
+    font-size: 20px;
+  }
+
+  .actions-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .actions-add-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

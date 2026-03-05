@@ -528,19 +528,19 @@
         @if(!!financialAnalysisTooltipText?.length){<div class="financial-analysis-button-wrapper">
           <button class="financial-analysis-button" (click)="onFinancialAnalysisButtonClick()">
             <span class="button-text">{{ financialAnalysisButtonText }}</span>
-            @if(financialAnalysisButtonIcon) {
               <span class="button-icon" [innerHTML]="safeFinancialAnalysisButtonIcon"></span>
-            }
           </button>
           @if(financialAnalysisTooltipText) {
             <div class="financial-analysis-tooltip">{{ financialAnalysisTooltipText }}</div>
           }
         </div>}
-        <div class="financial-analysis-arrow">
+        @if(financialArrow){
+          <div class="financial-analysis-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
+    }
       </div>
 
       <div class="financial-analysis-content">
@@ -640,6 +640,71 @@
             }
           </div>
         </div>
+      </div>
+    </div>
+  } @else if(cardType === "advisedTER"){
+    <div class="card advised-ter-card" [ngClass]="'advised-ter-' + (advisedTERColorType || 'green')">
+      <!-- <div class="advised-ter-body"> -->
+        <p class="advised-ter-title">{{ advisedTERTitle }}</p>
+        <p class="advised-ter-value">{{ advisedTERValue }}</p>
+      <!-- </div> -->
+    </div>
+  } @else if(cardType === "impactAdvise"){
+    <div class="card impact-advise-card">
+      <div class="impact-advise-header">
+        <h3 class="impact-advise-title">
+          <span class="impact-advise-title-text">{{ impactAdviseTitle }}</span>
+        </h3>
+      </div>
+      <div class="impact-advise-content">
+        <div class="impact-advise-main-value">
+          <span class="impact-advise-currency">{{ impactAdviseCurrency }}</span>
+          <span class="impact-advise-amount">{{ impactAdviseAmount }}</span>
+        </div>
+        <div class="impact-advise-percentage">
+          {{ impactAdvisePercentage }}
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "actionsList"){
+    <div class="card actions-list-card">
+      <div class="actions-list-header">
+        <h3 class="actions-list-title">{{ actionsListTitle }}</h3>
+        @if(showAddButton) {
+          <button class="actions-add-button" (click)="onActionsAddClick()">
+            <span class="add-text">Add</span>
+            <span class="add-icon">+</span>
+          </button>
+        }
+      </div>
+      <div class="actions-list-content">
+        @if(!!actionsListItems?.length) {
+          <ul class="actions-list">
+            @for (action of actionsListItems; track action; let i = $index) {
+              <li class="action-item" [class.has-actions]="i > 0">
+                <span class="action-bullet"></span>
+                <span class="action-text">{{ action }}</span>
+                @if(i > 0) {
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" (click)="onActionEdit(i)" title="Edit">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M11.333 2.00004C11.5081 1.82494 11.716 1.68605 11.9447 1.59129C12.1735 1.49653 12.4187 1.44775 12.6663 1.44775C12.914 1.44775 13.1592 1.49653 13.3879 1.59129C13.6167 1.68605 13.8246 1.82494 13.9997 2.00004C14.1748 2.17513 14.3137 2.383 14.4084 2.61178C14.5032 2.84055 14.552 3.08575 14.552 3.33337C14.552 3.58099 14.5032 3.82619 14.4084 4.05497C14.3137 4.28374 14.1748 4.49161 13.9997 4.66671L5.33301 13.3334L1.33301 14.6667L2.66634 10.6667L11.333 2.00004Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <button class="action-btn delete-btn" (click)="onActionDelete(i)" title="Delete">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 4H3.33333H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.33301 4.00004V2.66671C5.33301 2.31309 5.47348 1.97395 5.72353 1.7239C5.97358 1.47385 6.31272 1.33337 6.66634 1.33337H9.33301C9.68663 1.33337 10.0258 1.47385 10.2758 1.7239C10.5259 1.97395 10.6663 2.31309 10.6663 2.66671V4.00004M12.6663 4.00004V13.3334C12.6663 13.687 12.5259 14.0261 12.2758 14.2762C12.0258 14.5262 11.6866 14.6667 11.333 14.6667H4.66634C4.31272 14.6667 3.97358 14.5262 3.72353 14.2762C3.47348 14.0261 3.33301 13.687 3.33301 13.3334V4.00004H12.6663Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                }
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="actions-list-empty">No actions available</p>
+        }
       </div>
     </div>
   } @else {

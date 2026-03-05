@@ -68,3 +68,19 @@ code {
 tbody tr:hover {
   background: #f9fafb;
 }
+
+.average-score {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e5ebf3;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #272727;
+  text-align: right;
+}
+
+.average-score strong {
+  font-weight: 700;
+  margin-right: 0.5rem;
+}

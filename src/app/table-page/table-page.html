@@ -1,11 +1,45 @@
 <section>
   <h2>Table Component</h2>
-  
+
+  <!-- Multi-level Header Demo - Liability Distribution Table -->
   <div class="showcase-section">
-    <h3>Data Table with Pagination</h3>
-    <p>A feature-rich table component with sorting and pagination</p>
-    <lib-table [columns]="columns" [rows]="tableData" [total]="totalRows" [page]="currentPage" [pageSize]="pageSize"
-      (pageChange)="onPageChange($event)" (sortChange)="onSortChange($event)">
+    <h3>Multi-Level Header Table (Liability Distribution)</h3>
+    <p>Table with complex multi-level headers and optional footer</p>
+    <lib-table
+      [tableType]="'financial-scoring'"
+      [columns]="liabilityColumns"
+      [rows]="liabilityData"
+      [showFooter]="false">
+    </lib-table>
+  </div>
+
+  <!-- Financial Scoring Metrics Demo -->
+  <div class="showcase-section">
+    <h3>Financial Analysis</h3>
+    <p>Clean financial scoring table with automatic average calculation</p>
+    <lib-table
+      [tableType]="'financial-scoring'"
+      [columns]="financialColumns"
+      [rows]="financialData"
+      [showFooter]="true"
+      [showHeaderBorder]="false"
+      [footerLabel]="'Avg Score'">
+    </lib-table>
+  </div>
+
+  <!-- Meeting Data Demo -->
+  <div class="showcase-section">
+    <h3>Meeting Data Table with Advanced Features</h3>
+    <p>A feature-rich table component with sorting, pagination, dropdowns, and tooltips</p>
+    <lib-table
+      [tableType]="'dynamic'"
+      [columns]="columns"
+      [rows]="tableData"
+      [total]="totalRows"
+      [page]="currentPage"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)">
     </lib-table>
   </div>
 

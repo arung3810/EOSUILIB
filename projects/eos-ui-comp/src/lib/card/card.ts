@@ -409,6 +409,7 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
   @Input() financialAnalysisButtonText?: string = 'View Risks';
   @Input() financialAnalysisButtonIcon?: string; // SVG icon as string
   safeFinancialAnalysisButtonIcon: any;
+  @Input() financialArrow: boolean = true;
   @Input() financialAnalysisActualLabel?: string = 'Actual Value';
   @Input() financialAnalysisIdealLabel?: string = 'Ideal';
   @Input() financialAnalysisActualValue?: string = '0';
@@ -465,5 +466,37 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
     label: string,
     value: string
   }[];
+
+  // Advised TER Card inputs
+  @Input() advisedTERTitle?: string = 'Advised TER';
+  @Input() advisedTERValue?: string;
+  @Input() advisedTERColorType?: 'green' | 'red' = 'green'; // Determines if color should be green or red
+
+  // Impact Advise Card inputs
+  @Input() impactAdviseTitle?: string = 'Impact With';
+  @Input() impactAdviseTitleHighlight?: string = 'Advise';
+  @Input() impactAdviseCurrency?: string = '₹';
+  @Input() impactAdviseAmount?: string = '4,73,96,33,200';
+  @Input() impactAdvisePercentage?: string = '586351.69%';
+
+  // Actions List Card inputs
+  @Input() actionsListTitle?: string = 'Actions for this year';
+  @Input() actionsListItems!: string[];
+  @Input() showAddButton?: boolean = true;
+  @Output() actionsAddClick = new EventEmitter<void>();
+  @Output() actionEdit = new EventEmitter<number>();
+  @Output() actionDelete = new EventEmitter<number>();
+
+  onActionsAddClick(): void {
+    this.actionsAddClick.emit();
+  }
+
+  onActionEdit(index: number): void {
+    this.actionEdit.emit(index);
+  }
+
+  onActionDelete(index: number): void {
+    this.actionDelete.emit(index);
+  }
 
 }
