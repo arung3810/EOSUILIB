@@ -1,10 +1,29 @@
 <section>
   <h2>Table Component</h2>
 
+  <!-- Action Button Template -->
+  <ng-template #actionButtonTemplate let-row>
+    <button class="action-button" (click)="onActionButtonClick(row)">
+      {{ row.suggestedAction }}
+    </button>
+  </ng-template>
+
+  <!-- Policy Details Table -->
+  <div class="showcase-section">
+    <h3>Policy Details & Evaluation</h3>
+    <p>Insurance Policy Management with Multi-Level Headers</p>
+    <lib-table
+      [tableType]="'financial-scoring'"
+      [columns]="policyColumns"
+      [rows]="policyData"
+      [showFooter]="false">
+    </lib-table>
+  </div>
+
   <!-- Multi-level Header Demo - Liability Distribution Table -->
   <div class="showcase-section">
     <h3>Multi-Level Header Table (Liability Distribution)</h3>
-    <p>Table with complex multi-level headers and optional footer</p>
+    <p>Liability Management</p>
     <lib-table
       [tableType]="'financial-scoring'"
       [columns]="liabilityColumns"
@@ -16,21 +35,22 @@
   <!-- Financial Scoring Metrics Demo -->
   <div class="showcase-section">
     <h3>Financial Analysis</h3>
-    <p>Clean financial scoring table with automatic average calculation</p>
+    <p>Clean financial scoring table with custom footer values - only showing totals for specific columns</p>
     <lib-table
       [tableType]="'financial-scoring'"
       [columns]="financialColumns"
       [rows]="financialData"
       [showFooter]="true"
       [showHeaderBorder]="false"
-      [footerLabel]="'Avg Score'">
+      [footerLabel]="'Total'"
+      [footerValues]="customFooterValues">
     </lib-table>
   </div>
 
   <!-- Meeting Data Demo -->
   <div class="showcase-section">
     <h3>Meeting Data Table with Advanced Features</h3>
-    <p>A feature-rich table component with sorting, pagination, dropdowns, and tooltips</p>
+    <p>A feature-rich table component with sorting, pagination, dropdowns, tooltips, and selective footer display</p>
     <lib-table
       [tableType]="'dynamic'"
       [columns]="columns"

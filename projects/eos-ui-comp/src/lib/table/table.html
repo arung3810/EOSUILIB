@@ -42,9 +42,23 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let row of paginatedRows">
+        <tr *ngFor="let row of paginatedRows" [class.total-row]="row.isTotal">
           <td *ngFor="let col of hasMultiLevelHeaders() ? getLeafColumns() : columns">
-            {{ getCellValue(row, col) }}
+            <!-- Custom cell type with TemplateRef -->
+            <ng-container *ngIf="col.cellType === 'custom' && isTemplateRef(col.customTemplate)">
+              <ng-container *ngTemplateOutlet="col.customTemplate; context: { $implicit: row, row: row }">
+              </ng-container>
+            </ng-container>
+
+            <!-- Custom cell type with function (legacy support) -->
+            <ng-container *ngIf="col.cellType === 'custom' && !isTemplateRef(col.customTemplate) && col.customTemplate">
+              <span [innerHTML]="col.customTemplate(row)"></span>
+            </ng-container>
+
+            <!-- Default text cell type -->
+            <ng-container *ngIf="!col.cellType || col.cellType === 'text'">
+              {{ getCellValue(row, col) }}
+            </ng-container>
           </td>
         </tr>
       </tbody>
@@ -52,16 +66,20 @@
       <!-- Footer with Avg Score - Only show if showFooter is true -->
       <tfoot *ngIf="showFooter">
         <tr class="avg-row">
-          <td class="avg-label">{{ footerLabel }}</td>
-          <td *ngFor="let col of (hasMultiLevelHeaders() ? getLeafColumns() : columns).slice(1, -1)"></td>
-          <td class="avg-value">{{ calculateAverage() }}</td>
+          <td *ngFor="let col of (hasMultiLevelHeaders() ? getLeafColumns() : columns); let i = index"
+              [class.avg-label]="i === 0"
+              [class.avg-value]="i === (hasMultiLevelHeaders() ? getLeafColumns() : columns).length - 1">
+            <ng-container *ngIf="shouldShowFooterValue(col, i)">
+              {{ getFooterValue(col, i) }}
+            </ng-container>
+          </td>
         </tr>
       </tfoot>
     </table>
   </div>
 </div>
 } @else if(tableType === "dynamic"){
-<div class="table-container">
+<div class="table-container dynamic">
   <div class="table-responsive">
         <table>
         <thead>
@@ -116,8 +134,14 @@
                       </div>
                     </ng-container>
 
-                    <!-- Custom cell type -->
-                    <ng-container *ngIf="col.cellType === 'custom' && col.customTemplate">
+                    <!-- Custom cell type with TemplateRef -->
+                    <ng-container *ngIf="col.cellType === 'custom' && isTemplateRef(col.customTemplate)">
+                      <ng-container *ngTemplateOutlet="col.customTemplate; context: { $implicit: row, row: row }">
+                      </ng-container>
+                    </ng-container>
+
+                    <!-- Custom cell type with function (legacy support) -->
+                    <ng-container *ngIf="col.cellType === 'custom' && !isTemplateRef(col.customTemplate) && col.customTemplate">
                       <span [innerHTML]="col.customTemplate(row)"></span>
                     </ng-container>
 
@@ -133,7 +157,9 @@
           <tfoot *ngIf="showFooter">
               <tr class="footer-row">
                   <td *ngFor="let col of columns; let i = index" [class.footer-bold]="i === 0 || i === columns.length - 1">
-                      {{ getFooterValue(col, i) }}
+                      <ng-container *ngIf="shouldShowFooterValue(col, i)">
+                          {{ getFooterValue(col, i) }}
+                      </ng-container>
                   </td>
               </tr>
           </tfoot>

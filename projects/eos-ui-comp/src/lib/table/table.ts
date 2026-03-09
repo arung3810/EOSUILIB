@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 export type CellType = 'text' | 'dropdown' | 'tooltip' | 'custom';
@@ -48,7 +48,7 @@ export interface TableColumn {
   sortable?: boolean;
   tooltipField?: string; // Field name for tooltip text (defaults to 'tooltipText')
   showTooltipField?: string; // Field name to check if tooltip should show (defaults to 'showTooltip')
-  customTemplate?: (row: any) => string; // For custom cell rendering
+  customTemplate?: TemplateRef<any> | ((row: any) => string); // For custom cell rendering - can be TemplateRef or function
   colspan?: number; // Number of columns this header spans
   subHeaders?: TableColumn[]; // Sub-headers for multi-level headers
   rowspan?: number; // Number of rows this header spans (for headers without subheaders)
@@ -71,6 +71,22 @@ export class TableComponent {
   @Input() showFooter: boolean = false; // Enable footer row
   @Input() footerLabel: string = 'Avg Score'; // Label for first column in footer
   @Input() footerCalculation: 'avg' | 'sum' | 'custom' = 'avg'; // Type of calculation
+  /**
+   * Custom footer values for each column
+   *
+   * Pass an object with field names as keys and their footer values.
+   * - If a value is provided, it will be displayed in the footer
+   * - If a value is null, undefined, or empty string (''), it won't be displayed
+   * - Only columns with values will show content in the footer row
+   *
+   * @example
+   * footerValues = {
+   *   fieldName1: '₹ 1,27,87,666', // Will be displayed
+   *   fieldName2: '61.67',           // Will be displayed
+   *   fieldName3: '',                // Won't be displayed (empty)
+   *   fieldName4: null               // Won't be displayed (null)
+   * }
+   */
   @Input() footerValues?: any; // Custom footer values
   @Input() showHeaderBorder: boolean = true; // Show/hide header borders
   @Output() pageChange = new EventEmitter<number>();
@@ -300,7 +316,7 @@ export class TableComponent {
     console.log('clicked capture by selction');
   }
 
-  getFooterValue(column: TableColumn, columnIndex: number): string {
+  getFooterValue(column: TableColumn, columnIndex: number): string | null {
     // First column shows the footer label
     if (columnIndex === 0) {
       return this.footerLabel;
@@ -308,7 +324,12 @@ export class TableComponent {
 
     // If custom footer values are provided, use them
     if (this.footerValues && this.footerValues[column.field] !== undefined) {
-      return this.footerValues[column.field];
+      const value = this.footerValues[column.field];
+      // Return null if value is explicitly null, undefined, or empty string
+      if (value === null || value === undefined || value === '') {
+        return null;
+      }
+      return value;
     }
 
     // Calculate based on footerCalculation type
@@ -331,13 +352,19 @@ export class TableComponent {
         if (columnIndex === this.columns.length - 1) {
           return avg.toFixed(2);
         }
-        return ''; // Empty for middle columns
+        return null; // Return null for middle columns so they're not displayed
       } else {
         return total.toString();
       }
     }
 
-    return '';
+    return null;
+  }
+
+  // Helper method to check if footer value should be displayed
+  shouldShowFooterValue(column: TableColumn, columnIndex: number): boolean {
+    const value = this.getFooterValue(column, columnIndex);
+    return value !== null && value !== '';
   }
 
   // Calculate average for the last column (financial score)
@@ -438,5 +465,10 @@ export class TableComponent {
 
     traverse(this.columns, 1);
     return result;
+  }
+
+  // Check if customTemplate is a TemplateRef
+  isTemplateRef(template: any): template is TemplateRef<any> {
+    return template instanceof TemplateRef;
   }
 }

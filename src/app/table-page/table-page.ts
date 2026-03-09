@@ -1,13 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TableComponent } from '../../../dist/eos-comp';
 
 @Component({
   selector: 'app-table-page',
-  imports: [ TableComponent ],
+  imports: [ TableComponent, CommonModule ],
   templateUrl: './table-page.html',
   styleUrl: './table-page.css',
 })
-export class TablePage {
+export class TablePage implements AfterViewInit {
+  @ViewChild('actionButtonTemplate', { static: false }) actionButtonTemplate!: TemplateRef<any>;
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  // Update policyColumns after view init to use the template
+  ngAfterViewInit() {
+    // Update the customTemplate to use the TemplateRef
+    const actionColumn = this.findColumnByField(this.policyColumns, 'suggestedAction');
+    if (actionColumn && this.actionButtonTemplate) {
+      actionColumn.customTemplate = this.actionButtonTemplate;
+      // Trigger change detection to update the view
+      this.cdr.detectChanges();
+    }
+  }
+
   // Financial Scoring Metrics Demo Data
   financialData = [
     {
@@ -78,6 +94,231 @@ export class TablePage {
     }
   ];
 
+  // Policy Details Table Data
+  policyData = [
+    {
+      policyName: "LIC's Nivesh Plus",
+      planType: 'ULIPS',
+      startDate: '21-01-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 1,00,000',
+      lifeCover: '₹ 1,25,000',
+      premiumPaidTillDate: '₹ 1,00,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-01-2024',
+      policyTenure: '23 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-03-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-04-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-05-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-06-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-07-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-08-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-09-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-10-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-11-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'HDFC SL ProGrowth Super II',
+      planType: 'ULIPS',
+      startDate: '25-12-2022',
+      policyTenure: '25 yrs',
+      annualPremium: '₹ 96,000',
+      lifeCover: '₹ 80,00,000',
+      premiumPaidTillDate: '₹ 24,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: 'CONTINUE TILL LOCK-IN',
+      isTotal: false
+    },
+    {
+      policyName: 'Total',
+      planType: '',
+      startDate: '',
+      policyTenure: '',
+      annualPremium: '₹ 11,56,000',
+      lifeCover: '₹ 8,81,25,000',
+      premiumPaidTillDate: '₹ 3,64,000',
+      premiumPayable: '₹ 0',
+      suggestedAction: '',
+      isTotal: true
+    }
+  ];
+
+  // Policy Details Table Columns
+  policyColumns = [
+    {
+      label: 'Policy Details',
+      field: '',
+      sortable: false,
+      subHeaders: [
+        {
+          label: 'Policy Name',
+          field: 'policyName',
+          sortable: false
+        },
+        {
+          label: 'Plan Type',
+          field: 'planType',
+          sortable: false
+        },
+        {
+          label: 'Start Date',
+          field: 'startDate',
+          sortable: false
+        },
+        {
+          label: 'Policy Tenure',
+          field: 'policyTenure',
+          sortable: false
+        },
+        {
+          label: 'Annual Premium',
+          field: 'annualPremium',
+          sortable: false
+        },
+        {
+          label: 'Life Cover',
+          field: 'lifeCover',
+          sortable: false
+        }
+      ]
+    },
+    {
+      label: 'Policy Evaluation',
+      field: '',
+      sortable: false,
+      subHeaders: [
+        {
+          label: 'Premium Paid Till Date',
+          field: 'premiumPaidTillDate',
+          sortable: false
+        },
+        {
+          label: 'Premium Payable',
+          field: 'premiumPayable',
+          sortable: false
+        },
+        {
+          label: 'Suggested Action',
+          field: 'suggestedAction',
+          sortable: false,
+          cellType: 'custom' as const,
+          customTemplate: this.actionButtonTemplate
+        }
+      ]
+    }
+  ];
+
   // Multi-level columns configuration
   liabilityColumns = [
     {
@@ -99,7 +340,7 @@ export class TablePage {
         {
           label: 'EMI',
           field: 'emi',
-          sortable: false
+          sortable: true
         }
       ]
     },
@@ -230,6 +471,14 @@ export class TablePage {
     return Math.round((total / this.financialData.length) * 100) / 100;
   }
 
+  // Custom footer values example - only show values for specific columns
+  customFooterValues = {
+    // idealValue: '₹ 1,27,87,666', // Total Ideal Value
+    // actualValue: '₹ 11,22,46,000', // Total Actual Value
+    financialScore: '61.67' // Average Financial Score
+    // Note: scoringMetric is not included, so it will only show the footerLabel
+  };
+
   onPageChange(page: number): void {
     this.currentPage = page;
     console.log('Page changed to:', page);
@@ -258,5 +507,25 @@ export class TablePage {
   
   onSearchButtonClick() {
   console.log('Button clicked!');
+  }
+
+  // Handle action button click
+  onActionButtonClick(row: any) {
+    console.log('Action button clicked for policy:', row);
+    alert(`Action for policy: ${row.policyName}\nSuggested Action: ${row.suggestedAction}`);
+  }
+
+  // Helper to find a column by field (handles nested subHeaders)
+  private findColumnByField(columns: any[], field: string): any {
+    for (const col of columns) {
+      if (col.field === field) {
+        return col;
+      }
+      if (col.subHeaders) {
+        const found = this.findColumnByField(col.subHeaders, field);
+        if (found) return found;
+      }
+    }
+    return null;
   }
 }
