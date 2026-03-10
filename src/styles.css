@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* AG-Grid Styles - Version 35+ */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
 .app-layout {
     display: flex;
     min-height: 100vh;

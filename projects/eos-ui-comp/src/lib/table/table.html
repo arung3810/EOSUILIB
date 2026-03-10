@@ -13,6 +13,7 @@
               [attr.rowspan]="getRowspan(col, i + 1, getMaxHeaderDepth())"
               [class.sortable]="col.sortable !== false && (!col.subHeaders || col.subHeaders.length === 0)"
               [class.sorted]="isColumnSorted(col.field)"
+              [style.text-align]="col.align || 'left'"
               (click)="col.sortable !== false && (!col.subHeaders || col.subHeaders.length === 0) ? onSort(col.field) : null"
             >
               {{ col.label }}
@@ -30,6 +31,7 @@
               *ngFor="let col of columns"
               [class.sortable]="col.sortable !== false"
               [class.sorted]="isColumnSorted(col.field)"
+              [style.text-align]="col.align || 'left'"
               (click)="col.sortable !== false ? onSort(col.field) : null"
             >
               {{ col.label }}
@@ -43,7 +45,7 @@
 
       <tbody>
         <tr *ngFor="let row of paginatedRows" [class.total-row]="row.isTotal">
-          <td *ngFor="let col of hasMultiLevelHeaders() ? getLeafColumns() : columns">
+          <td *ngFor="let col of hasMultiLevelHeaders() ? getLeafColumns() : columns" [style.text-align]="col.align || 'left'">
             <!-- Custom cell type with TemplateRef -->
             <ng-container *ngIf="col.cellType === 'custom' && isTemplateRef(col.customTemplate)">
               <ng-container *ngTemplateOutlet="col.customTemplate; context: { $implicit: row, row: row }">
@@ -63,12 +65,13 @@
         </tr>
       </tbody>
 
-      <!-- Footer with Avg Score - Only show if showFooter is true -->
+      <!-- Footer with Total/Summary - Only show if showFooter is true -->
       <tfoot *ngIf="showFooter">
-        <tr class="avg-row">
+        <tr class="total-row">
           <td *ngFor="let col of (hasMultiLevelHeaders() ? getLeafColumns() : columns); let i = index"
-              [class.avg-label]="i === 0"
-              [class.avg-value]="i === (hasMultiLevelHeaders() ? getLeafColumns() : columns).length - 1">
+              [class.footer-label]="i === 0"
+              [class.footer-value]="shouldShowFooterValue(col, i) && i !== 0"
+              [style.text-align]="col.align || 'left'">
             <ng-container *ngIf="shouldShowFooterValue(col, i)">
               {{ getFooterValue(col, i) }}
             </ng-container>
@@ -80,11 +83,23 @@
 </div>
 } @else if(tableType === "dynamic"){
 <div class="table-container dynamic">
+  <!-- Dynamic Header Section -->
+  <div class="table-header" *ngIf="tableTitle || headerRightTemplate">
+    <div class="table-header-left">
+      <h2 class="table-title">{{ tableTitle }}</h2>
+    </div>
+    <div class="table-header-right">
+      <ng-container *ngIf="headerRightTemplate">
+        <ng-container *ngTemplateOutlet="headerRightTemplate"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+
   <div class="table-responsive">
         <table>
         <thead>
           <tr>
-            <th *ngFor="let col of columns" [class.sortable]="col.sortable !== false" [class.sorted]="isColumnSorted(col.field)">
+            <th *ngFor="let col of columns" [class.sortable]="col.sortable !== false" [class.sorted]="isColumnSorted(col.field)" [style.text-align]="col.align || 'left'">
               <span (click)="col.sortable !== false && onSort(col.field)" [style.cursor]="col.sortable !== false ? 'pointer' : 'default'">
                 {{ col.label }}
                 <span *ngIf="col.sortable !== false" class="sort-icon">{{ getSortIcon(col.field) }}</span>
@@ -114,7 +129,7 @@
         
           <tbody>
               <tr *ngFor="let row of paginatedRows">
-                  <td *ngFor="let col of columns">
+                  <td *ngFor="let col of columns" [style.text-align]="col.align || 'left'">
                     <!-- Dropdown cell type -->
                     <ng-container *ngIf="col.cellType === 'dropdown' || col.dropdownOptions === true">
                       <select class="dropdown-attendance" [value]="getSelectedValue(row, col)" (change)="onDropdownChange($event, row, col)">
@@ -156,7 +171,7 @@
           <!-- Footer row for summary/average if enabled -->
           <tfoot *ngIf="showFooter">
               <tr class="footer-row">
-                  <td *ngFor="let col of columns; let i = index" [class.footer-bold]="i === 0 || i === columns.length - 1">
+                  <td *ngFor="let col of columns; let i = index" [class.footer-bold]="i === 0 || i === columns.length - 1" [style.text-align]="col.align || 'left'">
                       <ng-container *ngIf="shouldShowFooterValue(col, i)">
                           {{ getFooterValue(col, i) }}
                       </ng-container>
@@ -219,9 +234,9 @@
     <table>
       <thead>
         <tr>
-          <th class="header-label">{{ columns[0]?.label || 'Tax Comparison' }}</th>
-          <th class="regime-header">{{ columns[1]?.label || 'Old Regime' }}</th>
-          <th class="regime-header regime-ideal">
+          <th class="header-label" [style.text-align]="columns[0]?.align || 'left'">{{ columns[0]?.label || 'Tax Comparison' }}</th>
+          <th class="regime-header" [style.text-align]="columns[1]?.align || 'center'">{{ columns[1]?.label || 'Old Regime' }}</th>
+          <th class="regime-header regime-ideal" [style.text-align]="columns[2]?.align || 'center'">
             {{ columns[2]?.label || 'New Regime' }}
             <span class="ideal-badge">IDEAL</span>
           </th>
@@ -230,13 +245,25 @@
 
       <tbody>
         <tr *ngFor="let row of rows" [class.highlight-row]="row.isHighlighted">
-          <td class="label-cell">{{ getCellValue(row, columns[0]) }}</td>
-          <td class="value-cell">{{ getCellValue(row, columns[1]) }}</td>
-          <td class="value-cell">{{ getCellValue(row, columns[2]) }}</td>
+          <td class="label-cell" [style.text-align]="columns[0]?.align || 'left'">{{ getCellValue(row, columns[0]) }}</td>
+          <td class="value-cell" [style.text-align]="columns[1]?.align || 'center'">{{ getCellValue(row, columns[1]) }}</td>
+          <td class="value-cell" [style.text-align]="columns[2]?.align || 'center'">{{ getCellValue(row, columns[2]) }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>
+} @else if(tableType === "agTable"){
+<!-- Deductions & Exemptions Table using AG-Grid -->
+<div class="table-container deductions-table">
+  <ag-grid-angular
+    class="ag-theme-quartz deductions-grid-scrollable"
+    [style.height]="tableHeight || '600px'"
+    [style.width]="'100%'"
+    [rowData]="rows"
+    [columnDefs]="agGridColDefs"
+    [gridOptions]="agGridOptions">
+  </ag-grid-angular>
 </div>
 } @else{
 

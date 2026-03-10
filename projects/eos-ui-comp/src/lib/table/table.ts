@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { AgGridAngular } from 'ag-grid-angular';
+import type { ColDef, GridOptions } from 'ag-grid-community';
 
 export type CellType = 'text' | 'dropdown' | 'tooltip' | 'custom';
 export type SortDirection = 'asc' | 'desc' | null;
@@ -52,25 +54,32 @@ export interface TableColumn {
   colspan?: number; // Number of columns this header spans
   subHeaders?: TableColumn[]; // Sub-headers for multi-level headers
   rowspan?: number; // Number of rows this header spans (for headers without subheaders)
+  align?: 'left' | 'center' | 'right'; // Text alignment for header and cells (defaults to 'left')
 }
 
 @Component({
   selector: 'lib-table',
   standalone: true,
-  imports: [NgIf, CommonModule],
+  imports: [NgIf, CommonModule, AgGridAngular],
   templateUrl: './table.html',
   styleUrls: ['./table.css']
 })
-export class TableComponent {
-  @Input() tableType: 'dynamic' | 'static' | 'financial-scoring' | 'tax-comparison' = 'dynamic';
+export class TableComponent implements OnInit {
+  @Input() tableType: 'dynamic' | 'static' | 'financial-scoring' | 'tax-comparison' | 'agTable' = 'dynamic';
   @Input() columns: TableColumn[] = [];
   @Input() rows: any[] = []; // Changed to any[] to support dynamic data
+  @Input() agGridColDefs?: ColDef[]; // AG-Grid column definitions for deductions table
+  @Input() agGridOptions?: GridOptions; // AG-Grid options for deductions table
+  @Input() tableHeight?: string; // Height for scrollable AG-Grid table (e.g., '600px', '500px')
+  @Input() columnAlignments?: { [field: string]: 'left' | 'center' | 'right' }; // Field-level alignment for AG-Grid columns
   @Input() total: number = 0;
   @Input() page: number = 1;
   @Input() pageSize: number = 5;
   @Input() showFooter: boolean = false; // Enable footer row
   @Input() footerLabel: string = 'Avg Score'; // Label for first column in footer
   @Input() footerCalculation: 'avg' | 'sum' | 'custom' = 'avg'; // Type of calculation
+  @Input() tableTitle: string = ''; // Title to display above the table
+  @Input() headerRightTemplate?: TemplateRef<any>; // Template for right side component in header
   /**
    * Custom footer values for each column
    *
@@ -94,6 +103,60 @@ export class TableComponent {
 
   sortField: string | null = null;
   sortDirection: SortDirection = null;
+
+  ngOnInit(): void {
+    // Apply column alignments to AG-Grid column definitions if provided
+    if (this.columnAlignments && this.agGridColDefs) {
+      this.applyColumnAlignments();
+    }
+  }
+
+  private applyColumnAlignments(): void {
+    if (!this.agGridColDefs || !this.columnAlignments) return;
+
+    this.agGridColDefs.forEach(colDef => {
+      if (colDef.field && this.columnAlignments![colDef.field]) {
+        const alignment = this.columnAlignments![colDef.field];
+
+        // Apply alignment to cellStyle
+        const existingStyle = colDef.cellStyle;
+
+        if (typeof existingStyle === 'function') {
+          // If cellStyle is a function, wrap it to add textAlign
+          const originalStyleFn = existingStyle;
+          colDef.cellStyle = (params: any) => {
+            const style = originalStyleFn(params) || {};
+            return {
+              ...style,
+              textAlign: alignment
+            };
+          };
+        } else if (typeof existingStyle === 'object') {
+          // If cellStyle is an object, merge with textAlign
+          colDef.cellStyle = {
+            ...existingStyle,
+            textAlign: alignment
+          };
+        } else {
+          // If no cellStyle exists, create a new one
+          colDef.cellStyle = {
+            textAlign: alignment
+          };
+        }
+
+        // Apply alignment to headerClass for header alignment
+        colDef.headerClass = `header-align-${alignment}`;
+
+        // Add cellClass for additional styling if needed
+        const existingCellClass = colDef.cellClass;
+        if (typeof existingCellClass === 'string') {
+          colDef.cellClass = `${existingCellClass} cell-align-${alignment}`;
+        } else {
+          colDef.cellClass = `cell-align-${alignment}`;
+        }
+      }
+    });
+  }
 
   get computedTotal(): number {
     return this.total > 0 ? this.total : this.rows.length;

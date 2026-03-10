@@ -8,6 +8,40 @@
     </button>
   </ng-template>
 
+  <!-- Header Right Template (for dynamic header) -->
+  <ng-template #headerRightTemplate>
+    <button class="create-meeting-button" (click)="onCreateMeetingClick()">
+      + Create Meeting
+    </button>
+  </ng-template>
+
+  <!-- Income & Expense Table using AG-Grid -->
+  <div class="showcase-section">
+    <h3>Income & Expense Table (AG-Grid)</h3>
+    <p>Financial income and expense tracking with type badges, edit icons, and custom cell renderers</p>
+    <lib-table
+      [tableType]="'agTable'"
+      [rows]="incomeExpenseRowData"
+      [agGridColDefs]="incomeExpenseColDefs"
+      [agGridOptions]="incomeExpenseGridOptions"
+      [columnAlignments]="incomeExpenseColumnAlignments">
+    </lib-table>
+  </div>
+
+  <!-- Deductions & Exemptions Table using AG-Grid -->
+  <div class="showcase-section">
+    <h3>Deductions & Exemptions (AG-Grid)</h3>
+    <p>Dynamic tax deductions table with custom cell renderers, styling, scrollable body, and field-level alignment control</p>
+    <lib-table
+      [tableType]="'agTable'"
+      [rows]="deductionsRowData"
+      [agGridColDefs]="deductionsColDefs"
+      [agGridOptions]="deductionsGridOptions"
+      [tableHeight]="'500px'"
+      [columnAlignments]="deductionsColumnAlignments">
+    </lib-table>
+  </div>
+
   <!-- Tax Comparison Table -->
   <div class="showcase-section">
     <h3>Tax Comparison Table</h3>
@@ -24,10 +58,12 @@
     <h3>Policy Details & Evaluation</h3>
     <p>Insurance Policy Management with Multi-Level Headers</p>
     <lib-table
+      [showFooter]="true"
+      [footerLabel]="'Total'"
+      [footerValues]="customFooterValuesPolicy"
       [tableType]="'financial-scoring'"
       [columns]="policyColumns"
-      [rows]="policyData"
-      [showFooter]="false">
+      [rows]="policyData">
     </lib-table>
   </div>
 
@@ -60,10 +96,12 @@
 
   <!-- Meeting Data Demo -->
   <div class="showcase-section">
-    <h3>Meeting Data Table with Advanced Features</h3>
-    <p>A feature-rich table component with sorting, pagination, dropdowns, tooltips, and selective footer display</p>
+    <h3>Meeting Data Table with Advanced Features & Dynamic Header</h3>
+    <p>A feature-rich table component with sorting, pagination, dropdowns, tooltips, dynamic header with title and custom component</p>
     <lib-table
       [tableType]="'dynamic'"
+      [tableTitle]="'Meetings Logs'"
+      [headerRightTemplate]="headerRightTemplate"
       [columns]="columns"
       [rows]="tableData"
       [total]="totalRows"

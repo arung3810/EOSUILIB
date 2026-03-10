@@ -11,6 +11,35 @@ h2 {
   font-size: 20px;
 }
 
+/* Table Header Styles */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  margin-bottom: 0;
+}
+
+.table-header-left {
+  flex: 1;
+}
+
+.table-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #16192C;
+  line-height: 1.5;
+}
+
+.table-header-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .table-responsive {
   border: 1px solid #ddd;
   overflow: auto;
@@ -33,7 +62,7 @@ h2 {
 }
 
 table {
-  border: 1px solid #e5ebf3;
+  /* border: 1px solid #e5ebf3; */
   width: 100%;
   border-collapse: collapse;
   min-width: 800px;
@@ -133,7 +162,7 @@ tfoot td.footer-bold {
 }
 
 .dynamic .table-responsive th{
-  border-right: 0;
+  border: 0;
 }
 
 .financial-scoring-table thead th:last-child {
@@ -172,7 +201,7 @@ tfoot td.footer-bold {
   border-top: 1px solid #e5e7eb;
 }
 
-.financial-scoring-table tfoot tr.avg-row td {
+.financial-scoring-table tfoot tr.total-row td {
   font-size: 14px;
   font-weight: 700;
   color: #272727;
@@ -180,13 +209,15 @@ tfoot td.footer-bold {
   border-bottom: 1px solid #e5e7eb;
 }
 
-.financial-scoring-table tfoot tr.avg-row td.avg-label {
+.financial-scoring-table tfoot tr.total-row td.footer-label {
   font-weight: 700;
+  color: #272727;
 }
 
-.financial-scoring-table tfoot tr.avg-row td.avg-value {
+.financial-scoring-table tfoot tr.total-row td.footer-value {
   font-weight: 700;
   text-align: left;
+  color: #272727;
 }
 
 a {
@@ -290,7 +321,7 @@ select {
   padding: 0;
 }
 .pagination {
-  padding: 16px 0px;
+  padding: 13px 0px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -298,7 +329,8 @@ select {
   gap: 10px;
   color: #333;
   background-color: #f8fafc;
-  border: 1px solid #e5ebf3;;
+  border: 1px solid #e5ebf3;
+  border-top: 0;
 }
 
 .pagination strong {
@@ -495,6 +527,10 @@ select {
   background-color: #ffffff;
 }
 
+.dynamic .table-responsive table thead tr th{
+  padding: 16px;
+}
+
 .tax-comparison-table thead th {
   font-size: 16px;
   font-weight: 600;
@@ -589,4 +625,213 @@ select {
 .tax-comparison-table tbody tr.highlight-row td.label-cell {
   font-weight: 700;
   color: #111827;
+}
+
+/* Deductions Table - AG-Grid Styles */
+.deductions-table {
+  padding: 0;
+  width: 100%;
+  /* Remove fixed height from container - let AG-Grid handle it */
+}
+
+.deductions-table .ag-theme-quartz {
+  --ag-border-color: #e5e7eb;
+  --ag-header-background-color: #f8fafc;
+  --ag-header-foreground-color: #374151;
+  --ag-font-size: 14px;
+  --ag-row-hover-color: #fafbfc;
+}
+
+/* Scrollable Grid Specific Styles */
+.deductions-grid-scrollable {
+  /* The height is set inline via [style.height] */
+}
+
+.deductions-grid-scrollable ::ng-deep .ag-body-viewport {
+  overflow-y: auto !important;
+}
+
+.deductions-grid-scrollable ::ng-deep .ag-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Custom Cell Styles for Deductions Grid */
+.deductions-table ::ng-deep .deduction-details {
+  padding: 10px 0;
+}
+
+.deductions-table ::ng-deep .deduction-details .main-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1d;
+  line-height: 1.4;
+}
+
+.deductions-table ::ng-deep .deduction-details .sub-text {
+  font-size: 12px;
+  color: #718096;
+  margin-top: 4px;
+}
+
+.deductions-table ::ng-deep .max-deduction {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.deductions-table ::ng-deep .eligible-badge {
+  display: inline-block;
+  background: #FFF4E6;
+  color: #F5A623;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.deductions-table ::ng-deep .max-deduction .amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1d;
+}
+
+.deductions-table ::ng-deep .max-amounts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deductions-table ::ng-deep .max-amounts .old-regime,
+.deductions-table ::ng-deep .max-amounts .new-regime {
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.deductions-table ::ng-deep .view-details {
+  color: #3b82f6;
+  font-size: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.deductions-table ::ng-deep .view-details:hover {
+  text-decoration: underline;
+}
+
+.deductions-table ::ng-deep .current-value-cell {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1d;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.deductions-table ::ng-deep .suggested-util {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  padding-right: 30px;
+}
+
+.deductions-table ::ng-deep .suggested-util .main-amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1d;
+}
+
+.deductions-table ::ng-deep .suggested-util .additional-amount {
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 500;
+}
+
+.deductions-table ::ng-deep .suggested-util .edit-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.deductions-table ::ng-deep .suggested-util .edit-icon:hover {
+  opacity: 1;
+}
+
+.deductions-table ::ng-deep .total-row {
+  background-color: #f9fafb;
+  font-weight: 700;
+  border-top: 2px solid #e5e7eb;
+}
+
+.deductions-table ::ng-deep .total-row .ag-cell {
+  font-weight: 700;
+  color: #1a1a1d;
+}
+
+.deductions-table ::ng-deep .ag-header {
+  background-color: #f8fafc;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.deductions-table ::ng-deep .ag-header-cell {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  padding: 12px 16px;
+}
+
+.deductions-table ::ng-deep .ag-cell {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+}
+
+.deductions-table ::ng-deep .ag-row:hover {
+  background-color: #fafbfc;
+}
+
+.deductions-table ::ng-deep .ag-root-wrapper {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header Alignment Classes for AG-Grid */
+.deductions-table ::ng-deep .header-align-left .ag-header-cell-label {
+  justify-content: flex-start;
+}
+
+.deductions-table ::ng-deep .header-align-center .ag-header-cell-label {
+  justify-content: center;
+}
+
+.deductions-table ::ng-deep .header-align-right .ag-header-cell-label {
+  justify-content: flex-end;
+}
+
+/* Cell Alignment Classes for AG-Grid */
+.deductions-table ::ng-deep .cell-align-left {
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+.deductions-table ::ng-deep .cell-align-center {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+.deductions-table ::ng-deep .cell-align-right {
+  text-align: right !important;
+  justify-content: flex-end !important;
 }
