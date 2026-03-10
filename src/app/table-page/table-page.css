@@ -357,3 +357,18 @@ tbody tr:hover {
 ::ng-deep .ag-watermark {
   display: none !important;
 }
+
+/* Remove focus border from AG-Grid cells */
+::ng-deep .ag-cell-focus,
+::ng-deep .ag-cell-no-focus {
+  border: none !important;
+}
+
+::ng-deep .ag-cell:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+::ng-deep .ag-row:focus-within .ag-cell {
+  border: none !important;
+}

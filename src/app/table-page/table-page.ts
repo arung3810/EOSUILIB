@@ -997,4 +997,216 @@ export class TablePage implements AfterViewInit {
     console.log('Max Deduction:', rowData.maxDeduction);
     console.log('Current Value:', rowData.currentValue);
   }
+
+  // Scheme Portfolio Table using AG-Grid (matching the image)
+  schemePortfolioRowData = [
+    {
+      schemeName: 'Quant Small Cap Fund',
+      plan: 'Direct',
+      category: 'Equity',
+      schemeType: 'Small cap Fund',
+      totalExpenseRatio: 0.75,
+      currentValue: 40.6,
+      sip: 2,
+      score: 69,
+      isTotal: false
+    }
+  ];
+
+  // Scheme Portfolio Table Column Definitions
+  schemePortfolioColDefs: ColDef[] = [
+    {
+      headerName: 'Scheme Name',
+      field: 'schemeName',
+      minWidth: 250,
+      flex: 2,
+      cellClass: 'scheme-name-cell',
+      cellStyle: { textAlign: 'left', paddingLeft: '24px', fontWeight: '500' },
+      headerClass: 'header-with-sort',
+      sortable: false,
+      filter: false
+    },
+    {
+      headerName: 'Plan',
+      field: 'plan',
+      minWidth: 150,
+      flex: 1,
+      cellClass: 'plan-cell',
+      cellStyle: { textAlign: 'center' },
+      headerClass: 'header-with-sort',
+      sortable: true,
+      filter: false,
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) return '';
+        const { plan } = params.data;
+        return `<span style="color: #10B981; font-weight: 500;">${plan}</span>`;
+      }
+    },
+    {
+      headerName: 'Category',
+      field: 'category',
+      minWidth: 150,
+      flex: 1,
+      cellClass: 'category-cell',
+      cellStyle: { textAlign: 'center' },
+      headerClass: 'header-with-sort header-with-filter',
+      sortable: true,
+      filter: 'agSetColumnFilter',
+      floatingFilter: false,
+      filterParams: {
+        buttons: ['apply', 'reset'],
+        closeOnApply: true
+      },
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) return '';
+        return params.value;
+      }
+    },
+    {
+      headerName: 'Scheme Type',
+      field: 'schemeType',
+      minWidth: 200,
+      flex: 1.5,
+      cellClass: 'scheme-type-cell',
+      cellStyle: { textAlign: 'center' },
+      headerClass: 'header-with-sort header-with-filter',
+      sortable: true,
+      filter: 'agSetColumnFilter',
+      floatingFilter: false,
+      filterParams: {
+        buttons: ['apply', 'reset'],
+        closeOnApply: true
+      },
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) return '';
+        return params.value;
+      }
+    },
+    {
+      headerName: 'Total Expense Ratio',
+      field: 'totalExpenseRatio',
+      minWidth: 180,
+      flex: 1.2,
+      cellClass: 'expense-ratio-cell',
+      cellStyle: { textAlign: 'center' },
+      headerClass: 'header-with-sort header-with-icon',
+      sortable: true,
+      filter: false,
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) {
+          return `<div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="9" stroke="#8B8D93" stroke-width="1.5"/>
+              <path d="M10 6V10.5M10 14H10.01" stroke="#8B8D93" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <strong style="color: #16192C;">${params.value}%</strong>
+          </div>`;
+        }
+        return `${params.value}%`;
+      }
+    },
+    {
+      headerName: 'Current Value',
+      field: 'currentValue',
+      minWidth: 170,
+      flex: 1.2,
+      cellClass: 'current-value-cell',
+      cellStyle: { textAlign: 'right', paddingRight: '24px' },
+      headerClass: 'header-with-sort',
+      sortable: true,
+      filter: false,
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) {
+          return `<strong style="color: #16192C;">₹ ${params.value}K</strong>`;
+        }
+        return `₹ ${params.value}K`;
+      }
+    },
+    {
+      headerName: 'SIP',
+      field: 'sip',
+      minWidth: 150,
+      flex: 1,
+      cellClass: 'sip-cell',
+      cellStyle: { textAlign: 'right', paddingRight: '24px' },
+      headerClass: 'header-with-sort',
+      sortable: true,
+      filter: false,
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) {
+          return `<strong style="color: #16192C;">₹ ${params.value}K</strong>`;
+        }
+        return `₹ ${params.value}K`;
+      }
+    },
+    {
+      headerName: 'Score',
+      field: 'score',
+      minWidth: 130,
+      flex: 1,
+      cellClass: 'score-cell',
+      cellStyle: { textAlign: 'right', paddingRight: '24px' },
+      headerClass: 'header-with-sort',
+      sortable: true,
+      filter: false,
+      cellRenderer: (params: any) => {
+        if (params.data.isTotal) {
+          return `<strong style="color: #16192C;">${params.value}</strong>`;
+        }
+        return `<span style="font-weight: 500;">${params.value}</span>`;
+      }
+    }
+  ];
+
+  schemePortfolioGridOptions: GridOptions = {
+    defaultColDef: {
+      sortable: false,
+      filter: false,
+      resizable: false,
+      suppressMovable: true,
+      menuTabs: ['filterMenuTab'],
+      suppressMenu: false
+    },
+    domLayout: 'autoHeight',
+    headerHeight: 60,
+    rowHeight: 72,
+    suppressRowHoverHighlight: false,
+    suppressHorizontalScroll: false,
+    suppressRowClickSelection: true,
+    rowSelection: undefined,
+    rowClass: 'scheme-portfolio-row',
+    suppressMenuHide: false,
+    getRowClass: (params) => {
+      if (params.data.isTotal) {
+        return 'total-row';
+      }
+      return '';
+    },
+    // Add pinned bottom row for totals
+    pinnedBottomRowData: [
+      {
+        schemeName: 'Total',
+        plan: '',
+        category: '',
+        schemeType: '',
+        totalExpenseRatio: 0.75,
+        currentValue: 40.6,
+        sip: 2,
+        score: 69,
+        isTotal: true
+      }
+    ]
+  };
+
+  // Column alignments for scheme portfolio table
+  schemePortfolioColumnAlignments = {
+    schemeName: 'left' as const,
+    plan: 'center' as const,
+    category: 'center' as const,
+    schemeType: 'center' as const,
+    totalExpenseRatio: 'center' as const,
+    currentValue: 'right' as const,
+    sip: 'right' as const,
+    score: 'right' as const
+  };
 }

@@ -15,6 +15,19 @@
     </button>
   </ng-template>
 
+  <!-- Scheme Portfolio Table using AG-Grid -->
+  <div class="showcase-section">
+    <h3>Scheme Portfolio Table (AG-Grid)</h3>
+    <p>Investment scheme portfolio with fund details, expense ratios, current values, and performance scores</p>
+    <lib-table
+      [tableType]="'agTable'"
+      [rows]="schemePortfolioRowData"
+      [agGridColDefs]="schemePortfolioColDefs"
+      [agGridOptions]="schemePortfolioGridOptions"
+      [columnAlignments]="schemePortfolioColumnAlignments">
+    </lib-table>
+  </div>
+
   <!-- Income & Expense Table using AG-Grid -->
   <div class="showcase-section">
     <h3>Income & Expense Table (AG-Grid)</h3>
