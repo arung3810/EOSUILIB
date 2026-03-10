@@ -62,7 +62,7 @@ export interface TableColumn {
   styleUrls: ['./table.css']
 })
 export class TableComponent {
-  @Input() tableType: 'dynamic' | 'static' | 'financial-scoring' = 'dynamic';
+  @Input() tableType: 'dynamic' | 'static' | 'financial-scoring' | 'tax-comparison' = 'dynamic';
   @Input() columns: TableColumn[] = [];
   @Input() rows: any[] = []; // Changed to any[] to support dynamic data
   @Input() total: number = 0;

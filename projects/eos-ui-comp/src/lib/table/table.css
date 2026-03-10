@@ -477,3 +477,116 @@ select {
 .financial-scoring-table tbody tr.total-row:hover {
   background-color: #f8fafc;
 }
+
+/* Tax Comparison Table Styles */
+.tax-comparison-table .table-responsive {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tax-comparison-table table {
+  border: none;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tax-comparison-table thead {
+  background-color: #ffffff;
+}
+
+.tax-comparison-table thead th {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  padding: 45px 25px;
+  text-align: center;
+  border-bottom: 2px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.tax-comparison-table thead th:last-child {
+  border-right: none;
+}
+
+.tax-comparison-table thead th.header-label {
+  text-align: left;
+  font-weight: 700;
+  background-color: #ffffff;
+}
+
+.tax-comparison-table thead th.regime-ideal {
+  position: relative;
+}
+
+.tax-comparison-table .ideal-badge {
+  width: 100%;
+    position: absolute;
+    padding: 8px 16px;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bad5c7;
+    color: #262626;
+    font-family: League Spartan, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-top: -1px;
+}
+
+.tax-comparison-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tax-comparison-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tax-comparison-table tbody td {
+  font-size: 15px;
+  font-weight: 400;
+  color: #4b5563;
+  padding: 30px 25px;
+  border-right: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.tax-comparison-table tbody td:last-child {
+  border-right: none;
+}
+
+.tax-comparison-table tbody td.label-cell {
+  font-weight: 500;
+  color: #6b7280;
+  text-align: left;
+}
+
+.tax-comparison-table tbody td.value-cell {
+  text-align: center;
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.tax-comparison-table tbody tr.highlight-row {
+  background-color: #f3f4f6;
+}
+
+.tax-comparison-table tbody tr.highlight-row td {
+  font-weight: 700;
+  color: #111827;
+  font-size: 17px;
+  padding: 30px 25px;
+  background-color: #e8f5ee;
+}
+
+.tax-comparison-table tbody tr.highlight-row td.label-cell {
+  font-weight: 700;
+  color: #111827;
+}

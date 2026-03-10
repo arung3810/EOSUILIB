@@ -8,6 +8,17 @@
     </button>
   </ng-template>
 
+  <!-- Tax Comparison Table -->
+  <div class="showcase-section">
+    <h3>Tax Comparison Table</h3>
+    <p>Compare tax calculations between Old Regime and New Regime with highlighted totals</p>
+    <lib-table
+      [tableType]="'tax-comparison'"
+      [columns]="taxComparisonColumns"
+      [rows]="taxComparisonData">
+    </lib-table>
+  </div>
+
   <!-- Policy Details Table -->
   <div class="showcase-section">
     <h3>Policy Details & Evaluation</h3>

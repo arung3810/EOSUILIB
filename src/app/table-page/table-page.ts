@@ -24,6 +24,61 @@ export class TablePage implements AfterViewInit {
     }
   }
 
+  // Tax Comparison Demo Data
+  taxComparisonData = [
+    {
+      label: 'Gross Income',
+      oldRegime: '₹ 30,13,221',
+      newRegime: '₹ 30,13,221',
+      isHighlighted: false
+    },
+    {
+      label: 'Non-Taxable Component',
+      oldRegime: '₹ 1,92,000',
+      newRegime: '₹ 1,92,000',
+      isHighlighted: false
+    },
+    {
+      label: 'Standard Deduction',
+      oldRegime: '₹ 50,000',
+      newRegime: '₹ 75,000',
+      isHighlighted: false
+    },
+    {
+      label: 'Deductions',
+      oldRegime: '₹ 37,000',
+      newRegime: '₹ 3,000',
+      isHighlighted: false
+    },
+    {
+      label: 'Taxable Income',
+      oldRegime: '₹ 27,28,220',
+      newRegime: '₹ 27,37,220',
+      isHighlighted: true
+    },
+    {
+      label: 'Tax Liability',
+      oldRegime: '₹ 6,56,204',
+      newRegime: '₹ 4,17,212',
+      isHighlighted: true
+    }
+  ];
+
+  taxComparisonColumns = [
+    {
+      label: 'Tax Comparison',
+      field: 'label'
+    },
+    {
+      label: 'Old Regime',
+      field: 'oldRegime'
+    },
+    {
+      label: 'New Regime (opted)',
+      field: 'newRegime'
+    }
+  ];
+
   // Financial Scoring Metrics Demo Data
   financialData = [
     {

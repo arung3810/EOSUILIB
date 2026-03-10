@@ -213,6 +213,31 @@
       </button>
   </div>
 </div>
+} @else if(tableType === "tax-comparison"){
+<div class="table-container tax-comparison-table">
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th class="header-label">{{ columns[0]?.label || 'Tax Comparison' }}</th>
+          <th class="regime-header">{{ columns[1]?.label || 'Old Regime' }}</th>
+          <th class="regime-header regime-ideal">
+            {{ columns[2]?.label || 'New Regime' }}
+            <span class="ideal-badge">IDEAL</span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of rows" [class.highlight-row]="row.isHighlighted">
+          <td class="label-cell">{{ getCellValue(row, columns[0]) }}</td>
+          <td class="value-cell">{{ getCellValue(row, columns[1]) }}</td>
+          <td class="value-cell">{{ getCellValue(row, columns[2]) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 } @else{
-  
+
 }
