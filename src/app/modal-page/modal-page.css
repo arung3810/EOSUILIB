@@ -68,3 +68,247 @@ code {
 tbody tr:hover {
   background: #f9fafb;
 }
+
+/* Actions Modal Content (Matching the Image) */
+.actions-modal-content {
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.action-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  background: #fff;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.action-header:hover {
+  background: #f9fafb;
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #6b7280;
+}
+
+.action-body {
+  padding: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-text {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+}
+
+.btn-text:hover {
+  color: #374151;
+}
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid #000;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btn-add-more {
+  width: 100%;
+  background: transparent;
+  border: 1px dashed #d1d5db;
+  color: #6b7280;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.btn-add-more:hover {
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+.plus-icon {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.modal-footer-actions {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  background: #e5e7eb;
+  border: none;
+  color: #9ca3af;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: not-allowed;
+  transition: all 0.2s;
+}
+
+.btn-save:not(:disabled):hover {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Upload Modal Styles */
+.upload-modal-body {
+  padding: 2.5rem 2rem 2rem 2rem;
+}
+
+.upload-drop-zone {
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  text-align: center;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  position: relative;
+}
+
+.upload-drop-zone:hover {
+  border-color: #bdbdbd;
+  background: #fafafa;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.upload-btn {
+  background: #000000;
+  color: #ffffff;
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.upload-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.upload-btn:hover {
+  background: #1a1a1a;
+}
+
+.upload-hint {
+  color: #757575;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+/* Code Example Styling */
+.code-example {
+  margin-top: 1rem;
+}
+
+.code-example pre {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.code-example code {
+  color: #d4d4d4;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  background: transparent;
+  padding: 0;
+}
