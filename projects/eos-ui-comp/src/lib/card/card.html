@@ -46,7 +46,7 @@
           }
         </div>
         <div class="col-6 view-col">
-          @for (item of categoryList.slice(3,categoryList?.length); track item) {
+          @for (item of categoryList.slice(3,categoryList.length); track item) {
           <div class="view-row">
             <span class="li-span child4">{{ item.key }}</span>
             <div style="display: flex; gap: 0.5rem;align-items: center;">
@@ -94,13 +94,13 @@
   } @else if(cardType === "creditcard") {
   <div class="credit-cutome-card">
     <div class="credit-img-w mb-3">
-      <img alt="" [src]="creditCard?.imgUrl">
+      <img alt="" [src]="creditCard.imgUrl">
     </div>
     <div class="cerdit-content">
-      <span>{{creditCard?.cardName}}</span>
+      <span>{{creditCard.cardName}}</span>
     </div>
     <div class="credit-footer">
-      <button (click)="creditCard?.handleClick()" class="btn white-md-btn credit-card-btn">View Details
+      <button (click)="creditCard.handleClick()" class="btn white-md-btn credit-card-btn">View Details
         <span>
           <i i-bs="" name="chevronRight" width="0.7rem" height="0.5rem">
             <svg xmlns="http://www.w3.org/2000/svg" width="0.7rem" height="0.5rem" fill="currentColor"
@@ -452,7 +452,7 @@
           <h6 class="section-title mb-0 ms-3">{{ nomineeTitle }}</h6>
         </div>
       </div>
-      @if(!!nomineeList?.length){
+      @if(!!nomineeList.length){
       <div class="nominee-list-panel mt-4">
         <div class="nominees-label">{{ nomineeSubtitle }}</div>
         <div class="nominee-pills mt-3">
@@ -678,7 +678,7 @@
         }
       </div>
       <div class="actions-list-content">
-        @if(!!actionsListItems?.length) {
+        @if(!!actionsListItems.length) {
           <ul class="actions-list">
             @for (action of actionsListItems; track action; let i = $index) {
               <li class="action-item" [class.has-actions]="i > 0">

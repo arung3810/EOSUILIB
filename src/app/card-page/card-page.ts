@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { DashboardCard } from '../../../dist/eos-comp';
-import { PieChartWithLegend, ChartData } from '../../../projects/eos-ui-comp/src/public-api';
+import { ChartData } from '../../../projects/eos-ui-comp/src/public-api';
 
 @Component({
   selector: 'app-card-page',
-  imports: [ DashboardCard, PieChartWithLegend ],
+  imports: [ DashboardCard ],
   templateUrl: './card-page.html',
   styleUrl: './card-page.css',
 })

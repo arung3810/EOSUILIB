@@ -1,9 +1,9 @@
 <header class="c-header">
   <div class="left">
-    @if(!description?.length){
+    @if(!description.length){
     <span class="title">{{ title }}</span>
     }
-    @if(!!description?.length){
+    @if(!!description.length){
     <div class="profileHeader">
       <span class="image-background">
         <img alt="" class="msImage" src="{{ profileImage }}" />
@@ -20,7 +20,7 @@
     }
   </div>
   <div class="right">
-    @if(!!buttonList?.length){
+    @if(!!buttonList.length){
     <lib-button
     *ngFor="let btn of buttonList"
     [variant]="btn.variant"
@@ -36,7 +36,7 @@
     (dropdownClicked)="btn.dropdownClicked?.($event)"
     >{{btn?.label}}</lib-button>
     }
-    @if(!!icon?.length){
+    @if(!!icon.length){
       <img src={{icon}} alt="" (click)="handleIconClicked()">
     }
   </div>
