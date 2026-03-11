@@ -1,27 +1,104 @@
+<!-- Modal with Blur Backdrop -->
 <div
-  class="modal-backdrop"
-  *ngIf="open"
+  class="modal-overlay"
+  *ngIf="open || isClosing"
+  [class.modal-overlay-side]="isSideModal"
+  [class.modal-overlay-side-left]="position === 'left'"
+  [class.modal-closing]="isClosing"
+  [ngClass]="'modal-position-' + position"
   (click)="onBackdropClick($event)"
-  aria-hidden="true"
 >
-  <section
-    class="modal-container"
-    [ngClass]="sizeClass"
+  <div
+    class="modal-dialog"
+    [ngClass]="{
+      'modal-sm': size === 'sm' && isCenterModal,
+      'modal-md': size === 'md' && isCenterModal,
+      'modal-lg': size === 'lg' && isCenterModal,
+      'modal-xl': size === 'xl' && isCenterModal,
+      'modal-dialog-centered': isCenterModal,
+      'modal-dialog-side': isSideModal,
+      'modal-dialog-side-left': position === 'left',
+      'modal-dialog-closing': isClosing,
+      'modal-dialog-side-closing': isClosing && isSideModal
+    }"
     role="dialog"
     [attr.aria-modal]="true"
-    [attr.aria-labelledby]="title ? 'modal-title' : null"
-    [attr.aria-describedby]="ariaDescribedBy || null"
+    [attr.aria-labelledby]="heading ? 'modal-heading' : null"
+    (click)="$event.stopPropagation()"
   >
-    <div class="modal-content">
-      <div class="modal-body text-center">
-        <img src="https://newqa.eos.onefin.app/assets/icon/sendNDA.svg" alt="">
-        <h3>{{title}}</h3>
-        <p>{{message}}</p>
-          <div class="row-btns">
-            <button type="button" (click)="handleClick1($event)" class="button-secondary">{{button1}}</button>
-            <button type="button" (click)="handleClick2($event)" class="button-primary">{{button2}}</button>
+    <div class="modal-content" [class.modal-content-side]="isSideModal">
+      <!-- Header Section with Close Button -->
+      <div class="modal-header" *ngIf="showHeader">
+        <h2 class="modal-header-title" id="modal-heading" *ngIf="heading">{{heading}}</h2>
+        <button
+          *ngIf="!hideCloseButton"
+          type="button"
+          class="modal-close-btn"
+          (click)="close()"
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>
+
+      <!-- Close Button (when header is hidden) -->
+      <button
+        *ngIf="!showHeader && !hideCloseButton"
+        type="button"
+        class="modal-close-btn"
+        (click)="close()"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+      <!-- Body Section - Dynamic Content -->
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+
+        <!-- Legacy support: show default content if title/message provided -->
+        <ng-container *ngIf="title || message">
+          <div class="text-center">
+            <img
+              *ngIf="isCenterModal"
+              src="https://newqa.eos.onefin.app/assets/icon/sendNDA.svg"
+              alt=""
+              class="mb-3"
+              style="max-width: 80px;"
+            >
+            <h3 *ngIf="title" class="modal-title mb-2">{{title}}</h3>
+            <p *ngIf="message" class="text-muted">{{message}}</p>
           </div>
+        </ng-container>
+
+        <!-- Fallback: accept content without selector for backward compatibility -->
+        <ng-content></ng-content>
+      </div>
+
+      <!-- Footer Section -->
+      <div class="modal-footer" *ngIf="showFooter || button1 || button2">
+        <ng-content select="[modal-footer]"></ng-content>
+
+        <!-- Legacy support: show default buttons if button1/button2 provided -->
+        <ng-container *ngIf="button1 || button2">
+          <button
+            *ngIf="button1"
+            type="button"
+            (click)="handleClick1($event)"
+            class="btn btn-outline-dark"
+          >
+            {{button1}}
+          </button>
+          <button
+            *ngIf="button2"
+            type="button"
+            (click)="handleClick2($event)"
+            class="btn btn-dark"
+          >
+            {{button2}}
+          </button>
+        </ng-container>
       </div>
     </div>
-  </section>
+  </div>
 </div>

@@ -14,6 +14,55 @@ h3 {
   color: #27272e;
 }
 
+/* Action Button Styles */
+.action-button {
+  background: #FFF9EB;
+  color: #f5b40b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.2);
+}
+
+/* Create Meeting Button Styles */
+.create-meeting-button {
+  background: #ffffff;
+  color: #16192C;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+.create-meeting-button:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.action-button .arrow-down {
+  font-size: 12px;
+  font-weight: 700;
+}
+
 p {
   color: #718096;
   margin-bottom: 1.5rem;
@@ -67,4 +116,259 @@ code {
 
 tbody tr:hover {
   background: #f9fafb;
+}
+
+.average-score {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e5ebf3;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #272727;
+  text-align: right;
+}
+
+.average-score strong {
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+/* AG-Grid Deductions Table Styles - Enhanced to match image */
+.ag-grid-container {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.deductions-grid {
+  width: 100%;
+  height: 100%;
+}
+
+/* Deduction Details Cell */
+::ng-deep .deduction-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 0;
+}
+
+::ng-deep .deduction-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+::ng-deep .deduction-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #495161;
+  line-height: 1.4;
+}
+
+::ng-deep .deduction-subtitle {
+  font-size: 13px;
+  font-weight: 400;
+  color: #8B8D93;
+  line-height: 1.3;
+}
+
+::ng-deep .eligible-badge {
+  display: inline-block;
+  background: #FFF4E6;
+  color: #F5A623;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Max Deduction Cell */
+::ng-deep .max-deduction-cell {
+  font-size: 15px;
+  font-weight: 400;
+  color: #16192C;
+}
+
+::ng-deep .max-deduction-split {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+::ng-deep .regime-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+::ng-deep .regime-label {
+  font-size: 12px;
+  color: #8B8D93;
+  font-weight: 400;
+}
+
+::ng-deep .regime-value {
+  font-size: 14px;
+  color: #16192C;
+  font-weight: 500;
+}
+
+::ng-deep .view-details-link {
+  color: #16192C;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+::ng-deep .view-details-link:hover {
+  color: #000;
+}
+
+/* Current Value Cell */
+::ng-deep .current-value-cell {
+  font-size: 15px;
+  font-weight: 400;
+  color: #8B8D93;
+}
+
+/* Suggested Utilisation Cell */
+::ng-deep .suggested-util-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+::ng-deep .suggested-util-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+::ng-deep .suggested-main-amount {
+  font-size: 15px;
+  font-weight: 600;
+  color: #16192C;
+  text-align: right;
+}
+
+::ng-deep .suggested-additional {
+  font-size: 12px;
+  font-weight: 400;
+  color: #8B8D93;
+  text-align: right;
+}
+
+::ng-deep .edit-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+::ng-deep .edit-icon-btn:hover {
+  opacity: 1;
+}
+
+::ng-deep .edit-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Total/Pinned Row Styling */
+::ng-deep .ag-pinned-bottom-container {
+  border-top: 1px solid #E9EAEE;
+  background-color: #F9FAFB;
+}
+
+::ng-deep .ag-row-pinned {
+  background-color: #F9FAFB !important;
+  font-weight: 600;
+}
+
+/* AG-Grid Theme Customizations */
+::ng-deep .ag-theme-quartz {
+  --ag-border-color: #E9EAEE;
+  --ag-header-background-color: #F9FAFB;
+  --ag-header-foreground-color: #495161;
+  --ag-font-size: 14px;
+  --ag-row-hover-color: #FAFBFC;
+  --ag-odd-row-background-color: #ffffff;
+  --ag-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+::ng-deep .ag-header {
+  background-color: #F9FAFB;
+  border-bottom: 1px solid #E9EAEE;
+}
+
+::ng-deep .ag-header-cell {
+  font-size: 14px;
+  font-weight: 400;
+  color: #495161;
+  padding: 18px 24px;
+  border-right: none;
+}
+
+::ng-deep .ag-header-cell-label {
+  justify-content: flex-start;
+}
+
+::ng-deep .ag-cell {
+  padding: 20px 24px;
+  border-bottom: 1px solid #E9EAEE;
+  border-right: none;
+  line-height: 1.5;
+}
+
+::ng-deep .ag-row {
+  border: none;
+}
+
+::ng-deep .ag-row:hover {
+  background-color: #FAFBFC;
+}
+
+::ng-deep .ag-root-wrapper {
+  border: 1px solid #E9EAEE;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+::ng-deep .ag-center-cols-viewport {
+  overflow-x: auto !important;
+}
+
+/* Remove AG-Grid watermark if present */
+::ng-deep .ag-watermark {
+  display: none !important;
+}
+
+/* Remove focus border from AG-Grid cells */
+::ng-deep .ag-cell-focus,
+::ng-deep .ag-cell-no-focus {
+  border: none !important;
+}
+
+::ng-deep .ag-cell:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+::ng-deep .ag-row:focus-within .ag-cell {
+  border: none !important;
 }

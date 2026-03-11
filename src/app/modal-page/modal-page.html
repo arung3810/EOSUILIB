@@ -1,13 +1,236 @@
 <section>
   <h2>Modal Component</h2>
-  
+
   <div class="showcase-section">
-    <h3>Basic Modal</h3>
-    <p>Click the button to open a confirmation modal</p>
+    <h3>Modal Sizes</h3>
+    <p>Modals come in four different sizes: Small (sm), Medium (md), Large (lg), and Extra Large (xl)</p>
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+      <lib-button (clicked)="openSmallModal()">Small Modal</lib-button>
+      <lib-button (clicked)="openMediumModal()">Medium Modal</lib-button>
+      <lib-button (clicked)="openLargeModal()">Large Modal</lib-button>
+      <lib-button (clicked)="openExtraLargeModal()">Extra Large Modal</lib-button>
+    </div>
+
+    <!-- Small Modal -->
+    <lib-modal
+      size="sm"
+      heading="Small Modal"
+      title="Delete Confirmation"
+      message="This is a small modal. Perfect for quick confirmations."
+      button1="Confirm"
+      button2="Cancel"
+      (click1)="onSmallModalOpenChange(false)"
+      (click2)="onSmallModalOpenChange(false)"
+      [open]="isSmallModalOpen()"
+      (openChange)="onSmallModalOpenChange($event)">
+    </lib-modal>
+
+    <!-- Medium Modal -->
+    <lib-modal
+      size="md"
+      heading="Medium Modal"
+      title="Standard Notification"
+      message="This is a medium modal (default size). Great for standard dialogs and notifications."
+      button1="OK"
+      button2="Cancel"
+      (click1)="onMediumModalOpenChange(false)"
+      (click2)="onMediumModalOpenChange(false)"
+      [open]="isMediumModalOpen()"
+      (openChange)="onMediumModalOpenChange($event)">
+    </lib-modal>
+
+    <!-- Large Modal -->
+    <lib-modal
+      size="lg"
+      heading="Large Modal"
+      title="Important Information"
+      message="This is a large modal. Ideal for forms or displaying more detailed information that requires extra space."
+      button1="Accept"
+      button2="Decline"
+      (click1)="onLargeModalOpenChange(false)"
+      (click2)="onLargeModalOpenChange(false)"
+      [open]="isLargeModalOpen()"
+      (openChange)="onLargeModalOpenChange($event)">
+    </lib-modal>
+
+    <!-- Extra Large Modal -->
+    <lib-modal
+      size="xl"
+      heading="Extra Large Modal"
+      title="Want to delete the Note?"
+      message="This is an extra large modal. Best for complex content, detailed forms, or when you need maximum screen real estate. Your data will be deleted permanently."
+      button1="Yes, Delete"
+      button2="No, Keep It"
+      (click1)="onExtraLargeModalOpenChange(false)"
+      (click2)="onExtraLargeModalOpenChange(false)"
+      [open]="isExtraLargeModalOpen()"
+      (openChange)="onExtraLargeModalOpenChange($event)">
+    </lib-modal>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Basic Center Modal Example</h3>
+    <p>A simple confirmation modal example</p>
     <lib-button (clicked)="modalButtonClick($event)">Open Delete Modal</lib-button>
-    <lib-modal button1="Yes" button2="No" (click1)="ModalbtnClick2($event)" (click2)="ModalbtnClick2($event)"
-      title="Want to delete the Note?" message="Your data will be deleted permanently." [open]="isModalOpen()"
-      (openChange)="onModalOpenChange($event)"></lib-modal>
+    <lib-modal
+      size="md"
+      heading="Confirmation"
+      button1="Yes"
+      button2="No"
+      (click1)="ModalbtnClick2($event)"
+      (click2)="ModalbtnClick2($event)"
+      title="Want to delete the Note?"
+      message="Your data will be deleted permanently."
+      [open]="isModalOpen()"
+      (openChange)="onModalOpenChange($event)">
+    </lib-modal>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Sidebar Modals (Left & Right)</h3>
+    <p>Click the buttons to open sidebar modals from left or right</p>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+      <lib-button (clicked)="openSideLeftModal()">Open Left Sidebar</lib-button>
+      <lib-button (clicked)="openSideModal()">Open Right Sidebar</lib-button>
+    </div>
+
+    <!-- Left Sidebar Modal -->
+    <lib-modal
+      position="left"
+      heading="Left Sidebar"
+      [open]="isSideLeftModalOpen()"
+      (openChange)="onSideLeftModalOpenChange($event)">
+      <div modal-body>
+        <p>This is a sidebar that slides in from the left.</p>
+        <p>Perfect for navigation menus, filters, or settings panels.</p>
+      </div>
+    </lib-modal>
+
+    <!-- Right Sidebar Modal -->
+    <lib-modal
+      position="right"
+      heading="Right Sidebar"
+      [open]="isSideModalOpen()"
+      (openChange)="onSideModalOpenChange($event)">
+      <div modal-body>
+        <p>This is a sidebar that slides in from the right.</p>
+        <p>Great for detail views, notifications, or side panels.</p>
+      </div>
+    </lib-modal>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Upload Modal (Center Popup)</h3>
+    <p>Click the button to open a file upload modal with drag-and-drop support</p>
+    <lib-button (clicked)="openUploadModal()">Open Upload Modal</lib-button>
+    <lib-modal
+      position="center"
+      size="lg"
+      heading="Upload your files"
+      [open]="isUploadModalOpen()"
+      [closeOnEscape]="false"
+      (openChange)="onUploadModalOpenChange($event)">
+      <div modal-body class="upload-modal-body">
+        <div class="upload-drop-zone"
+             (dragover)="onDragOver($event)"
+             (drop)="onDrop($event)">
+          <input
+            type="file"
+            id="file-upload"
+            class="file-input"
+            multiple
+            (change)="onFileSelect($event)"
+          />
+          <label for="file-upload" class="upload-label">
+            <span class="upload-btn">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 10V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M11.3333 5.33333L8 2L4.66667 5.33333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 2V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Browse Files
+            </span>
+            <span class="upload-hint">or just drag and drop here</span>
+          </label>
+        </div>
+      </div>
+    </lib-modal>
+  </div>
+
+  <div class="showcase-section">
+    <h3>Sidebar with Custom Content</h3>
+    <p>Click the button to open a sidebar with custom actions and forms</p>
+    <lib-button (clicked)="openCustomSideModal()">Open Actions Sidebar</lib-button>
+    <lib-modal
+      position="right"
+      heading="Actions for this year"
+      [open]="isCustomSideModalOpen()"
+      (openChange)="onCustomSideModalOpenChange($event)">
+      <div class="actions-modal-content">
+
+        <div class="action-item">
+          <div class="action-header" (click)="toggleAction(4)">
+            <span>Action Step 4</span>
+            <span class="toggle-icon">{{ isActionExpanded(4) ? '−' : '+' }}</span>
+          </div>
+
+          @if (isActionExpanded(4)) {
+          <div class="action-body">
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea
+                class="form-textarea"
+                rows="6"
+                placeholder="Enter description..."></textarea>
+            </div>
+
+            <div class="action-buttons">
+              <button class="btn-text" (click)="onCustomSideModalOpenChange(false)">Close</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+
+            <button class="btn-add-more">
+              <span class="plus-icon">+</span>
+              Add More Actions
+            </button>
+          </div>
+          }
+        </div>
+
+        <div class="modal-footer-actions">
+          <button class="btn-save" (click)="onCustomSideModalOpenChange(false)">Save</button>
+        </div>
+      </div>
+    </lib-modal>
+  </div>
+
+  <div class="showcase-section">
+    <h3>ESC Key Behavior with Multiple Modals</h3>
+    <p>When multiple modals are open, pressing ESC will only close the topmost (most recent) modal</p>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+      <lib-button (clicked)="openModal1()">Open Modal 1</lib-button>
+      <lib-button (clicked)="openModal2()">Open Modal 2</lib-button>
+    </div>
+
+    <!-- Modal 1 -->
+    <lib-modal
+      size="md"
+      heading="Modal 1"
+      title="First Modal"
+      message="This is the first modal. Try pressing ESC when both modals are open - only the topmost one will close."
+      [open]="isModal1Open()"
+      (openChange)="onModal1OpenChange($event)">
+    </lib-modal>
+
+    <!-- Modal 2 -->
+    <lib-modal
+      size="md"
+      heading="Modal 2"
+      title="Second Modal"
+      message="This is the second modal. If both are open, pressing ESC will close this one first (as it's on top)."
+      [open]="isModal2Open()"
+      (openChange)="onModal2OpenChange($event)">
+    </lib-modal>
   </div>
 
   <div class="showcase-section">
@@ -30,28 +253,70 @@
             <td>Controls modal visibility</td>
           </tr>
           <tr>
+            <td><code>position</code></td>
+            <td>'left' | 'right' | 'center'</td>
+            <td>'center'</td>
+            <td>Modal position - 'center' for popup, 'left'/'right' for sidebars</td>
+          </tr>
+          <tr>
             <td><code>title</code></td>
             <td>string</td>
             <td>-</td>
-            <td>Modal title text</td>
+            <td>Modal title text (optional)</td>
           </tr>
           <tr>
             <td><code>message</code></td>
             <td>string</td>
             <td>-</td>
-            <td>Modal message/content text</td>
+            <td>Modal message/content text (optional)</td>
           </tr>
           <tr>
             <td><code>button1</code></td>
             <td>string</td>
             <td>-</td>
-            <td>Primary button label</td>
+            <td>Primary button label (optional)</td>
           </tr>
           <tr>
             <td><code>button2</code></td>
             <td>string</td>
             <td>-</td>
-            <td>Secondary button label</td>
+            <td>Secondary button label (optional)</td>
+          </tr>
+          <tr>
+            <td><code>size</code></td>
+            <td>'sm' | 'md' | 'lg' | 'xl'</td>
+            <td>'md'</td>
+            <td>Modal size (applies to center modals)</td>
+          </tr>
+          <tr>
+            <td><code>closeOnBackdrop</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Close modal when clicking backdrop</td>
+          </tr>
+          <tr>
+            <td><code>hideCloseButton</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Hide close button</td>
+          </tr>
+          <tr>
+            <td><code>showHeader</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Show/hide modal header</td>
+          </tr>
+          <tr>
+            <td><code>showFooter</code></td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>Show/hide modal footer</td>
+          </tr>
+          <tr>
+            <td><code>closeOnEscape</code></td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>Allow closing modal with Escape key</td>
           </tr>
         </tbody>
       </table>
@@ -83,8 +348,62 @@
             <td>EventEmitter&lt;MouseEvent&gt;</td>
             <td>Emitted when secondary button is clicked</td>
           </tr>
+          <tr>
+            <td><code>closed</code></td>
+            <td>EventEmitter&lt;void&gt;</td>
+            <td>Emitted when modal is fully closed (after animation)</td>
+          </tr>
         </tbody>
       </table>
+    </div>
+
+    <h3>Usage Examples</h3>
+    <div class="code-example">
+      <h4>Center Modal (Popup)</h4>
+      <pre><code>&lt;lib-modal
+  [open]="isModalOpen()"
+  heading="Modal Title"
+  position="center"
+  size="md"
+  [showHeader]="true"
+  [showFooter]="true"
+  [closeOnEscape]="true"
+  [closeOnBackdrop]="true"
+  (openChange)="onModalOpenChange($event)"&gt;
+
+  &lt;div modal-body&gt;
+    &lt;p&gt;Your dynamic content goes here&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div modal-footer&gt;
+    &lt;button class="btn btn-outline-dark"&gt;Cancel&lt;/button&gt;
+    &lt;button class="btn btn-dark"&gt;Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/lib-modal&gt;</code></pre>
+
+      <h4>Right Sidebar</h4>
+      <pre><code>&lt;lib-modal
+  [open]="isSidebarOpen()"
+  heading="Sidebar Title"
+  position="right"
+  (openChange)="onSidebarOpenChange($event)"&gt;
+
+  &lt;div modal-body&gt;
+    &lt;p&gt;Sidebar content here&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/lib-modal&gt;</code></pre>
+
+      <h4>Left Sidebar</h4>
+      <pre><code>&lt;lib-modal
+  [open]="isLeftSidebarOpen()"
+  heading="Navigation"
+  position="left"
+  (openChange)="onLeftSidebarOpenChange($event)"&gt;
+
+  &lt;div modal-body&gt;
+    &lt;p&gt;Navigation menu or filters&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/lib-modal&gt;</code></pre>
     </div>
   </div>
 </section>

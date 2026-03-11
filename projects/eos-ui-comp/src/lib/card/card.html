@@ -168,8 +168,8 @@
     <div class="card size-1 score-card medium" [ngClass]="small ? 'style-2' :'style-1'">
       <div class="card-body">
         <h6 class="card-title1">{{title}}</h6>
-        <div class="wrapper"><span
-            class="num red-text"> {{currentFbsScore}} <small style="color: rgb(245, 180, 11);">{{small}}</small></span>
+        <div class="wrapper">
+          <span class="num" [ngClass]="textColor === 'red' ? 'red-text' : 'green-text'"> {{currentFbsScore}} <small style="color: rgb(245, 180, 11);">{{small}}</small></span>
           <p class="pera"> {{para}} </p>
         </div>
       </div>
@@ -227,15 +227,15 @@
     <div class="card size-2 score-piechart-card">
                 <div class="card-body layout" *ngIf="!mf_allocation_not_fetched">
                     <div class="detail-area">
-                        <h6 class="card-title-workbook">Mutual Fund Portfolio Allocation</h6>
+                        <h6 class="card-title-workbook">{{ MFHoldingsTitle }}</h6>
 
                         <div class="wrapper">
                             <ul class="score-wrapper">
                               @for (item of MfholdingList2; track $index) {
                                 <li class="equit-theme">
                                     <span class="label">{{item?.label}}</span>
-                                    <span class="percentage">{{ item?.equityPercentage }}</span>
-                                    <span class="amt">{{ item?.equityValue }}</span>
+                                    <span class="percentage">{{ item?.equityPercentage }}%</span>
+                                    <span class="amt">₹ {{ item?.equityValue }}</span>
                                 </li>
                               }
                             </ul>
@@ -249,11 +249,12 @@
                             [dataLabels]="chart.dataLabels" [states]="chart.states"
                             [tooltip]="chart.tooltip" [stroke]="chart.stroke">
                         </apx-chart>
+                        @if(current_value){
                         <div class="currentValueDiv">
                             <p class="currentValueLabel">Total Current Value</p>
                             <p class="currentValue">{{current_value}}</p>
                         </div>
-
+                      }
                     </div>
                 </div>
 
@@ -451,6 +452,7 @@
           <h6 class="section-title mb-0 ms-3">{{ nomineeTitle }}</h6>
         </div>
       </div>
+      @if(!!nomineeList?.length){
       <div class="nominee-list-panel mt-4">
         <div class="nominees-label">{{ nomineeSubtitle }}</div>
         <div class="nominee-pills mt-3">
@@ -469,6 +471,9 @@
           }
         </div>
       </div>
+    } @else {
+      <p class="nominee-empty">No nominees added yet</p>
+    }
     </div>
   } @else if(cardType === "taxRegimeComparison"){
     <div class="card tax-regime-card workbook-card">
@@ -513,6 +518,193 @@
             </p>
           </div>
         </div>
+      </div>
+    </div>
+  } @else if(cardType === "financialAnalysis"){
+    <div class="card animation">
+      <div class="financial-analysis-card">
+      <div class="financial-analysis-header">
+        <h2 class="financial-analysis-title">{{ financialAnalysisTitle }}</h2>
+        @if(!!financialAnalysisTooltipText?.length){<div class="financial-analysis-button-wrapper">
+          <button class="financial-analysis-button" (click)="onFinancialAnalysisButtonClick()">
+            <span class="button-text">{{ financialAnalysisButtonText }}</span>
+              <span class="button-icon" [innerHTML]="safeFinancialAnalysisButtonIcon"></span>
+          </button>
+          @if(financialAnalysisTooltipText) {
+            <div class="financial-analysis-tooltip">{{ financialAnalysisTooltipText }}</div>
+          }
+        </div>}
+        @if(financialArrow){
+          <div class="financial-analysis-arrow">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    }
+      </div>
+
+      <div class="financial-analysis-content">
+        <div class="financial-analysis-row">
+          <div class="financial-analysis-label">{{ financialAnalysisActualLabel }}</div>
+          <div class="financial-analysis-label ideal-label">{{ financialAnalysisIdealLabel }}</div>
+        </div>
+
+        <div class="financial-analysis-values">
+          <div class="financial-analysis-value actual-value">
+            <span class="rupee-symbol">{{ financialAnalysisCurrency }}</span>
+            <span class="value-text">{{ financialAnalysisActualValue }}</span>
+          </div>
+          <div class="financial-analysis-value ideal-value">
+            <span class="rupee-symbol">{{ financialAnalysisCurrency }}</span>
+            <span class="value-text">{{ financialAnalysisIdealValue }}</span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  } @else if(cardType === "lifeStage"){
+    <div class="card lifestage">
+      <p class="lifestage-title">{{lifeStageTitle}}</p>
+      <div class="lifestage-row">
+        <h3 class="lifestage-content">{{lifeStageContent}}</h3>
+        @if(lifeStageAgeRange){
+        <button class="lifestage-button">Age: {{lifeStageAgeRange}} </button>
+        }
+      </div>
+    </div>
+  } @else if(cardType === "behavioralBiases"){
+    <div class="card behavioral-biases-card">
+      <div class="card-body">
+        <p class="behavioral-header">{{ behavioralHeader }}</p>
+        <div class="behavioral-content">
+          <div class="behavioral-icon-wrapper">
+            @if(behavioralIcon) {
+              <div class="behavioral-icon" [innerHTML]="safeBehavioralIcon"></div>
+            }
+          </div>
+          <h3 class="behavioral-title">{{ behavioralTitle }}</h3>
+        </div>
+        <hr>
+        <h5 class="behavioral-subtitle">{{ behavioralSubtitle }}</h5>
+        <ul class="behavioral-list">
+          @for (bias of behavioralBiasesList; track bias.label) {
+            <li class="behavioral-item">
+              <span class="behavioral-dot"></span>
+              <span class="behavioral-label">{{ bias.label }}</span>
+              @if(bias.tooltipContent) {
+                <div class="behavioral-tooltip-wrapper">
+                  <button class="behavioral-info-icon" (click)="onBiasInfoClick(bias)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                  </button>
+                  <div class="behavioral-tooltip">{{ bias.tooltipContent }}</div>
+                </div>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  } @else if(cardType === "TERchart"){
+    <div class="card ter-chart-card">
+      <div class="ter-card-body">
+        <h5 class="ter-chart-title">{{ terChartTitle }}</h5>
+
+        <div class="ter-timeline-container">
+          <div class="ter-timeline-grid">
+            @for (period of terChartPeriods; track period.label) {
+              <div class="ter-timeline-item">
+                <div class="ter-timeline-label">{{ period.label }}</div>
+              </div>
+            }
+          </div>
+
+          <div class="ter-timeline-wrapper">
+            <div class="ter-timeline-line"></div>
+            <div class="ter-timeline-grid">
+              @for (period of terChartPeriods; track period.label; let i = $index) {
+                <div class="ter-timeline-item">
+                  <div class="ter-timeline-marker"></div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="ter-timeline-grid">
+            @for (period of terChartPeriods; track period.label) {
+              <div class="ter-timeline-item">
+                <div class="ter-timeline-value">{{ period.value }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "advisedTER"){
+    <div class="card advised-ter-card" [ngClass]="'advised-ter-' + (advisedTERColorType || 'green')">
+      <!-- <div class="advised-ter-body"> -->
+        <p class="advised-ter-title">{{ advisedTERTitle }}</p>
+        <p class="advised-ter-value">{{ advisedTERValue }}</p>
+      <!-- </div> -->
+    </div>
+  } @else if(cardType === "impactAdvise"){
+    <div class="card impact-advise-card">
+      <div class="impact-advise-header">
+        <h3 class="impact-advise-title">
+          <span class="impact-advise-title-text">{{ impactAdviseTitle }}</span>
+        </h3>
+      </div>
+      <div class="impact-advise-content">
+        <div class="impact-advise-main-value">
+          <span class="impact-advise-currency">{{ impactAdviseCurrency }}</span>
+          <span class="impact-advise-amount">{{ impactAdviseAmount }}</span>
+        </div>
+        <div class="impact-advise-percentage">
+          {{ impactAdvisePercentage }}
+        </div>
+      </div>
+    </div>
+  } @else if(cardType === "actionsList"){
+    <div class="card actions-list-card">
+      <div class="actions-list-header">
+        <h3 class="actions-list-title">{{ actionsListTitle }}</h3>
+        @if(showAddButton) {
+          <button class="actions-add-button" (click)="onActionsAddClick()">
+            <span class="add-text">Add</span>
+            <span class="add-icon">+</span>
+          </button>
+        }
+      </div>
+      <div class="actions-list-content">
+        @if(!!actionsListItems?.length) {
+          <ul class="actions-list">
+            @for (action of actionsListItems; track action; let i = $index) {
+              <li class="action-item" [class.has-actions]="i > 0">
+                <span class="action-bullet"></span>
+                <span class="action-text">{{ action }}</span>
+                @if(i > 0) {
+                  <div class="action-buttons">
+                    <button class="action-btn edit-btn" (click)="onActionEdit(i)" title="Edit">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M11.333 2.00004C11.5081 1.82494 11.716 1.68605 11.9447 1.59129C12.1735 1.49653 12.4187 1.44775 12.6663 1.44775C12.914 1.44775 13.1592 1.49653 13.3879 1.59129C13.6167 1.68605 13.8246 1.82494 13.9997 2.00004C14.1748 2.17513 14.3137 2.383 14.4084 2.61178C14.5032 2.84055 14.552 3.08575 14.552 3.33337C14.552 3.58099 14.5032 3.82619 14.4084 4.05497C14.3137 4.28374 14.1748 4.49161 13.9997 4.66671L5.33301 13.3334L1.33301 14.6667L2.66634 10.6667L11.333 2.00004Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <button class="action-btn delete-btn" (click)="onActionDelete(i)" title="Delete">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 4H3.33333H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.33301 4.00004V2.66671C5.33301 2.31309 5.47348 1.97395 5.72353 1.7239C5.97358 1.47385 6.31272 1.33337 6.66634 1.33337H9.33301C9.68663 1.33337 10.0258 1.47385 10.2758 1.7239C10.5259 1.97395 10.6663 2.31309 10.6663 2.66671V4.00004M12.6663 4.00004V13.3334C12.6663 13.687 12.5259 14.0261 12.2758 14.2762C12.0258 14.5262 11.6866 14.6667 11.333 14.6667H4.66634C4.31272 14.6667 3.97358 14.5262 3.72353 14.2762C3.47348 14.0261 3.33301 13.687 3.33301 13.3334V4.00004H12.6663Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                }
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="actions-list-empty">No actions available</p>
+        }
       </div>
     </div>
   } @else {

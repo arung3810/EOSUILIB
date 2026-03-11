@@ -477,12 +477,16 @@
     font-weight: 700;
     line-height: normal;
     white-space: nowrap;
+    text-align: left;
 }
 .style-1 .card-body .wrapper .red-text{
   color: red;
 }
-.style-1 .card-body .wrapper .red-text small,
-.style-2 .card-body .wrapper .red-text small{
+.style-1 .card-body .wrapper .green-text{
+  color: #16a34a;
+}
+.style-1 .card-body .wrapper .num small,
+.style-2 .card-body .wrapper .num small{
   display: inline-flex;
     padding: 2px 8px;
     flex-direction: column;
@@ -500,13 +504,14 @@
     font-weight: 400;
     line-height: 18px;
     margin: 0;
+    text-align: left;
     color: #898B90;
 }
 
 .style-2.score-card{
   background-color: rgb(255, 249, 235)!important;
 }
-.style-2 .card-body .wrapper .num, .style-2 .card-body .wrapper .pera{
+.style-2 .card-body .wrapper .num, .style-2 .card-body .card-title1, .style-2 .card-body .wrapper .pera{
   color: rgb(245, 180, 11);
 }
 /* carousal */
@@ -830,6 +835,7 @@ li.equit-theme .label{
     font-style: normal;
     font-weight: 400;
     line-height: 11.696px;
+    margin: 0!important;
 }
 .currentValueDiv {
     display: flex;
@@ -849,6 +855,12 @@ li.equit-theme .label{
 .note-mfAllocation{
   margin: 0;
   text-align: left;
+  color: var(--1F-5_Primary, #65676D);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 16px;
+    margin-bottom: 0 !important;
 }
 
 /* Asset Card Styles */
@@ -1711,6 +1723,17 @@ li.equit-theme .label{
   width: 100%;
 }
 
+.nominee-empty{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+    font-weight: 'Inter, san-serif';
+}
+
 .workbook-static-header {
   display: flex;
   align-items: center;
@@ -1734,11 +1757,11 @@ li.equit-theme .label{
 
 .section-title {
   font-family: Inter, sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #000000;
-  margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #000;
+    margin-top: 0;
 }
 
 .ms-3 {
@@ -1841,5 +1864,1140 @@ font-family: Inter, sans-serif;
 @media (min-width: 769px) and (max-width: 1024px) {
   .nominee-pills {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Financial Analysis Card Styles */
+.financial-analysis-card {
+  background: #FFFFFF;
+  padding: 24px;
+  position: relative;
+  overflow: visible;
+  z-index: 9;
+  margin: 3px;
+}
+
+.animation {
+    --offset: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) scale(1.4) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.4) rotate(360deg);
+    }
+}
+
+.animation:before {
+    content: "";
+    background: conic-gradient(#ffffff 230deg, #cc563c 0deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 1;
+    width: 100%;
+    animation: rotate 5s linear infinite;
+}
+
+.financial-analysis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.financial-analysis-title {
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #171717;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.financial-analysis-button-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.financial-analysis-button {
+    display: flex;
+    padding: 2px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 4px;
+    border: 1px solid var(--Orange-600, #EA700C);
+    background: var(--1F-5_BuoyantOrange, #FFE7CC);
+    color: var(--Orange-600, #EA700C);
+    font-family: Inter,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.financial-analysis-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000000;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.financial-analysis-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #000000;
+}
+
+.financial-analysis-button-wrapper:hover .financial-analysis-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.financial-analysis-button:hover {
+  transform: translateY(-1px);
+}
+
+.financial-analysis-button:active {
+  transform: translateY(0);
+}
+
+.financial-analysis-button .button-text {
+  color: #FF6B35;
+  font-weight: 500;
+}
+
+.financial-analysis-button .button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.financial-analysis-button .button-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #FF6B35;
+}
+
+.financial-analysis-content {
+  margin-bottom: 16px;
+}
+
+.financial-analysis-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.financial-analysis-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6B7280;
+  line-height: 1.5;
+}
+
+.financial-analysis-label.ideal-label {
+  text-align: right;
+}
+
+.financial-analysis-values {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.financial-analysis-value {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: rgb(204, 86, 60);
+  font-family: Inter, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136.023%;
+    margin-bottom: 0 !important;
+}
+
+.financial-analysis-value.actual-value {
+  flex-direction: row;
+}
+
+.financial-analysis-value.ideal-value {
+  flex-direction: row-reverse;
+}
+
+/* .financial-analysis-value .rupee-symbol {
+  font-family: Inter, sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  color: #171717;
+}
+
+.financial-analysis-value .value-text {
+  font-family: Inter, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  color: #171717;
+  letter-spacing: -0.02em;
+} */
+
+.financial-analysis-arrow {
+  /* position: absolute;
+  right: 24px;
+  bottom: 24px; */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #D1D5DB;
+}
+
+.financial-analysis-arrow svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+}
+
+/* Responsive design for Financial Analysis Card */
+@media (max-width: 768px) {
+  .financial-analysis-card {
+    padding: 20px;
+  }
+
+  .financial-analysis-title {
+    font-size: 20px;
+  }
+
+  .financial-analysis-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .financial-analysis-value .rupee-symbol {
+    font-size: 24px;
+  }
+
+  .financial-analysis-value .value-text {
+    font-size: 36px;
+  }
+
+  .financial-analysis-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .financial-analysis-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.lifestage{
+  padding: 24px;
+}
+
+.lifestage-title{
+  font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    color: #898b90;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.lifestage-content{
+      color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.lifestage-row{
+  display: flex; 
+  gap: 16px;
+  align-items: center;
+}
+
+.lifestage-button{
+    display: flex;
+    border: none;
+    padding: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #649de5;
+    background: #DEEDFF;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: fit-content;
+}
+
+/* Behavioral Biases Card Styles */
+.behavioral-biases-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.behavioral-biases-card .card-body {
+  padding: 24px;
+}
+
+.behavioral-header {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #898b90;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+.behavioral-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.behavioral-icon-wrapper {
+  flex-shrink: 0;
+}
+
+.behavioral-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.behavioral-icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.behavioral-title {
+    color: var(--1-f-1-primary, #000);
+    font-family: Inter, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.behavioral-subtitle {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #6B7280;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.behavioral-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.behavioral-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  position: relative;
+}
+
+.behavioral-dot {
+  width: 8px;
+  height: 8px;
+  background: #FFC107;
+  flex-shrink: 0;
+}
+
+.behavioral-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.behavioral-tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.behavioral-info-icon {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9CA3AF;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.behavioral-info-icon:hover {
+  color: #6B7280;
+}
+
+.behavioral-info-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.behavioral-tooltip {
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2F2F2F;
+  color: #FFFFFF;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+  max-width: 300px;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+  text-align: left;
+}
+
+.behavioral-tooltip::after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: #2F2F2F;
+}
+
+.behavioral-tooltip-wrapper:hover .behavioral-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive adjustments for behavioral biases card */
+@media (max-width: 768px) {
+  .behavioral-biases-card .card-body {
+    padding: 16px;
+  }
+
+  .behavioral-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .behavioral-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .behavioral-title {
+    font-size: 20px;
+  }
+
+  .behavioral-subtitle {
+    font-size: 16px;
+  }
+
+  .behavioral-label {
+    font-size: 14px;
+  }
+}
+
+/* TER Chart Card Styles */
+.ter-chart-card {
+  background: #FAFAFA;
+  border: 1px solid #E8E8E8;
+  border-radius: 12px;
+  padding: 40px 48px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.ter-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ter-chart-title {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #9CA3AF;
+  margin: 0;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+.ter-timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  margin: 0;
+}
+
+.ter-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  gap: 0;
+}
+
+.ter-timeline-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ter-timeline-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #9CA3AF;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.ter-timeline-wrapper {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  margin: 4px 0;
+}
+
+.ter-timeline-line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 1.5px;
+  background: #D1D5DB;
+  transform: translateY(-50%);
+}
+
+.ter-timeline-marker {
+  width: 1.5px;
+  height: 12px;
+  background: #D1D5DB;
+  z-index: 2;
+}
+
+.ter-timeline-value {
+  font-family: Inter, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #EF6B5E;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+/* Different font sizes for each TER value */
+.ter-timeline-item:nth-child(1) .ter-timeline-value {
+  font-size: 15px;
+}
+
+.ter-timeline-item:nth-child(2) .ter-timeline-value {
+  font-size: 18px;
+}
+
+.ter-timeline-item:nth-child(3) .ter-timeline-value {
+  font-size: 20px;
+}
+
+.ter-timeline-item:nth-child(4) .ter-timeline-value {
+  font-size: 24px;
+}
+
+.ter-timeline-item:nth-child(5) .ter-timeline-value {
+  font-size: 28px;
+}
+
+/* Responsive design for TER Chart Card */
+@media (max-width: 768px) {
+  .ter-chart-card {
+    padding: 32px 24px;
+  }
+
+  .ter-card-body {
+    gap: 36px;
+  }
+
+  .ter-chart-title {
+    font-size: 16px;
+  }
+
+  .ter-timeline-container {
+    gap: 24px;
+  }
+
+  .ter-timeline-label {
+    font-size: 14px;
+  }
+
+  .ter-timeline-value {
+    font-size: 24px;
+  }
+
+  .ter-timeline-wrapper {
+    height: 10px;
+  }
+
+  .ter-timeline-marker {
+    width: 1.5px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ter-chart-card {
+    padding: 24px 16px;
+  }
+
+  .ter-card-body {
+    gap: 28px;
+  }
+
+  .ter-timeline-label {
+    font-size: 12px;
+  }
+
+  .ter-timeline-value {
+    font-size: 18px;
+  }
+
+  .ter-timeline-wrapper {
+    height: 8px;
+  }
+
+  .ter-timeline-marker {
+    height: 8px;
+  }
+}
+
+/* Advised TER Card Styles */
+.advised-ter-card {
+  display: flex;
+    padding: 24px;
+    gap: 8px;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Green variant (default) */
+.advised-ter-card.advised-ter-green {
+  background: #F0FDF5!important;
+  border: 1px solid #81C784;
+}
+
+.advised-ter-card.advised-ter-green .advised-ter-title {
+  color: #16a349;
+}
+
+.advised-ter-card.advised-ter-green .advised-ter-value {
+  color: #16a349;
+}
+
+/* Red variant */
+.advised-ter-card.advised-ter-red {
+  background: #FEF2F2!important;
+  border: 1px solid #E57373;
+}
+
+.advised-ter-card.advised-ter-red .advised-ter-title {
+  color: #ef4444;
+}
+
+.advised-ter-card.advised-ter-red .advised-ter-value {
+  color: #ef4444;
+}
+
+.advised-ter-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.advised-ter-title {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+}
+
+.advised-ter-value {
+  font-family: Inter, sans-serif!important;
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+/* Responsive design for Advised TER Card */
+@media (max-width: 768px) {
+  .advised-ter-card {
+    padding: 24px 32px;
+    min-height: 150px;
+  }
+
+  .advised-ter-body {
+    gap: 12px;
+  }
+
+  .advised-ter-title {
+    font-size: 18px;
+  }
+
+  .advised-ter-value {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .advised-ter-card {
+    padding: 20px 24px;
+    min-height: 140px;
+  }
+
+  .advised-ter-body {
+    gap: 10px;
+  }
+
+  .advised-ter-title {
+    font-size: 16px;
+  }
+
+  .advised-ter-value {
+    font-size: 40px;
+  }
+}
+
+/* Impact Advise Card Styles */
+.impact-advise-card {
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-advise-header {
+  text-align: left;
+}
+
+.impact-advise-title {
+  font-family: Inter, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.impact-advise-title-text {
+  color: var(--success-green-600, #16A349);
+    font-feature-settings: "salt" on;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    display: flex;
+    padding: 4px 8px;
+    align-items: center;
+    border-radius: 2px;
+    background: var(--success-green-50, #F0FDF5);
+    margin-bottom: 16px;
+}
+
+.impact-advise-title-highlight {
+  color: #43A047;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.impact-advise-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.impact-advise-main-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  text-align: left;
+}
+
+.impact-advise-currency {
+    color: #4b4c51;
+    font-family: Inter, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 136%;
+}
+
+.impact-advise-amount {
+    color: #4b4c51;
+    font-family: Inter, sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 136%;
+}
+
+.impact-advise-percentage {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+    font-size: 32px;
+    color: #16a349;
+}
+
+/* Responsive design for Impact Advise Card */
+@media (max-width: 768px) {
+  .impact-advise-card {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .impact-advise-title {
+    font-size: 20px;
+  }
+
+  .impact-advise-currency {
+    font-size: 28px;
+  }
+
+  .impact-advise-amount {
+    font-size: 36px;
+  }
+
+  .impact-advise-percentage {
+    font-size: 42px;
+  }
+
+  .impact-advise-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .impact-advise-percentage {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-advise-card {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .impact-advise-title {
+    font-size: 18px;
+  }
+
+  .impact-advise-currency {
+    font-size: 24px;
+  }
+
+  .impact-advise-amount {
+    font-size: 28px;
+  }
+
+  .impact-advise-percentage {
+    font-size: 32px;
+  }
+}
+
+/* Actions List Card Styles */
+.actions-list-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 24px 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.actions-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions-list-title {
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+  margin: 0;
+}
+
+.actions-add-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: Inter, sans-serif;
+}
+
+.actions-add-button:hover {
+  background: #F9FAFB;
+  border-color: #9CA3AF;
+}
+
+.actions-add-button:active {
+  transform: translateY(1px);
+}
+
+.actions-add-button .add-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.actions-add-button .add-icon {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1;
+}
+
+.actions-list-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 12px;
+  margin: 0 -12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.action-item.has-actions:hover {
+  background-color: #F9FAFB;
+}
+
+.action-bullet {
+  width: 6px;
+  height: 6px;
+  background: #000000;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.action-text {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #374151;
+  text-align: left;
+  flex: 1;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  flex-shrink: 0;
+}
+
+.action-item.has-actions:hover .action-buttons {
+  opacity: 1;
+  visibility: visible;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #6B7280;
+}
+
+.action-btn:hover {
+  background-color: #E5E7EB;
+}
+
+.action-btn.edit-btn:hover {
+  color: #3B82F6;
+}
+
+.action-btn.delete-btn:hover {
+  color: #EF4444;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.actions-list-empty {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #9CA3AF;
+  text-align: center;
+  padding: 40px 0;
+  margin: 0;
+}
+
+/* Responsive design for Actions List Card */
+@media (max-width: 768px) {
+  .actions-list-card {
+    padding: 20px 24px;
+    gap: 20px;
+  }
+
+  .actions-list-title {
+    font-size: 24px;
+  }
+
+  .actions-add-button {
+    padding: 6px 12px;
+  }
+
+  .actions-add-button .add-text {
+    font-size: 12px;
+  }
+
+  .actions-add-button .add-icon {
+    font-size: 16px;
+  }
+
+  .action-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions-list-card {
+    padding: 16px 20px;
+    gap: 16px;
+  }
+
+  .actions-list-title {
+    font-size: 20px;
+  }
+
+  .actions-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .actions-add-button {
+    width: 100%;
+    justify-content: center;
   }
 }

@@ -1,10 +1,44 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
+import { AgGridAngular } from 'ag-grid-angular';
+import type { ColDef, GridOptions } from 'ag-grid-community';
 
 export type CellType = 'text' | 'dropdown' | 'tooltip' | 'custom';
 export type SortDirection = 'asc' | 'desc' | null;
 
+/**
+ * TableColumn Interface
+ *
+ * Configuration for table columns with support for multi-level headers.
+ *
+ * @example
+ * // Simple single-level column
+ * {
+ *   label: 'Name',
+ *   field: 'name',
+ *   sortable: true
+ * }
+ *
+ * @example
+ * // Multi-level header with subHeaders
+ * {
+ *   label: 'Current Liability Distribution',
+ *   field: '',
+ *   subHeaders: [
+ *     { label: 'Outstanding', field: 'outstanding' },
+ *     { label: 'EMI', field: 'emi' }
+ *   ]
+ * }
+ *
+ * @example
+ * // Column with rowspan (spans multiple header rows)
+ * {
+ *   label: 'Liability Type',
+ *   field: 'liabilityType',
+ *   rowspan: 2  // Spans 2 rows in the header
+ * }
+ */
 export interface TableColumn {
   label: string;
   field: string;
@@ -16,27 +50,113 @@ export interface TableColumn {
   sortable?: boolean;
   tooltipField?: string; // Field name for tooltip text (defaults to 'tooltipText')
   showTooltipField?: string; // Field name to check if tooltip should show (defaults to 'showTooltip')
-  customTemplate?: (row: any) => string; // For custom cell rendering
+  customTemplate?: TemplateRef<any> | ((row: any) => string); // For custom cell rendering - can be TemplateRef or function
+  colspan?: number; // Number of columns this header spans
+  subHeaders?: TableColumn[]; // Sub-headers for multi-level headers
+  rowspan?: number; // Number of rows this header spans (for headers without subheaders)
+  align?: 'left' | 'center' | 'right'; // Text alignment for header and cells (defaults to 'left')
 }
 
 @Component({
   selector: 'lib-table',
   standalone: true,
-  imports: [NgIf, CommonModule],
+  imports: [NgIf, CommonModule, AgGridAngular],
   templateUrl: './table.html',
   styleUrls: ['./table.css']
 })
-export class TableComponent {
-  @Input() columns: TableColumn[] = [];  
+export class TableComponent implements OnInit {
+  @Input() tableType: 'dynamic' | 'static' | 'financial-scoring' | 'tax-comparison' | 'agTable' = 'dynamic';
+  @Input() columns: TableColumn[] = [];
   @Input() rows: any[] = []; // Changed to any[] to support dynamic data
+  @Input() agGridColDefs?: ColDef[]; // AG-Grid column definitions for deductions table
+  @Input() agGridOptions?: GridOptions; // AG-Grid options for deductions table
+  @Input() tableHeight?: string; // Height for scrollable AG-Grid table (e.g., '600px', '500px')
+  @Input() columnAlignments?: { [field: string]: 'left' | 'center' | 'right' }; // Field-level alignment for AG-Grid columns
   @Input() total: number = 0;
   @Input() page: number = 1;
   @Input() pageSize: number = 5;
+  @Input() showFooter: boolean = false; // Enable footer row
+  @Input() footerLabel: string = 'Avg Score'; // Label for first column in footer
+  @Input() footerCalculation: 'avg' | 'sum' | 'custom' = 'avg'; // Type of calculation
+  @Input() tableTitle: string = ''; // Title to display above the table
+  @Input() headerRightTemplate?: TemplateRef<any>; // Template for right side component in header
+  /**
+   * Custom footer values for each column
+   *
+   * Pass an object with field names as keys and their footer values.
+   * - If a value is provided, it will be displayed in the footer
+   * - If a value is null, undefined, or empty string (''), it won't be displayed
+   * - Only columns with values will show content in the footer row
+   *
+   * @example
+   * footerValues = {
+   *   fieldName1: '₹ 1,27,87,666', // Will be displayed
+   *   fieldName2: '61.67',           // Will be displayed
+   *   fieldName3: '',                // Won't be displayed (empty)
+   *   fieldName4: null               // Won't be displayed (null)
+   * }
+   */
+  @Input() footerValues?: any; // Custom footer values
+  @Input() showHeaderBorder: boolean = true; // Show/hide header borders
   @Output() pageChange = new EventEmitter<number>();
   @Output() sortChange = new EventEmitter<{ field: string; direction: SortDirection }>();
 
   sortField: string | null = null;
   sortDirection: SortDirection = null;
+
+  ngOnInit(): void {
+    // Apply column alignments to AG-Grid column definitions if provided
+    if (this.columnAlignments && this.agGridColDefs) {
+      this.applyColumnAlignments();
+    }
+  }
+
+  private applyColumnAlignments(): void {
+    if (!this.agGridColDefs || !this.columnAlignments) return;
+
+    this.agGridColDefs.forEach(colDef => {
+      if (colDef.field && this.columnAlignments![colDef.field]) {
+        const alignment = this.columnAlignments![colDef.field];
+
+        // Apply alignment to cellStyle
+        const existingStyle = colDef.cellStyle;
+
+        if (typeof existingStyle === 'function') {
+          // If cellStyle is a function, wrap it to add textAlign
+          const originalStyleFn = existingStyle;
+          colDef.cellStyle = (params: any) => {
+            const style = originalStyleFn(params) || {};
+            return {
+              ...style,
+              textAlign: alignment
+            };
+          };
+        } else if (typeof existingStyle === 'object') {
+          // If cellStyle is an object, merge with textAlign
+          colDef.cellStyle = {
+            ...existingStyle,
+            textAlign: alignment
+          };
+        } else {
+          // If no cellStyle exists, create a new one
+          colDef.cellStyle = {
+            textAlign: alignment
+          };
+        }
+
+        // Apply alignment to headerClass for header alignment
+        colDef.headerClass = `header-align-${alignment}`;
+
+        // Add cellClass for additional styling if needed
+        const existingCellClass = colDef.cellClass;
+        if (typeof existingCellClass === 'string') {
+          colDef.cellClass = `${existingCellClass} cell-align-${alignment}`;
+        } else {
+          colDef.cellClass = `cell-align-${alignment}`;
+        }
+      }
+    });
+  }
 
   get computedTotal(): number {
     return this.total > 0 ? this.total : this.rows.length;
@@ -257,5 +377,161 @@ export class TableComponent {
 
   onCategoryFilterChange(event: Event): void{
     console.log('clicked capture by selction');
+  }
+
+  getFooterValue(column: TableColumn, columnIndex: number): string | null {
+    // First column shows the footer label
+    if (columnIndex === 0) {
+      return this.footerLabel;
+    }
+
+    // If custom footer values are provided, use them
+    if (this.footerValues && this.footerValues[column.field] !== undefined) {
+      const value = this.footerValues[column.field];
+      // Return null if value is explicitly null, undefined, or empty string
+      if (value === null || value === undefined || value === '') {
+        return null;
+      }
+      return value;
+    }
+
+    // Calculate based on footerCalculation type
+    if (this.footerCalculation === 'avg' || this.footerCalculation === 'sum') {
+      const values = this.rows.map(row => {
+        const value = row[column.field];
+        // Try to extract numeric value from string (e.g., "₹ 1,22,87,666" -> 12287666)
+        if (typeof value === 'string') {
+          const numericValue = parseFloat(value.replace(/[₹,\s]/g, ''));
+          return isNaN(numericValue) ? 0 : numericValue;
+        }
+        return typeof value === 'number' ? value : 0;
+      });
+
+      const total = values.reduce((sum, val) => sum + val, 0);
+
+      if (this.footerCalculation === 'avg') {
+        const avg = this.rows.length > 0 ? total / this.rows.length : 0;
+        // If it's the last column (likely a score), show as decimal
+        if (columnIndex === this.columns.length - 1) {
+          return avg.toFixed(2);
+        }
+        return null; // Return null for middle columns so they're not displayed
+      } else {
+        return total.toString();
+      }
+    }
+
+    return null;
+  }
+
+  // Helper method to check if footer value should be displayed
+  shouldShowFooterValue(column: TableColumn, columnIndex: number): boolean {
+    const value = this.getFooterValue(column, columnIndex);
+    return value !== null && value !== '';
+  }
+
+  // Calculate average for the last column (financial score)
+  calculateAverage(): string {
+    if (this.rows.length === 0 || this.columns.length === 0) {
+      return '0';
+    }
+
+    // Get the last column field (financial score)
+    const lastColumn = this.columns[this.columns.length - 1];
+    const values = this.rows.map(row => {
+      const value = row[lastColumn.field];
+      return typeof value === 'number' ? value : 0;
+    });
+
+    const total = values.reduce((sum, val) => sum + val, 0);
+    const avg = total / this.rows.length;
+
+    return avg.toFixed(2);
+  }
+
+  // Check if table has multi-level headers
+  hasMultiLevelHeaders(): boolean {
+    return this.columns.some(col => col.subHeaders && col.subHeaders.length > 0);
+  }
+
+  // Get all leaf columns (columns that will be used for data rendering)
+  getLeafColumns(): TableColumn[] {
+    const leafColumns: TableColumn[] = [];
+
+    const traverse = (columns: TableColumn[]) => {
+      columns.forEach(col => {
+        if (col.subHeaders && col.subHeaders.length > 0) {
+          traverse(col.subHeaders);
+        } else {
+          leafColumns.push(col);
+        }
+      });
+    };
+
+    traverse(this.columns);
+    return leafColumns;
+  }
+
+  // Get colspan for a column (if it has subheaders, return count of leaf columns)
+  getColspan(column: TableColumn): number {
+    if (column.colspan) {
+      return column.colspan;
+    }
+
+    if (column.subHeaders && column.subHeaders.length > 0) {
+      return column.subHeaders.reduce((sum, sub) => sum + this.getColspan(sub), 0);
+    }
+
+    return 1;
+  }
+
+  // Get rowspan for a column (if it doesn't have subheaders, it spans remaining rows)
+  getRowspan(column: TableColumn, currentLevel: number, maxLevel: number): number {
+    if (column.rowspan) {
+      return column.rowspan;
+    }
+
+    if (!column.subHeaders || column.subHeaders.length === 0) {
+      return maxLevel - currentLevel + 1;
+    }
+
+    return 1;
+  }
+
+  // Get maximum depth of header hierarchy
+  getMaxHeaderDepth(): number {
+    const getDepth = (columns: TableColumn[], depth: number = 1): number => {
+      const childDepths = columns
+        .filter(col => col.subHeaders && col.subHeaders.length > 0)
+        .map(col => getDepth(col.subHeaders!, depth + 1));
+
+      return childDepths.length > 0 ? Math.max(...childDepths) : depth;
+    };
+
+    return getDepth(this.columns);
+  }
+
+  // Get columns for a specific header level
+  getColumnsForLevel(level: number): TableColumn[] {
+    const result: TableColumn[] = [];
+
+    const traverse = (columns: TableColumn[], currentLevel: number) => {
+      columns.forEach(col => {
+        if (currentLevel === level) {
+          result.push(col);
+        }
+        if (col.subHeaders && col.subHeaders.length > 0 && currentLevel < level) {
+          traverse(col.subHeaders, currentLevel + 1);
+        }
+      });
+    };
+
+    traverse(this.columns, 1);
+    return result;
+  }
+
+  // Check if customTemplate is a TemplateRef
+  isTemplateRef(template: any): template is TemplateRef<any> {
+    return template instanceof TemplateRef;
   }
 }

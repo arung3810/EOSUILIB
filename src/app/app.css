@@ -1,3 +1,6 @@
 :host{
   font-family: Inter, sans-serif;
 }
+.main-content{
+  overflow: hidden;
+}

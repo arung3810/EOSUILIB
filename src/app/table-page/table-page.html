@@ -1,11 +1,127 @@
 <section>
   <h2>Table Component</h2>
-  
+
+  <!-- Action Button Template -->
+  <ng-template #actionButtonTemplate let-row>
+    <button class="action-button" (click)="onActionButtonClick(row)">
+      {{ row.suggestedAction }}
+    </button>
+  </ng-template>
+
+  <!-- Header Right Template (for dynamic header) -->
+  <ng-template #headerRightTemplate>
+    <button class="create-meeting-button" (click)="onCreateMeetingClick()">
+      + Create Meeting
+    </button>
+  </ng-template>
+
+  <!-- Scheme Portfolio Table using AG-Grid -->
   <div class="showcase-section">
-    <h3>Data Table with Pagination</h3>
-    <p>A feature-rich table component with sorting and pagination</p>
-    <lib-table [columns]="columns" [rows]="tableData" [total]="totalRows" [page]="currentPage" [pageSize]="pageSize"
-      (pageChange)="onPageChange($event)" (sortChange)="onSortChange($event)">
+    <h3>Scheme Portfolio Table (AG-Grid)</h3>
+    <p>Investment scheme portfolio with fund details, expense ratios, current values, and performance scores</p>
+    <lib-table
+      [tableType]="'agTable'"
+      [rows]="schemePortfolioRowData"
+      [agGridColDefs]="schemePortfolioColDefs"
+      [agGridOptions]="schemePortfolioGridOptions"
+      [columnAlignments]="schemePortfolioColumnAlignments">
+    </lib-table>
+  </div>
+
+  <!-- Income & Expense Table using AG-Grid -->
+  <div class="showcase-section">
+    <h3>Income & Expense Table (AG-Grid)</h3>
+    <p>Financial income and expense tracking with type badges, edit icons, and custom cell renderers</p>
+    <lib-table
+      [tableType]="'agTable'"
+      [rows]="incomeExpenseRowData"
+      [agGridColDefs]="incomeExpenseColDefs"
+      [agGridOptions]="incomeExpenseGridOptions"
+      [columnAlignments]="incomeExpenseColumnAlignments">
+    </lib-table>
+  </div>
+
+  <!-- Deductions & Exemptions Table using AG-Grid -->
+  <div class="showcase-section">
+    <h3>Deductions & Exemptions (AG-Grid)</h3>
+    <p>Dynamic tax deductions table with custom cell renderers, styling, scrollable body, and field-level alignment control</p>
+    <lib-table
+      [tableType]="'agTable'"
+      [rows]="deductionsRowData"
+      [agGridColDefs]="deductionsColDefs"
+      [agGridOptions]="deductionsGridOptions"
+      [tableHeight]="'500px'"
+      [columnAlignments]="deductionsColumnAlignments">
+    </lib-table>
+  </div>
+
+  <!-- Tax Comparison Table -->
+  <div class="showcase-section">
+    <h3>Tax Comparison Table</h3>
+    <p>Compare tax calculations between Old Regime and New Regime with highlighted totals</p>
+    <lib-table
+      [tableType]="'tax-comparison'"
+      [columns]="taxComparisonColumns"
+      [rows]="taxComparisonData">
+    </lib-table>
+  </div>
+
+  <!-- Policy Details Table -->
+  <div class="showcase-section">
+    <h3>Policy Details & Evaluation</h3>
+    <p>Insurance Policy Management with Multi-Level Headers</p>
+    <lib-table
+      [showFooter]="true"
+      [footerLabel]="'Total'"
+      [footerValues]="customFooterValuesPolicy"
+      [tableType]="'financial-scoring'"
+      [columns]="policyColumns"
+      [rows]="policyData">
+    </lib-table>
+  </div>
+
+  <!-- Multi-level Header Demo - Liability Distribution Table -->
+  <div class="showcase-section">
+    <h3>Multi-Level Header Table (Liability Distribution)</h3>
+    <p>Liability Management</p>
+    <lib-table
+      [tableType]="'financial-scoring'"
+      [columns]="liabilityColumns"
+      [rows]="liabilityData"
+      [showFooter]="false">
+    </lib-table>
+  </div>
+
+  <!-- Financial Scoring Metrics Demo -->
+  <div class="showcase-section">
+    <h3>Financial Analysis</h3>
+    <p>Clean financial scoring table with custom footer values - only showing totals for specific columns</p>
+    <lib-table
+      [tableType]="'financial-scoring'"
+      [columns]="financialColumns"
+      [rows]="financialData"
+      [showFooter]="true"
+      [showHeaderBorder]="false"
+      [footerLabel]="'Total'"
+      [footerValues]="customFooterValues">
+    </lib-table>
+  </div>
+
+  <!-- Meeting Data Demo -->
+  <div class="showcase-section">
+    <h3>Meeting Data Table with Advanced Features & Dynamic Header</h3>
+    <p>A feature-rich table component with sorting, pagination, dropdowns, tooltips, dynamic header with title and custom component</p>
+    <lib-table
+      [tableType]="'dynamic'"
+      [tableTitle]="'Meetings Logs'"
+      [headerRightTemplate]="headerRightTemplate"
+      [columns]="columns"
+      [rows]="tableData"
+      [total]="totalRows"
+      [page]="currentPage"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)">
     </lib-table>
   </div>
 

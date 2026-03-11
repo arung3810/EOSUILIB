@@ -30,9 +30,9 @@
     "@angular/router": "^20.3.0",
     "@popperjs/core": "^2.11.8",
     "@splidejs/splide": "^4.1.4",
-    "ag-grid-angular": "^35.0.0",
+    "ag-grid-angular": "^31.0.3",
     "apexcharts": "^5.3.6",
-    "eos-comp": "^1.0.3",
+    "eos-comp": "^1.0.5",
     "ng-apexcharts": "^1.8.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

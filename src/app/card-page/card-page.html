@@ -41,10 +41,11 @@
     </div>
     <div style="width: 18%;">
       <lib-card cardType="MFHoldings" title="No. of Mutual Funds" [currentFbsScore]="20"
+      textColor="green"
         para="Attention! Consolidate your portfolio on priority"></lib-card>
     </div>
     <div style="width: 18%;">
-      <lib-card cardType="MFHoldings" title=" Avg Portfolio Score" [currentFbsScore]="69" small="Medium"
+      <lib-card cardType="MFHoldings" title=" Avg Portfolio Score" [currentFbsScore]="69" small="MEDIUM"
         para="Based on the 1 Finance proprietary research"></lib-card>
     </div>
   </div>
@@ -52,12 +53,27 @@
   <lib-card cardType="carousal" title="Portfolio Overlap (Top 5)" [carousalList]="carousalTestData">
   </lib-card>
 <br>
-  <div style="width: fit-content;">
+<div class="row">
+  <div style="width: 18%;">
+      <lib-card cardType="MFHoldings" title="No. of Mutual Funds" [currentFbsScore]="20"
+      textColor="green"
+        para="Attention! Consolidate your portfolio on priority"></lib-card>
+    </div>
+    <div style="width: 18%;">
+      <lib-card cardType="MFHoldings" title=" Avg Portfolio Score" [currentFbsScore]="69" small="MEDIUM"
+        para="Based on the 1 Finance proprietary research"></lib-card>
+    </div>
+  <div class="col">
     <lib-card cardType="MFHoldingsPie" [series]="[97, 3]" [colors]="['#ab99ff', '#e0e0e0']"
-      [mf_allocation_not_fetched]="false" [current_value]="8.5" [MfholdingList2]="mfholdingpielist"
-      para="description shown here"></lib-card>
+      [mf_allocation_not_fetched]="false" [current_value]="'₹ 40.6K'" [MfholdingList2]="mfholdingpielist"
+      para="Categorisation is based on Stocks" MFHoldingsTitle="Mutual Fund Portfolio Allocation"></lib-card>
   </div>
-
+  <div class="col">
+    <lib-card cardType="MFHoldingsPie" [series]="[97, 3]" [colors]="['#ab99ff', '#e0e0e0']"
+      [mf_allocation_not_fetched]="false" [MfholdingList2]="mfholdingpielist"
+      para="Categorisation is based on Stocks" MFHoldingsTitle="Equity Market Cap Distribution (Domestic)"></lib-card>
+  </div>
+</div>
   <br>
   <!-- <h3>Pie & Donut Chart Component</h3>
   <div class="row">
@@ -312,6 +328,170 @@
     </div>
   </div>
 
+  <br>
+  <h3>Financial Analysis Card</h3>
+  <!--
+    Financial Analysis Card with Tooltip Feature
+
+    This card displays financial analysis information with values and a button.
+
+    Key Features:
+    - Title and button with icon
+    - Actual vs Ideal value comparison
+    - Optional tooltip on button hover
+
+    Tooltip Usage:
+    - Add [financialAnalysisTooltipText] property to show a tooltip on button hover
+    - Tooltip appears above the button with a dark background
+    - Perfect for showing additional context or warnings
+  -->
+  <div class="row">
+    <div class="col" style="max-width: 600px;">
+      <lib-card
+        cardType="financialAnalysis"
+        [financialArrow]="true"
+        [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialAnalysisButtonText]="financialAnalysisButtonText"
+        [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
+        [financialAnalysisActualValue]="financialAnalysisActualValue"
+        [financialAnalysisIdealValue]="financialAnalysisIdealValue"
+        [financialAnalysisTooltipText]="financialAnalysisTooltipText"
+        (financialAnalysisButtonClick)="onFinancialAnalysisButtonClick()"
+      ></lib-card>
+    </div>
+    <div class="col" style="max-width: 600px;">
+      <lib-card
+        cardType="financialAnalysis"
+        [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialArrow]="true"
+        [financialAnalysisButtonText]="financialAnalysisButtonText"
+        [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
+        [financialAnalysisActualValue]="financialAnalysisActualValue"
+        [financialAnalysisIdealValue]="financialAnalysisIdealValue"
+        [financialAnalysisTooltipText]="financialAnalysisTooltipText1"
+        (financialAnalysisButtonClick)="onFinancialAnalysisButtonClick()"
+      ></lib-card>
+    </div>
+    <div class="col" style="max-width: 600px;">
+      <lib-card
+        cardType="financialAnalysis"
+        [financialArrow]="false"
+        [financialAnalysisTitle]="financialAnalysisTitle"
+        [financialAnalysisButtonText]="financialAnalysisButtonText"
+        [financialAnalysisButtonIcon]="financialAnalysisButtonIcon"
+        [financialAnalysisActualValue]="financialAnalysisActualValue"
+        [financialAnalysisIdealValue]="financialAnalysisIdealValue"
+        [financialAnalysisTooltipText]="financialAnalysisTooltipText1"
+        (financialAnalysisButtonClick)="onFinancialAnalysisButtonClick()"
+      ></lib-card>
+    </div>
+  </div>
+
+  <h3>Life stage Card</h3>
+  <div class="row">
+    <div class="col">
+      <lib-card
+      cardType="lifeStage"
+      lifeStageTitle="Life Stage"
+      lifeStageContent="Growth Phase"
+      lifeStageAgeRange="36-40"
+      />
+    </div>
+    <div class="col">
+      <lib-card
+      cardType="lifeStage"
+      lifeStageTitle="Generation Profile"
+      lifeStageContent="Generation 2"
+      />
+    </div>
+  </div>
+
+  <br>
+  <h3>Behavioral Biases Card</h3>
+  <div class="row">
+    <div class="col" style="max-width: 500px;">
+      <lib-card
+        cardType="behavioralBiases"
+        [behavioralHeader]="behavioralHeader"
+        [behavioralTitle]="behavioralTitle"
+        [behavioralSubtitle]="behavioralSubtitle"
+        [behavioralIcon]="behavioralIcon"
+        [behavioralBiasesList]="behavioralBiasesList"
+        (biasInfoClick)="onBiasInfoClick($event)"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>TER Chart Card</h3>
+  <div class="row">
+    <div class="col" style="max-width: 70%;">
+      <lib-card
+        cardType="TERchart"
+        terChartTitle="Existing TER"
+        [terChartPeriods]="terChartPeriods"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Advised TER Card</h3>
+  <div class="row">
+    <div style="width: 50%;">
+      <lib-card
+        cardType="impactAdvise"
+        [impactAdviseTitle]="'Impact With Advise'"
+        [impactAdviseCurrency]="'₹'"
+        [impactAdviseAmount]="'4,73,96,33,200'"
+        [impactAdvisePercentage]="'586351.69%'"
+      ></lib-card>
+    </div>
+    <div style="width: 25%;">
+      <lib-card
+        cardType="advisedTER"
+        advisedTERTitle="High TER"
+        advisedTERValue="1.25 %"
+        advisedTERColorType="red"
+      ></lib-card>
+    </div>
+    <div style="width: 25%;">
+      <lib-card
+        cardType="advisedTER"
+        advisedTERTitle="Recommended TER"
+        advisedTERValue="0.45 %"
+        advisedTERColorType="green"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Actions List Card</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="actionsList"
+        [actionsListTitle]="actionsListTitle"
+        [actionsListItems]="actionsListItems"
+        [showAddButton]="true"
+        (actionsAddClick)="onActionsAddClick()"
+        (actionEdit)="onActionEdit($event)"
+        (actionDelete)="onActionDelete($event)"
+      ></lib-card>
+    </div>
+  </div>
+
+  <br>
+  <h3>Actions List Card - Without Add Button</h3>
+  <div class="row">
+    <div class="col" style="max-width: 100%;">
+      <lib-card
+        cardType="actionsList"
+        actionsListTitle="My Tasks"
+        [actionsListItems]="['Review financial goals', 'Update insurance coverage']"
+        [showAddButton]="false"
+      ></lib-card>
+    </div>
+  </div>
 </section>
 
 

@@ -6,7 +6,7 @@
     "@angular/core": "^20.3.0",
     "@splidejs/splide": "^4.1.4",
     "ng-apexcharts": "^1.8.0",
-    "ag-grid-angular": "^35.0.0"
+    "ag-grid-angular": "^31.0.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"

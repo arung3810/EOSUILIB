@@ -71,7 +71,6 @@ tbody tr:hover {
 
 .row {
   display: flex;
-  gap: 2rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }

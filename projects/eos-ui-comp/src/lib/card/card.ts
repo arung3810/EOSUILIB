@@ -30,6 +30,7 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
 
   // // fbs
   @Input() currentFbsScore!: number;
+  @Input() textColor!: string;
   @Input() gen_last_updated_at: string | null = null;
   @Input() genProfile!: any;
   @Input() role!: string;
@@ -196,6 +197,18 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
         this.sanitizer.bypassSecurityTrustHtml(this.nomineeHeaderIcon);
     }
 
+    // Sanitize financialAnalysisButtonIcon when input changes
+    if (changes['financialAnalysisButtonIcon']?.currentValue && this.financialAnalysisButtonIcon) {
+      this.safeFinancialAnalysisButtonIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.financialAnalysisButtonIcon);
+    }
+
+    // Sanitize behavioralIcon when input changes
+    if (changes['behavioralIcon']?.currentValue && this.behavioralIcon) {
+      this.safeBehavioralIcon =
+        this.sanitizer.bypassSecurityTrustHtml(this.behavioralIcon);
+    }
+
     if (changes['carousalList']?.currentValue && this.portfolioFundCarousel) {
       // Reinitialize carousel when data changes
       setTimeout(() => {
@@ -289,8 +302,9 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
   @Input() height?: number = 130;
   @Input() colors!: string[];  //['#FF8B81', '#7FCDA4']
   @Input() mf_allocation_not_fetched !: boolean;
-  @Input() current_value !: number;
-  @Input() MfholdingList2 !: { label: string, equityPercentage: number, equityValue: number }[];
+  @Input() current_value !: string;
+  @Input() MFHoldingsTitle!: string; 
+  @Input() MfholdingList2 !: { label: string, equityPercentage: number, equityValue: string }[];
 
   // Asset Card inputs
   @Input() assetChartData!: ChartData[];
@@ -390,6 +404,20 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
     avatarColor?: string
   }[];
 
+  // Financial Analysis Card inputs
+  @Input() financialAnalysisTitle?: string = 'Life Insurance';
+  @Input() financialAnalysisButtonText?: string = 'View Risks';
+  @Input() financialAnalysisButtonIcon?: string; // SVG icon as string
+  safeFinancialAnalysisButtonIcon: any;
+  @Input() financialArrow: boolean = true;
+  @Input() financialAnalysisActualLabel?: string = 'Actual Value';
+  @Input() financialAnalysisIdealLabel?: string = 'Ideal';
+  @Input() financialAnalysisActualValue?: string = '0';
+  @Input() financialAnalysisIdealValue?: string = '0.0L';
+  @Input() financialAnalysisCurrency?: string = '₹';
+  @Input() financialAnalysisTooltipText?: string; // Tooltip text for button
+  @Output() financialAnalysisButtonClick = new EventEmitter<void>();
+
   onFwpPreviewClick(): void {
     if (!this.fwpPreviewDisabled) {
       this.fwpPreviewClick.emit();
@@ -402,7 +430,73 @@ export class DashboardCard implements OnChanges, AfterViewInit, OnDestroy {
     }
   }
 
+  onFinancialAnalysisButtonClick(): void {
+    this.financialAnalysisButtonClick.emit();
+  }
+
   onClick(): void {
     this.cardClick.emit();
   }
+
+  // lifestage
+  @Input() lifeStageTitle!: string;
+  @Input() lifeStageContent!: string;
+  @Input() lifeStageAgeRange!: string;
+
+  // Behavioral Biases Card inputs
+  @Input() behavioralHeader?: string = 'MoneySign®';
+  @Input() behavioralTitle?: string;
+  @Input() behavioralSubtitle?: string = 'Behavioural Biases';
+  @Input() behavioralIcon?: string; // SVG icon as string
+  safeBehavioralIcon: any;
+  @Input() behavioralBiasesList!: {
+    label: string,
+    showInfo?: boolean,
+    tooltipContent?: string
+  }[];
+  @Output() biasInfoClick = new EventEmitter<any>();
+
+  onBiasInfoClick(bias: any): void {
+    this.biasInfoClick.emit(bias);
+  }
+
+  // TER Chart Card inputs
+  @Input() terChartTitle?: string = 'Existing TER';
+  @Input() terChartPeriods!: {
+    label: string,
+    value: string
+  }[];
+
+  // Advised TER Card inputs
+  @Input() advisedTERTitle?: string = 'Advised TER';
+  @Input() advisedTERValue?: string;
+  @Input() advisedTERColorType?: 'green' | 'red' = 'green'; // Determines if color should be green or red
+
+  // Impact Advise Card inputs
+  @Input() impactAdviseTitle?: string = 'Impact With';
+  @Input() impactAdviseTitleHighlight?: string = 'Advise';
+  @Input() impactAdviseCurrency?: string = '₹';
+  @Input() impactAdviseAmount?: string = '4,73,96,33,200';
+  @Input() impactAdvisePercentage?: string = '586351.69%';
+
+  // Actions List Card inputs
+  @Input() actionsListTitle?: string = 'Actions for this year';
+  @Input() actionsListItems!: string[];
+  @Input() showAddButton?: boolean = true;
+  @Output() actionsAddClick = new EventEmitter<void>();
+  @Output() actionEdit = new EventEmitter<number>();
+  @Output() actionDelete = new EventEmitter<number>();
+
+  onActionsAddClick(): void {
+    this.actionsAddClick.emit();
+  }
+
+  onActionEdit(index: number): void {
+    this.actionEdit.emit(index);
+  }
+
+  onActionDelete(index: number): void {
+    this.actionDelete.emit(index);
+  }
+
 }
