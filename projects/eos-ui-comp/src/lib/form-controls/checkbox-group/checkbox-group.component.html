@@ -1,0 +1,16 @@
+<div class="checkbox-group">
+  <label *ngIf="label" class="group-label">{{ label }}</label>
+  <div class="checkbox-options">
+    <div *ngFor="let option of options; let i = index" class="checkbox-option">
+      <input
+        type="checkbox"
+        [id]="getOptionId(option, i)"
+        [value]="option.value"
+        [checked]="isChecked(option.value)"
+        [disabled]="disabled"
+        (change)="onCheckboxChange(option.value, $any($event.target).checked)"
+      />
+      <label [for]="getOptionId(option, i)">{{ option.label }}</label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="input-text">
+  <label *ngIf="label">{{ label }}</label>
+  <input
+    class="textInputField input-field"
+    [type]="type"
+    [value]="value"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    (input)="onInputChange($event)"
+    (blur)="onTouched()"
+  />
+</div>
