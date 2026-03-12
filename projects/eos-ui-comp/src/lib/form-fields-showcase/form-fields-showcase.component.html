@@ -1,10 +1,140 @@
 <div class="showcase-container">
   <div class="showcase-title">
     <h2>Form Field Components</h2>
-    <p>  Various input fields and form controls for data collection</p>
+    <p>Various input fields and form controls for data collection</p>
   </div>
 
   <div class="form-content">
-    <lib-form-fields></lib-form-fields>
+    <!-- Text Input -->
+    <div class="form-section">
+      <h3>Text Input</h3>
+      <lib-form-field
+        type="text"
+        label="Full Name"
+        placeholder="Enter your full name"
+        [required]="true"
+        helperText="Please enter your first and last name">
+      </lib-form-field>
+    </div>
+
+    <!-- Email Input -->
+    <div class="form-section">
+      <h3>Email Input</h3>
+      <lib-form-field
+        type="email"
+        label="Email Address"
+        placeholder="example@email.com"
+        [required]="true">
+      </lib-form-field>
+    </div>
+
+    <!-- Number Input -->
+    <div class="form-section">
+      <h3>Number Input</h3>
+      <lib-form-field
+        type="number"
+        label="Age"
+        placeholder="Enter your age"
+        prefix="Age:"
+        suffix="years">
+      </lib-form-field>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-section">
+      <h3>Textarea</h3>
+      <lib-form-field
+        type="textarea"
+        label="Description"
+        placeholder="Enter description"
+        [rows]="4">
+      </lib-form-field>
+    </div>
+
+    <!-- Date Input -->
+    <div class="form-section">
+      <h3>Date Input</h3>
+      <lib-form-field
+        type="date"
+        label="Birth Date"
+        [required]="true">
+      </lib-form-field>
+    </div>
+
+    <!-- Select Dropdown -->
+    <div class="form-section">
+      <h3>Select Dropdown</h3>
+      <lib-form-field
+        type="select"
+        label="Country"
+        placeholder="Select your country"
+        [options]="countryOptions"
+        [required]="true">
+      </lib-form-field>
+    </div>
+
+    <!-- Toggle Switch -->
+    <div class="form-section">
+      <h3>Toggle Switch</h3>
+      <lib-form-field
+        type="toggle"
+        label="Notifications"
+        toggleLabel="Enable email notifications">
+      </lib-form-field>
+    </div>
+
+    <!-- Radio Buttons -->
+    <div class="form-section">
+      <h3>Radio Buttons</h3>
+      <lib-form-field
+        type="radio"
+        label="Gender"
+        [radioOptions]="genderOptions">
+      </lib-form-field>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-section">
+      <h3>Checkbox</h3>
+      <lib-form-field
+        type="checkbox"
+        checkboxLabel="I agree to the terms and conditions">
+      </lib-form-field>
+    </div>
+
+    <!-- Field Sizes -->
+    <div class="form-section">
+      <h3>Field Sizes</h3>
+      <lib-form-field
+        type="text"
+        label="Small Size"
+        placeholder="Small input"
+        size="small">
+      </lib-form-field>
+      <lib-form-field
+        type="text"
+        label="Medium Size"
+        placeholder="Medium input"
+        size="medium">
+      </lib-form-field>
+      <lib-form-field
+        type="text"
+        label="Large Size"
+        placeholder="Large input"
+        size="large">
+      </lib-form-field>
+    </div>
+
+    <!-- Error State -->
+    <div class="form-section">
+      <h3>Error State</h3>
+      <lib-form-field
+        type="email"
+        label="Email with Error"
+        placeholder="Enter email"
+        errorMessage="Please enter a valid email address"
+        [required]="true">
+      </lib-form-field>
+    </div>
   </div>
 </div>

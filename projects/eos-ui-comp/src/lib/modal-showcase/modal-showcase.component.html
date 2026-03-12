@@ -89,6 +89,16 @@
       </lib-email-modal>
     </div>
 
+    <!-- Wella Limited Modal -->
+    <div class="modal-example">
+      <h3>Wella Limited Modal</h3>
+      <button class="demo-button" (click)="openWellaModal()">Open Wella Modal</button>
+      
+      <lib-wella-modal
+        [open]="isWellaModalOpen"
+        (close)="onWellaClose()">
+      </lib-wella-modal>
+    </div>
 
   </div>
 </div>

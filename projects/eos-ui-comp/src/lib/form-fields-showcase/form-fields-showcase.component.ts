@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormFields } from '../form-fields/form-fields';
+import { FormFields, SelectOption } from '../form-fields/form-fields';
 
 @Component({
   selector: 'lib-form-fields-showcase',
@@ -10,4 +10,17 @@ import { FormFields } from '../form-fields/form-fields';
   styleUrls: ['./form-fields-showcase.component.css']
 })
 export class FormFieldsShowcaseComponent {
+  countryOptions: SelectOption[] = [
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'au', label: 'Australia' },
+    { value: 'in', label: 'India' }
+  ];
+
+  genderOptions: SelectOption[] = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' }
+  ];
 }

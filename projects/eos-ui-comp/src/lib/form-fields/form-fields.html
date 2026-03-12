@@ -1,122 +1,129 @@
-<h1 class="card-head">Input Fields</h1>
+<div class="form-field-wrapper" [class.full-width]="fullWidth" [ngClass]="sizeClass">
+  <!-- Label -->
+  <label *ngIf="label" class="field-label" [class.required]="required">
+    {{ label }}
+    <span *ngIf="required" class="required-asterisk">*</span>
+  </label>
 
-<form [formGroup]="form">
-  <div class="row">
-    <!-- LEFT SIDE -->
-    <div class="width-div">
-      <div class="half-side">
-
-        <div class="input-text">
-          <label>Text Input</label>
-          <input class="textInputField input-field"
-                 type="text"
-                 formControlName="textInput"
-                 placeholder="Enter text here">
-        </div>
-
-        <div class="input-text">
-          <label>Email Input</label>
-          <input class="textInputField input-field"
-                 type="email"
-                 formControlName="emailInput"
-                 placeholder="Enter Email here">
-        </div>
-
-        <div class="input-text">
-          <label>Number Input</label>
-          <input class="textInputField input-field"
-                 type="number"
-                 formControlName="numberInput"
-                 placeholder="Enter Number here">
-        </div>
-
-        <div class="input-text">
-          <label>Textarea</label>
-          <textarea class="textInputField input-field"
-                    style="    height: 56px;"
-                    formControlName="textareaInput"
-                    placeholder="Enter text">
-          </textarea>
-        </div>
-
-        <div class="input-text">
-          <label>Toggle</label>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div style="flex-direction: row;" class="input-text">
-            <label>Radio</label>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-            <label for="html">HTML</label><br>
-            <input type="radio" id="css" name="fav_language" value="CSS">
-            <label for="css">CSS</label><br>
-            <input type="radio" id="javascript" name="fav_language" value="JavaScript">
-            <label for="css">Javascript</label><br>
-        </div>
-
-      </div>
-
-      <!-- RIGHT SIDE -->
-      <div class="half-side right-side">
-
-        <div class="input-text">
-          <label>Text Input Disabled</label>
-          <input class="textInputField input-field"
-                 type="text"
-                 formControlName="disabledText"
-                 placeholder="Enter text here">
-        </div>
-
-        <div class="input-text">
-          <label>Date Input</label>
-          <input class="textInputField input-field"
-                 type="date"
-                 formControlName="dateInput">
-        </div>
-
-        <div class="input-text">
-          <label>Input With Icon</label>
-          <div class="input-group">
-            <div class="input-group-addon">₹</div>
-            <input style="width: 309px;" class="textInputField input-field"
-                   type="number"
-                   formControlName="amountInput"
-                   placeholder="Enter amount">
-          </div>
-        </div>
-
-        <div class="input-text">
-          <label>Select Input</label>
-          <div class="input-group">
-            <select style="" class="textInputField input-field"
-                    formControlName="fruit">
-              <option value="apple">Apple</option>
-              <option value="banana">Banana</option>
-              <option value="cherry">Cherry</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="input-text">
-            <label>Toggle Disabled</label>
-            <label class="switch">
-                <input type="checkbox" disabled>
-                <span class="slider round"></span>
-            </label>
-        </div>
-        <div style="flex-direction: row;" class="input-text">
-            <label>Checkboxes</label>
-            <input type="checkbox" id="html" name="fav_language" value="HTML">
-            <label for="html">HTML</label><br>
-            <input type="checkbox" id="css" name="fav_language" value="CSS">
-            <label for="css">CSS</label><br>
-            <input type="checkbox" id="javascript" name="fav_language" value="JavaScript">
-            <label for="css">Javascript</label><br>
-        </div>
-
-      </div>
-    </div>
+  <!-- Text Input -->
+  <div *ngIf="type === 'text' || type === 'email' || type === 'number'" class="input-wrapper">
+    <span *ngIf="prefix" class="input-prefix">{{ prefix }}</span>
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [required]="required"
+      [value]="value"
+      (input)="onInputChange($event)"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      class="form-input"
+      [class.has-prefix]="prefix"
+      [class.has-suffix]="suffix"
+      [class.error]="hasError"
+      [class.focused]="isFocused"
+    />
+    <span *ngIf="suffix" class="input-suffix">{{ suffix }}</span>
   </div>
-</form>
+
+  <!-- Textarea -->
+  <textarea
+    *ngIf="type === 'textarea'"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [required]="required"
+    [rows]="rows"
+    [value]="value"
+    (input)="onInputChange($event)"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    class="form-textarea"
+    [class.error]="hasError"
+    [class.focused]="isFocused"
+  ></textarea>
+
+  <!-- Date Input -->
+  <input
+    *ngIf="type === 'date'"
+    type="date"
+    [disabled]="disabled"
+    [required]="required"
+    [value]="value"
+    (input)="onInputChange($event)"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    class="form-input"
+    [class.error]="hasError"
+    [class.focused]="isFocused"
+  />
+
+  <!-- Select Dropdown -->
+  <select
+    *ngIf="type === 'select'"
+    [disabled]="disabled"
+    [required]="required"
+    [value]="value"
+    (change)="onInputChange($event)"
+    (blur)="onBlur($event)"
+    (focus)="onFocus($event)"
+    class="form-select"
+    [class.error]="hasError"
+    [class.focused]="isFocused"
+  >
+    <option value="" disabled selected>{{ placeholder || 'Select an option' }}</option>
+    <option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <!-- Toggle Switch -->
+  <div *ngIf="type === 'toggle'" class="toggle-wrapper">
+    <label class="toggle-switch">
+      <input
+        type="checkbox"
+        [disabled]="disabled"
+        [checked]="value"
+        (change)="onToggleChange($event)"
+        class="toggle-input"
+      />
+      <span class="toggle-slider"></span>
+    </label>
+    <span *ngIf="toggleLabel" class="toggle-label-text">{{ toggleLabel }}</span>
+  </div>
+
+  <!-- Radio Buttons -->
+  <div *ngIf="type === 'radio'" class="radio-group">
+    <label *ngFor="let option of radioOptions" class="radio-label">
+      <input
+        type="radio"
+        [name]="label"
+        [value]="option.value"
+        [checked]="value === option.value"
+        [disabled]="disabled"
+        (change)="onInputChange(option.value)"
+        class="radio-input"
+      />
+      <span class="radio-text">{{ option.label }}</span>
+    </label>
+  </div>
+
+  <!-- Checkbox -->
+  <div *ngIf="type === 'checkbox'" class="checkbox-wrapper">
+    <label class="checkbox-label">
+      <input
+        type="checkbox"
+        [disabled]="disabled"
+        [checked]="value"
+        (change)="onToggleChange($event)"
+        class="checkbox-input"
+      />
+      <span class="checkbox-text">{{ checkboxLabel }}</span>
+    </label>
+  </div>
+
+  <!-- Helper Text -->
+  <span *ngIf="helperText && !hasError" class="helper-text">{{ helperText }}</span>
+
+  <!-- Error Message -->
+  <span *ngIf="hasError" class="error-text">{{ errorMessage }}</span>
+</div>

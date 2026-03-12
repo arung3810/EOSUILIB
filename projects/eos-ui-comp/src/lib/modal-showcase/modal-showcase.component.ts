@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../modal/modal';
 import { EmailModalComponent } from '../email-modal/email-modal';
-// import { WellaModalComponent } from '../wella-modal/wella-modal';
+import { WellaModalComponent } from '../wella-modal/wella-modal';
 
 @Component({
   selector: 'lib-modal-showcase',
   standalone: true,
-  imports: [CommonModule, ModalComponent, EmailModalComponent],
+  imports: [CommonModule, ModalComponent, EmailModalComponent, WellaModalComponent],
   templateUrl: './modal-showcase.component.html',
   styleUrls: ['./modal-showcase.component.css']
 })

@@ -52,6 +52,11 @@
       <span *ngIf="!isCollapsed">Input Fields</span>
     </li>
 
+    <li [class.active]="currentRoute === '/bonusform'" (click)="navigateTo('/bonusform')">
+      <i class="fa-solid fa-file-invoice-dollar"></i>
+      <span *ngIf="!isCollapsed">Bonus Form</span>
+    </li>
+
     <li [class.active]="currentRoute === '/accordion'" (click)="navigateTo('/accordion')">
       <i class="fa-solid fa-list"></i>
       <span *ngIf="!isCollapsed">Accordion</span>

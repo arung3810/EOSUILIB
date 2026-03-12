@@ -1,0 +1,184 @@
+<div class="bonus-form-container">
+  <form (ngSubmit)="onSubmit()" class="bonus-form">
+    <!-- Bonus Frequency Selection -->
+    <div class="form-group">
+      <label class="form-label">Bonus Frequency <span class="required">*</span></label>
+      <select 
+        [(ngModel)]="frequency" 
+        name="frequency" 
+        class="form-select"
+        (change)="onFrequencyChange()"
+        required>
+        <option value="monthly">Monthly</option>
+        <option value="quarterly">Quarterly</option>
+        <option value="biannually">Biannually</option>
+        <option value="annually">Annually</option>
+      </select>
+    </div>
+
+    <!-- Monthly Fields -->
+    <div *ngIf="frequency === 'monthly'" class="conditional-fields">
+      <div class="form-group">
+        <label class="form-label">Approx. Bonus Amount <span class="required">*</span></label>
+        <input 
+          type="number" 
+          [(ngModel)]="monthlyAmount" 
+          name="monthlyAmount"
+          class="form-input"
+          placeholder="Enter amount"
+          required />
+      </div>
+    </div>
+
+    <!-- Quarterly Fields -->
+    <div *ngIf="frequency === 'quarterly'" class="conditional-fields">
+      <!-- Year Type Toggle -->
+      <div class="year-type-toggle">
+        <button 
+          type="button"
+          class="toggle-btn"
+          [class.active]="yearType === 'financial'"
+          (click)="yearType = 'financial'; onYearTypeChange()">
+          Financial Year
+        </button>
+        <button 
+          type="button"
+          class="toggle-btn"
+          [class.active]="yearType === 'calendar'"
+          (click)="yearType = 'calendar'; onYearTypeChange()">
+          Calendar Year
+        </button>
+      </div>
+
+      <!-- Quarterly Amounts -->
+      <div class="quarterly-grid">
+        <div class="form-group">
+          <label class="form-label">Q1 Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="q1Amount" 
+            name="q1Amount"
+            class="form-input"
+            placeholder="Enter Q1 amount"
+            required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Q2 Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="q2Amount" 
+            name="q2Amount"
+            class="form-input"
+            placeholder="Enter Q2 amount"
+            required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Q3 Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="q3Amount" 
+            name="q3Amount"
+            class="form-input"
+            placeholder="Enter Q3 amount"
+            required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Q4 Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="q4Amount" 
+            name="q4Amount"
+            class="form-input"
+            placeholder="Enter Q4 amount"
+            required />
+        </div>
+      </div>
+    </div>
+
+    <!-- Biannually Fields -->
+    <div *ngIf="frequency === 'biannually'" class="conditional-fields">
+      <div class="biannual-grid">
+        <div class="form-group">
+          <label class="form-label">Select Month 1 <span class="required">*</span></label>
+          <select 
+            [(ngModel)]="month1" 
+            name="month1"
+            class="form-select"
+            required>
+            <option value="" disabled selected>Select month</option>
+            <option *ngFor="let month of months" [value]="month.value">
+              {{ month.label }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bonus Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="amount1" 
+            name="amount1"
+            class="form-input"
+            placeholder="Enter amount"
+            required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Select Month 2 <span class="required">*</span></label>
+          <select 
+            [(ngModel)]="month2" 
+            name="month2"
+            class="form-select"
+            required>
+            <option value="" disabled selected>Select month</option>
+            <option *ngFor="let month of months" [value]="month.value">
+              {{ month.label }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bonus Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="amount2" 
+            name="amount2"
+            class="form-input"
+            placeholder="Enter amount"
+            required />
+        </div>
+      </div>
+    </div>
+
+    <!-- Annually Fields -->
+    <div *ngIf="frequency === 'annually'" class="conditional-fields">
+      <div class="annual-grid">
+        <div class="form-group">
+          <label class="form-label">Select Month <span class="required">*</span></label>
+          <select 
+            [(ngModel)]="annualMonth" 
+            name="annualMonth"
+            class="form-select"
+            required>
+            <option value="" disabled selected>Select month</option>
+            <option *ngFor="let month of months" [value]="month.value">
+              {{ month.label }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bonus Amount <span class="required">*</span></label>
+          <input 
+            type="number" 
+            [(ngModel)]="annualAmount" 
+            name="annualAmount"
+            class="form-input"
+            placeholder="Enter amount"
+            required />
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Submit</button>
+    </div>
+  </form>
+</div>

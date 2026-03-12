@@ -10,7 +10,8 @@ import {
   AccordionShowcaseComponent,
   ButtonShowcaseComponent,
   HeaderShowcaseComponent,
-  CardShowcaseComponent
+  CardShowcaseComponent,
+  BonusFormShowcaseComponent
 } from 'eos-comp';
 
 export const routes: Routes = [
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'tabpane', component: TabpaneShowcaseComponent },
   { path: 'inputfields', component: FormFieldsShowcaseComponent },
   { path: 'accordion', component: AccordionShowcaseComponent },
+  { path: 'bonusform', component: BonusFormShowcaseComponent },
   { path: '', redirectTo: '/buttons', pathMatch: 'full' }
 ];
