@@ -1,0 +1,16 @@
+<div class="input-text">
+  <label *ngIf="label">{{ label }}</label>
+  <div class="input-group" [class.icon-right]="iconPosition === 'right'">
+    <div *ngIf="iconPosition === 'left'" class="input-group-addon">{{ icon }}</div>
+    <input
+      class="textInputField input-field"
+      [type]="type"
+      [value]="value"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      (input)="onInputChange($event)"
+      (blur)="onTouched()"
+    />
+    <div *ngIf="iconPosition === 'right'" class="input-group-addon">{{ icon }}</div>
+  </div>
+</div>

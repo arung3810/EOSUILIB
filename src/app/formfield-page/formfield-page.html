@@ -1,14 +1,324 @@
 <section>
-    <h2>Form Fields Component</h2>
-    
+    <h2>Form Controls Library</h2>
+
     <div class="showcase-section">
-      <h3>Form Input Fields</h3>
-      <p>A collection of form input components with validation and styling</p>
-      <lib-form-fields></lib-form-fields>
+      <h3>Interactive Demo</h3>
+      <p>A collection of standalone, reusable form control components that can be embedded individually in your applications. All components implement ControlValueAccessor and work with both Reactive Forms and Template-Driven Forms.</p>
+
+      <form [formGroup]="demoForm" class="demo-form">
+
+        <!-- Text Input Examples -->
+        <div class="component-demo">
+          <h4>1. Text Input Component</h4>
+          <div class="demo-grid">
+            <lib-text-input
+              label="Full Name"
+              placeholder="Enter your full name"
+              formControlName="name">
+            </lib-text-input>
+
+            <lib-text-input
+              label="Email Address"
+              type="email"
+              placeholder="your.email@example.com"
+              formControlName="email">
+            </lib-text-input>
+
+            <lib-text-input
+              label="Phone Number"
+              type="text"
+              placeholder="+1 (555) 123-4567"
+              formControlName="phone">
+            </lib-text-input>
+
+            <lib-text-input
+              label="Age"
+              type="number"
+              placeholder="Enter your age"
+              formControlName="age">
+            </lib-text-input>
+
+            <lib-text-input
+              label="Birth Date"
+              type="date"
+              formControlName="birthDate">
+            </lib-text-input>
+
+            <lib-text-input
+              label="Website"
+              type="text"
+              placeholder="https://example.com"
+              formControlName="website">
+            </lib-text-input>
+
+            <lib-text-input
+              label="Disabled Field"
+              placeholder="This field cannot be edited"
+              formControlName="disabledField">
+            </lib-text-input>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              name: '{{formValues.name}}',
+              email: '{{formValues.email}}',
+              phone: '{{formValues.phone}}',
+              age: '{{formValues.age}}',
+              birthDate: '{{formValues.birthDate}}',
+              website: '{{formValues.website}}'
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Textarea Examples -->
+        <div class="component-demo">
+          <h4>2. Textarea Component</h4>
+          <div class="demo-grid">
+            <lib-textarea
+              label="Biography"
+              placeholder="Tell us about yourself..."
+              [rows]="4"
+              formControlName="bio">
+            </lib-textarea>
+
+            <lib-textarea
+              label="Comments / Feedback"
+              placeholder="Enter your comments here"
+              [rows]="5"
+              formControlName="comments">
+            </lib-textarea>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              bio: '{{formValues.bio}}',
+              comments: '{{formValues.comments}}'
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Select Examples -->
+        <div class="component-demo">
+          <h4>3. Select Component</h4>
+          <div class="demo-grid">
+            <lib-select
+              label="Country"
+              [options]="countryOptions"
+              formControlName="country">
+            </lib-select>
+
+            <lib-select
+              label="Favorite Fruit"
+              [options]="fruitOptions"
+              formControlName="fruit">
+            </lib-select>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              country: '{{formValues.country}}',
+              fruit: '{{formValues.fruit}}'
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Toggle Examples -->
+        <div class="component-demo">
+          <h4>4. Toggle Component</h4>
+          <div class="demo-grid">
+            <lib-toggle
+              label="Enable Notifications"
+              formControlName="notifications">
+            </lib-toggle>
+
+            <lib-toggle
+              label="Marketing Emails"
+              formControlName="marketing">
+            </lib-toggle>
+
+            <lib-toggle
+              label="Disabled Toggle (Cannot Change)"
+              formControlName="disabledToggle">
+            </lib-toggle>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              notifications: {{formValues.notifications}},
+              marketing: {{formValues.marketing}}
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Radio Group Examples -->
+        <div class="component-demo">
+          <h4>5. Radio Group Component</h4>
+          <div class="demo-grid">
+            <lib-radio-group
+              label="Gender"
+              [options]="genderOptions"
+              formControlName="gender">
+            </lib-radio-group>
+
+            <lib-radio-group
+              label="Preferred Programming Language"
+              [options]="languageOptions"
+              formControlName="language">
+            </lib-radio-group>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              gender: '{{formValues.gender}}',
+              language: '{{formValues.language}}'
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Checkbox Group Examples -->
+        <div class="component-demo">
+          <h4>6. Checkbox Group Component</h4>
+          <div class="demo-grid">
+            <lib-checkbox-group
+              label="Interests"
+              [options]="interestOptions"
+              formControlName="interests">
+            </lib-checkbox-group>
+
+            <lib-checkbox-group
+              label="Technical Skills"
+              [options]="skillOptions"
+              formControlName="skills">
+            </lib-checkbox-group>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              interests: {{formValues.interests | json}},
+              skills: {{formValues.skills | json}}
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Input With Icon Examples -->
+        <div class="component-demo">
+          <h4>7. Input With Icon Component</h4>
+          <div class="demo-grid">
+            <lib-input-with-icon
+              label="Salary"
+              icon="₹"
+              iconPosition="left"
+              type="number"
+              placeholder="Enter amount"
+              formControlName="salary">
+            </lib-input-with-icon>
+
+            <lib-input-with-icon
+              label="Product Price"
+              icon="$"
+              iconPosition="left"
+              type="number"
+              placeholder="0.00"
+              formControlName="price">
+            </lib-input-with-icon>
+
+            <lib-input-with-icon
+              label="Discount Percentage"
+              icon="%"
+              iconPosition="right"
+              type="number"
+              placeholder="Enter discount"
+              formControlName="discount">
+            </lib-input-with-icon>
+          </div>
+          <div class="value-display">
+            <strong>Values:</strong>
+            <code>{{ '{' }}
+              salary: '{{formValues.salary}}',
+              price: '{{formValues.price}}',
+              discount: '{{formValues.discount}}'
+            {{ '}' }}</code>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="button" class="btn-reset" (click)="resetForm()">Reset Form</button>
+          <button type="submit" class="btn-submit" (click)="submitForm()">Submit Form</button>
+        </div>
+
+        <!-- Complete Form Values -->
+        <div class="complete-values">
+          <h4>Complete Form Values (Live Update)</h4>
+          <pre><code>{{formValues | json}}</code></pre>
+        </div>
+      </form>
     </div>
 
     <div class="showcase-section">
-      <h3>Component Properties</h3>
+      <h3>Available Components</h3>
+
+      <h4>1. Text Input Component</h4>
+      <p>Supports text, email, number, and date inputs</p>
+      <pre><code>&lt;lib-text-input
+  label="Name"
+  placeholder="Enter your name"
+  formControlName="name"&gt;
+&lt;/lib-text-input&gt;</code></pre>
+
+      <h4>2. Textarea Component</h4>
+      <p>Multi-line text input</p>
+      <pre><code>&lt;lib-textarea
+  label="Description"
+  placeholder="Enter description"
+  [rows]="4"
+  formControlName="description"&gt;
+&lt;/lib-textarea&gt;</code></pre>
+
+      <h4>3. Select Component</h4>
+      <p>Dropdown selection with options</p>
+      <pre><code>&lt;lib-select
+  label="Country"
+  [options]="countryOptions"
+  formControlName="country"&gt;
+&lt;/lib-select&gt;</code></pre>
+
+      <h4>4. Toggle Component</h4>
+      <p>Switch/toggle for boolean values</p>
+      <pre><code>&lt;lib-toggle
+  label="Enable notifications"
+  formControlName="notifications"&gt;
+&lt;/lib-toggle&gt;</code></pre>
+
+      <h4>5. Radio Group Component</h4>
+      <p>Radio button group</p>
+      <pre><code>&lt;lib-radio-group
+  label="Gender"
+  [options]="genderOptions"
+  formControlName="gender"&gt;
+&lt;/lib-radio-group&gt;</code></pre>
+
+      <h4>6. Checkbox Group Component</h4>
+      <p>Multiple checkbox selections</p>
+      <pre><code>&lt;lib-checkbox-group
+  label="Interests"
+  [options]="interestOptions"
+  formControlName="selectedInterests"&gt;
+&lt;/lib-checkbox-group&gt;</code></pre>
+
+      <h4>7. Input With Icon Component</h4>
+      <p>Input with icon/prefix/suffix</p>
+      <pre><code>&lt;lib-input-with-icon
+  label="Amount"
+  icon="₹"
+  type="number"
+  placeholder="Enter amount"
+  formControlName="amount"&gt;
+&lt;/lib-input-with-icon&gt;</code></pre>
+    </div>
+
+    <div class="showcase-section">
+      <h3>Common Properties</h3>
       <div class="properties-table">
         <table>
           <thead>
@@ -23,86 +333,101 @@
             <tr>
               <td><code>label</code></td>
               <td>string</td>
-              <td>-</td>
-              <td>Field label text</td>
-            </tr>
-            <tr>
-              <td><code>placeholder</code></td>
-              <td>string</td>
-              <td>-</td>
-              <td>Input placeholder text</td>
-            </tr>
-            <tr>
-              <td><code>type</code></td>
-              <td>'text' | 'email' | 'password' | 'number' | 'tel'</td>
-              <td>'text'</td>
-              <td>Input field type</td>
-            </tr>
-            <tr>
-              <td><code>required</code></td>
-              <td>boolean</td>
-              <td>false</td>
-              <td>Mark field as required</td>
+              <td>''</td>
+              <td>Label text displayed above the control</td>
             </tr>
             <tr>
               <td><code>disabled</code></td>
               <td>boolean</td>
               <td>false</td>
-              <td>Disable field interaction</td>
+              <td>Disable the form control</td>
             </tr>
             <tr>
-              <td><code>error</code></td>
-              <td>string</td>
-              <td>-</td>
-              <td>Error message to display</td>
-            </tr>
-            <tr>
-              <td><code>value</code></td>
+              <td><code>placeholder</code></td>
               <td>string</td>
               <td>''</td>
-              <td>Input field value</td>
+              <td>Placeholder text (text inputs, textarea)</td>
+            </tr>
+            <tr>
+              <td><code>type</code></td>
+              <td>string</td>
+              <td>'text'</td>
+              <td>Input type: 'text', 'email', 'number', 'date' (text input)</td>
+            </tr>
+            <tr>
+              <td><code>options</code></td>
+              <td>Array</td>
+              <td>[]</td>
+              <td>Options array (select, radio, checkbox)</td>
+            </tr>
+            <tr>
+              <td><code>rows</code></td>
+              <td>number</td>
+              <td>3</td>
+              <td>Number of visible rows (textarea)</td>
+            </tr>
+            <tr>
+              <td><code>icon</code></td>
+              <td>string</td>
+              <td>'₹'</td>
+              <td>Icon/prefix text (input-with-icon)</td>
+            </tr>
+            <tr>
+              <td><code>iconPosition</code></td>
+              <td>'left' | 'right'</td>
+              <td>'left'</td>
+              <td>Icon position (input-with-icon)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Events</h3>
-      <div class="properties-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Event</th>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>valueChange</code></td>
-              <td>EventEmitter&lt;string&gt;</td>
-              <td>Emitted when input value changes</td>
-            </tr>
-            <tr>
-              <td><code>blur</code></td>
-              <td>EventEmitter&lt;void&gt;</td>
-              <td>Emitted when input loses focus</td>
-            </tr>
-            <tr>
-              <td><code>focus</code></td>
-              <td>EventEmitter&lt;void&gt;</td>
-              <td>Emitted when input gains focus</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <h3>Import Components</h3>
+      <p>All form controls can be imported from 'eos-comp':</p>
+      <pre><code>import {{ '{' }}
+  TextInputComponent,
+  TextareaComponent,
+  SelectComponent,
+  ToggleComponent,
+  RadioGroupComponent,
+  CheckboxGroupComponent,
+  InputWithIconComponent
+{{ '}' }} from 'eos-comp';</code></pre>
 
       <h3>Features</h3>
       <ul>
-        <li>Built-in validation support</li>
-        <li>Error message display</li>
-        <li>Disabled state styling</li>
-        <li>Required field indicators</li>
-        <li>Consistent styling across form elements</li>
+        <li>✓ Standalone components - No module imports required</li>
+        <li>✓ ControlValueAccessor implementation - Full Angular Forms integration</li>
+        <li>✓ Works with Reactive Forms and Template-Driven Forms</li>
+        <li>✓ Type-safe interfaces for options (SelectOption, RadioOption, CheckboxOption)</li>
+        <li>✓ Consistent styling across all components</li>
+        <li>✓ Support for disabled state</li>
+        <li>✓ Built-in validation support</li>
+        <li>✓ Accessible with proper label associations</li>
       </ul>
+
+      <h3>Usage Example</h3>
+      <pre><code>// Component TypeScript
+export class MyFormComponent {{ '{' }}
+  form = this.fb.group({{ '{' }}
+    name: [''],
+    email: [''],
+    country: ['us'],
+    notifications: [false]
+  {{ '}' }});
+
+  countries: SelectOption[] = [
+    {{ '{' }} value: 'us', label: 'United States' {{ '}' }},
+    {{ '{' }} value: 'uk', label: 'United Kingdom' {{ '}' }}
+  ];
+{{ '}' }}
+
+// Template
+&lt;form [formGroup]="form"&gt;
+  &lt;lib-text-input label="Name" formControlName="name"&gt;&lt;/lib-text-input&gt;
+  &lt;lib-text-input label="Email" type="email" formControlName="email"&gt;&lt;/lib-text-input&gt;
+  &lt;lib-select label="Country" [options]="countries" formControlName="country"&gt;&lt;/lib-select&gt;
+  &lt;lib-toggle label="Notifications" formControlName="notifications"&gt;&lt;/lib-toggle&gt;
+&lt;/form&gt;</code></pre>
     </div>
   </section>

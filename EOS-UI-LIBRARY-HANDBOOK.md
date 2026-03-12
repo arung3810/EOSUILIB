@@ -13,7 +13,14 @@
    - [Search Component](#search-component)
    - [Header Component](#header-component)
    - [Accordion Component](#accordion-component)
-   - [Form Fields Component](#form-fields-component)
+   - [Form Control Components](#form-control-components)
+     - [Text Input Component](#text-input-component)
+     - [Textarea Component](#textarea-component)
+     - [Select Component](#select-component)
+     - [Toggle Component](#toggle-component)
+     - [Radio Group Component](#radio-group-component)
+     - [Checkbox Group Component](#checkbox-group-component)
+     - [Input With Icon Component](#input-with-icon-component)
 6. [Best Practices](#best-practices)
 7. [Troubleshooting](#troubleshooting)
 8. [Version Information](#version-information)
@@ -1149,85 +1156,929 @@ Features:
 
 ---
 
-### Form Fields Component
+### Form Control Components
 
-A form fields demonstration component with various input types.
+The EOS UI Library provides a comprehensive set of standalone form control components that work seamlessly with both Reactive Forms and Template-Driven Forms. All components implement Angular's `ControlValueAccessor` interface for full form integration.
 
-#### Import
+#### Overview
+
+The library includes 7 reusable form control components:
+
+- **TextInputComponent** - Text, email, number, and date inputs
+- **TextareaComponent** - Multi-line text input
+- **SelectComponent** - Dropdown select
+- **ToggleComponent** - Switch/toggle for boolean values
+- **RadioGroupComponent** - Radio button groups
+- **CheckboxGroupComponent** - Checkbox groups (multiple selections)
+- **InputWithIconComponent** - Input with prefix/suffix icons
+
+---
+
+#### Text Input Component
+
+A versatile input component supporting text, email, number, and date input types.
+
+##### Import
 
 ```typescript
-import { FormFields } from 'eos-comp';
+import { TextInputComponent } from 'eos-comp';
 ```
 
-#### Basic Usage
+##### Basic Usage
 
 ```typescript
-<lib-form-fields></lib-form-fields>
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TextInputComponent } from 'eos-comp';
+
+@Component({
+  selector: 'app-user-form',
+  standalone: true,
+  imports: [ReactiveFormsModule, TextInputComponent],
+  template: `
+    <form [formGroup]="form">
+      <!-- Text Input -->
+      <lib-text-input
+        label="Full Name"
+        placeholder="Enter your name"
+        formControlName="name">
+      </lib-text-input>
+
+      <!-- Email Input -->
+      <lib-text-input
+        label="Email Address"
+        type="email"
+        placeholder="you@example.com"
+        formControlName="email">
+      </lib-text-input>
+
+      <!-- Number Input -->
+      <lib-text-input
+        label="Age"
+        type="number"
+        placeholder="Enter age"
+        formControlName="age">
+      </lib-text-input>
+
+      <!-- Date Input -->
+      <lib-text-input
+        label="Birth Date"
+        type="date"
+        formControlName="birthDate">
+      </lib-text-input>
+
+      <!-- Disabled Input -->
+      <lib-text-input
+        label="User ID"
+        [disabled]="true"
+        formControlName="userId">
+      </lib-text-input>
+    </form>
+  `
+})
+export class UserFormComponent {
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      name: [''],
+      email: [''],
+      age: [''],
+      birthDate: [''],
+      userId: ['USER-12345']
+    });
+  }
+}
 ```
 
-**Note:** This component is primarily for demonstration purposes and contains pre-built form examples with text inputs, email, number, textarea, date, toggle switches, and select dropdowns.
-
-#### Visual Representation
+##### Visual Representation
 
 ```
-Form Fields Component (Demo):
+Text Input Component:
+┌──────────────────────────────────────────────┐
+│  Full Name                                   │
+│  ┌────────────────────────────────────────┐ │
+│  │ John Doe                               │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Email Input:
+┌──────────────────────────────────────────────┐
+│  Email Address                               │
+│  ┌────────────────────────────────────────┐ │
+│  │ john@example.com                       │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Number Input:
+┌──────────────────────────────────────────────┐
+│  Age                                         │
+│  ┌────────────────────────────────────────┐ │
+│  │ 28                                     │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Date Input:
+┌──────────────────────────────────────────────┐
+│  Birth Date                                  │
+│  ┌────────────────────────────────────────┐ │
+│  │ 01/15/1995                       📅   │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Disabled Input:
+┌──────────────────────────────────────────────┐
+│  User ID                                     │
+│  ┌────────────────────────────────────────┐ │
+│  │ USER-12345               [Disabled]    │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text displayed above input |
+| `placeholder` | `string` | `''` | Placeholder text |
+| `type` | `'text' \| 'email' \| 'number' \| 'date'` | `'text'` | Input type |
+| `disabled` | `boolean` | `false` | Disable the input |
+
+---
+
+#### Textarea Component
+
+Multi-line text input component with configurable rows.
+
+##### Import
+
+```typescript
+import { TextareaComponent } from 'eos-comp';
+```
+
+##### Basic Usage
+
+```typescript
+<lib-textarea
+  label="Description"
+  placeholder="Enter detailed description"
+  [rows]="5"
+  formControlName="description">
+</lib-textarea>
+```
+
+##### Visual Representation
+
+```
+Textarea Component:
 ┌────────────────────────────────────────────────────────┐
-│  Text Input                                            │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ Enter text...                                    │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Email Input                                           │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ email@example.com                                │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Number Input                                          │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ 0                                      [+] [-]   │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Text Area                                             │
+│  Description                                           │
 │  ┌──────────────────────────────────────────────────┐ │
 │  │                                                  │ │
-│  │ Multi-line text input...                        │ │
+│  │ This is a multi-line text area where users can  │ │
+│  │ enter longer content. It automatically wraps     │ │
+│  │ text and supports scrolling for very long        │ │
+│  │ content.                                         │ │
 │  │                                                  │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Date Input                                            │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ MM/DD/YYYY                               📅      │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Toggle Switch                                         │
-│  Enable notifications        ( ◯─────── )  OFF        │
-│                                                        │
-│  Select Dropdown                                       │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ Select an option...                          ▼  │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Amount Input                                          │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ $ 0.00                                           │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-│  Disabled Input                                        │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ [This field is disabled]                         │ │
 │  └──────────────────────────────────────────────────┘ │
 └────────────────────────────────────────────────────────┘
 
 Features:
-• Text, email, number inputs
-• Text area for multi-line input
-• Date picker integration
-• Toggle switches (on/off states)
-• Select dropdowns
-• Amount/currency inputs
-• Disabled state support
-• Reactive Forms integration
+• Configurable row height
+• Auto-wrapping text
+• Scrollable content
+• Full form integration
 ```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text |
+| `placeholder` | `string` | `''` | Placeholder text |
+| `rows` | `number` | `3` | Number of visible rows |
+| `disabled` | `boolean` | `false` | Disable the textarea |
+
+---
+
+#### Select Component
+
+Dropdown select component with custom options.
+
+##### Import
+
+```typescript
+import { SelectComponent, SelectOption } from 'eos-comp';
+```
+
+##### Basic Usage
+
+```typescript
+import { Component } from '@angular/core';
+import { SelectComponent, SelectOption } from 'eos-comp';
+
+@Component({
+  selector: 'app-country-form',
+  standalone: true,
+  imports: [SelectComponent],
+  template: `
+    <lib-select
+      label="Country"
+      [options]="countries"
+      formControlName="country">
+    </lib-select>
+  `
+})
+export class CountryFormComponent {
+  countries: SelectOption[] = [
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'in', label: 'India' },
+    { value: 'au', label: 'Australia' }
+  ];
+}
+```
+
+##### Visual Representation
+
+```
+Select Component (Closed):
+┌──────────────────────────────────────────────┐
+│  Country                                     │
+│  ┌────────────────────────────────────────┐ │
+│  │ United States                      ▼  │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Select Component (Open):
+┌──────────────────────────────────────────────┐
+│  Country                                     │
+│  ┌────────────────────────────────────────┐ │
+│  │ United States                      ▲  │ │
+│  └────────────────────────────────────────┘ │
+│  ┌────────────────────────────────────────┐ │
+│  │ United States        ✓                 │ │
+│  │ United Kingdom                         │ │
+│  │ Canada                                 │ │
+│  │ India                                  │ │
+│  │ Australia                              │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text |
+| `options` | `SelectOption[]` | `[]` | Array of dropdown options |
+| `disabled` | `boolean` | `false` | Disable the select |
+
+##### SelectOption Interface
+
+```typescript
+interface SelectOption {
+  value: any;        // The value stored in the form
+  label: string;     // Display text in dropdown
+}
+```
+
+---
+
+#### Toggle Component
+
+Switch/toggle component for boolean values.
+
+##### Import
+
+```typescript
+import { ToggleComponent } from 'eos-comp';
+```
+
+##### Basic Usage
+
+```typescript
+<lib-toggle
+  label="Enable notifications"
+  formControlName="notifications">
+</lib-toggle>
+
+<lib-toggle
+  label="Dark mode"
+  formControlName="darkMode">
+</lib-toggle>
+
+<lib-toggle
+  label="Premium feature (disabled)"
+  [disabled]="true"
+  formControlName="premium">
+</lib-toggle>
+```
+
+##### Visual Representation
+
+```
+Toggle Component (ON):
+┌──────────────────────────────────────────────┐
+│  Enable notifications                        │
+│  ───────●  ON                                │
+└──────────────────────────────────────────────┘
+
+Toggle Component (OFF):
+┌──────────────────────────────────────────────┐
+│  Dark mode                                   │
+│  ●───────  OFF                               │
+└──────────────────────────────────────────────┘
+
+Toggle Component (Disabled):
+┌──────────────────────────────────────────────┐
+│  Premium feature (disabled)                  │
+│  [●───────]  OFF  [Disabled]                 │
+└──────────────────────────────────────────────┘
+
+Features:
+• Smooth animations
+• Visual ON/OFF states
+• Returns boolean value
+• Disabled state support
+```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text |
+| `disabled` | `boolean` | `false` | Disable the toggle |
+
+**Returns:** `boolean` (true/false)
+
+---
+
+#### Radio Group Component
+
+Radio button group for single selection from multiple options.
+
+##### Import
+
+```typescript
+import { RadioGroupComponent, RadioOption } from 'eos-comp';
+```
+
+##### Basic Usage
+
+```typescript
+import { Component } from '@angular/core';
+import { RadioGroupComponent, RadioOption } from 'eos-comp';
+
+@Component({
+  selector: 'app-user-form',
+  standalone: true,
+  imports: [RadioGroupComponent],
+  template: `
+    <lib-radio-group
+      label="Gender"
+      [options]="genderOptions"
+      name="gender"
+      formControlName="gender">
+    </lib-radio-group>
+
+    <lib-radio-group
+      label="Preferred Contact Method"
+      [options]="contactMethods"
+      name="contactMethod"
+      formControlName="contactMethod">
+    </lib-radio-group>
+  `
+})
+export class UserFormComponent {
+  genderOptions: RadioOption[] = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+    { value: 'prefer-not-to-say', label: 'Prefer not to say' }
+  ];
+
+  contactMethods: RadioOption[] = [
+    { value: 'email', label: 'Email' },
+    { value: 'phone', label: 'Phone' },
+    { value: 'sms', label: 'SMS' }
+  ];
+}
+```
+
+##### Visual Representation
+
+```
+Radio Group Component:
+┌──────────────────────────────────────────────┐
+│  Gender                                      │
+│  ◉  Male                                     │
+│  ○  Female                                   │
+│  ○  Other                                    │
+│  ○  Prefer not to say                        │
+└──────────────────────────────────────────────┘
+
+Radio Group (Different Selection):
+┌──────────────────────────────────────────────┐
+│  Preferred Contact Method                    │
+│  ◉  Email                                    │
+│  ○  Phone                                    │
+│  ○  SMS                                      │
+└──────────────────────────────────────────────┘
+
+Features:
+• Single selection only
+• Clear visual feedback
+• Unique naming per group
+• Returns selected value
+```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text for the group |
+| `options` | `RadioOption[]` | `[]` | Array of radio options |
+| `name` | `string` | auto-generated | Radio group name (for HTML grouping) |
+| `disabled` | `boolean` | `false` | Disable entire radio group |
+
+##### RadioOption Interface
+
+```typescript
+interface RadioOption {
+  value: any;        // The value stored in the form
+  label: string;     // Display text for the option
+  id?: string;       // Optional custom ID
+}
+```
+
+**Returns:** Single selected value (e.g., `'male'`, `'email'`)
+
+---
+
+#### Checkbox Group Component
+
+Checkbox group for multiple selections.
+
+##### Import
+
+```typescript
+import { CheckboxGroupComponent, CheckboxOption } from 'eos-comp';
+```
+
+##### Basic Usage
+
+```typescript
+import { Component } from '@angular/core';
+import { CheckboxGroupComponent, CheckboxOption } from 'eos-comp';
+
+@Component({
+  selector: 'app-preferences-form',
+  standalone: true,
+  imports: [CheckboxGroupComponent],
+  template: `
+    <lib-checkbox-group
+      label="Interests"
+      [options]="interests"
+      formControlName="selectedInterests">
+    </lib-checkbox-group>
+
+    <lib-checkbox-group
+      label="Notification Preferences"
+      [options]="notificationPrefs"
+      formControlName="notifications">
+    </lib-checkbox-group>
+  `
+})
+export class PreferencesFormComponent {
+  interests: CheckboxOption[] = [
+    { value: 'sports', label: 'Sports' },
+    { value: 'music', label: 'Music' },
+    { value: 'reading', label: 'Reading' },
+    { value: 'travel', label: 'Travel' },
+    { value: 'coding', label: 'Coding' }
+  ];
+
+  notificationPrefs: CheckboxOption[] = [
+    { value: 'email', label: 'Email notifications' },
+    { value: 'sms', label: 'SMS alerts' },
+    { value: 'push', label: 'Push notifications' }
+  ];
+}
+```
+
+##### Visual Representation
+
+```
+Checkbox Group Component:
+┌──────────────────────────────────────────────┐
+│  Interests                                   │
+│  ☑  Sports                                   │
+│  ☐  Music                                    │
+│  ☑  Reading                                  │
+│  ☑  Travel                                   │
+│  ☐  Coding                                   │
+└──────────────────────────────────────────────┘
+
+Checkbox Group (Notification Preferences):
+┌──────────────────────────────────────────────┐
+│  Notification Preferences                    │
+│  ☑  Email notifications                      │
+│  ☑  SMS alerts                               │
+│  ☐  Push notifications                       │
+└──────────────────────────────────────────────┘
+
+Features:
+• Multiple selections allowed
+• Individual checkbox states
+• Returns array of selected values
+• Clear visual feedback
+```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text for the group |
+| `options` | `CheckboxOption[]` | `[]` | Array of checkbox options |
+| `disabled` | `boolean` | `false` | Disable entire checkbox group |
+
+##### CheckboxOption Interface
+
+```typescript
+interface CheckboxOption {
+  value: any;        // The value stored in the form
+  label: string;     // Display text for the checkbox
+  id?: string;       // Optional custom ID
+}
+```
+
+**Returns:** `Array` of selected values (e.g., `['sports', 'reading', 'travel']`)
+
+---
+
+#### Input With Icon Component
+
+Input component with prefix or suffix icon/text.
+
+##### Import
+
+```typescript
+import { InputWithIconComponent } from 'eos-comp';
+```
+
+##### Basic Usage
+
+```typescript
+<!-- Currency input with left icon -->
+<lib-input-with-icon
+  label="Salary"
+  icon="₹"
+  type="number"
+  placeholder="Enter amount"
+  formControlName="salary">
+</lib-input-with-icon>
+
+<!-- Dollar input -->
+<lib-input-with-icon
+  label="Price"
+  icon="$"
+  type="number"
+  placeholder="0.00"
+  formControlName="price">
+</lib-input-with-icon>
+
+<!-- Email with right icon -->
+<lib-input-with-icon
+  label="Email"
+  icon="@"
+  iconPosition="right"
+  placeholder="username"
+  formControlName="emailPrefix">
+</lib-input-with-icon>
+
+<!-- Percentage input -->
+<lib-input-with-icon
+  label="Interest Rate"
+  icon="%"
+  iconPosition="right"
+  type="number"
+  placeholder="Enter rate"
+  formControlName="interestRate">
+</lib-input-with-icon>
+```
+
+##### Visual Representation
+
+```
+Input With Icon (Left Position):
+┌──────────────────────────────────────────────┐
+│  Salary                                      │
+│  ┌────────────────────────────────────────┐ │
+│  │ ₹ │ 50000                              │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Input With Icon (Right Position):
+┌──────────────────────────────────────────────┐
+│  Interest Rate                               │
+│  ┌────────────────────────────────────────┐ │
+│  │ 6.5                              │ %   │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Dollar Input:
+┌──────────────────────────────────────────────┐
+│  Price                                       │
+│  ┌────────────────────────────────────────┐ │
+│  │ $ │ 125.99                             │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Email Input with @ suffix:
+┌──────────────────────────────────────────────┐
+│  Email                                       │
+│  ┌────────────────────────────────────────┐ │
+│  │ john.doe                         │ @   │ │
+│  └────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+
+Features:
+• Customizable icon/text
+• Left or right positioning
+• Currency, percentage, or custom symbols
+• Full form integration
+• Number and text input support
+```
+
+##### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `label` | `string` | `''` | Label text |
+| `placeholder` | `string` | `''` | Placeholder text |
+| `icon` | `string` | `'₹'` | Icon or text to display |
+| `iconPosition` | `'left' \| 'right'` | `'left'` | Position of icon |
+| `type` | `'text' \| 'number'` | `'text'` | Input type |
+| `disabled` | `boolean` | `false` | Disable the input |
+
+---
+
+#### Complete Form Example
+
+Here's a comprehensive example using all form control components:
+
+```typescript
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  TextInputComponent,
+  TextareaComponent,
+  SelectComponent,
+  ToggleComponent,
+  RadioGroupComponent,
+  CheckboxGroupComponent,
+  InputWithIconComponent,
+  SelectOption,
+  RadioOption,
+  CheckboxOption
+} from 'eos-comp';
+
+@Component({
+  selector: 'app-registration-form',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    TextInputComponent,
+    TextareaComponent,
+    SelectComponent,
+    ToggleComponent,
+    RadioGroupComponent,
+    CheckboxGroupComponent,
+    InputWithIconComponent
+  ],
+  template: `
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <h2>User Registration</h2>
+
+      <!-- Text Inputs -->
+      <lib-text-input
+        label="Full Name"
+        placeholder="Enter your name"
+        formControlName="name">
+      </lib-text-input>
+
+      <lib-text-input
+        label="Email"
+        type="email"
+        placeholder="you@example.com"
+        formControlName="email">
+      </lib-text-input>
+
+      <lib-text-input
+        label="Age"
+        type="number"
+        placeholder="Enter age"
+        formControlName="age">
+      </lib-text-input>
+
+      <lib-text-input
+        label="Birth Date"
+        type="date"
+        formControlName="birthDate">
+      </lib-text-input>
+
+      <!-- Textarea -->
+      <lib-textarea
+        label="Bio"
+        placeholder="Tell us about yourself"
+        [rows]="4"
+        formControlName="bio">
+      </lib-textarea>
+
+      <!-- Select Dropdown -->
+      <lib-select
+        label="Country"
+        [options]="countries"
+        formControlName="country">
+      </lib-select>
+
+      <!-- Radio Group -->
+      <lib-radio-group
+        label="Gender"
+        [options]="genders"
+        formControlName="gender">
+      </lib-radio-group>
+
+      <!-- Checkbox Group -->
+      <lib-checkbox-group
+        label="Interests"
+        [options]="interests"
+        formControlName="selectedInterests">
+      </lib-checkbox-group>
+
+      <!-- Input With Icon -->
+      <lib-input-with-icon
+        label="Expected Salary"
+        icon="₹"
+        type="number"
+        placeholder="Enter amount"
+        formControlName="salary">
+      </lib-input-with-icon>
+
+      <!-- Toggle Switch -->
+      <lib-toggle
+        label="Subscribe to newsletter"
+        formControlName="subscribe">
+      </lib-toggle>
+
+      <lib-toggle
+        label="Accept terms and conditions"
+        formControlName="acceptTerms">
+      </lib-toggle>
+
+      <button type="submit" [disabled]="!registrationForm.valid">
+        Submit Registration
+      </button>
+    </form>
+  `
+})
+export class RegistrationFormComponent {
+  registrationForm: FormGroup;
+
+  countries: SelectOption[] = [
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'in', label: 'India' },
+    { value: 'au', label: 'Australia' }
+  ];
+
+  genders: RadioOption[] = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+    { value: 'prefer-not-to-say', label: 'Prefer not to say' }
+  ];
+
+  interests: CheckboxOption[] = [
+    { value: 'coding', label: 'Coding' },
+    { value: 'sports', label: 'Sports' },
+    { value: 'music', label: 'Music' },
+    { value: 'reading', label: 'Reading' },
+    { value: 'travel', label: 'Travel' }
+  ];
+
+  constructor(private fb: FormBuilder) {
+    this.registrationForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      age: ['', [Validators.required, Validators.min(18)]],
+      birthDate: ['', Validators.required],
+      bio: [''],
+      country: ['us', Validators.required],
+      gender: ['', Validators.required],
+      selectedInterests: [[]],
+      salary: [''],
+      subscribe: [false],
+      acceptTerms: [false, Validators.requiredTrue]
+    });
+  }
+
+  onSubmit() {
+    if (this.registrationForm.valid) {
+      console.log('Form Data:', this.registrationForm.value);
+      // Example output:
+      // {
+      //   name: 'John Doe',
+      //   email: 'john@example.com',
+      //   age: 28,
+      //   birthDate: '1995-01-15',
+      //   bio: 'Software developer...',
+      //   country: 'us',
+      //   gender: 'male',
+      //   selectedInterests: ['coding', 'music', 'travel'],
+      //   salary: 50000,
+      //   subscribe: true,
+      //   acceptTerms: true
+      // }
+    }
+  }
+}
+```
+
+#### Template-Driven Forms Support
+
+All form control components work with template-driven forms using `[(ngModel)]`:
+
+```typescript
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { TextInputComponent, ToggleComponent, SelectComponent, SelectOption } from 'eos-comp';
+
+@Component({
+  selector: 'app-simple-form',
+  standalone: true,
+  imports: [FormsModule, TextInputComponent, ToggleComponent, SelectComponent],
+  template: `
+    <form #myForm="ngForm">
+      <lib-text-input
+        label="Name"
+        name="userName"
+        [(ngModel)]="userName">
+      </lib-text-input>
+
+      <lib-select
+        label="Country"
+        name="country"
+        [options]="countries"
+        [(ngModel)]="selectedCountry">
+      </lib-select>
+
+      <lib-toggle
+        label="Accept terms"
+        name="acceptTerms"
+        [(ngModel)]="acceptTerms">
+      </lib-toggle>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div>
+      <h3>Form Values:</h3>
+      <p>Name: {{ userName }}</p>
+      <p>Country: {{ selectedCountry }}</p>
+      <p>Accept Terms: {{ acceptTerms }}</p>
+    </div>
+  `
+})
+export class SimpleFormComponent {
+  userName = '';
+  selectedCountry = 'us';
+  acceptTerms = false;
+
+  countries: SelectOption[] = [
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'in', label: 'India' }
+  ];
+}
+```
+
+#### Form Control Features
+
+All form control components share these features:
+
+- **ControlValueAccessor Implementation**: Full integration with Angular Forms
+- **Reactive Forms Support**: Use with `formControlName`
+- **Template-Driven Forms Support**: Use with `[(ngModel)]`
+- **Type-Safe Interfaces**: TypeScript interfaces for all option types
+- **Disabled State**: All components support disabled state
+- **Validation Ready**: Works seamlessly with Angular validators
+- **Standalone Components**: No module imports required
+- **Consistent Styling**: Matches EOS UI design system
+- **Accessibility**: Proper label associations and ARIA attributes
 
 ---
 

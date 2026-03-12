@@ -1,0 +1,12 @@
+<div class="input-text">
+  <label *ngIf="label">{{ label }}</label>
+  <textarea
+    class="textInputField input-field"
+    [value]="value"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [rows]="rows"
+    (input)="onInputChange($event)"
+    (blur)="onTouched()"
+  ></textarea>
+</div>

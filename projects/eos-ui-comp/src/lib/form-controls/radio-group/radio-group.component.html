@@ -1,0 +1,17 @@
+<div class="radio-group">
+  <label *ngIf="label" class="group-label">{{ label }}</label>
+  <div class="radio-options">
+    <div *ngFor="let option of options; let i = index" class="radio-option">
+      <input
+        type="radio"
+        [id]="getOptionId(option, i)"
+        [name]="name"
+        [value]="option.value"
+        [checked]="value === option.value"
+        [disabled]="disabled"
+        (change)="onRadioChange(option.value)"
+      />
+      <label [for]="getOptionId(option, i)">{{ option.label }}</label>
+    </div>
+  </div>
+</div>
