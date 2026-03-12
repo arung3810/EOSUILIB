@@ -1,6 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Tooltip } from "../tooltip/tooltip";
 import { CommonModule } from '@angular/common';
 import Splide from '@splidejs/splide';
 import { NgApexchartsModule } from "ng-apexcharts";
@@ -8,7 +7,7 @@ import { PieChartWithLegend, ChartData } from "../pie-chart-with-legend/pie-char
 
 @Component({
   selector: 'lib-card',
-  imports: [Tooltip, CommonModule, NgApexchartsModule, PieChartWithLegend],
+  imports: [CommonModule, NgApexchartsModule, PieChartWithLegend],
   templateUrl: './card.html',
   styleUrl: './card.css',
 })

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonComponent, DropdownItem } from '../button/button.component';
 
 
 interface SubSection {
@@ -15,7 +14,7 @@ interface SubSection {
 // }
 @Component({
   selector: 'lib-accordion-component',
-  imports: [CommonModule,ButtonComponent],
+  imports: [CommonModule],
   templateUrl: './accordion-component.html',
   styleUrl: './accordion-component.css',
 })
