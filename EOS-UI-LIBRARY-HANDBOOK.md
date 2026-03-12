@@ -168,6 +168,30 @@ export class MyTableComponent {
 }
 ```
 
+#### Visual Representation
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         Data Table                              │
+├─────────────────────────────────────────────────────────────────┤
+│  Name ↑         │  Email ↓           │  Role                    │
+├─────────────────────────────────────────────────────────────────┤
+│  John Doe       │  john@example.com  │  Admin                   │
+│  Jane Smith     │  jane@example.com  │  User                    │
+│  Bob Wilson     │  bob@example.com   │  Editor                  │
+│  Alice Brown    │  alice@example.com │  User                    │
+│  Charlie Davis  │  charlie@email.com │  Manager                 │
+├─────────────────────────────────────────────────────────────────┤
+│  Showing 1-5 of 100                [◄] [1] [2] [3] [►]         │
+└─────────────────────────────────────────────────────────────────┘
+
+Features:
+• Sortable columns (indicated by ↑/↓ arrows)
+• Pagination controls at bottom
+• Clean, structured data display
+• Responsive column layout
+```
+
 #### Properties
 
 | Property | Type | Default | Description |
@@ -241,6 +265,27 @@ columns: TableColumn[] = [
 ];
 ```
 
+**Visual:**
+
+```
+Multi-Level Header Table:
+┌─────────────────┬─────────────────────────────────────────┐
+│                 │  Current Liability Distribution         │
+│ Liability Type  ├──────────────────┬──────────────────────┤
+│                 │  Outstanding     │      EMI             │
+├─────────────────┼──────────────────┼──────────────────────┤
+│ Home Loan       │  ₹ 25,00,000     │  ₹ 30,000           │
+│ Car Loan        │  ₹ 8,50,000      │  ₹ 18,500           │
+│ Personal Loan   │  ₹ 2,00,000      │  ₹ 8,000            │
+└─────────────────┴──────────────────┴──────────────────────┘
+
+Features:
+• Colspan for parent headers
+• Rowspan for spanning multiple levels
+• Clean hierarchy visualization
+• Supports unlimited nesting levels
+```
+
 **AG-Grid Table:**
 
 ```typescript
@@ -254,6 +299,38 @@ columns: TableColumn[] = [
 </lib-table>
 ```
 
+**Visual:**
+
+```
+AG-Grid Table (Advanced Features):
+┌────────────────────────────────────────────────────────────────┐
+│  Scheme Portfolio                                              │
+├────────────────────────────────────────────────────────────────┤
+│  🔍 Search...                            [⚙️] [Filter] [Export]│
+├──────────┬──────────────┬──────────┬──────────┬──────────────┤
+│ Fund     │ Category     │ Expense  │ Value    │ Performance  │
+│ Name     │              │ Ratio    │          │ Score        │
+├──────────┼──────────────┼──────────┼──────────┼──────────────┤
+│ Fund A   │ Large Cap    │ 1.2%     │  $50,000 │ ████ 85%     │
+│ Fund B   │ Mid Cap      │ 1.5%     │  $35,000 │ ███  75%     │
+│ Fund C   │ Small Cap    │ 1.8%     │  $25,000 │ ███  70%     │
+│ Fund D   │ Debt         │ 0.8%     │  $40,000 │ ████ 80%     │
+│ ↓↓↓↓↓↓↓↓ [Scrollable] ↓↓↓↓↓↓↓↓                              │
+│ Fund E   │ Hybrid       │ 1.3%     │  $30,000 │ ███  78%     │
+├──────────┴──────────────┴──────────┴──────────┴──────────────┤
+│  Height: 500px (Scrollable)           Showing 5 of 50 records │
+└────────────────────────────────────────────────────────────────┘
+
+Features:
+• Full AG-Grid power (sorting, filtering, grouping)
+• Custom cell renderers (badges, icons, progress bars)
+• Scrollable body with fixed height
+• Column alignment control
+• Responsive column sizing
+• Excel-like editing capabilities
+• Advanced data operations
+```
+
 **Custom Footer Values:**
 
 ```typescript
@@ -262,6 +339,28 @@ footerValues = {
   score: '61.67',
   name: '',  // Won't be displayed
 };
+```
+
+**Visual:**
+
+```
+Table with Custom Footer:
+┌────────────────────────────────────────────────────────────┐
+│  Product      │  Category      │  Amount        │  Score   │
+├────────────────────────────────────────────────────────────┤
+│  Product A    │  Electronics   │  ₹ 25,00,000  │  85.5    │
+│  Product B    │  Furniture     │  ₹ 45,00,000  │  72.3    │
+│  Product C    │  Appliances    │  ₹ 57,87,666  │  90.2    │
+├────────────────────────────────────────────────────────────┤
+│  Total        │                │ ₹1,27,87,666  │  61.67   │
+└────────────────────────────────────────────────────────────┘
+             (Custom footer values - only shows where specified)
+
+Features:
+• Selective footer display (only shows specified columns)
+• Custom calculations (avg, sum, or custom)
+• Formatted values (currency, percentages)
+• Empty columns automatically hidden in footer
 ```
 
 ---
@@ -285,6 +384,42 @@ import { ButtonComponent } from 'eos-comp';
   (clicked)="handleClick($event)">
   Submit
 </lib-button>
+```
+
+#### Visual Representation
+
+```
+Button Variants:
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│   Primary   │  │  Secondary  │  │   Outline   │  │    Ghost    │  │   Danger    │
+└─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘
+  (Solid Blue)    (Solid Gray)    (Border Only)    (Transparent)   (Solid Red)
+
+Button Sizes:
+┌───────┐       ┌──────────┐       ┌─────────────┐
+│ Small │       │  Medium  │       │    Large    │
+└───────┘       └──────────┘       └─────────────┘
+
+Button States:
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│   Normal    │  │  ⟳ Loading  │  │ [Disabled]  │
+└─────────────┘  └─────────────┘  └─────────────┘
+
+With Icons:
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ 🔍 Search   │  │  Save 💾    │  │ ⚙️ Settings │
+└─────────────┘  └─────────────┘  └─────────────┘
+
+Dropdown Button:
+┌─────────────┐
+│  Actions ▼  │
+└─────────────┘
+      ↓
+┌─────────────┐
+│ Edit        │
+│ Delete      │
+│ Archive     │
+└─────────────┘
 ```
 
 #### Properties
@@ -408,6 +543,63 @@ export class MyModalComponent {
 }
 ```
 
+#### Visual Representation
+
+```
+Center Modal (Default):
+                    ┌──────────────────────────────────┐
+                    │ ✕                    Confirmation│
+                    ├──────────────────────────────────┤
+                    │                                  │
+                    │  Are you sure you want to        │
+                    │  proceed?                        │
+                    │                                  │
+                    ├──────────────────────────────────┤
+                    │          [Cancel]  [Confirm]     │
+                    └──────────────────────────────────┘
+
+Modal Sizes:
+Small (sm)          Medium (md)              Large (lg)                  Extra Large (xl)
+┌──────────┐        ┌─────────────────┐      ┌─────────────────────────┐  ┌──────────────────────────────┐
+│          │        │                 │      │                         │  │                              │
+│  Content │        │    Content      │      │        Content          │  │           Content            │
+│          │        │                 │      │                         │  │                              │
+└──────────┘        └─────────────────┘      └─────────────────────────┘  └──────────────────────────────┘
+
+Side Modal Positions:
+Left Position:                                   Right Position:
+┌──────────────┐                                              ┌──────────────┐
+│              │                                              │              │
+│  Settings    │                                              │  Settings    │
+│              │                                              │              │
+│  [Content]   │                                              │  [Content]   │
+│              │                                              │              │
+│              │                                              │              │
+└──────────────┘                                              └──────────────┘
+(Slides from left)                                            (Slides from right)
+
+Modal with Custom Content:
+┌─────────────────────────────────────┐
+│ ✕                     User Details  │
+├─────────────────────────────────────┤
+│                                     │
+│  Name:  John Doe                    │
+│  Email: john@example.com            │
+│  Role:  Administrator               │
+│                                     │
+│  [Your custom form/content here]    │
+│                                     │
+└─────────────────────────────────────┘
+
+Features:
+• Backdrop overlay with click-to-close
+• ESC key to close
+• Multiple size options (sm, md, lg, xl)
+• Positioning (left, right, center)
+• Smooth animations
+• Accessibility support
+```
+
 #### Properties
 
 | Property | Type | Default | Description |
@@ -490,6 +682,75 @@ import { DashboardCard } from 'eos-comp';
   [svgIcon]="userIcon"
   (cardClick)="handleCardClick()">
 </lib-card>
+```
+
+#### Visual Representation
+
+```
+Dashboard Card:
+┌─────────────────────────────┐
+│  👤                          │
+│                              │
+│  Total Users                 │
+│  1,234                       │
+│  ↑ +12% from last month      │
+└─────────────────────────────┘
+
+Pie Chart Card:
+┌─────────────────────────────┐
+│  Portfolio Allocation        │
+│                              │
+│         ●●●●●                │
+│       ●       ●              │
+│      ●    ○    ●             │
+│       ●       ●              │
+│         ●●●●●                │
+│                              │
+│  ■ Equity: 60%               │
+│  ■ Debt: 40%                 │
+└─────────────────────────────┘
+
+Task List Card:
+┌─────────────────────────────┐
+│  Today's Tasks               │
+│  ─────────────────────       │
+│  □ Review documents          │
+│  □ Team meeting at 2 PM      │
+│  □ Submit report             │
+│  □ Update project status     │
+└─────────────────────────────┘
+
+Financial Card:
+┌─────────────────────────────┐
+│  💰 Revenue                  │
+│                              │
+│  $45,231                     │
+│  Current Month               │
+│                              │
+│  Target: $50,000             │
+└─────────────────────────────┘
+
+Carousel Card:
+┌─────────────────────────────────────────────────────────┐
+│  Portfolio Fund Overlap              [◄]  [►]           │
+│  ─────────────────────────────────────────────────      │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐          │
+│  │ Fund A    │  │ Fund B    │  │ Fund C    │          │
+│  │ vs        │  │ vs        │  │ vs        │          │
+│  │ Fund B    │  │ Fund C    │  │ Fund D    │          │
+│  │ ─────     │  │ ─────     │  │ ─────     │          │
+│  │ 45% ████  │  │ 32% ███   │  │ 67% █████ │          │
+│  │ Overlap   │  │ Overlap   │  │ Overlap   │          │
+│  └───────────┘  └───────────┘  └───────────┘          │
+└─────────────────────────────────────────────────────────┘
+
+Features:
+• Multiple card types for different use cases
+• Interactive elements (click handlers)
+• Chart integration (pie, donut)
+• Icon support (SVG)
+• Carousel with navigation
+• Responsive layout
 ```
 
 #### Properties
@@ -616,6 +877,38 @@ export class SearchPageComponent {
 }
 ```
 
+#### Visual Representation
+
+```
+Basic Search Component:
+┌────────────────────────────────────────────────────┐
+│  🔍  │ Search users...                    [ Go ]   │
+└────────────────────────────────────────────────────┘
+
+Search with Icon Only:
+┌────────────────────────────────────┐
+│  🔍  │ Type to search...             │
+└────────────────────────────────────┘
+
+Search with Button:
+┌──────────────────────────────────────────────────────┐
+│  │ Enter search term...               [ Search ]     │
+└──────────────────────────────────────────────────────┘
+
+Half Width Search:
+┌─────────────────────────┐
+│  🔍  │ Quick search...   │
+└─────────────────────────┘
+
+Features:
+• Optional prefix icon
+• Optional action button
+• Real-time input change events
+• Customizable placeholder
+• Half/full width options
+• Flexible styling
+```
+
 ---
 
 ### Header Component
@@ -694,6 +987,48 @@ headerButtons: ButtonType[] = [
 ];
 ```
 
+#### Visual Representation
+
+```
+Complete Header Component:
+┌────────────────────────────────────────────────────────────────────────┐
+│  👤  Dashboard                            [⚙️ Settings] [Export] ⚙️   │
+│      Welcome back, John!                                               │
+└────────────────────────────────────────────────────────────────────────┘
+
+Header Layout Breakdown:
+┌────────────────────────────────────────────────────────────────────────┐
+│  [Profile]  [Title]                   [Button List]      [Icon]        │
+│              [Description]                                             │
+└────────────────────────────────────────────────────────────────────────┘
+
+Simple Header (Title + Description):
+┌────────────────────────────────────────┐
+│  User Management                       │
+│  Manage all system users               │
+└────────────────────────────────────────┘
+
+Header with Action Buttons:
+┌─────────────────────────────────────────────────────────────────┐
+│  Reports                    [Download] [Share] [Print]          │
+│  Monthly financial reports                                      │
+└─────────────────────────────────────────────────────────────────┘
+
+Header with Profile Image:
+┌──────────────────────────────────────────────────────┐
+│  [👤]  My Profile                    [Edit Profile]  │
+│        View and manage your account settings         │
+└──────────────────────────────────────────────────────┘
+
+Features:
+• Flexible layout with multiple content slots
+• Profile image support
+• Multiple action buttons
+• Clickable icon
+• Title and description text
+• Customizable button configurations
+```
+
 ---
 
 ### Accordion Component
@@ -752,6 +1087,66 @@ sections: SubSection[] = [
 ];
 ```
 
+#### Visual Representation
+
+```
+Accordion - Collapsed State:
+┌───────────────────────────────────────────────────────┐
+│  ▶ Personal Information                     [Edit]    │
+└───────────────────────────────────────────────────────┘
+
+Accordion - Expanded State:
+┌───────────────────────────────────────────────────────┐
+│  ▼ Personal Information                     [Edit]    │
+├───────────────────────────────────────────────────────┤
+│                                                       │
+│  Full Name                                            │
+│  John Doe                                             │
+│                                                       │
+│  Email                                                │
+│  john@example.com                                     │
+│                                                       │
+│  Phone                                                │
+│  +1 (555) 123-4567                                    │
+│                                                       │
+│  Address                                              │
+│  123 Main Street, City, State 12345                   │
+│                                                       │
+└───────────────────────────────────────────────────────┘
+
+Multiple Accordions:
+┌───────────────────────────────────────────────────────┐
+│  ▼ Personal Information                     [Edit]    │
+├───────────────────────────────────────────────────────┤
+│  [Content visible when expanded]                      │
+└───────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────┐
+│  ▶ Work Information                         [Edit]    │
+└───────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────┐
+│  ▶ Payment Details                          [Edit]    │
+└───────────────────────────────────────────────────────┘
+
+Accordion with Table Data:
+┌─────────────────────────────────────────────────────────┐
+│  ▼ Order History                            [Edit]      │
+├─────────────────────────────────────────────────────────┤
+│  Date        │  Order ID  │  Amount   │  Status        │
+│  ───────────────────────────────────────────────────── │
+│  2024-01-15  │  #12345    │  $125.00  │  Delivered     │
+│  2024-01-10  │  #12344    │  $89.99   │  Shipped       │
+│  2024-01-05  │  #12343    │  $45.50   │  Processing    │
+└─────────────────────────────────────────────────────────┘
+
+Features:
+• Click to expand/collapse content
+• Optional edit button with navigation
+• Support for subsections (key-value pairs)
+• Table data integration
+• Smooth animations
+• Clean, organized layout
+```
+
 ---
 
 ### Form Fields Component
@@ -771,6 +1166,68 @@ import { FormFields } from 'eos-comp';
 ```
 
 **Note:** This component is primarily for demonstration purposes and contains pre-built form examples with text inputs, email, number, textarea, date, toggle switches, and select dropdowns.
+
+#### Visual Representation
+
+```
+Form Fields Component (Demo):
+┌────────────────────────────────────────────────────────┐
+│  Text Input                                            │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ Enter text...                                    │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Email Input                                           │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ email@example.com                                │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Number Input                                          │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ 0                                      [+] [-]   │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Text Area                                             │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │                                                  │ │
+│  │ Multi-line text input...                        │ │
+│  │                                                  │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Date Input                                            │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ MM/DD/YYYY                               📅      │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Toggle Switch                                         │
+│  Enable notifications        ( ◯─────── )  OFF        │
+│                                                        │
+│  Select Dropdown                                       │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ Select an option...                          ▼  │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Amount Input                                          │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ $ 0.00                                           │ │
+│  └──────────────────────────────────────────────────┘ │
+│                                                        │
+│  Disabled Input                                        │
+│  ┌──────────────────────────────────────────────────┐ │
+│  │ [This field is disabled]                         │ │
+│  └──────────────────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────┘
+
+Features:
+• Text, email, number inputs
+• Text area for multi-line input
+• Date picker integration
+• Toggle switches (on/off states)
+• Select dropdowns
+• Amount/currency inputs
+• Disabled state support
+• Reactive Forms integration
+```
 
 ---
 
